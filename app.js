@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navegarAba('time');
 });
 
-// Lógica de Retração Direta e Leve da Sidebar
+// Lógica de Retração Direta da Sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebarMenu');
   const iconToggle = document.getElementById('iconSidebarToggle');
@@ -96,7 +96,7 @@ function atualizarContadorResultados(total) {
   }
 }
 
-// 1. Aba Time
+// 1. Aba Time com carregamento otimizado (loading="lazy")
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado com os filtros selecionados.</div>`;
@@ -119,7 +119,7 @@ function renderizarTime(dados, container) {
       membro.canaisResponsaveis.forEach(canal => {
         const logoUrl = LOGOS_CANOES[canal];
         if (logoUrl) {
-          htmlLogos += `<img src="${logoUrl}" title="${canal}" alt="${canal}" class="h-5 w-auto object-contain max-w-[50px] bg-white p-0.5 rounded shadow-sm border border-gray-100">`;
+          htmlLogos += `<img src="${logoUrl}" title="${canal}" alt="${canal}" loading="lazy" class="h-5 w-auto object-contain max-w-[50px] bg-white p-0.5 rounded shadow-sm border border-gray-100">`;
         }
       });
       htmlLogos += `</div>`;
@@ -129,7 +129,7 @@ function renderizarTime(dados, container) {
       <div class="bringit-card p-6 flex flex-col justify-between">
         <div>
           <div class="flex items-start space-x-4 mb-4">
-            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" class="w-16 h-16 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm">
+            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" loading="lazy" class="w-16 h-16 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm bg-gray-100">
             <div class="flex-1">
               <h3 class="font-extrabold text-[#1C275C] text-xl leading-snug">${membro.nome}</h3>
               <p class="text-sm font-bold text-gray-500 mt-0.5">${membro.cargo}</p>
@@ -216,7 +216,7 @@ function renderizarMarketplace(dados, container) {
           <div class="flex items-center justify-between gap-3 mb-4 h-12">
             ${urlLogo ? `
               <div class="h-10 w-32 flex items-center justify-start overflow-hidden">
-                <img src="${urlLogo}" alt="${item.canal}" class="${estiloLogo}">
+                <img src="${urlLogo}" alt="${item.canal}" loading="lazy" class="${estiloLogo}">
               </div>
             ` : `<span class="font-extrabold text-[#1C275C] text-base">${item.canal}</span>`}
 
@@ -226,7 +226,7 @@ function renderizarMarketplace(dados, container) {
           </div>
 
           <div class="text-xs text-gray-700 flex items-center gap-3 pt-3.5 border-t border-gray-100">
-            <img src="${fotoResp}" alt="${item.responsavel}" class="w-10 h-10 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm flex-shrink-0">
+            <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-10 h-10 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm flex-shrink-0 bg-gray-100">
             <div>
               <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Responsável</p>
               <span class="font-extrabold text-[#1C275C] text-sm leading-tight block">${item.responsavel}</span>
@@ -402,7 +402,7 @@ function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema)
       <div class="bg-white rounded-2xl p-4 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition-colors">
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            ${logoUrl ? `<img src="${logoUrl}" alt="${item.canal}" class="h-6 object-contain max-w-[90px]">` : `<span class="text-xs font-bold text-gray-400">${item.canal}</span>`}
+            ${logoUrl ? `<img src="${logoUrl}" alt="${item.canal}" loading="lazy" class="h-6 object-contain max-w-[90px]">` : `<span class="text-xs font-bold text-gray-400">${item.canal}</span>`}
             <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-gray-100 text-gray-600">Filtro</span>
           </div>
 
@@ -514,7 +514,7 @@ function renderizarSite(dados, container) {
           <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
           <td class="p-4">
             <div class="flex items-center gap-2">
-              <img src="${fotoResp}" alt="${item.responsavel}" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF]">
+              <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100">
               <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
             </div>
           </td>

@@ -11,12 +11,12 @@ const LOGOS_CANOES = {
   "Site": "https://www.bringit.com.br/assets/images/brand/logo-bringit.svg"
 };
 
-// 1. Mapeamento de Lojas, Responsáveis e Fotos por Estado
+// 1. Mapeamento de Lojas, Responsáveis e Fotos por Estado (Extensões Atualizadas)
 const DATA_MARKETPLACE_CANOES = [
-  { canal: "Mercado Livre", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpg" },
-  { canal: "Mercado Livre", conta: "SP", responsavel: "Maria Soares", foto: "maria.jpg" },
-  { canal: "Mercado Livre", conta: "PR", responsavel: "Maria Soares", foto: "maria.jpg" },
-  { canal: "Mercado Livre", conta: "MG", responsavel: "Maria Soares", foto: "maria.jpg" },
+  { canal: "Mercado Livre", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "SP", responsavel: "Maria Soares", foto: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "PR", responsavel: "Maria Soares", foto: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "MG", responsavel: "Maria Soares", foto: "maria.jpeg" },
   { canal: "Shopee", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
   { canal: "Shopee", conta: "SP", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
   { canal: "Shopee", conta: "MG", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
@@ -24,7 +24,7 @@ const DATA_MARKETPLACE_CANOES = [
   { canal: "Kabum", conta: "SP", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
   { canal: "Kabum", conta: "MG", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
   { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Temu", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpg" },
+  { canal: "Temu", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpeg" },
   { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" }
 ];
 

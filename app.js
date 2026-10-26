@@ -1,3 +1,5 @@
+// app.js
+
 let abaAtual = 'time';
 let sidebarRetraida = false;
 
@@ -5,34 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
   navegarAba('time');
 });
 
-// Lógica de Retração Direta da Sidebar
+// Alternância Ultrarrápida da Sidebar (Isolada do DOM)
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebarMenu');
   const iconToggle = document.getElementById('iconSidebarToggle');
-  const sidebarLogo = document.getElementById('sidebarLogo');
-  const labelMenu = document.getElementById('labelMenuOperacional');
   const footerTitle = document.getElementById('footerTitle');
-  const footerSub = document.getElementById('footerSub');
-  const menuTexts = document.querySelectorAll('.menu-text');
 
   sidebarRetraida = !sidebarRetraida;
 
   if (sidebarRetraida) {
+    sidebar.classList.add('sidebar-collapsed');
     sidebar.classList.replace('w-64', 'w-20');
-    iconToggle.classList.add('rotate-180');
-    if (sidebarLogo) sidebarLogo.classList.add('hidden');
-    if (labelMenu) labelMenu.classList.add('hidden');
+    if (iconToggle) iconToggle.classList.add('rotate-180');
     if (footerTitle) footerTitle.textContent = "CC";
-    if (footerSub) footerSub.classList.add('hidden');
-    menuTexts.forEach(txt => txt.classList.add('hidden'));
   } else {
+    sidebar.classList.remove('sidebar-collapsed');
     sidebar.classList.replace('w-20', 'w-64');
-    iconToggle.classList.remove('rotate-180');
-    if (sidebarLogo) sidebarLogo.classList.remove('hidden');
-    if (labelMenu) labelMenu.classList.remove('hidden');
+    if (iconToggle) iconToggle.classList.remove('rotate-180');
     if (footerTitle) footerTitle.textContent = "Central Cadastro";
-    if (footerSub) footerSub.classList.remove('hidden');
-    menuTexts.forEach(txt => txt.classList.remove('hidden'));
   }
 }
 
@@ -580,7 +572,7 @@ function toggleLinhaRotinaSite(index) {
   }
 }
 
-// 4. Aba Biblioteca (Accordion com suporte nativo a HIDE/SHOW)
+// 4. Aba Biblioteca
 function renderizarBiblioteca(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum registro encontrado na Biblioteca.</div>`;

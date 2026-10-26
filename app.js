@@ -7,15 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
   
-  // Atualiza classe ativa no menu lateral
   document.querySelectorAll('.menu-link').forEach(btn => btn.classList.remove('active'));
   const btnAtivo = document.getElementById(`btn-${nomeAba}`);
   if (btnAtivo) btnAtivo.classList.add('active');
 
-  // Atualiza o título da aba
+  // Ajuste do título da aba
   const titulos = {
     time: "Membros da Equipe",
-    marketplace: "Matriz & Rotinas de Marketplace",
+    marketplace: "Rotinas de Marketplace",
     site: "Operações do Site",
     biblioteca: "Biblioteca de Tutoriais & Bases"
   };
@@ -23,7 +22,6 @@ function navegarAba(nomeAba) {
   const elTitulo = document.getElementById('tituloAba');
   if (elTitulo) elTitulo.textContent = titulos[nomeAba] || "Central";
 
-  // Reset do campo de busca
   const elFiltro = document.getElementById('filtroTexto');
   if (elFiltro) elFiltro.value = "";
 
@@ -51,8 +49,6 @@ function renderizarConteudo(dadosFiltrados = null) {
   if (!container) return;
 
   const dados = dadosFiltrados || obterDadosAbaAtual();
-
-  // Atualiza o contador no cabeçalho
   atualizarContadorResultados(dados.length);
 
   if (abaAtual === 'time') renderizarTime(dados, container);
@@ -149,50 +145,72 @@ function toggleResponsabilidade(id) {
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
+  // Seção 1: Responsáveis por Loja (Accordion Expansível e Recolhível)
   if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
     html += `
-      <div class="mb-8">
-        <h3 class="text-base font-extrabold text-[#1C275C] mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-store text-[#00A3FF]"></i> Matriz de Lojas & Responsáveis por Estado
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="bringit-card mb-8 overflow-hidden">
+        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-gray-50/80 transition text-left">
+          <h3 class="text-base font-extrabold text-[#1C275C] flex items-center gap-2">
+            <i class="fa-solid fa-store text-[#00A3FF]"></i> Responsáveis por Loja
+          </h3>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Clique para expandir / recolher</span>
+            <i id="icon-secao-lojas" class="fa-solid fa-chevron-up text-gray-400 transition-transform duration-200"></i>
+          </div>
+        </button>
+
+        <div id="conteudo-secao-lojas" class="p-5 border-t border-gray-100 bg-gray-50/30">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     `;
     
     DATA_MARKETPLACE_CANOES.forEach(item => {
       const urlLogo = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
+      const fotoResp = item.foto || 'https://via.placeholder.com/150';
+      
+      // Ajuste fino para a logo do TikTok sobressair perfeitamente
+      const isTikTok = item.canal === "TikTok";
+      const estiloLogo = isTikTok ? "h-9 w-28 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
 
       html += `
-        <div class="bringit-card p-4 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3 h-10">
-              ${urlLogo ? `
-                <div class="h-8 w-24 flex items-center justify-start">
-                  <img src="${urlLogo}" alt="${item.canal}" class="max-h-full max-w-full object-contain">
-                </div>
-              ` : `<span class="font-bold text-[#1C275C] text-sm">${item.canal}</span>`}
+        <div class="bg-white rounded-xl p-4 border border-gray-200/80 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
+          <div class="flex items-center justify-between gap-2 mb-3 h-10">
+            ${urlLogo ? `
+              <div class="h-9 w-28 flex items-center justify-start overflow-hidden">
+                <img src="${urlLogo}" alt="${item.canal}" class="${estiloLogo}">
+              </div>
+            ` : `<span class="font-bold text-[#1C275C] text-sm">${item.canal}</span>`}
 
-              <span class="px-2.5 py-1 text-xs font-black bg-sky-50 text-[#00A3FF] rounded-lg border border-sky-100 tracking-wider">
-                ${item.conta}
-              </span>
-            </div>
-            <p class="text-xs font-bold text-[#1C275C] mb-1">${item.canal}</p>
+            <!-- Sigla Destacada -->
+            <span class="px-3 py-1 text-xs font-black bg-[#00A3FF] text-white rounded-lg shadow-sm tracking-wider">
+              ${item.conta}
+            </span>
           </div>
 
-          <div class="text-xs text-gray-600 flex items-center gap-2 pt-2 border-t border-gray-100 mt-2">
-            <i class="fa-solid fa-user-gear text-gray-400"></i>
-            <span class="font-medium text-gray-800">${item.responsavel}</span>
+          <!-- Responsável com Foto Miniatura -->
+          <div class="text-xs text-gray-700 flex items-center gap-2.5 pt-2.5 border-t border-gray-100">
+            <img src="${fotoResp}" alt="${item.responsavel}" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF]">
+            <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
           </div>
         </div>
       `;
     });
     
-    html += `</div></div>`;
+    html += `</div></div></div>`;
   }
+
+  // Seção 2: Tabela de Rotinas
+  const CORES_PERIODICIDADE = {
+    'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
+    '2x Semana': 'bg-blue-50 text-blue-700 border-blue-200',
+    'Quinzenal': 'bg-purple-50 text-purple-700 border-purple-200',
+    'Conforme Demanda': 'bg-amber-50 text-amber-700 border-amber-200'
+  };
 
   html += `
     <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
       <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
-        <h3 class="font-bold text-[#1C275C] flex items-center gap-2">
+        <h3 class="font-bold text-[#1C275C] flex items-center gap-2 text-base">
           <i class="fa-solid fa-tasks text-[#00A3FF]"></i> Rotinas e Atividades de Marketplace
         </h3>
         <span class="text-xs text-gray-500 font-semibold bg-white px-3 py-1 rounded-full border">${dados.length} encontradas</span>
@@ -201,6 +219,7 @@ function renderizarMarketplace(dados, container) {
         <table class="w-full text-left text-sm">
           <thead class="bg-gray-50 text-[#1C275C] uppercase text-[11px] font-bold border-b border-gray-100">
             <tr>
+              <th class="p-4 w-12 text-center"></th>
               <th class="p-4">ID</th>
               <th class="p-4">Atividade / Rotina</th>
               <th class="p-4">Tipo</th>
@@ -212,17 +231,67 @@ function renderizarMarketplace(dados, container) {
   `;
 
   if (!dados || dados.length === 0) {
-    html += `<tr><td colspan="5" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
+    html += `<tr><td colspan="6" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
   } else {
-    dados.forEach(item => {
+    dados.forEach((item, index) => {
       const pColor = item.prioridade === 'Alta' ? 'bg-red-50 text-red-600 border-red-100' : (item.prioridade === 'Média' ? 'bg-amber-50 text-amber-600 border-amber-100' : 'bg-gray-50 text-gray-600 border-gray-100');
+      const estiloPeriodicidade = CORES_PERIODICIDADE[item.periodicidade] || 'bg-gray-100 text-gray-700 border-gray-200';
+
+      const temApoio = (item.materiais && item.materiais.length > 0) || (item.tutoriais && item.tutoriais.length > 0);
+
       html += `
-        <tr class="hover:bg-sky-50/30 transition">
+        <tr onclick="toggleLinhaRotina(${index})" class="hover:bg-sky-50/30 transition cursor-pointer">
+          <td class="p-4 text-center">
+            <i id="rotina-icon-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
+          </td>
           <td class="p-4 font-bold text-gray-400">#${item.id}</td>
           <td class="p-4 font-semibold text-[#1C275C]">${item.atividade}</td>
           <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-lg bg-gray-100 text-gray-700 font-medium">${item.periodicidade}</span></td>
+          <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-lg border ${estiloPeriodicidade}">${item.periodicidade}</span></td>
           <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-full border ${pColor}">${item.prioridade || 'Média'}</span></td>
+        </tr>
+        <tr id="rotina-content-${index}" class="hidden bg-sky-50/20 border-t-0">
+          <td colspan="6" class="p-5 pl-14">
+            ${temApoio ? `
+              <div class="space-y-3">
+                ${item.materiais && item.materiais.length > 0 ? `
+                  <div>
+                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
+                      <i class="fa-solid fa-file-excel text-emerald-500"></i> Bases Utilizadas & Planilhas
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      ${item.materiais.map(mat => `
+                        <a href="${mat.url}" target="_blank" class="btn-bringit inline-flex items-center gap-2 px-3.5 py-2 text-xs">
+                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                          <span>${mat.nome}</span>
+                        </a>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+
+                ${item.tutoriais && item.tutoriais.length > 0 ? `
+                  <div>
+                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
+                      <i class="fa-solid fa-book text-[#00A3FF]"></i> Tutoriais & Procedimentos
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      ${item.tutoriais.map(tut => `
+                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition">
+                          <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
+                          <span>${tut.nome}</span>
+                        </a>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+              </div>
+            ` : `
+              <p class="text-xs font-medium text-gray-500 italic bg-white p-3 rounded-xl border border-gray-200/60 inline-block">
+                <i class="fa-solid fa-circle-info text-[#00A3FF] mr-1.5"></i> Material de apoio em produção ou não necessário.
+              </p>
+            `}
+          </td>
         </tr>
       `;
     });
@@ -230,6 +299,24 @@ function renderizarMarketplace(dados, container) {
 
   html += `</tbody></table></div></div>`;
   container.innerHTML = html;
+}
+
+function toggleSecaoLojas() {
+  const conteudo = document.getElementById('conteudo-secao-lojas');
+  const icone = document.getElementById('icon-secao-lojas');
+  if (conteudo && icone) {
+    conteudo.classList.toggle('hidden');
+    icone.classList.toggle('rotate-180');
+  }
+}
+
+function toggleLinhaRotina(index) {
+  const content = document.getElementById(`rotina-content-${index}`);
+  const icon = document.getElementById(`rotina-icon-${index}`);
+  if (content && icon) {
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-90');
+  }
 }
 
 // 3. Aba Site
@@ -354,7 +441,7 @@ function toggleAccordion(index) {
   }
 }
 
-// MÓDULO DE FILTROS PROFISSIONAL E DINÂMICO
+// MÓDULO DE FILTROS PROFISSIONAL E GLOBAL
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
   if (!container) return;
@@ -363,7 +450,7 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis'];
+  const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto'];
   const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
 
   chaves.forEach(chave => {
@@ -376,7 +463,6 @@ function gerarFiltrosPorColuna() {
 
     if (valoresUnicos.length <= 1) return;
 
-    // Rótulos formatados
     const rotulos = {
       nome: "Colaborador",
       cargo: "Cargo",
@@ -401,6 +487,13 @@ function gerarFiltrosPorColuna() {
 
     container.appendChild(select);
   });
+
+  // Botão Limpar Filtros SEMPRE VISÍVEL
+  const btnLimpar = document.createElement('button');
+  btnLimpar.className = "px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5 shadow-sm";
+  btnLimpar.onclick = limparFiltros;
+  btnLimpar.innerHTML = `<i class="fa-solid fa-filter-circle-xmark"></i><span>Limpar Filtros</span>`;
+  container.appendChild(btnLimpar);
 
   atualizarInterfaceFiltros();
 }
@@ -448,7 +541,6 @@ function aplicarFiltros() {
 function atualizarInterfaceFiltros() {
   const inputTexto = document.getElementById('filtroTexto');
   const btnLimparTexto = document.getElementById('btnLimparBuscaTexto');
-  const btnLimparTodos = document.getElementById('btnLimparTodosFiltros');
   const containerTags = document.getElementById('containerTagsFiltrosAtivos');
   const selects = document.querySelectorAll('#containerFiltrosColunas select');
 
@@ -477,12 +569,6 @@ function atualizarInterfaceFiltros() {
     }
   });
 
-  // Exibe/oculta o botão "Limpar Filtros"
-  if (btnLimparTodos) {
-    btnLimparTodos.classList.toggle('hidden', filtrosAtivos.length === 0);
-  }
-
-  // Gera as tags azuis de filtros ativos
   if (containerTags) {
     if (filtrosAtivos.length === 0) {
       containerTags.innerHTML = "";

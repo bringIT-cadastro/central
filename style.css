@@ -1,53 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --bringit-ciano: #00ACFF;
-  --bringit-ciano-hover: #0093DC;
-  --bringit-azul-escuro: #1C275C;
-  --bringit-azul-escuro-hover: #141C44;
-  --bringit-preto: #1A1C25;
-  --bringit-branco: #FFFFFF;
-  --bringit-bg-fundo: #F4F6F9;
+  --bringit-primary: #00A3FF;
+  --bringit-primary-hover: #008AD8;
+  --bringit-dark: #1C275C;
+  --bringit-text: #222222;
+  --bringit-text-muted: #666666;
+  --bringit-bg: #F5F7FA;
+  --bringit-card-bg: #FFFFFF;
+  --bringit-input-bg: #F2F4F7;
+  --bringit-border: #E5E7EB;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bringit-bg-fundo);
-  color: var(--bringit-preto);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bringit-bg);
+  color: var(--bringit-text);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Utilitários de Cores bringIT */
-.bg-bringit-ciano { background-color: var(--bringit-ciano); }
-.text-bringit-ciano { color: var(--bringit-ciano); }
-.bg-bringit-azul { background-color: var(--bringit-azul-escuro); }
-.text-bringit-azul { color: var(--bringit-azul-escuro); }
-.text-bringit-preto { color: var(--bringit-preto); }
-
-/* Menu Lateral / Sidebar */
+/* Sidebar com o tom escuro institucional */
 .sidebar-bg {
-  background-color: var(--bringit-azul-escuro);
+  background-color: #FFFFFF;
+  border-right: 1px solid var(--bringit-border);
 }
 
 .menu-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: #4B5563;
+  font-weight: 500;
   transition: all 0.2s ease;
+  border-radius: 12px;
+  margin: 2px 12px;
 }
 
 .menu-link:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  color: var(--bringit-branco);
+  background-color: #F3F4F6;
+  color: var(--bringit-primary);
 }
 
 .menu-link.active {
-  background-color: rgba(0, 172, 255, 0.15);
-  color: var(--bringit-branco);
-  border-left: 4px solid var(--bringit-ciano);
+  background-color: #E6F6FF;
+  color: var(--bringit-primary);
+  font-weight: 700;
 }
 
-/* Accordion da Biblioteca */
+/* Estilo dos Cards seguindo o e-commerce */
+.bringit-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bringit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Botões do E-commerce */
+.btn-bringit {
+  background-color: var(--bringit-primary);
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-bringit:hover {
+  background-color: var(--bringit-primary-hover);
+}
+
+/* Barra de Busca identica ao header */
+.search-input-bringit {
+  background-color: var(--bringit-input-bg);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.search-input-bringit:focus {
+  background-color: #FFFFFF;
+  border-color: var(--bringit-primary);
+  box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.15);
+}
+
+/* Accordion */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
 }
+
 .accordion-content.open {
   max-height: 1000px;
+  transition: max-height 0.3s ease-in-out;
 }

@@ -5,86 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Central de Atividades | bringIT</title>
   
-  <!-- Favicon da bringIT -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjTdDDM6XUowBlBmsyNjafgPuMMJ7Ci1XLB8alGALxgw&s">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="flex h-screen overflow-hidden bg-[#F4F6F9]">
+<body class="flex h-screen overflow-hidden bg-[#F5F7FA]">
 
-  <!-- Sidebar Lateral (Azul Escuro #1C275C) -->
-  <aside class="w-64 bg-[#1C275C] text-white flex flex-col justify-between shadow-xl">
+  <!-- Sidebar Lateral estilo Clean -->
+  <aside class="w-64 bg-white flex flex-col justify-between border-r border-gray-200 z-20 shadow-sm">
     <div>
-      <!-- Cabeçalho com Logo SVG Oficial da bringIT -->
-      <div class="p-5 border-b border-blue-900/50 flex items-center justify-center bg-white/5">
+      <!-- Cabeçalho com Logo Oficial -->
+      <div class="p-6 border-b border-gray-100 flex items-center justify-center">
         <a href="#" class="block">
           <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" 
                alt="bringIT" 
-               class="h-8 object-contain drop-shadow">
+               class="h-8 object-contain">
         </a>
       </div>
       
       <!-- Navegação das Abas -->
-      <nav class="mt-4">
-        <p class="px-5 text-xs font-semibold text-blue-200 uppercase tracking-wider mb-2">Abas do Projeto</p>
-        <button onclick="navegarAba('time')" id="btn-time" class="menu-link w-full flex items-center px-5 py-3 text-sm font-medium">
-          <i class="fa-solid fa-users w-6"></i> Time
+      <nav class="mt-6 space-y-1">
+        <p class="px-6 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Menu Operacional</p>
+        
+        <button onclick="navegarAba('time')" id="btn-time" class="menu-link w-full flex items-center px-4 py-3 text-sm">
+          <i class="fa-solid fa-users w-6 text-gray-400"></i>
+          <span>Time</span>
         </button>
-        <button onclick="navegarAba('marketplace')" id="btn-marketplace" class="menu-link w-full flex items-center px-5 py-3 text-sm font-medium">
-          <i class="fa-solid fa-store w-6"></i> Marketplace
+
+        <button onclick="navegarAba('marketplace')" id="btn-marketplace" class="menu-link w-full flex items-center px-4 py-3 text-sm">
+          <i class="fa-solid fa-store w-6 text-gray-400"></i>
+          <span>Marketplace</span>
         </button>
-        <button onclick="navegarAba('site')" id="btn-site" class="menu-link w-full flex items-center px-5 py-3 text-sm font-medium">
-          <i class="fa-solid fa-globe w-6"></i> Site
+
+        <button onclick="navegarAba('site')" id="btn-site" class="menu-link w-full flex items-center px-4 py-3 text-sm">
+          <i class="fa-solid fa-globe w-6 text-gray-400"></i>
+          <span>Site</span>
         </button>
-        <button onclick="navegarAba('biblioteca')" id="btn-biblioteca" class="menu-link w-full flex items-center px-5 py-3 text-sm font-medium">
-          <i class="fa-solid fa-book-open w-6"></i> Biblioteca (FAQ)
+
+        <button onclick="navegarAba('biblioteca')" id="btn-biblioteca" class="menu-link w-full flex items-center px-4 py-3 text-sm">
+          <i class="fa-solid fa-book-open w-6 text-gray-400"></i>
+          <span>Biblioteca (FAQ)</span>
         </button>
       </nav>
     </div>
 
-    <div class="p-4 border-t border-blue-900/50 text-xs text-blue-300 text-center">
-      Central de Operações v1.0
+    <!-- Rodapé Sidebar -->
+    <div class="p-4 border-t border-gray-100 text-center">
+      <div class="bg-sky-50 rounded-xl p-3">
+        <p class="text-xs font-bold text-[#00A3FF]">Central Operacional</p>
+        <p class="text-[11px] text-gray-500 mt-0.5">bringIT E-commerce</p>
+      </div>
     </div>
   </aside>
 
   <!-- Área de Conteúdo Principal -->
   <main class="flex-1 flex flex-col overflow-y-auto">
-    <!-- Header -->
-    <header class="bg-white border-b p-5 shadow-sm sticky top-0 z-10">
+    
+    <!-- Top Bar Estilo bringIT -->
+    <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-10">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h2 id="tituloAba" class="text-2xl font-bold text-[#1C275C]">Visualização</h2>
+        <div>
+          <h2 id="tituloAba" class="text-2xl font-extrabold text-[#1C275C]">Visualização</h2>
+          <p class="text-xs text-gray-500 mt-0.5">Gestão e acompanhamento de processos internos</p>
+        </div>
         
-        <!-- Barra de Busca -->
+        <!-- Barra de Busca do Site Oficial -->
         <div class="flex items-center gap-3 w-full md:w-1/2">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
-            <input type="text" id="filtroTexto" oninput="aplicarFiltros()" placeholder="Buscar em todas as colunas..." 
-                   class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ACFF] text-sm">
+            <input type="text" id="filtroTexto" oninput="aplicarFiltros()" 
+                   placeholder="Busque por responsável, rotina, código ou palavra-chave..." 
+                   class="search-input-bringit w-full pl-4 pr-10 py-2.5 text-sm focus:outline-none text-gray-800 placeholder-gray-400">
+            <button class="absolute right-3 top-2.5 text-[#00A3FF] hover:text-[#008AD8]">
+              <i class="fa-solid fa-magnifying-glass text-base"></i>
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Filtros Automáticos por Colunas -->
-      <div id="containerFiltrosColunas" class="flex flex-wrap gap-3 mt-4 pt-3 border-t">
+      <div id="containerFiltrosColunas" class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-100">
         <!-- Injetado dinamicamente via JS -->
       </div>
     </header>
 
     <!-- Conteúdo Dinâmico da Aba -->
-    <section id="conteudoAba" class="p-6">
+    <section id="conteudoAba" class="p-8">
       <!-- Injetado dinamicamente via JS -->
     </section>
   </main>
 
-  <!-- Carregamento de Arquivos Diretamente da Raiz -->
+  <!-- Carregamento dos Scripts JS da Raiz -->
   <script src="time.js"></script>
   <script src="marketplace.js"></script>
   <script src="site.js"></script>
   <script src="biblioteca.js"></script>
   
-  <!-- Lógica Principal do Dashboard -->
+  <!-- Lógica Principal -->
   <script src="app.js"></script>
 </body>
 </html>

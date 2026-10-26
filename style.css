@@ -1,98 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-:root {
-  --bringit-primary: #00A3FF;
-  --bringit-primary-hover: #008AD8;
-  --bringit-dark: #1C275C;
-  --bringit-text: #222222;
-  --bringit-text-muted: #666666;
-  --bringit-bg: #F5F7FA;
-  --bringit-card-bg: #FFFFFF;
-  --bringit-input-bg: #F2F4F7;
-  --bringit-border: #E5E7EB;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bringit-bg);
-  color: var(--bringit-text);
-  -webkit-font-smoothing: antialiased;
+  color: #1C275C;
 }
 
-/* Sidebar com o tom escuro institucional */
-.sidebar-bg {
-  background-color: #FFFFFF;
-  border-right: 1px solid var(--bringit-border);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Transição Ultrarrápida e Leve da Sidebar */
+.sidebar-transition {
+  transition: width 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+/* Botões do Menu Lateral */
 .menu-link {
-  color: #4B5563;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border-radius: 12px;
-  margin: 2px 12px;
+  color: #475569;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .menu-link:hover {
-  background-color: #F3F4F6;
-  color: var(--bringit-primary);
+  background-color: #F0F9FF;
+  color: #00A3FF;
 }
 
 .menu-link.active {
-  background-color: #E6F6FF;
-  color: var(--bringit-primary);
-  font-weight: 700;
+  background-color: #00A3FF;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 163, 255, 0.25);
 }
 
-/* Estilo dos Cards seguindo o e-commerce */
+.menu-link.active i {
+  color: #FFFFFF !important;
+}
+
+/* Cards bringIT */
 .bringit-card {
-  background: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #EAEAEA;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .bringit-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: #00A3FF;
+  box-shadow: 0 4px 20px -2px rgba(0, 163, 255, 0.12);
 }
 
-/* Botões do E-commerce */
-.btn-bringit {
-  background-color: var(--bringit-primary);
-  color: #FFFFFF;
-  font-weight: 700;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-}
-
-.btn-bringit:hover {
-  background-color: var(--bringit-primary-hover);
-}
-
-/* Barra de Busca identica ao header */
+/* Inputs e Selects Padrão */
 .search-input-bringit {
-  background-color: var(--bringit-input-bg);
-  border: 1px solid transparent;
-  border-radius: 12px;
-  transition: all 0.2s ease;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.85rem;
+  transition: all 150ms ease;
 }
 
 .search-input-bringit:focus {
   background-color: #FFFFFF;
-  border-color: var(--bringit-primary);
+  border-color: #00A3FF;
   box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.15);
 }
 
-/* Accordion */
+/* Animação do Accordion */
 .accordion-content {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease-out, padding 200ms ease-out;
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
 }
 
 .accordion-content.open {
-  max-height: 1000px;
-  transition: max-height 0.3s ease-in-out;
+  grid-template-rows: 1fr;
 }

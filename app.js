@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navegarAba('time');
 });
 
-// Lógica de Retração do Menu Lateral (Sidebar)
+// Lógica de Retração Direta e Leve da Sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebarMenu');
   const iconToggle = document.getElementById('iconSidebarToggle');
@@ -18,20 +18,18 @@ function toggleSidebar() {
   sidebarRetraida = !sidebarRetraida;
 
   if (sidebarRetraida) {
-    sidebar.classList.remove('w-64');
-    sidebar.classList.add('w-20');
+    sidebar.classList.replace('w-64', 'w-20');
     iconToggle.classList.add('rotate-180');
     if (sidebarLogo) sidebarLogo.classList.add('hidden');
-    if (labelMenu) labelMenu.classList.add('opacity-0', 'pointer-events-none');
+    if (labelMenu) labelMenu.classList.add('hidden');
     if (footerTitle) footerTitle.textContent = "CC";
     if (footerSub) footerSub.classList.add('hidden');
     menuTexts.forEach(txt => txt.classList.add('hidden'));
   } else {
-    sidebar.classList.remove('w-20');
-    sidebar.classList.add('w-64');
+    sidebar.classList.replace('w-20', 'w-64');
     iconToggle.classList.remove('rotate-180');
     if (sidebarLogo) sidebarLogo.classList.remove('hidden');
-    if (labelMenu) labelMenu.classList.remove('opacity-0', 'pointer-events-none');
+    if (labelMenu) labelMenu.classList.remove('hidden');
     if (footerTitle) footerTitle.textContent = "Central Cadastro";
     if (footerSub) footerSub.classList.remove('hidden');
     menuTexts.forEach(txt => txt.classList.remove('hidden'));
@@ -147,7 +145,7 @@ function renderizarTime(dados, container) {
           </div>
 
           <div class="pt-3 border-t border-gray-100 mt-4">
-            <button onclick="toggleResponsabilidade(${membro.id})" class="w-full flex items-center justify-between text-xs font-extrabold text-[#1C275C] hover:text-[#00A3FF] transition py-1">
+            <button onclick="toggleResponsabilidade(${membro.id})" class="w-full flex items-center justify-between text-xs font-extrabold text-[#1C275C] hover:text-[#00A3FF] transition-colors py-1">
               <span class="flex items-center gap-1.5 text-sm">
                 <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Responsabilidades Principais
               </span>
@@ -182,7 +180,7 @@ function renderizarMarketplace(dados, container) {
   if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
     html += `
       <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
-        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition text-left">
+        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition-colors text-left">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center border border-sky-100">
               <i class="fa-solid fa-store text-lg"></i>
@@ -198,7 +196,7 @@ function renderizarMarketplace(dados, container) {
               Clique para visualizar
             </span>
             <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
-              <i id="icon-secao-lojas" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+              <i id="icon-secao-lojas" class="fa-solid fa-chevron-down transition-transform duration-200"></i>
             </div>
           </div>
         </button>
@@ -214,7 +212,7 @@ function renderizarMarketplace(dados, container) {
       const estiloLogo = isTikTok ? "h-10 w-32 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
 
       html += `
-        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] hover:shadow-md transition">
+        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
           <div class="flex items-center justify-between gap-3 mb-4 h-12">
             ${urlLogo ? `
               <div class="h-10 w-32 flex items-center justify-start overflow-hidden">
@@ -294,7 +292,7 @@ function renderizarMarketplace(dados, container) {
       const temApoio = (item.materiais && item.materiais.length > 0) || (item.tutoriais && item.tutoriais.length > 0);
 
       html += `
-        <tr onclick="toggleLinhaRotina(${index})" class="hover:bg-sky-50/30 transition cursor-pointer">
+        <tr onclick="toggleLinhaRotina(${index})" class="hover:bg-sky-50/30 transition-colors cursor-pointer">
           <td class="p-4 text-center">
             <i id="rotina-icon-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
           </td>
@@ -331,7 +329,7 @@ function renderizarMarketplace(dados, container) {
                     </p>
                     <div class="flex flex-wrap gap-2">
                       ${item.tutoriais.map(tut => `
-                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition">
+                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition-colors">
                           <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
                           <span>${tut.nome}</span>
                         </a>
@@ -372,7 +370,7 @@ function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema)
 
   let html = `
     <div class="bringit-card mb-6 overflow-hidden border shadow-sm">
-      <button onclick="toggleSecaoFiltroCritico('${idSecao}')" class="w-full flex items-center justify-between p-5 transition text-left ${estilosHeader}">
+      <button onclick="toggleSecaoFiltroCritico('${idSecao}')" class="w-full flex items-center justify-between p-5 transition-colors text-left ${estilosHeader}">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center border ${estiloIcone}">
             <i class="fa-solid fa-filter text-lg"></i>
@@ -388,7 +386,7 @@ function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema)
             Clique para visualizar
           </span>
           <div class="w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-gray-600 shadow-sm">
-            <i id="icon-filtro-${idSecao}" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+            <i id="icon-filtro-${idSecao}" class="fa-solid fa-chevron-down transition-transform duration-200"></i>
           </div>
         </div>
       </button>
@@ -401,19 +399,19 @@ function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema)
     const logoUrl = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
 
     html += `
-      <div class="bg-white rounded-2xl p-4 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
+      <div class="bg-white rounded-2xl p-4 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition-colors">
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             ${logoUrl ? `<img src="${logoUrl}" alt="${item.canal}" class="h-6 object-contain max-w-[90px]">` : `<span class="text-xs font-bold text-gray-400">${item.canal}</span>`}
             <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-gray-100 text-gray-600">Filtro</span>
           </div>
 
-          <a href="${item.url}" target="_blank" title="Abrir link diretamente: ${item.url}" class="font-extrabold text-[#1C275C] text-sm hover:text-[#00A3FF] transition block leading-snug mb-3">
+          <a href="${item.url}" target="_blank" title="Abrir link diretamente: ${item.url}" class="font-extrabold text-[#1C275C] text-sm hover:text-[#00A3FF] transition-colors block leading-snug mb-3">
             <i class="fa-solid fa-link text-[#00A3FF] text-xs mr-1"></i> ${item.nome}
           </a>
         </div>
 
-        <button onclick="copiarUrlFiltro('${item.url}', this)" class="w-full py-2 px-3 text-xs font-bold text-[#00A3FF] bg-sky-50 hover:bg-[#00A3FF] hover:text-white border border-sky-200 rounded-xl transition flex items-center justify-center gap-2">
+        <button onclick="copiarUrlFiltro('${item.url}', this)" class="w-full py-2 px-3 text-xs font-bold text-[#00A3FF] bg-sky-50 hover:bg-[#00A3FF] hover:text-white border border-sky-200 rounded-xl transition-colors flex items-center justify-center gap-2">
           <i class="fa-solid fa-copy"></i>
           <span>Copiar URL</span>
         </button>
@@ -507,7 +505,7 @@ function renderizarSite(dados, container) {
       const temApoio = (item.materiais && item.materiais.length > 0) || (item.tutoriais && item.tutoriais.length > 0);
 
       html += `
-        <tr onclick="toggleLinhaRotinaSite(${index})" class="hover:bg-sky-50/30 transition cursor-pointer">
+        <tr onclick="toggleLinhaRotinaSite(${index})" class="hover:bg-sky-50/30 transition-colors cursor-pointer">
           <td class="p-4 text-center">
             <i id="site-icon-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
           </td>
@@ -549,7 +547,7 @@ function renderizarSite(dados, container) {
                     </p>
                     <div class="flex flex-wrap gap-2">
                       ${item.tutoriais.map(tut => `
-                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition">
+                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition-colors">
                           <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
                           <span>${tut.nome}</span>
                         </a>
@@ -593,7 +591,7 @@ function renderizarBiblioteca(dados, container) {
   dados.forEach((item, index) => {
     html += `
       <div class="bringit-card overflow-hidden">
-        <button onclick="toggleAccordion(${index})" class="w-full flex items-center justify-between p-5 bg-white hover:bg-gray-50/80 text-left transition">
+        <button onclick="toggleAccordion(${index})" class="w-full flex items-center justify-between p-5 bg-white hover:bg-gray-50/80 text-left transition-colors">
           <div class="flex items-center space-x-3">
             <span class="px-3 py-1 text-xs font-extrabold rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100 uppercase tracking-wider">
               ${item.categoria || 'Geral'}
@@ -634,7 +632,7 @@ function renderizarBiblioteca(dados, container) {
               <div class="flex flex-wrap gap-2.5">
                 ${item.tutoriais.map(tut => `
                   <a href="${tut.url}" target="_blank" 
-                     class="inline-flex items-center gap-2 px-4 py-2.5 bg-gray-100 text-[#1C275C] font-bold rounded-xl text-xs hover:bg-gray-200 transition">
+                     class="inline-flex items-center gap-2 px-4 py-2.5 bg-gray-100 text-[#1C275C] font-bold rounded-xl text-xs hover:bg-gray-200 transition-colors">
                     <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
                     <span>${tut.nome}</span>
                   </a>
@@ -696,7 +694,7 @@ function gerarFiltrosPorColuna() {
     const nomeColuna = rotulos[chave] || chave.charAt(0).toUpperCase() + chave.slice(1);
 
     const select = document.createElement('select');
-    select.className = "border border-gray-200 rounded-xl px-3.5 py-1.5 text-xs bg-white text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-[#00A3FF]/20 focus:border-[#00A3FF] shadow-sm transition";
+    select.className = "border border-gray-200 rounded-xl px-3.5 py-1.5 text-xs bg-white text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-[#00A3FF]/20 focus:border-[#00A3FF] shadow-sm transition-colors";
     select.dataset.coluna = chave;
     select.dataset.rotulo = nomeColuna;
     select.onchange = aplicarFiltros;
@@ -708,7 +706,7 @@ function gerarFiltrosPorColuna() {
   });
 
   const btnLimpar = document.createElement('button');
-  btnLimpar.className = "px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5 shadow-sm";
+  btnLimpar.className = "px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm";
   btnLimpar.onclick = limparFiltros;
   btnLimpar.innerHTML = `<i class="fa-solid fa-filter-circle-xmark"></i><span>Limpar Filtros</span>`;
   container.appendChild(btnLimpar);
@@ -797,7 +795,7 @@ function atualizarInterfaceFiltros() {
         filtrosAtivos.map((f, i) => `
           <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-extrabold bg-sky-50 text-[#00A3FF] border border-sky-200 rounded-full shadow-sm">
             <span>${f.rotulo}: <strong>${f.valor}</strong></span>
-            <button onclick="removerFiltroAtivo(${i})" class="hover:text-red-500 transition ml-0.5">
+            <button onclick="removerFiltroAtivo(${i})" class="hover:text-red-500 transition-colors ml-0.5">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </span>

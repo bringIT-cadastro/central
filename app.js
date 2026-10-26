@@ -7,12 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
   
-  // Atualiza classe ativa dos botões no menu lateral
   document.querySelectorAll('.menu-link').forEach(btn => btn.classList.remove('active'));
   const btnAtivo = document.getElementById(`btn-${nomeAba}`);
   if (btnAtivo) btnAtivo.classList.add('active');
 
-  // Atualiza o título da aba
   const titulos = {
     time: "Membros da Equipe",
     marketplace: "Matriz & Rotinas de Marketplace",
@@ -23,7 +21,6 @@ function navegarAba(nomeAba) {
   const elTitulo = document.getElementById('tituloAba');
   if (elTitulo) elTitulo.textContent = titulos[nomeAba] || "Central";
 
-  // Limpa o campo de busca
   const elFiltro = document.getElementById('filtroTexto');
   if (elFiltro) elFiltro.value = "";
 
@@ -67,22 +64,49 @@ function renderizarTime(dados, container) {
 
   let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
   dados.forEach(membro => {
+    
+    // Gera as logos dos canais responsáveis (se houver)
+    let htmlLogos = '';
+    if (membro.canaisResponsaveis && membro.canaisResponsaveis.length > 0 && typeof LOGOS_CANOES !== 'undefined') {
+      htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap mt-2 bg-gray-50 p-2 rounded-xl border border-gray-100">`;
+      membro.canaisResponsaveis.forEach(canal => {
+        const logoUrl = LOGOS_CANOES[canal];
+        if (logoUrl) {
+          htmlLogos += `<img src="${logoUrl}" title="${canal}" alt="${canal}" class="h-5 w-auto object-contain max-w-[50px] bg-white p-0.5 rounded shadow-sm border border-gray-100">`;
+        }
+      });
+      htmlLogos += `</div>`;
+    }
+
     html += `
       <div class="bringit-card p-6 flex flex-col justify-between">
         <div>
-          <div class="flex items-center space-x-4 mb-4">
-            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" class="w-14 h-14 rounded-full object-cover border-2 border-[#00A3FF]">
-            <div>
-              <h3 class="font-extrabold text-[#1C275C] text-lg leading-tight">${membro.nome}</h3>
-              <p class="text-xs font-semibold text-[#00A3FF] mt-0.5">${membro.cargo}</p>
-              <span class="inline-block mt-2 px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100">${membro.escopo || 'Geral'}</span>
+          <div class="flex items-start space-x-4 mb-4">
+            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" class="w-16 h-16 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm">
+            <div class="flex-1">
+              <h3 class="font-extrabold text-[#1C275C] text-xl leading-snug">${membro.nome}</h3>
+              <p class="text-sm font-bold text-[#00A3FF] mt-0.5">${membro.cargo}</p>
+              
+              <div class="flex items-center gap-2 mt-2 flex-wrap">
+                <span class="inline-block px-3 py-1 text-xs font-black rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100 uppercase tracking-wider">${membro.escopo || 'Geral'}</span>
+              </div>
+
+              ${htmlLogos}
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-100 text-xs text-gray-600">
-            <p class="font-bold text-[#1C275C] mb-1.5 flex items-center gap-1.5">
-              <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Responsabilidades Principais:
-            </p>
-            <p class="leading-relaxed bg-gray-50 p-3 rounded-xl text-gray-700 font-normal border border-gray-100">${membro.responsabilidades}</p>
+
+          <!-- Responsabilidades Ocultas por Padrão com Botão para Expandir -->
+          <div class="pt-3 border-t border-gray-100 mt-4">
+            <button onclick="toggleResponsabilidade(${membro.id})" class="w-full flex items-center justify-between text-xs font-extrabold text-[#1C275C] hover:text-[#00A3FF] transition py-1">
+              <span class="flex items-center gap-1.5 text-sm">
+                <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Responsabilidades Principais
+              </span>
+              <i id="resp-icon-${membro.id}" class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+            </button>
+            
+            <div id="resp-content-${membro.id}" class="hidden mt-3">
+              <p class="leading-relaxed bg-gray-50 p-3.5 rounded-xl text-xs font-medium text-gray-700 border border-gray-100">${membro.responsabilidades}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -92,7 +116,16 @@ function renderizarTime(dados, container) {
   container.innerHTML = html;
 }
 
-// 2. Aba Marketplace (Com Logos e Estados)
+function toggleResponsabilidade(id) {
+  const content = document.getElementById(`resp-content-${id}`);
+  const icon = document.getElementById(`resp-icon-${id}`);
+  if (content && icon) {
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180');
+  }
+}
+
+// 2. Aba Marketplace
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
@@ -301,6 +334,7 @@ function toggleAccordion(index) {
   }
 }
 
+// Filtros de Coluna com Regras Especiais e Botão Limpar Filtros
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
   if (!container) return;
@@ -309,14 +343,23 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  const chaves = Object.keys(dados[0]).filter(k => !['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais'].includes(k));
+  // Exclui campos que não devem virar dropdown (como e-mail)
+  const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis'];
+  const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
 
   chaves.forEach(chave => {
-    const valoresUnicos = [...new Set(dados.map(item => item[chave]))].filter(Boolean);
+    let valoresUnicos = [...new Set(dados.map(item => item[chave]))].filter(Boolean);
+
+    // Sanitiza opções para evitar "Pleno" ou divergências
+    if (chave === 'cargo') {
+      valoresUnicos = valoresUnicos.map(v => v.replace(/\s*Pleno\s*/i, '').trim());
+      valoresUnicos = [...new Set(valoresUnicos)];
+    }
+
     if (valoresUnicos.length <= 1) return;
 
     const select = document.createElement('select');
-    select.className = "border border-gray-200 rounded-xl px-3 py-1.5 text-xs bg-white text-gray-700 font-medium focus:outline-none focus:border-[#00A3FF]";
+    select.className = "border border-gray-200 rounded-xl px-3 py-1.5 text-xs bg-white text-gray-700 font-semibold focus:outline-none focus:border-[#00A3FF] shadow-sm";
     select.dataset.coluna = chave;
     select.onchange = aplicarFiltros;
 
@@ -325,6 +368,23 @@ function gerarFiltrosPorColuna() {
 
     container.appendChild(select);
   });
+
+  // 1. Botão Limpar Filtros
+  const btnLimpar = document.createElement('button');
+  btnLimpar.className = "px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5";
+  btnLimpar.onclick = limparFiltros;
+  btnLimpar.innerHTML = `<i class="fa-solid fa-filter-circle-xmark"></i> Limpar Filtros`;
+  container.appendChild(btnLimpar);
+}
+
+function limparFiltros() {
+  const inputTexto = document.getElementById('filtroTexto');
+  if (inputTexto) inputTexto.value = "";
+
+  const selects = document.querySelectorAll('#containerFiltrosColunas select');
+  selects.forEach(s => s.value = "");
+
+  renderizarConteudo();
 }
 
 function aplicarFiltros() {
@@ -333,7 +393,12 @@ function aplicarFiltros() {
   const dados = obterDadosAbaAtual();
 
   const filtrados = dados.filter(item => {
-    const bateuTexto = Object.values(item).some(val => 
+    // 2. Não busca no e-mail
+    const valoresParaBusca = Object.entries(item)
+      .filter(([chave]) => chave !== 'email')
+      .map(([, valor]) => valor);
+
+    const bateuTexto = valoresParaBusca.some(val => 
       String(val).toLowerCase().includes(textoBusca)
     );
 
@@ -341,8 +406,18 @@ function aplicarFiltros() {
     selects.forEach(select => {
       const coluna = select.dataset.coluna;
       const valorSelecionado = select.value;
-      if (valorSelecionado && String(item[coluna]) !== valorSelecionado) {
-        bateuSelects = false;
+      
+      if (valorSelecionado) {
+        // 6. Regra especial para filtro de Escopo (Geral engloba Marketplace e Site)
+        if (coluna === 'escopo' && (valorSelecionado === 'Marketplace' || valorSelecionado === 'Site')) {
+          if (String(item[coluna]) !== valorSelecionado && String(item[coluna]) !== 'Geral') {
+            bateuSelects = false;
+          }
+        } else {
+          if (String(item[coluna]) !== valorSelecionado) {
+            bateuSelects = false;
+          }
+        }
       }
     });
 

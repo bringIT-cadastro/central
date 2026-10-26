@@ -143,50 +143,69 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace
+// 2. Aba Marketplace (Abre Recolhido + Botão Destacado + Fotos/Nomes Proporcionais)
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
   if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
     html += `
-      <div class="bringit-card mb-8 overflow-hidden">
-        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-gray-50/80 transition text-left">
-          <h3 class="text-base font-extrabold text-[#1C275C] flex items-center gap-2">
-            <i class="fa-solid fa-store text-[#00A3FF]"></i> Responsáveis por Loja
-          </h3>
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Clique para expandir / recolher</span>
-            <i id="icon-secao-lojas" class="fa-solid fa-chevron-up text-gray-400 transition-transform duration-200"></i>
+      <div class="bringit-card mb-8 overflow-hidden border border-gray-200 shadow-sm">
+        <!-- Header da Seção: Botão em Destaque -->
+        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center border border-sky-100">
+              <i class="fa-solid fa-store text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-[#1C275C]">Responsáveis por Loja</h3>
+              <p class="text-xs text-gray-500 font-medium">Matriz de colaboradores x contas dos canais</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-lg">
+              Clique para visualizar
+            </span>
+            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+              <i id="icon-secao-lojas" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+            </div>
           </div>
         </button>
 
-        <div id="conteudo-secao-lojas" class="p-5 border-t border-gray-100 bg-gray-50/30">
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Conteúdo: Abre RECOLHIDO por Padrão (hidden) -->
+        <div id="conteudo-secao-lojas" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     `;
     
     DATA_MARKETPLACE_CANOES.forEach(item => {
       const urlLogo = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
       const fotoResp = item.foto || 'https://via.placeholder.com/150';
       const isTikTok = item.canal === "TikTok";
-      const estiloLogo = isTikTok ? "h-9 w-28 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
+      const estiloLogo = isTikTok ? "h-10 w-32 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
 
       html += `
-        <div class="bg-white rounded-xl p-4 border border-gray-200/80 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
-          <div class="flex items-center justify-between gap-2 mb-3 h-10">
+        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] hover:shadow-md transition">
+          <!-- Topo do Card: Logo da Loja + Sigla -->
+          <div class="flex items-center justify-between gap-3 mb-4 h-12">
             ${urlLogo ? `
-              <div class="h-9 w-28 flex items-center justify-start overflow-hidden">
+              <div class="h-10 w-32 flex items-center justify-start overflow-hidden">
                 <img src="${urlLogo}" alt="${item.canal}" class="${estiloLogo}">
               </div>
-            ` : `<span class="font-bold text-[#1C275C] text-sm">${item.canal}</span>`}
+            ` : `<span class="font-extrabold text-[#1C275C] text-base">${item.canal}</span>`}
 
-            <span class="px-3 py-1 text-xs font-black bg-[#00A3FF] text-white rounded-lg shadow-sm tracking-wider">
+            <!-- Sigla Destacada -->
+            <span class="px-3 py-1.5 text-xs font-black bg-[#00A3FF] text-white rounded-xl shadow-sm tracking-wider">
               ${item.conta}
             </span>
           </div>
 
-          <div class="text-xs text-gray-700 flex items-center gap-2.5 pt-2.5 border-t border-gray-100">
-            <img src="${fotoResp}" alt="${item.responsavel}" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF]">
-            <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
+          <!-- Base do Card: Foto Maior e Nome Proporcional -->
+          <div class="text-xs text-gray-700 flex items-center gap-3 pt-3.5 border-t border-gray-100">
+            <img src="${fotoResp}" alt="${item.responsavel}" class="w-10 h-10 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm flex-shrink-0">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Responsável</p>
+              <span class="font-extrabold text-[#1C275C] text-sm leading-tight block">${item.responsavel}</span>
+            </div>
           </div>
         </div>
       `;
@@ -314,7 +333,7 @@ function toggleLinhaRotina(index) {
   }
 }
 
-// 3. Aba Site (Com Fotos dos Responsáveis, Linhas Expansíveis e Contador Azul)
+// 3. Aba Site
 function renderizarSite(dados, container) {
   const CORES_PERIODICIDADE = {
     'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -509,7 +528,7 @@ function toggleAccordion(index) {
   }
 }
 
-// MÓDULO DE FILTROS (Sem criar dropdowns para campos extensos como 'atividade')
+// MÓDULO DE FILTROS
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
   if (!container) return;
@@ -518,7 +537,6 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  // Ignora 'atividade' e outros campos irrelevantes para filtros em dropdown
   const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto', 'atividade'];
   const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
 

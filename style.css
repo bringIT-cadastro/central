@@ -1,0 +1,53 @@
+:root {
+  --bringit-ciano: #00ACFF;
+  --bringit-ciano-hover: #0093DC;
+  --bringit-azul-escuro: #1C275C;
+  --bringit-azul-escuro-hover: #141C44;
+  --bringit-preto: #1A1C25;
+  --bringit-branco: #FFFFFF;
+  --bringit-bg-fundo: #F4F6F9;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bringit-bg-fundo);
+  color: var(--bringit-preto);
+}
+
+/* Utilitários de Cores bringIT */
+.bg-bringit-ciano { background-color: var(--bringit-ciano); }
+.text-bringit-ciano { color: var(--bringit-ciano); }
+.bg-bringit-azul { background-color: var(--bringit-azul-escuro); }
+.text-bringit-azul { color: var(--bringit-azul-escuro); }
+.text-bringit-preto { color: var(--bringit-preto); }
+
+/* Menu Lateral / Sidebar */
+.sidebar-bg {
+  background-color: var(--bringit-azul-escuro);
+}
+
+.menu-link {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--bringit-branco);
+}
+
+.menu-link.active {
+  background-color: rgba(0, 172, 255, 0.15);
+  color: var(--bringit-branco);
+  border-left: 4px solid var(--bringit-ciano);
+}
+
+/* Accordion da Biblioteca */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.accordion-content.open {
+  max-height: 1000px;
+}

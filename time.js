@@ -6,7 +6,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Marketplace",
     email: "daniela.lourenco@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "daniela.jpg",
     responsabilidades: "Apoio geral a todos os canais de marketplace.",
     canaisResponsaveis: []
   },
@@ -16,7 +16,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Marketplace",
     email: "maria.soares@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "maria.jpeg",
     responsabilidades: "Gestão operacional e manutenção de anúncios nos canais Mercado Livre e Temu.",
     canaisResponsaveis: ["Mercado Livre", "Temu"]
   },
@@ -26,7 +26,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Marketplace",
     email: "raqueline.souza@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "raqueline.jpg",
     responsabilidades: "Gestão operacional dos canais Shopee, Kabum, TikTok e Amazon 1P.",
     canaisResponsaveis: ["Shopee", "Kabum", "TikTok", "Amazon 1P"]
   },
@@ -36,7 +36,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Site",
     email: "patrick.nunes@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "patrick.jpeg",
     responsabilidades: "Novos cadastros, integrações com Magento/Platz, Service Desk e compatibilidades de produtos.",
     canaisResponsaveis: []
   },
@@ -46,7 +46,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Geral",
     email: "jennifer.valle@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "jennifer.jng",
     responsabilidades: "Validação de imagens, SEO, redirect de URLs 404 e controle de qualidade de anúncios.",
     canaisResponsaveis: []
   },
@@ -56,7 +56,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Sênior",
     escopo: "Site",
     email: "ingrid.fabris@bringit.com.br",
-    fotoUrl: "https://via.placeholder.com/150",
+    fotoUrl: "ingrid.jpg",
     responsabilidades: "Gestão da equipe de cadastro, melhorias no site, Google Merchant e projetos da área.",
     canaisResponsaveis: []
   }

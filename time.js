@@ -6,7 +6,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Marketplace",
     email: "daniela.lourenco@bringit.com.br",
-    fotoUrl: "daniela.jpg",
+    fotoUrl: "daniela.png",
     responsabilidades: "Apoio geral a todos os canais de marketplace.",
     canaisResponsaveis: []
   },
@@ -46,7 +46,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Geral",
     email: "jennifer.valle@bringit.com.br",
-    fotoUrl: "jennifer.jng",
+    fotoUrl: "jennifer.png",
     responsabilidades: "Validação de imagens, SEO, redirect de URLs 404 e controle de qualidade de anúncios.",
     canaisResponsaveis: []
   },
@@ -56,7 +56,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Sênior",
     escopo: "Site",
     email: "ingrid.fabris@bringit.com.br",
-    fotoUrl: "ingrid.jpg",
+    fotoUrl: "ingrid.png",
     responsabilidades: "Gestão da equipe de cadastro, melhorias no site, Google Merchant e projetos da área.",
     canaisResponsaveis: []
   }

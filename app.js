@@ -96,7 +96,7 @@ function atualizarContadorResultados(total) {
   }
 }
 
-// 1. Aba Time com carregamento otimizado (loading="lazy")
+// 1. Aba Time
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado com os filtros selecionados.</div>`;
@@ -580,7 +580,7 @@ function toggleLinhaRotinaSite(index) {
   }
 }
 
-// 4. Aba Biblioteca
+// 4. Aba Biblioteca (Accordion com suporte nativo a HIDE/SHOW)
 function renderizarBiblioteca(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum registro encontrado na Biblioteca.</div>`;
@@ -591,17 +591,17 @@ function renderizarBiblioteca(dados, container) {
   dados.forEach((item, index) => {
     html += `
       <div class="bringit-card overflow-hidden">
-        <button onclick="toggleAccordion(${index})" class="w-full flex items-center justify-between p-5 bg-white hover:bg-gray-50/80 text-left transition-colors">
+        <button onclick="toggleAccordionBiblioteca(${index})" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/30 text-left transition-colors">
           <div class="flex items-center space-x-3">
             <span class="px-3 py-1 text-xs font-extrabold rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100 uppercase tracking-wider">
               ${item.categoria || 'Geral'}
             </span>
             <span class="font-bold text-[#1C275C] text-base">${item.titulo}</span>
           </div>
-          <i id="icon-${index}" class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200"></i>
+          <i id="bib-icon-${index}" class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200"></i>
         </button>
 
-        <div id="content-${index}" class="accordion-content p-6 border-t border-gray-100 bg-white space-y-5">
+        <div id="bib-content-${index}" class="hidden p-6 border-t border-gray-100 bg-white space-y-5">
           <div>
             <h4 class="text-[11px] font-bold uppercase text-gray-400 mb-1 tracking-wider">Descrição & Detalhes</h4>
             <p class="text-sm text-gray-700 leading-relaxed">${item.detalhes}</p>
@@ -649,11 +649,11 @@ function renderizarBiblioteca(dados, container) {
   container.innerHTML = html;
 }
 
-function toggleAccordion(index) {
-  const content = document.getElementById(`content-${index}`);
-  const icon = document.getElementById(`icon-${index}`);
+function toggleAccordionBiblioteca(index) {
+  const content = document.getElementById(`bib-content-${index}`);
+  const icon = document.getElementById(`bib-icon-${index}`);
   if (content && icon) {
-    content.classList.toggle('open');
+    content.classList.toggle('hidden');
     icon.classList.toggle('rotate-180');
   }
 }

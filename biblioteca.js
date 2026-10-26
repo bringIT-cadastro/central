@@ -1,38 +1,54 @@
 // biblioteca.js
+
 const DATA_BIBLIOTECA = [
   {
     id: 301,
-    categoria: "Site",
-    titulo: "Redirecionamento de URL",
-    detalhes: "Atividade responsável por monitorar e corrigir os direcionamentos de URLs com Erros e URLs de produtos inativados.",
+    titulo: "Procedimento Padrão de Cadastro de Novos Produtos",
+    categoria: "Cadastro",
+    detalhes: "Guia completo com o passo a passo para cadastrar novos SKUs no ERP Platz, realizar a sincronização com Magento/VTEX e validar atributos obrigatórios de peças e acessórios.",
     materiais: [
-      {
-        nome: "Base de Redirecionamentos (Principal)",
-        tipo: "excel",
-        url: "https://docs.google.com/spreadsheets/d/1WssHcHW5p5fFtVrSP9sfqCSnYn5n2iW48KEfR99LIhU/edit?gid=879776952#gid=879776952"
-      },
-      {
-        nome: "Mapeamento de Erros 404",
-        tipo: "excel",
-        url: "https://docs.google.com/spreadsheets/d/1RN0wqj-zjfn1cb8zllPLsc1F9I9W-g7QB-mjWK2zaSg/edit?gid=0#gid=0"
-      },
-      {
-        nome: "Controle de URLs Inativadas",
-        tipo: "excel",
-        url: "https://docs.google.com/spreadsheets/d/1O4g4Gx4ZDsHWp5t7_M_kKYlbPmlLdna80GgBSyz_qGo/edit?gid=0#gid=0"
-      },
-      {
-        nome: "Histórico de Redirects",
-        tipo: "excel",
-        url: "https://docs.google.com/spreadsheets/d/1E9HesOGNL6lJ5Zw5bY6ZWbWuirg8jrgbS1nVQrZuSHc/edit?gid=0#gid=0"
-      }
+      { nome: "Checklist de Validação de SKU", url: "#" },
+      { nome: "Tabela de De-Para de Atributos", url: "#" }
     ],
     tutoriais: [
-      {
-        nome: "Exemplo de Tutorial de Execução",
-        tipo: "doc",
-        url: "#"
-      }
+      { nome: "Vídeo Tutorial - Cadastro Completo no ERP", url: "#" },
+      { nome: "Doc - Manual de Padronização de Títulos e EAN", url: "#" }
+    ]
+  },
+  {
+    id: 302,
+    titulo: "Manutenção de Anúncios e Tratamento de Erros nos Marketplaces",
+    categoria: "Marketplace",
+    detalhes: "Manual de resolução de anúncios em revisão, bloqueados ou infracionados no Mercado Livre, Shopee e KaBuM!. Inclui regras de validação de propriedade intelectual e direitos de imagem.",
+    materiais: [
+      { nome: "Planilha de Mapeamento de Infracionados", url: "#" }
+    ],
+    tutoriais: [
+      { nome: "Procedimento de Contestação de Marcas no ML", url: "#" }
+    ]
+  },
+  {
+    id: 303,
+    titulo: "Guia de Redirecionamentos de URLs e Erros 404 no Site",
+    categoria: "Site",
+    detalhes: "Instruções operacionais para mapeamento e criação de redirecionamentos 301 para produtos descontinuados, evitando perda de autoridade de SEO e quebras de usabilidade.",
+    materiais: [
+      { nome: "Planilha Padrão de Redirects 301", url: "#" }
+    ],
+    tutoriais: [
+      { nome: "Passo a Passo - Configuração no Painel do Magento", url: "#" }
+    ]
+  },
+  {
+    id: 304,
+    titulo: "Validação de Imagens e Padrão Visual bringIT",
+    categoria: "Imagem",
+    detalhes: "Diretrizes visuais para tratamento de fotos de produtos: dimensões (1000x1000px), fundo 100% branco (RGB 255,255,255), enquadramento de telas, teclados e baterias.",
+    materiais: [
+      { nome: "Gabarito PSD / Photoshop de Imagens", url: "#" }
+    ],
+    tutoriais: [
+      { nome: "Manual de Tratamento Rápido em Lote", url: "#" }
     ]
   }
 ];

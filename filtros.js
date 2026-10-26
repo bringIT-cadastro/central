@@ -22,7 +22,7 @@ const DATA_FILTROS = [
     id: 3,
     categoriaPrincipal: "Shopee", // Identificador para a seção "Filtros Críticos Shopee"
     canal: "Shopee",
-    nome: "Banidos Shopee MG",
+    nome: "Banidos Shopee",
     url: "https://seller.shopee.com.br/portal/product/list/violation/banned"
   },
   {

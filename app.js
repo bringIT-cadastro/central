@@ -141,7 +141,7 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace (Com Seções Recolhíveis de Filtros Críticos ML e Shopee)
+// 2. Aba Marketplace (Com Seções Coloridas para Filtros Críticos)
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
@@ -208,19 +208,19 @@ function renderizarMarketplace(dados, container) {
     html += `</div></div></div>`;
   }
 
-  // 2.2 Seções Novas de Filtros Críticos (ML e Shopee)
+  // 2.2 Seções de Filtros Críticos (ML Amarelo Claro / Shopee Laranja Claro)
   if (typeof DATA_FILTROS !== 'undefined' && DATA_FILTROS.length > 0) {
     const filtrosML = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'ML');
     const filtrosShopee = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'Shopee');
 
-    // Seção ML
+    // Seção ML (Amarelo Claro)
     if (filtrosML.length > 0) {
-      html += renderizarBlocoFiltroCritico("Filtros Críticos Mercado Livre", "ML", filtrosML);
+      html += renderizarBlocoFiltroCritico("Filtros Críticos Mercado Livre", "ML", filtrosML, "ml");
     }
 
-    // Seção Shopee
+    // Seção Shopee (Laranja Claro)
     if (filtrosShopee.length > 0) {
-      html += renderizarBlocoFiltroCritico("Filtros Críticos Shopee", "Shopee", filtrosShopee);
+      html += renderizarBlocoFiltroCritico("Filtros Críticos Shopee", "Shopee", filtrosShopee, "shopee");
     }
   }
 
@@ -326,33 +326,47 @@ function renderizarMarketplace(dados, container) {
   container.innerHTML = html;
 }
 
-// Renderizador dos Bloco de Filtros Críticos por Categoria
-function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros) {
+// Renderizador com Cores Customizadas por Cabeçalho
+function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema) {
+  let estilosHeader = "bg-white hover:bg-sky-50/50 border-gray-200";
+  let estiloIcone = "bg-sky-50 text-[#00A3FF] border-sky-100";
+  let estiloBadgeBtn = "text-[#00A3FF] bg-sky-50 border-sky-100";
+
+  if (estiloTema === "ml") {
+    estilosHeader = "bg-amber-100/70 hover:bg-amber-100 border-amber-200/90";
+    estiloIcone = "bg-amber-200 text-amber-900 border-amber-300";
+    estiloBadgeBtn = "text-amber-900 bg-amber-200/80 border-amber-300";
+  } else if (estiloTema === "shopee") {
+    estilosHeader = "bg-orange-100/70 hover:bg-orange-100 border-orange-200/90";
+    estiloIcone = "bg-orange-200 text-orange-900 border-orange-300";
+    estiloBadgeBtn = "text-orange-900 bg-orange-200/80 border-orange-300";
+  }
+
   let html = `
-    <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
-      <button onclick="toggleSecaoFiltroCritico('${idSecao}')" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition text-left">
+    <div class="bringit-card mb-6 overflow-hidden border shadow-sm">
+      <button onclick="toggleSecaoFiltroCritico('${idSecao}')" class="w-full flex items-center justify-between p-5 transition text-left ${estilosHeader}">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center border ${estiloIcone}">
             <i class="fa-solid fa-filter text-lg"></i>
           </div>
           <div>
             <h3 class="text-base font-extrabold text-[#1C275C]">${titulo}</h3>
-            <p class="text-xs text-gray-500 font-medium">Atalhos rápidos e cópia de URLs de filtros</p>
+            <p class="text-xs text-gray-600 font-medium">Atalhos rápidos e cópia de URLs de filtros</p>
           </div>
         </div>
         
         <div class="flex items-center gap-3">
-          <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-lg">
+          <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold rounded-lg border ${estiloBadgeBtn}">
             Clique para visualizar
           </span>
-          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+          <div class="w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-gray-600 shadow-sm">
             <i id="icon-filtro-${idSecao}" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
           </div>
         </div>
       </button>
 
       <div id="conteudo-filtro-${idSecao}" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   `;
 
   listaFiltros.forEach(item => {

@@ -11,7 +11,6 @@ function navegarAba(nomeAba) {
   const btnAtivo = document.getElementById(`btn-${nomeAba}`);
   if (btnAtivo) btnAtivo.classList.add('active');
 
-  // Ajuste do título do cabeçalho
   const titulos = {
     time: "Membros da Equipe",
     marketplace: "Rotinas de Marketplace",
@@ -57,7 +56,6 @@ function renderizarConteudo(dadosFiltrados = null) {
   else if (abaAtual === 'biblioteca') renderizarBiblioteca(dados, container);
 }
 
-// Contador Top Bar em Azul com Design Premium
 function atualizarContadorResultados(total) {
   const elContador = document.getElementById('contadorResultados');
   if (elContador) {
@@ -143,14 +141,14 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace (Abre Recolhido + Botão Destacado + Fotos/Nomes Proporcionais)
+// 2. Aba Marketplace (Com Seções Recolhíveis de Filtros Críticos ML e Shopee)
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
+  // 2.1 Seção Responsáveis por Loja
   if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
     html += `
-      <div class="bringit-card mb-8 overflow-hidden border border-gray-200 shadow-sm">
-        <!-- Header da Seção: Botão em Destaque -->
+      <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
         <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition text-left">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center border border-sky-100">
@@ -172,7 +170,6 @@ function renderizarMarketplace(dados, container) {
           </div>
         </button>
 
-        <!-- Conteúdo: Abre RECOLHIDO por Padrão (hidden) -->
         <div id="conteudo-secao-lojas" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     `;
@@ -185,7 +182,6 @@ function renderizarMarketplace(dados, container) {
 
       html += `
         <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] hover:shadow-md transition">
-          <!-- Topo do Card: Logo da Loja + Sigla -->
           <div class="flex items-center justify-between gap-3 mb-4 h-12">
             ${urlLogo ? `
               <div class="h-10 w-32 flex items-center justify-start overflow-hidden">
@@ -193,13 +189,11 @@ function renderizarMarketplace(dados, container) {
               </div>
             ` : `<span class="font-extrabold text-[#1C275C] text-base">${item.canal}</span>`}
 
-            <!-- Sigla Destacada -->
             <span class="px-3 py-1.5 text-xs font-black bg-[#00A3FF] text-white rounded-xl shadow-sm tracking-wider">
               ${item.conta}
             </span>
           </div>
 
-          <!-- Base do Card: Foto Maior e Nome Proporcional -->
           <div class="text-xs text-gray-700 flex items-center gap-3 pt-3.5 border-t border-gray-100">
             <img src="${fotoResp}" alt="${item.responsavel}" class="w-10 h-10 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm flex-shrink-0">
             <div>
@@ -214,6 +208,23 @@ function renderizarMarketplace(dados, container) {
     html += `</div></div></div>`;
   }
 
+  // 2.2 Seções Novas de Filtros Críticos (ML e Shopee)
+  if (typeof DATA_FILTROS !== 'undefined' && DATA_FILTROS.length > 0) {
+    const filtrosML = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'ML');
+    const filtrosShopee = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'Shopee');
+
+    // Seção ML
+    if (filtrosML.length > 0) {
+      html += renderizarBlocoFiltroCritico("Filtros Críticos Mercado Livre", "ML", filtrosML);
+    }
+
+    // Seção Shopee
+    if (filtrosShopee.length > 0) {
+      html += renderizarBlocoFiltroCritico("Filtros Críticos Shopee", "Shopee", filtrosShopee);
+    }
+  }
+
+  // 2.3 Tabela de Rotinas
   const CORES_PERIODICIDADE = {
     'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
     'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
@@ -223,7 +234,7 @@ function renderizarMarketplace(dados, container) {
   };
 
   html += `
-    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mt-8">
       <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
         <h3 class="font-bold text-[#1C275C] flex items-center gap-2 text-base">
           <i class="fa-solid fa-tasks text-[#00A3FF]"></i> Rotinas e Atividades de Marketplace
@@ -313,6 +324,85 @@ function renderizarMarketplace(dados, container) {
 
   html += `</tbody></table></div></div>`;
   container.innerHTML = html;
+}
+
+// Renderizador dos Bloco de Filtros Críticos por Categoria
+function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros) {
+  let html = `
+    <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
+      <button onclick="toggleSecaoFiltroCritico('${idSecao}')" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
+            <i class="fa-solid fa-filter text-lg"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1C275C]">${titulo}</h3>
+            <p class="text-xs text-gray-500 font-medium">Atalhos rápidos e cópia de URLs de filtros</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-lg">
+            Clique para visualizar
+          </span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+            <i id="icon-filtro-${idSecao}" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+          </div>
+        </div>
+      </button>
+
+      <div id="conteudo-filtro-${idSecao}" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  `;
+
+  listaFiltros.forEach(item => {
+    const logoUrl = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
+
+    html += `
+      <div class="bg-white rounded-2xl p-4 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            ${logoUrl ? `<img src="${logoUrl}" alt="${item.canal}" class="h-6 object-contain max-w-[90px]">` : `<span class="text-xs font-bold text-gray-400">${item.canal}</span>`}
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-gray-100 text-gray-600">Filtro</span>
+          </div>
+
+          <a href="${item.url}" target="_blank" title="Abrir link diretamente: ${item.url}" class="font-extrabold text-[#1C275C] text-sm hover:text-[#00A3FF] transition block leading-snug mb-3">
+            <i class="fa-solid fa-link text-[#00A3FF] text-xs mr-1"></i> ${item.nome}
+          </a>
+        </div>
+
+        <button onclick="copiarUrlFiltro('${item.url}', this)" class="w-full py-2 px-3 text-xs font-bold text-[#00A3FF] bg-sky-50 hover:bg-[#00A3FF] hover:text-white border border-sky-200 rounded-xl transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-copy"></i>
+          <span>Copiar URL</span>
+        </button>
+      </div>
+    `;
+  });
+
+  html += `</div></div></div>`;
+  return html;
+}
+
+function toggleSecaoFiltroCritico(idSecao) {
+  const conteudo = document.getElementById(`conteudo-filtro-${idSecao}`);
+  const icone = document.getElementById(`icon-filtro-${idSecao}`);
+  if (conteudo && icone) {
+    conteudo.classList.toggle('hidden');
+    icone.classList.toggle('rotate-180');
+  }
+}
+
+function copiarUrlFiltro(url, elemento) {
+  navigator.clipboard.writeText(url).then(() => {
+    const textoOriginal = elemento.innerHTML;
+    elemento.innerHTML = `<i class="fa-solid fa-check text-emerald-500"></i> Copiado!`;
+    elemento.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+    
+    setTimeout(() => {
+      elemento.innerHTML = textoOriginal;
+      elemento.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+    }, 2000);
+  });
 }
 
 function toggleSecaoLojas() {
@@ -575,7 +665,6 @@ function gerarFiltrosPorColuna() {
     container.appendChild(select);
   });
 
-  // Botão Limpar Filtros
   const btnLimpar = document.createElement('button');
   btnLimpar.className = "px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5 shadow-sm";
   btnLimpar.onclick = limparFiltros;

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
   
-  // Atualiza a classe ativa dos botões no menu lateral
+  // Atualiza classe ativa no menu lateral
   document.querySelectorAll('.menu-link').forEach(btn => btn.classList.remove('active'));
   const btnAtivo = document.getElementById(`btn-${nomeAba}`);
   if (btnAtivo) btnAtivo.classList.add('active');
@@ -23,7 +23,7 @@ function navegarAba(nomeAba) {
   const elTitulo = document.getElementById('tituloAba');
   if (elTitulo) elTitulo.textContent = titulos[nomeAba] || "Central";
 
-  // Limpa o campo de busca
+  // Reset do campo de busca
   const elFiltro = document.getElementById('filtroTexto');
   if (elFiltro) elFiltro.value = "";
 
@@ -52,20 +52,29 @@ function renderizarConteudo(dadosFiltrados = null) {
 
   const dados = dadosFiltrados || obterDadosAbaAtual();
 
+  // Atualiza o contador no cabeçalho
+  atualizarContadorResultados(dados.length);
+
   if (abaAtual === 'time') renderizarTime(dados, container);
   else if (abaAtual === 'marketplace') renderizarMarketplace(dados, container);
   else if (abaAtual === 'site') renderizarSite(dados, container);
   else if (abaAtual === 'biblioteca') renderizarBiblioteca(dados, container);
 }
 
-// 1. Aba Time - Com Cores Diferenciadas por Escopo e Ocultação de Responsabilidades
+function atualizarContadorResultados(total) {
+  const elContador = document.getElementById('contadorResultados');
+  if (elContador) {
+    elContador.textContent = `${total} ${total === 1 ? 'registro' : 'registros'}`;
+  }
+}
+
+// 1. Aba Time
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
-    container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado.</div>`;
+    container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado com os filtros selecionados.</div>`;
     return;
   }
 
-  // Mapeamento de cores exclusivas por Escopo
   const CORES_ESCOPO = {
     'Marketplace': 'bg-amber-50 text-amber-700 border-amber-200',
     'Site': 'bg-sky-50 text-[#00A3FF] border-sky-200',
@@ -74,11 +83,8 @@ function renderizarTime(dados, container) {
 
   let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
   dados.forEach(membro => {
-    
-    // Define o estilo da tag com base no escopo
     const estiloTagEscopo = CORES_ESCOPO[membro.escopo] || 'bg-gray-50 text-gray-700 border-gray-200';
 
-    // Gera as logos dos canais responsáveis (se houver)
     let htmlLogos = '';
     if (membro.canaisResponsaveis && membro.canaisResponsaveis.length > 0 && typeof LOGOS_CANOES !== 'undefined') {
       htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap mt-2.5 bg-gray-50 p-2 rounded-xl border border-gray-100">`;
@@ -110,7 +116,6 @@ function renderizarTime(dados, container) {
             </div>
           </div>
 
-          <!-- Responsabilidades Ocultas por Padrão com Botão para Expandir -->
           <div class="pt-3 border-t border-gray-100 mt-4">
             <button onclick="toggleResponsabilidade(${membro.id})" class="w-full flex items-center justify-between text-xs font-extrabold text-[#1C275C] hover:text-[#00A3FF] transition py-1">
               <span class="flex items-center gap-1.5 text-sm">
@@ -140,7 +145,7 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace (Com Logos e Estados)
+// 2. Aba Marketplace
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
@@ -190,7 +195,7 @@ function renderizarMarketplace(dados, container) {
         <h3 class="font-bold text-[#1C275C] flex items-center gap-2">
           <i class="fa-solid fa-tasks text-[#00A3FF]"></i> Rotinas e Atividades de Marketplace
         </h3>
-        <span class="text-xs text-gray-500 font-semibold bg-white px-3 py-1 rounded-full border">${dados.length} registradas</span>
+        <span class="text-xs text-gray-500 font-semibold bg-white px-3 py-1 rounded-full border">${dados.length} encontradas</span>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
@@ -235,7 +240,7 @@ function renderizarSite(dados, container) {
         <h3 class="font-bold text-[#1C275C] flex items-center gap-2">
           <i class="fa-solid fa-globe text-[#00A3FF]"></i> Rotinas e Operações do Site
         </h3>
-        <span class="text-xs text-gray-500 font-semibold bg-white px-3 py-1 rounded-full border">${dados.length} registradas</span>
+        <span class="text-xs text-gray-500 font-semibold bg-white px-3 py-1 rounded-full border">${dados.length} encontradas</span>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
@@ -349,7 +354,7 @@ function toggleAccordion(index) {
   }
 }
 
-// Filtros de Coluna com Regras Especiais e Botão Limpar Filtros
+// MÓDULO DE FILTROS PROFISSIONAL E DINÂMICO
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
   if (!container) return;
@@ -358,14 +363,12 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  // Exclui campos que não devem virar dropdown de filtro
   const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis'];
   const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
 
   chaves.forEach(chave => {
     let valoresUnicos = [...new Set(dados.map(item => item[chave]))].filter(Boolean);
 
-    // Sanitiza opções para evitar divergências
     if (chave === 'cargo') {
       valoresUnicos = valoresUnicos.map(v => v.replace(/\s*Pleno\s*/i, '').trim());
       valoresUnicos = [...new Set(valoresUnicos)];
@@ -373,42 +376,42 @@ function gerarFiltrosPorColuna() {
 
     if (valoresUnicos.length <= 1) return;
 
+    // Rótulos formatados
+    const rotulos = {
+      nome: "Colaborador",
+      cargo: "Cargo",
+      escopo: "Escopo",
+      tipo: "Tipo de Atividade",
+      periodicidade: "Periodicidade",
+      prioridade: "Prioridade",
+      responsavel: "Responsável",
+      categoria: "Categoria"
+    };
+
+    const nomeColuna = rotulos[chave] || chave.charAt(0).toUpperCase() + chave.slice(1);
+
     const select = document.createElement('select');
-    select.className = "border border-gray-200 rounded-xl px-3 py-1.5 text-xs bg-white text-gray-700 font-semibold focus:outline-none focus:border-[#00A3FF] shadow-sm";
+    select.className = "border border-gray-200 rounded-xl px-3.5 py-1.5 text-xs bg-white text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-[#00A3FF]/20 focus:border-[#00A3FF] shadow-sm transition";
     select.dataset.coluna = chave;
+    select.dataset.rotulo = nomeColuna;
     select.onchange = aplicarFiltros;
 
-    select.innerHTML = `<option value="">Todas as ${chave.toUpperCase()}</option>` + 
+    select.innerHTML = `<option value="">${nomeColuna}: Todos</option>` + 
       valoresUnicos.map(v => `<option value="${v}">${v}</option>`).join('');
 
     container.appendChild(select);
   });
 
-  // Botão Limpar Filtros
-  const btnLimpar = document.createElement('button');
-  btnLimpar.className = "px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5";
-  btnLimpar.onclick = limparFiltros;
-  btnLimpar.innerHTML = `<i class="fa-solid fa-filter-circle-xmark"></i> Limpar Filtros`;
-  container.appendChild(btnLimpar);
-}
-
-function limparFiltros() {
-  const inputTexto = document.getElementById('filtroTexto');
-  if (inputTexto) inputTexto.value = "";
-
-  const selects = document.querySelectorAll('#containerFiltrosColunas select');
-  selects.forEach(s => s.value = "");
-
-  renderizarConteudo();
+  atualizarInterfaceFiltros();
 }
 
 function aplicarFiltros() {
-  const textoBusca = (document.getElementById('filtroTexto')?.value || "").toLowerCase();
+  const inputTexto = document.getElementById('filtroTexto');
+  const textoBusca = (inputTexto?.value || "").toLowerCase();
   const selects = document.querySelectorAll('#containerFiltrosColunas select');
   const dados = obterDadosAbaAtual();
 
   const filtrados = dados.filter(item => {
-    // Exclui e-mail da busca por texto livre
     const valoresParaBusca = Object.entries(item)
       .filter(([chave]) => chave !== 'email')
       .map(([, valor]) => valor);
@@ -423,7 +426,6 @@ function aplicarFiltros() {
       const valorSelecionado = select.value;
       
       if (valorSelecionado) {
-        // Regra para filtro de Escopo (Geral engloba Marketplace e Site)
         if (coluna === 'escopo' && (valorSelecionado === 'Marketplace' || valorSelecionado === 'Site')) {
           if (String(item[coluna]) !== valorSelecionado && String(item[coluna]) !== 'Geral') {
             bateuSelects = false;
@@ -440,4 +442,86 @@ function aplicarFiltros() {
   });
 
   renderizarConteudo(filtrados);
+  atualizarInterfaceFiltros();
+}
+
+function atualizarInterfaceFiltros() {
+  const inputTexto = document.getElementById('filtroTexto');
+  const btnLimparTexto = document.getElementById('btnLimparBuscaTexto');
+  const btnLimparTodos = document.getElementById('btnLimparTodosFiltros');
+  const containerTags = document.getElementById('containerTagsFiltrosAtivos');
+  const selects = document.querySelectorAll('#containerFiltrosColunas select');
+
+  const temTexto = (inputTexto?.value || "").trim().length > 0;
+  if (btnLimparTexto) btnLimparTexto.classList.toggle('hidden', !temTexto);
+
+  let filtrosAtivos = [];
+
+  if (temTexto) {
+    filtrosAtivos.push({
+      tipo: 'texto',
+      rotulo: 'Busca',
+      valor: inputTexto.value,
+      remover: () => { inputTexto.value = ''; aplicarFiltros(); }
+    });
+  }
+
+  selects.forEach(select => {
+    if (select.value) {
+      filtrosAtivos.push({
+        tipo: 'select',
+        rotulo: select.dataset.rotulo || select.dataset.coluna,
+        valor: select.value,
+        remover: () => { select.value = ''; aplicarFiltros(); }
+      });
+    }
+  });
+
+  // Exibe/oculta o botão "Limpar Filtros"
+  if (btnLimparTodos) {
+    btnLimparTodos.classList.toggle('hidden', filtrosAtivos.length === 0);
+  }
+
+  // Gera as tags azuis de filtros ativos
+  if (containerTags) {
+    if (filtrosAtivos.length === 0) {
+      containerTags.innerHTML = "";
+      containerTags.classList.add('hidden');
+    } else {
+      containerTags.classList.remove('hidden');
+      containerTags.innerHTML = `<span class="text-[11px] font-bold text-gray-400 mr-1">Filtros aplicados:</span>` +
+        filtrosAtivos.map((f, i) => `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-extrabold bg-sky-50 text-[#00A3FF] border border-sky-200 rounded-full shadow-sm">
+            <span>${f.rotulo}: <strong>${f.valor}</strong></span>
+            <button onclick="removerFiltroAtivo(${i})" class="hover:text-red-500 transition ml-0.5">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </span>
+        `).join('');
+
+      window._filtrosAtivosRef = filtrosAtivos;
+    }
+  }
+}
+
+function removerFiltroAtivo(index) {
+  if (window._filtrosAtivosRef && window._filtrosAtivosRef[index]) {
+    window._filtrosAtivosRef[index].remover();
+  }
+}
+
+function limparBuscaTexto() {
+  const inputTexto = document.getElementById('filtroTexto');
+  if (inputTexto) inputTexto.value = '';
+  aplicarFiltros();
+}
+
+function limparFiltros() {
+  const inputTexto = document.getElementById('filtroTexto');
+  if (inputTexto) inputTexto.value = "";
+
+  const selects = document.querySelectorAll('#containerFiltrosColunas select');
+  selects.forEach(s => s.value = "");
+
+  aplicarFiltros();
 }

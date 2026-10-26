@@ -15,7 +15,7 @@
 <body class="flex h-screen overflow-hidden bg-[#F5F7FA]">
 
   <!-- Sidebar Lateral estilo Clean -->
-  <aside class="w-64 bg-white flex flex-col justify-between border-r border-gray-200 z-20 shadow-sm">
+  <aside class="w-64 bg-white flex flex-col justify-between border-r border-gray-200 z-20 shadow-sm flex-shrink-0">
     <div>
       <!-- Cabeçalho com Logo Oficial -->
       <div class="p-6 border-b border-gray-100 flex items-center justify-center">
@@ -64,31 +64,55 @@
   <!-- Área de Conteúdo Principal -->
   <main class="flex-1 flex flex-col overflow-y-auto">
     
-    <!-- Top Bar Estilo bringIT -->
-    <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-10">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <!-- Top Bar & Filtros Estilo Profissional -->
+    <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-10 shadow-sm space-y-4">
+      
+      <!-- Linha Superior: Título + Busca -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <h2 id="tituloAba" class="text-2xl font-extrabold text-[#1C275C]">Visualização</h2>
+          <div class="flex items-center gap-3">
+            <h2 id="tituloAba" class="text-2xl font-extrabold text-[#1C275C]">Visualização</h2>
+            <span id="contadorResultados" class="hidden sm:inline-flex px-3 py-0.5 text-xs font-extrabold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-full">0 registros</span>
+          </div>
           <p class="text-xs text-gray-500 mt-0.5">Gestão e acompanhamento de processos internos</p>
         </div>
         
-        <!-- Barra de Busca do Site Oficial -->
-        <div class="flex items-center gap-3 w-full md:w-1/2">
+        <!-- Barra de Busca -->
+        <div class="flex items-center gap-3 w-full lg:w-1/2">
           <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
             <input type="text" id="filtroTexto" oninput="aplicarFiltros()" 
                    placeholder="Busque por responsável, rotina, código ou palavra-chave..." 
-                   class="search-input-bringit w-full pl-4 pr-10 py-2.5 text-sm focus:outline-none text-gray-800 placeholder-gray-400">
-            <button class="absolute right-3 top-2.5 text-[#00A3FF] hover:text-[#008AD8]">
-              <i class="fa-solid fa-magnifying-glass text-base"></i>
+                   class="search-input-bringit w-full pl-10 pr-10 py-2.5 text-sm focus:outline-none text-gray-800 placeholder-gray-400">
+            <button id="btnLimparBuscaTexto" onclick="limparBuscaTexto()" class="hidden absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 transition">
+              <i class="fa-solid fa-circle-xmark text-sm"></i>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Filtros Automáticos por Colunas -->
-      <div id="containerFiltrosColunas" class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-100">
-        <!-- Injetado dinamicamente via JS -->
+      <!-- Linha Inferior: Dropdowns de Filtro + Tags de Filtros Ativos -->
+      <div id="painelFiltrosProfissional" class="pt-3 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        
+        <!-- Dropdowns Gerados Dinamicamente -->
+        <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosColunas">
+          <!-- Injetado via JS -->
+        </div>
+
+        <!-- Botão Limpar Filtros -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <button id="btnLimparTodosFiltros" onclick="limparFiltros()" class="hidden px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5">
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            <span>Limpar Filtros</span>
+          </button>
+        </div>
       </div>
+
+      <!-- Tags de Filtros Ativos -->
+      <div id="containerTagsFiltrosAtivos" class="hidden flex items-center gap-2 flex-wrap pt-1">
+        <!-- Injetado via JS -->
+      </div>
+
     </header>
 
     <!-- Conteúdo Dinâmico da Aba -->

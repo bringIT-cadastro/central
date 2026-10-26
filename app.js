@@ -1,8 +1,42 @@
 let abaAtual = 'time';
+let sidebarRetraida = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   navegarAba('time');
 });
+
+// Lógica de Retração do Menu Lateral (Sidebar)
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebarMenu');
+  const iconToggle = document.getElementById('iconSidebarToggle');
+  const sidebarLogo = document.getElementById('sidebarLogo');
+  const labelMenu = document.getElementById('labelMenuOperacional');
+  const footerTitle = document.getElementById('footerTitle');
+  const footerSub = document.getElementById('footerSub');
+  const menuTexts = document.querySelectorAll('.menu-text');
+
+  sidebarRetraida = !sidebarRetraida;
+
+  if (sidebarRetraida) {
+    sidebar.classList.remove('w-64');
+    sidebar.classList.add('w-20');
+    iconToggle.classList.add('rotate-180');
+    if (sidebarLogo) sidebarLogo.classList.add('hidden');
+    if (labelMenu) labelMenu.classList.add('opacity-0', 'pointer-events-none');
+    if (footerTitle) footerTitle.textContent = "CC";
+    if (footerSub) footerSub.classList.add('hidden');
+    menuTexts.forEach(txt => txt.classList.add('hidden'));
+  } else {
+    sidebar.classList.remove('w-20');
+    sidebar.classList.add('w-64');
+    iconToggle.classList.remove('rotate-180');
+    if (sidebarLogo) sidebarLogo.classList.remove('hidden');
+    if (labelMenu) labelMenu.classList.remove('opacity-0', 'pointer-events-none');
+    if (footerTitle) footerTitle.textContent = "Central Cadastro";
+    if (footerSub) footerSub.classList.remove('hidden');
+    menuTexts.forEach(txt => txt.classList.remove('hidden'));
+  }
+}
 
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
@@ -141,11 +175,10 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace (Com Seções Coloridas para Filtros Críticos)
+// 2. Aba Marketplace
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
-  // 2.1 Seção Responsáveis por Loja
   if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
     html += `
       <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
@@ -208,23 +241,19 @@ function renderizarMarketplace(dados, container) {
     html += `</div></div></div>`;
   }
 
-  // 2.2 Seções de Filtros Críticos (ML Amarelo Claro / Shopee Laranja Claro)
   if (typeof DATA_FILTROS !== 'undefined' && DATA_FILTROS.length > 0) {
     const filtrosML = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'ML');
     const filtrosShopee = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'Shopee');
 
-    // Seção ML (Amarelo Claro)
     if (filtrosML.length > 0) {
       html += renderizarBlocoFiltroCritico("Filtros Críticos Mercado Livre", "ML", filtrosML, "ml");
     }
 
-    // Seção Shopee (Laranja Claro)
     if (filtrosShopee.length > 0) {
       html += renderizarBlocoFiltroCritico("Filtros Críticos Shopee", "Shopee", filtrosShopee, "shopee");
     }
   }
 
-  // 2.3 Tabela de Rotinas
   const CORES_PERIODICIDADE = {
     'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
     'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
@@ -326,7 +355,6 @@ function renderizarMarketplace(dados, container) {
   container.innerHTML = html;
 }
 
-// Renderizador com Cores Customizadas por Cabeçalho
 function renderizarBlocoFiltroCritico(titulo, idSecao, listaFiltros, estiloTema) {
   let estilosHeader = "bg-white hover:bg-sky-50/50 border-gray-200";
   let estiloIcone = "bg-sky-50 text-[#00A3FF] border-sky-100";

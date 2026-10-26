@@ -7,10 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
   
+  // Atualiza a classe ativa dos botões no menu lateral
   document.querySelectorAll('.menu-link').forEach(btn => btn.classList.remove('active'));
   const btnAtivo = document.getElementById(`btn-${nomeAba}`);
   if (btnAtivo) btnAtivo.classList.add('active');
 
+  // Atualiza o título da aba
   const titulos = {
     time: "Membros da Equipe",
     marketplace: "Matriz & Rotinas de Marketplace",
@@ -21,6 +23,7 @@ function navegarAba(nomeAba) {
   const elTitulo = document.getElementById('tituloAba');
   if (elTitulo) elTitulo.textContent = titulos[nomeAba] || "Central";
 
+  // Limpa o campo de busca
   const elFiltro = document.getElementById('filtroTexto');
   if (elFiltro) elFiltro.value = "";
 
@@ -55,20 +58,30 @@ function renderizarConteudo(dadosFiltrados = null) {
   else if (abaAtual === 'biblioteca') renderizarBiblioteca(dados, container);
 }
 
-// 1. Aba Time
+// 1. Aba Time - Com Cores Diferenciadas por Escopo e Ocultação de Responsabilidades
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado.</div>`;
     return;
   }
 
+  // Mapeamento de cores exclusivas por Escopo
+  const CORES_ESCOPO = {
+    'Marketplace': 'bg-amber-50 text-amber-700 border-amber-200',
+    'Site': 'bg-sky-50 text-[#00A3FF] border-sky-200',
+    'Geral': 'bg-purple-50 text-purple-700 border-purple-200'
+  };
+
   let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
   dados.forEach(membro => {
     
+    // Define o estilo da tag com base no escopo
+    const estiloTagEscopo = CORES_ESCOPO[membro.escopo] || 'bg-gray-50 text-gray-700 border-gray-200';
+
     // Gera as logos dos canais responsáveis (se houver)
     let htmlLogos = '';
     if (membro.canaisResponsaveis && membro.canaisResponsaveis.length > 0 && typeof LOGOS_CANOES !== 'undefined') {
-      htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap mt-2 bg-gray-50 p-2 rounded-xl border border-gray-100">`;
+      htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap mt-2.5 bg-gray-50 p-2 rounded-xl border border-gray-100">`;
       membro.canaisResponsaveis.forEach(canal => {
         const logoUrl = LOGOS_CANOES[canal];
         if (logoUrl) {
@@ -85,10 +98,12 @@ function renderizarTime(dados, container) {
             <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" class="w-16 h-16 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm">
             <div class="flex-1">
               <h3 class="font-extrabold text-[#1C275C] text-xl leading-snug">${membro.nome}</h3>
-              <p class="text-sm font-bold text-[#00A3FF] mt-0.5">${membro.cargo}</p>
+              <p class="text-sm font-bold text-gray-500 mt-0.5">${membro.cargo}</p>
               
               <div class="flex items-center gap-2 mt-2 flex-wrap">
-                <span class="inline-block px-3 py-1 text-xs font-black rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100 uppercase tracking-wider">${membro.escopo || 'Geral'}</span>
+                <span class="inline-block px-3 py-1 text-xs font-black rounded-full border uppercase tracking-wider ${estiloTagEscopo}">
+                  ${membro.escopo || 'Geral'}
+                </span>
               </div>
 
               ${htmlLogos}
@@ -125,7 +140,7 @@ function toggleResponsabilidade(id) {
   }
 }
 
-// 2. Aba Marketplace
+// 2. Aba Marketplace (Com Logos e Estados)
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
@@ -343,14 +358,14 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  // Exclui campos que não devem virar dropdown (como e-mail)
+  // Exclui campos que não devem virar dropdown de filtro
   const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis'];
   const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
 
   chaves.forEach(chave => {
     let valoresUnicos = [...new Set(dados.map(item => item[chave]))].filter(Boolean);
 
-    // Sanitiza opções para evitar "Pleno" ou divergências
+    // Sanitiza opções para evitar divergências
     if (chave === 'cargo') {
       valoresUnicos = valoresUnicos.map(v => v.replace(/\s*Pleno\s*/i, '').trim());
       valoresUnicos = [...new Set(valoresUnicos)];
@@ -369,7 +384,7 @@ function gerarFiltrosPorColuna() {
     container.appendChild(select);
   });
 
-  // 1. Botão Limpar Filtros
+  // Botão Limpar Filtros
   const btnLimpar = document.createElement('button');
   btnLimpar.className = "px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-1.5";
   btnLimpar.onclick = limparFiltros;
@@ -393,7 +408,7 @@ function aplicarFiltros() {
   const dados = obterDadosAbaAtual();
 
   const filtrados = dados.filter(item => {
-    // 2. Não busca no e-mail
+    // Exclui e-mail da busca por texto livre
     const valoresParaBusca = Object.entries(item)
       .filter(([chave]) => chave !== 'email')
       .map(([, valor]) => valor);
@@ -408,7 +423,7 @@ function aplicarFiltros() {
       const valorSelecionado = select.value;
       
       if (valorSelecionado) {
-        // 6. Regra especial para filtro de Escopo (Geral engloba Marketplace e Site)
+        // Regra para filtro de Escopo (Geral engloba Marketplace e Site)
         if (coluna === 'escopo' && (valorSelecionado === 'Marketplace' || valorSelecionado === 'Site')) {
           if (String(item[coluna]) !== valorSelecionado && String(item[coluna]) !== 'Geral') {
             bateuSelects = false;

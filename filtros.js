@@ -60,4 +60,11 @@ const DATA_FILTROS = [
     nome: "Próximos a serem Pausados",
     url: "https://vendedores.mercadolivre.com.br/anuncios?filters=OMNI_ACTIVE_WITH_CATALOG_FOREWARNING&page=1&sort=DEFAULT&task=GROUPED_CATALOG_FOREWARNING"
   }
+  {
+    id: 9,
+    categoriaPrincipal: "ML",
+    canal: "Mercado Livre",
+    nome: "Com risco de suspensão na sua conta",
+    url: "https://vendedores.mercadolivre.com.br/anuncios?filters=UNDER_RISK_TO_RESTRICTION&page=1&sort=DEFAULT&task=GROUPED_UNDER_RISK_TO_RESTRICTION"
+  }
 ];

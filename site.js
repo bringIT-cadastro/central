@@ -16,7 +16,7 @@ const DATA_SITE = [
     atividade: "Auditoria de URLs quebradas e redirecionamento de erros 404",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Semanal",
     materiais: [
       { nome: "Planilha de Mapeamento Redirects 404", url: "#" }
@@ -40,7 +40,7 @@ const DATA_SITE = [
     atividade: "Atualização de banners, vitrines e categorias da Home",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -50,7 +50,7 @@ const DATA_SITE = [
     atividade: "Otimização de SEO On-Page (Title, Meta Description, H1 e alt image)",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -70,7 +70,7 @@ const DATA_SITE = [
     atividade: "Gestão do Feed de Produtos do Google Merchant Center",
     tipo: "Mídia / SEO",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -90,7 +90,7 @@ const DATA_SITE = [
     atividade: "Tratamento e edição de imagens de produtos (fundo branco / padrão bringIT)",
     tipo: "Imagem",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -110,7 +110,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de relatórios de busca interna sem resultado no site",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -120,7 +120,7 @@ const DATA_SITE = [
     atividade: "Conferência de preços de de/por e regras de promoção do site",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -130,7 +130,7 @@ const DATA_SITE = [
     atividade: "Revisão e enriquecimento de descrições de produtos curva A",
     tipo: "Conteúdo",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -150,7 +150,7 @@ const DATA_SITE = [
     atividade: "Alinhamento de lançamentos e novos produtos com time de compras",
     tipo: "Gestão",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -180,7 +180,7 @@ const DATA_SITE = [
     atividade: "Verificação e manutenção de links de navegação do menu e footer",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -190,7 +190,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de métricas de conversão e rejeição de páginas de produto",
     tipo: "Analytics",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -210,7 +210,7 @@ const DATA_SITE = [
     atividade: "Auditoria de avaliações de clientes nos produtos e moderação de comentários",
     tipo: "Qualidade",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -220,7 +220,7 @@ const DATA_SITE = [
     atividade: "Gestão e cadastro de cupons de desconto para ações comerciais",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -230,7 +230,7 @@ const DATA_SITE = [
     atividade: "Homologação de novas regras de frete e prazos na plataforma do site",
     tipo: "Integração",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -240,7 +240,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de indexação de páginas no Google Search Console",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -270,7 +270,7 @@ const DATA_SITE = [
     atividade: "Revisão e aplicação de Canonical Tags em páginas de variações",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -280,7 +280,7 @@ const DATA_SITE = [
     atividade: "Validação de badges e selos de garantia exibidos na vitrine",
     tipo: "Qualidade",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -290,7 +290,7 @@ const DATA_SITE = [
     atividade: "Relatório quinzenal de produtos cadastrados x produtos publicados",
     tipo: "Gestão",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -310,7 +310,7 @@ const DATA_SITE = [
     atividade: "Ajustes de layout e microcopys nas páginas do checkout e carrinho",
     tipo: "SEO / UX",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -320,7 +320,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento e correção de inconsistências de EAN/GTIN no Google Merchant",
     tipo: "Mídia / SEO",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -340,7 +340,7 @@ const DATA_SITE = [
     atividade: "Auditoria de tempo de carregamento e compressão de imagens das landing pages",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -350,7 +350,7 @@ const DATA_SITE = [
     atividade: "Criação de FAQs específicas nas páginas de categorias principais",
     tipo: "Conteúdo",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.png",
+    foto: "jennifer.webp",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -360,7 +360,7 @@ const DATA_SITE = [
     atividade: "Testes operacionais de compra e usabilidade no fluxo do e-commerce",
     tipo: "Qualidade",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -370,7 +370,7 @@ const DATA_SITE = [
     atividade: "Documentação de processos operacionais e melhorias da área de Site",
     tipo: "Documentação",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -380,7 +380,7 @@ const DATA_SITE = [
     atividade: "Monitoramento e atualização das políticas de troca e devoluções no site",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.png",
+    foto: "ingrid.webp",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []

@@ -1,6 +1,5 @@
-// marketplace.js
+// marketplace.js - Logos, Matriz de Lojas e Rotinas da Aba Marketplace
 
-// Mapeamento de Logos Oficiais dos Canais
 const LOGOS_CANOES = {
   "Mercado Livre": "https://upload.wikimedia.org/wikipedia/pt/0/04/Logotipo_MercadoLivre.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
   "Kabum": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Logotipo_da_KaBuM%21.svg/3840px-Logotipo_da_KaBuM%21.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
@@ -11,24 +10,22 @@ const LOGOS_CANOES = {
   "Site": "https://www.bringit.com.br/assets/images/brand/logo-bringit.svg"
 };
 
-// 1. Mapeamento de Lojas, Responsáveis e Fotos por Estado (Extensões Atualizadas)
 const DATA_MARKETPLACE_CANOES = [
-  { canal: "Mercado Livre", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "SP", responsavel: "Maria Soares", foto: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "PR", responsavel: "Maria Soares", foto: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "MG", responsavel: "Maria Soares", foto: "maria.jpeg" },
-  { canal: "Shopee", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Shopee", conta: "SP", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Shopee", conta: "MG", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Kabum", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Kabum", conta: "SP", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Kabum", conta: "MG", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" },
-  { canal: "Temu", conta: "SC", responsavel: "Maria Soares", foto: "maria.jpeg" },
-  { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", foto: "raqueline.jpg" }
+  { canal: "Mercado Livre", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "PR", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+  { canal: "Mercado Livre", conta: "MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+  { canal: "Shopee", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Shopee", conta: "SP", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Shopee", conta: "MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Kabum", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Kabum", conta: "SP", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Kabum", conta: "MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+  { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+  { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
 ];
 
-// 2. Base Geral de Atividades e Rotinas de Marketplace com Materiais e Tutoriais
 const DATA_MARKETPLACE = [
   {
     id: 101,
@@ -162,7 +159,7 @@ const DATA_MARKETPLACE = [
   },
   {
     id: 115,
-    atividade: "Manutenção vinculo de identidade Platz x Canal",
+    atividade: "Manutenção vínculo de identidade Platz x Canal",
     periodicidade: "Conforme Demanda",
     prioridade: "Média",
     tipo: "Integração",

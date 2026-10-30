@@ -1,4 +1,4 @@
-// site.js
+// site.js - Dados das Rotinas e Operações da Aba Site
 
 const DATA_SITE = [
   {
@@ -6,7 +6,7 @@ const DATA_SITE = [
     atividade: "Validação e aprovação de novos cadastros de produtos no site",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -16,10 +16,11 @@ const DATA_SITE = [
     atividade: "Auditoria de URLs quebradas e redirecionamento de erros 404",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Semanal",
     materiais: [
-      { nome: "Planilha de Mapeamento Redirects 404", url: "#" }
+      { nome: "Base de Redirecionamento 1", url: "https://docs.google.com/spreadsheets/d/1WssHcHW5p5fFtVrSP9sfqCSnYn5n2iW48KEfR99LIhU/edit?gid=879776952#gid=879776952" },
+      { nome: "Base de Redirecionamento 2", url: "https://docs.google.com/spreadsheets/d/1RN0wqj-zjfn1cb8zllPLsc1F9I9W-g7QB-mjWK2zaSg/edit?gid=0#gid=0" }
     ],
     tutoriais: [
       { nome: "Procedimento de Ajuste de Redirects no Magento", url: "#" }
@@ -27,10 +28,10 @@ const DATA_SITE = [
   },
   {
     id: 203,
-    atividade: "Verificação de compatividades e especificações técnicas nas fichas",
+    atividade: "Verificação de compatibilidades e especificações técnicas nas fichas",
     tipo: "Qualidade",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -40,7 +41,7 @@ const DATA_SITE = [
     atividade: "Atualização de banners, vitrines e categorias da Home",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -50,7 +51,7 @@ const DATA_SITE = [
     atividade: "Otimização de SEO On-Page (Title, Meta Description, H1 e alt image)",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -60,7 +61,7 @@ const DATA_SITE = [
     atividade: "Monitoramento de erros de integração Platz x Magento/VTEX",
     tipo: "Integração",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -70,7 +71,7 @@ const DATA_SITE = [
     atividade: "Gestão do Feed de Produtos do Google Merchant Center",
     tipo: "Mídia / SEO",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -80,7 +81,7 @@ const DATA_SITE = [
     atividade: "Service Desk l Atendimento de Chamados Internos de Cadastro",
     tipo: "Service Desk",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -90,7 +91,7 @@ const DATA_SITE = [
     atividade: "Tratamento e edição de imagens de produtos (fundo branco / padrão bringIT)",
     tipo: "Imagem",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -100,7 +101,7 @@ const DATA_SITE = [
     atividade: "Inclusão de manuais e datasheets em PDF nas páginas de produto",
     tipo: "Conteúdo",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -110,7 +111,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de relatórios de busca interna sem resultado no site",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -120,7 +121,7 @@ const DATA_SITE = [
     atividade: "Conferência de preços de de/por e regras de promoção do site",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -130,7 +131,7 @@ const DATA_SITE = [
     atividade: "Revisão e enriquecimento de descrições de produtos curva A",
     tipo: "Conteúdo",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -140,7 +141,7 @@ const DATA_SITE = [
     atividade: "Cadastro e alteração de atributos de peças (Voltagem, Capacidade, Cor...)",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -150,7 +151,7 @@ const DATA_SITE = [
     atividade: "Alinhamento de lançamentos e novos produtos com time de compras",
     tipo: "Gestão",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -160,7 +161,7 @@ const DATA_SITE = [
     atividade: "Auditoria de cross-selling e upselling (Produtos Relacionados)",
     tipo: "Qualidade",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -170,7 +171,7 @@ const DATA_SITE = [
     atividade: "Análise e correção de produtos desmembrados ou duplicados",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -180,7 +181,7 @@ const DATA_SITE = [
     atividade: "Verificação e manutenção de links de navegação do menu e footer",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -190,7 +191,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de métricas de conversão e rejeição de páginas de produto",
     tipo: "Analytics",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -200,7 +201,7 @@ const DATA_SITE = [
     atividade: "Mapeamento de novas famílias de telas, baterias e teclados para catálogo",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -210,7 +211,7 @@ const DATA_SITE = [
     atividade: "Auditoria de avaliações de clientes nos produtos e moderação de comentários",
     tipo: "Qualidade",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -220,7 +221,7 @@ const DATA_SITE = [
     atividade: "Gestão e cadastro de cupons de desconto para ações comerciais",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -230,7 +231,7 @@ const DATA_SITE = [
     atividade: "Homologação de novas regras de frete e prazos na plataforma do site",
     tipo: "Integração",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -240,7 +241,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento de indexação de páginas no Google Search Console",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -250,7 +251,7 @@ const DATA_SITE = [
     atividade: "Atribuição e atualização de Part Numbers no catálogo do site",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -260,7 +261,7 @@ const DATA_SITE = [
     atividade: "Suporte à equipe de SAC e Vendas para dúvidas técnicas de produtos do site",
     tipo: "Service Desk",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Diariamente",
     materiais: [],
     tutoriais: []
@@ -270,7 +271,7 @@ const DATA_SITE = [
     atividade: "Revisão e aplicação de Canonical Tags em páginas de variações",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -280,7 +281,7 @@ const DATA_SITE = [
     atividade: "Validação de badges e selos de garantia exibidos na vitrine",
     tipo: "Qualidade",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -290,7 +291,7 @@ const DATA_SITE = [
     atividade: "Relatório quinzenal de produtos cadastrados x produtos publicados",
     tipo: "Gestão",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -300,7 +301,7 @@ const DATA_SITE = [
     atividade: "Inativação preventiva de SKUs fora de linha no catálogo do site",
     tipo: "Manutenção",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -310,7 +311,7 @@ const DATA_SITE = [
     atividade: "Ajustes de layout e microcopys nas páginas do checkout e carrinho",
     tipo: "SEO / UX",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -320,7 +321,7 @@ const DATA_SITE = [
     atividade: "Acompanhamento e correção de inconsistências de EAN/GTIN no Google Merchant",
     tipo: "Mídia / SEO",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -330,7 +331,7 @@ const DATA_SITE = [
     atividade: "Atualização das tabelas de compatibilidade por marca (Dell, HP, Lenovo, Asus...)",
     tipo: "Cadastro",
     responsavel: "Patrick Nunes",
-    foto: "patrick.jpeg",
+    fotoUrl: "patrick.jpeg",
     periodicidade: "2x Semana",
     materiais: [],
     tutoriais: []
@@ -340,7 +341,7 @@ const DATA_SITE = [
     atividade: "Auditoria de tempo de carregamento e compressão de imagens das landing pages",
     tipo: "SEO / UX",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -350,7 +351,7 @@ const DATA_SITE = [
     atividade: "Criação de FAQs específicas nas páginas de categorias principais",
     tipo: "Conteúdo",
     responsavel: "Jennifer Valle",
-    foto: "jennifer.webp",
+    fotoUrl: "jennifer.png",
     periodicidade: "Quinzenal",
     materiais: [],
     tutoriais: []
@@ -360,7 +361,7 @@ const DATA_SITE = [
     atividade: "Testes operacionais de compra e usabilidade no fluxo do e-commerce",
     tipo: "Qualidade",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Semanal",
     materiais: [],
     tutoriais: []
@@ -370,7 +371,7 @@ const DATA_SITE = [
     atividade: "Documentação de processos operacionais e melhorias da área de Site",
     tipo: "Documentação",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []
@@ -380,7 +381,7 @@ const DATA_SITE = [
     atividade: "Monitoramento e atualização das políticas de troca e devoluções no site",
     tipo: "Comercial",
     responsavel: "Ingrid Fabris",
-    foto: "ingrid.webp",
+    fotoUrl: "ingrid.png",
     periodicidade: "Conforme Demanda",
     materiais: [],
     tutoriais: []

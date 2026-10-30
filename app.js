@@ -1,4 +1,4 @@
-// app.js
+// app.js - Núcleo da Aplicação Central de Atividades bringIT
 
 let abaAtual = 'time';
 let sidebarRetraida = false;
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navegarAba('time');
 });
 
-// Alternância Ultrarrápida da Sidebar (Isolada do DOM)
+// Alternância da Sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebarMenu');
   const iconToggle = document.getElementById('iconSidebarToggle');
@@ -28,6 +28,7 @@ function toggleSidebar() {
   }
 }
 
+// Navegação de Abas
 function navegarAba(nomeAba) {
   abaAtual = nomeAba;
   
@@ -85,7 +86,9 @@ function atualizarContadorResultados(total) {
   }
 }
 
+// -------------------------------------------------------------
 // 1. Aba Time
+// -------------------------------------------------------------
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
     container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum colaborador encontrado com os filtros selecionados.</div>`;
@@ -162,7 +165,158 @@ function toggleResponsabilidade(id) {
   }
 }
 
+// -------------------------------------------------------------
+// Componente Reutilizável: Renderizador de Tabela de Rotinas
+// -------------------------------------------------------------
+function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsavel = false }) {
+  const CORES_PERIODICIDADE = {
+    'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
+    '2x Semana': 'bg-blue-50 text-blue-700 border-blue-200',
+    'Quinzenal': 'bg-purple-50 text-purple-700 border-purple-200',
+    'Conforme Demanda': 'bg-amber-50 text-amber-700 border-amber-200'
+  };
+
+  let html = `
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mt-6">
+      <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
+        <h3 class="font-bold text-[#1C275C] flex items-center gap-2 text-base">
+          <i class="${icone} text-[#00A3FF]"></i> ${titulo}
+        </h3>
+        <span class="px-3 py-1 text-xs font-black text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-full">${dados.length} encontradas</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-50 text-[#1C275C] uppercase text-[11px] font-bold border-b border-gray-100">
+            <tr>
+              <th class="p-4 w-12 text-center"></th>
+              <th class="p-4">ID</th>
+              <th class="p-4">Atividade / Rotina</th>
+              <th class="p-4">Tipo</th>
+              ${incluirResponsavel ? `<th class="p-4">Responsável</th>` : ''}
+              <th class="p-4">Periodicidade</th>
+              ${!incluirResponsavel ? `<th class="p-4">Prioridade</th>` : ''}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+  `;
+
+  if (!dados || dados.length === 0) {
+    html += `<tr><td colspan="${incluirResponsavel ? 6 : 6}" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
+  } else {
+    dados.forEach((item, index) => {
+      const pColor = item.prioridade === 'Alta' ? 'bg-red-50 text-red-600 border-red-100' : (item.prioridade === 'Média' ? 'bg-amber-50 text-amber-600 border-amber-100' : 'bg-gray-50 text-gray-600 border-gray-100');
+      const estiloPeriodicidade = CORES_PERIODICIDADE[item.periodicidade] || 'bg-gray-100 text-gray-700 border-gray-200';
+      
+      const numMateriais = item.materiais ? item.materiais.length : 0;
+      const numTutoriais = item.tutoriais ? item.tutoriais.length : 0;
+      const temApoio = numMateriais > 0 || numTutoriais > 0;
+
+      const fotoResp = item.fotoUrl || item.foto || 'https://via.placeholder.com/150';
+
+      html += `
+        <tr tabindex="0" role="button" aria-expanded="false" onclick="toggleLinhaRotinaGenerica('${abaAtual}', ${index})" onkeydown="if(event.key === 'Enter') toggleLinhaRotinaGenerica('${abaAtual}', ${index})" class="hover:bg-sky-50/30 transition-colors cursor-pointer">
+          <td class="p-4 text-center">
+            <i id="rotina-icon-${abaAtual}-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
+          </td>
+          <td class="p-4 font-bold text-gray-400">#${item.id}</td>
+          <td class="p-4 font-semibold text-[#1C275C]">
+            <div class="flex items-center gap-2">
+              <span>${item.atividade}</span>
+              ${temApoio ? `
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md shadow-2xs">
+                  <i class="fa-solid fa-paperclip"></i>
+                  ${numMateriais + numTutoriais} apoio
+                </span>
+              ` : ''}
+            </div>
+          </td>
+          <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
+          
+          ${incluirResponsavel ? `
+            <td class="p-4">
+              <div class="flex items-center gap-2">
+                <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100">
+                <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
+              </div>
+            </td>
+          ` : ''}
+
+          <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-lg border ${estiloPeriodicidade}">${item.periodicidade}</span></td>
+          
+          ${!incluirResponsavel ? `
+            <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-full border ${pColor}">${item.prioridade || 'Média'}</span></td>
+          ` : ''}
+        </tr>
+
+        <tr id="rotina-content-${abaAtual}-${index}" class="hidden bg-sky-50/20 border-t-0">
+          <td colspan="6" class="p-5 pl-14">
+            ${temApoio ? `
+              <div class="space-y-3">
+                ${numMateriais > 0 ? `
+                  <div>
+                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
+                      <span class="inline-flex items-center gap-1">
+                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
+                        <i class="fa-solid fa-file-lines text-blue-500"></i>
+                        <i class="fa-solid fa-file-word text-sky-600"></i>
+                      </span>
+                      Material de Apoio
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      ${item.materiais.map(mat => `
+                        <a href="${mat.url}" target="_blank" class="btn-bringit inline-flex items-center gap-2 px-3.5 py-2 text-xs">
+                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                          <span>${mat.nome}</span>
+                        </a>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+
+                ${numTutoriais > 0 ? `
+                  <div>
+                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
+                      <i class="fa-solid fa-book text-[#00A3FF]"></i> Tutoriais & Procedimentos
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      ${item.tutoriais.map(tut => `
+                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition-colors">
+                          <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
+                          <span>${tut.nome}</span>
+                        </a>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+              </div>
+            ` : `
+              <p class="text-xs font-medium text-gray-500 italic bg-white p-3 rounded-xl border border-gray-200/60 inline-block">
+                <i class="fa-solid fa-circle-info text-[#00A3FF] mr-1.5"></i> Material de apoio em produção ou não necessário.
+              </p>
+            `}
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  html += `</tbody></table></div></div>`;
+  return html;
+}
+
+function toggleLinhaRotinaGenerica(aba, index) {
+  const content = document.getElementById(`rotina-content-${aba}-${index}`);
+  const icon = document.getElementById(`rotina-icon-${aba}-${index}`);
+  if (content && icon) {
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-90');
+  }
+}
+
+// -------------------------------------------------------------
 // 2. Aba Marketplace
+// -------------------------------------------------------------
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
@@ -196,7 +350,7 @@ function renderizarMarketplace(dados, container) {
     
     DATA_MARKETPLACE_CANOES.forEach(item => {
       const urlLogo = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
-      const fotoResp = item.foto || 'https://via.placeholder.com/150';
+      const fotoResp = item.foto || item.fotoUrl || 'https://via.placeholder.com/150';
       const isTikTok = item.canal === "TikTok";
       const estiloLogo = isTikTok ? "h-10 w-32 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
 
@@ -241,109 +395,13 @@ function renderizarMarketplace(dados, container) {
     }
   }
 
-  const CORES_PERIODICIDADE = {
-    'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
-    '2x Semana': 'bg-blue-50 text-blue-700 border-blue-200',
-    'Quinzenal': 'bg-purple-50 text-purple-700 border-purple-200',
-    'Conforme Demanda': 'bg-amber-50 text-amber-700 border-amber-200'
-  };
+  html += renderizarTabelaRotinasGenerica({
+    dados: dados,
+    titulo: "Rotinas e Atividades de Marketplace",
+    icone: "fa-solid fa-tasks",
+    incluirResponsavel: false
+  });
 
-  html += `
-    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mt-8">
-      <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
-        <h3 class="font-bold text-[#1C275C] flex items-center gap-2 text-base">
-          <i class="fa-solid fa-tasks text-[#00A3FF]"></i> Rotinas e Atividades de Marketplace
-        </h3>
-        <span class="px-3 py-1 text-xs font-black text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-full">${dados.length} encontradas</span>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-gray-50 text-[#1C275C] uppercase text-[11px] font-bold border-b border-gray-100">
-            <tr>
-              <th class="p-4 w-12 text-center"></th>
-              <th class="p-4">ID</th>
-              <th class="p-4">Atividade / Rotina</th>
-              <th class="p-4">Tipo</th>
-              <th class="p-4">Periodicidade</th>
-              <th class="p-4">Prioridade</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100 text-gray-700">
-  `;
-
-  if (!dados || dados.length === 0) {
-    html += `<tr><td colspan="6" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
-  } else {
-    dados.forEach((item, index) => {
-      const pColor = item.prioridade === 'Alta' ? 'bg-red-50 text-red-600 border-red-100' : (item.prioridade === 'Média' ? 'bg-amber-50 text-amber-600 border-amber-100' : 'bg-gray-50 text-gray-600 border-gray-100');
-      const estiloPeriodicidade = CORES_PERIODICIDADE[item.periodicidade] || 'bg-gray-100 text-gray-700 border-gray-200';
-      const temApoio = (item.materiais && item.materiais.length > 0) || (item.tutoriais && item.tutoriais.length > 0);
-
-      html += `
-        <tr onclick="toggleLinhaRotina(${index})" class="hover:bg-sky-50/30 transition-colors cursor-pointer">
-          <td class="p-4 text-center">
-            <i id="rotina-icon-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
-          </td>
-          <td class="p-4 font-bold text-gray-400">#${item.id}</td>
-          <td class="p-4 font-semibold text-[#1C275C]">${item.atividade}</td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-lg border ${estiloPeriodicidade}">${item.periodicidade}</span></td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-full border ${pColor}">${item.prioridade || 'Média'}</span></td>
-        </tr>
-        <tr id="rotina-content-${index}" class="hidden bg-sky-50/20 border-t-0">
-          <td colspan="6" class="p-5 pl-14">
-            ${temApoio ? `
-              <div class="space-y-3">
-                ${item.materiais && item.materiais.length > 0 ? `
-                  <div>
-                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <span class="inline-flex items-center gap-1">
-                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
-                        <i class="fa-solid fa-file-lines text-blue-500"></i>
-                        <i class="fa-solid fa-file-word text-sky-600"></i>
-                      </span>
-                      Material de Apoio
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      ${item.materiais.map(mat => `
-                        <a href="${mat.url}" target="_blank" class="btn-bringit inline-flex items-center gap-2 px-3.5 py-2 text-xs">
-                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                          <span>${mat.nome}</span>
-                        </a>
-                      `).join('')}
-                    </div>
-                  </div>
-                ` : ''}
-
-                ${item.tutoriais && item.tutoriais.length > 0 ? `
-                  <div>
-                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <i class="fa-solid fa-book text-[#00A3FF]"></i> Tutoriais & Procedimentos
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      ${item.tutoriais.map(tut => `
-                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition-colors">
-                          <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
-                          <span>${tut.nome}</span>
-                        </a>
-                      `).join('')}
-                    </div>
-                  </div>
-                ` : ''}
-              </div>
-            ` : `
-              <p class="text-xs font-medium text-gray-500 italic bg-white p-3 rounded-xl border border-gray-200/60 inline-block">
-                <i class="fa-solid fa-circle-info text-[#00A3FF] mr-1.5"></i> Material de apoio em produção ou não necessário.
-              </p>
-            `}
-          </td>
-        </tr>
-      `;
-    });
-  }
-
-  html += `</tbody></table></div></div>`;
   container.innerHTML = html;
 }
 
@@ -448,138 +506,21 @@ function toggleSecaoLojas() {
   }
 }
 
-function toggleLinhaRotina(index) {
-  const content = document.getElementById(`rotina-content-${index}`);
-  const icon = document.getElementById(`rotina-icon-${index}`);
-  if (content && icon) {
-    content.classList.toggle('hidden');
-    icon.classList.toggle('rotate-90');
-  }
-}
-
+// -------------------------------------------------------------
 // 3. Aba Site
+// -------------------------------------------------------------
 function renderizarSite(dados, container) {
-  const CORES_PERIODICIDADE = {
-    'Diariamente': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    'Semanal': 'bg-sky-50 text-[#00A3FF] border-sky-200',
-    '2x Semana': 'bg-blue-50 text-blue-700 border-blue-200',
-    'Quinzenal': 'bg-purple-50 text-purple-700 border-purple-200',
-    'Conforme Demanda': 'bg-amber-50 text-amber-700 border-amber-200'
-  };
-
-  let html = `
-    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-      <div class="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
-        <h3 class="font-bold text-[#1C275C] flex items-center gap-2 text-base">
-          <i class="fa-solid fa-globe text-[#00A3FF]"></i> Rotinas e Operações do Site
-        </h3>
-        <span class="px-3 py-1 text-xs font-black text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-full">${dados.length} encontradas</span>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-gray-50 text-[#1C275C] uppercase text-[11px] font-bold border-b border-gray-100">
-            <tr>
-              <th class="p-4 w-12 text-center"></th>
-              <th class="p-4">ID</th>
-              <th class="p-4">Atividade / Rotina</th>
-              <th class="p-4">Tipo</th>
-              <th class="p-4">Responsável</th>
-              <th class="p-4">Periodicidade</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100 text-gray-700">
-  `;
-
-  if (!dados || dados.length === 0) {
-    html += `<tr><td colspan="6" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
-  } else {
-    dados.forEach((item, index) => {
-      const estiloPeriodicidade = CORES_PERIODICIDADE[item.periodicidade] || 'bg-gray-100 text-gray-700 border-gray-200';
-      const fotoResp = item.foto || 'https://via.placeholder.com/150';
-      const temApoio = (item.materiais && item.materiais.length > 0) || (item.tutoriais && item.tutoriais.length > 0);
-
-      html += `
-        <tr onclick="toggleLinhaRotinaSite(${index})" class="hover:bg-sky-50/30 transition-colors cursor-pointer">
-          <td class="p-4 text-center">
-            <i id="site-icon-${index}" class="fa-solid fa-chevron-right text-gray-400 text-xs transition-transform duration-200"></i>
-          </td>
-          <td class="p-4 font-bold text-gray-400">#${item.id}</td>
-          <td class="p-4 font-semibold text-[#1C275C]">${item.atividade}</td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
-          <td class="p-4">
-            <div class="flex items-center gap-2">
-              <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100">
-              <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
-            </div>
-          </td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs font-bold rounded-lg border ${estiloPeriodicidade}">${item.periodicidade}</span></td>
-        </tr>
-        <tr id="site-content-${index}" class="hidden bg-sky-50/20 border-t-0">
-          <td colspan="6" class="p-5 pl-14">
-            ${temApoio ? `
-              <div class="space-y-3">
-                ${item.materiais && item.materiais.length > 0 ? `
-                  <div>
-                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <span class="inline-flex items-center gap-1">
-                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
-                        <i class="fa-solid fa-file-lines text-blue-500"></i>
-                        <i class="fa-solid fa-file-word text-sky-600"></i>
-                      </span>
-                      Material de Apoio
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      ${item.materiais.map(mat => `
-                        <a href="${mat.url}" target="_blank" class="btn-bringit inline-flex items-center gap-2 px-3.5 py-2 text-xs">
-                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                          <span>${mat.nome}</span>
-                        </a>
-                      `).join('')}
-                    </div>
-                  </div>
-                ` : ''}
-
-                ${item.tutoriais && item.tutoriais.length > 0 ? `
-                  <div>
-                    <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <i class="fa-solid fa-book text-[#00A3FF]"></i> Tutoriais & Procedimentos
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      ${item.tutoriais.map(tut => `
-                        <a href="${tut.url}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-[#1C275C] font-bold rounded-xl text-xs border border-gray-200 hover:bg-gray-100 transition-colors">
-                          <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
-                          <span>${tut.nome}</span>
-                        </a>
-                      `).join('')}
-                    </div>
-                  </div>
-                ` : ''}
-              </div>
-            ` : `
-              <p class="text-xs font-medium text-gray-500 italic bg-white p-3 rounded-xl border border-gray-200/60 inline-block">
-                <i class="fa-solid fa-circle-info text-[#00A3FF] mr-1.5"></i> Material de apoio em produção ou não necessário.
-              </p>
-            `}
-          </td>
-        </tr>
-      `;
-    });
-  }
-
-  html += `</tbody></table></div></div>`;
-  container.innerHTML = html;
+  container.innerHTML = renderizarTabelaRotinasGenerica({
+    dados: dados,
+    titulo: "Rotinas e Operações do Site",
+    icone: "fa-solid fa-globe",
+    incluirResponsavel: true
+  });
 }
 
-function toggleLinhaRotinaSite(index) {
-  const content = document.getElementById(`site-content-${index}`);
-  const icon = document.getElementById(`site-icon-${index}`);
-  if (content && icon) {
-    content.classList.toggle('hidden');
-    icon.classList.toggle('rotate-90');
-  }
-}
-
-// MÓDULO DE FILTROS
+// -------------------------------------------------------------
+// Módulo Geral de Filtros
+// -------------------------------------------------------------
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
   if (!container) return;
@@ -589,9 +530,16 @@ function gerarFiltrosPorColuna() {
   if (!dados || dados.length === 0) return;
 
   const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto', 'atividade'];
-  const chaves = Object.keys(dados[0]).filter(k => !chavesIgnoradas.includes(k));
+  
+  // Coleta de todas as chaves existentes no array inteiro
+  const chavesUnicas = new Set();
+  dados.forEach(item => {
+    Object.keys(item).forEach(k => {
+      if (!chavesIgnoradas.includes(k)) chavesUnicas.add(k);
+    });
+  });
 
-  chaves.forEach(chave => {
+  chavesUnicas.forEach(chave => {
     let valoresUnicos = [...new Set(dados.map(item => item[chave]))].filter(Boolean);
 
     if (chave === 'cargo') {

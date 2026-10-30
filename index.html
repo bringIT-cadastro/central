@@ -14,10 +14,10 @@
 </head>
 <body class="flex h-screen overflow-hidden bg-[#F5F7FA]">
 
-  <!-- Sidebar Lateral Retrátil Otimizada -->
-  <aside id="sidebarMenu" class="w-64 bg-white flex flex-col justify-between border-r border-gray-200 z-20 shadow-sm flex-shrink-0 sidebar-transition relative">
+  <!-- Sidebar Lateral Retrátil -->
+  <aside id="sidebarMenu" class="w-64 bg-white flex flex-col justify-between border-r border-gray-200 z-20 shadow-sm flex-shrink-0 relative">
     <div>
-      <!-- Cabeçalho com Logo Oficial + Botão Retrair -->
+      <!-- Cabeçalho com Logo + Botão Retrair -->
       <div class="p-4 border-b border-gray-100 flex items-center justify-between min-h-[73px]">
         <a href="#" id="sidebarLogo" class="block overflow-hidden flex-shrink-0">
           <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" 
@@ -62,7 +62,7 @@
   <!-- Área de Conteúdo Principal -->
   <main class="flex-1 flex flex-col overflow-y-auto">
     
-    <!-- Top Bar & Filtros Estilo Profissional -->
+    <!-- Top Bar & Filtros -->
     <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-10 shadow-sm space-y-4">
       
       <!-- Linha Superior: Título + Busca -->
@@ -89,15 +89,12 @@
         </div>
       </div>
 
-      <!-- Linha Inferior: Dropdowns de Filtro + Tags de Filtros Ativos -->
+      <!-- Linha Inferior: Dropdowns de Filtro -->
       <div id="painelFiltrosProfissional" class="pt-3 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        
-        <!-- Dropdowns Gerados Dinamicamente -->
         <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosColunas">
           <!-- Injetado via JS -->
         </div>
 
-        <!-- Botão Limpar Filtros -->
         <div class="flex items-center gap-2 flex-shrink-0">
           <button id="btnLimparTodosFiltros" onclick="limparFiltros()" class="hidden px-3.5 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition-colors flex items-center gap-1.5">
             <i class="fa-solid fa-filter-circle-xmark"></i>
@@ -113,19 +110,19 @@
 
     </header>
 
-    <!-- Conteúdo Dinâmico da Aba -->
+    <!-- Conteúdo Dinâmico -->
     <section id="conteudoAba" class="p-8">
       <!-- Injetado dinamicamente via JS -->
     </section>
   </main>
 
-  <!-- Carregamento dos Scripts JS da Raiz -->
+  <!-- Carregamento dos Scripts de Dados -->
   <script src="time.js"></script>
   <script src="marketplace.js"></script>
   <script src="filtros.js"></script>
   <script src="site.js"></script>
   
-  <!-- Lógica Principal -->
+  <!-- Núcleo da Aplicação -->
   <script src="app.js"></script>
 </body>
 </html>

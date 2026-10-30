@@ -46,7 +46,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Geral",
     email: "jennifer.valle@bringit.com.br",
-    fotoUrl: "jennifer.png",
+    fotoUrl: "jennifer.webp",
     responsabilidades: "Validação de imagens, SEO, redirect de URLs 404 e controle de qualidade de anúncios.",
     canaisResponsaveis: []
   },

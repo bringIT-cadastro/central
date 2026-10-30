@@ -59,7 +59,7 @@ const DATA_FILTROS = [
     canal: "Mercado Livre",
     nome: "Próximos a serem Pausados",
     url: "https://vendedores.mercadolivre.com.br/anuncios?filters=OMNI_ACTIVE_WITH_CATALOG_FOREWARNING&page=1&sort=DEFAULT&task=GROUPED_CATALOG_FOREWARNING"
-  }
+  },
   {
     id: 9,
     categoriaPrincipal: "ML",

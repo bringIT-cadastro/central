@@ -38,8 +38,7 @@ function navegarAba(nomeAba) {
   const titulos = {
     time: "Membros da Equipe",
     marketplace: "Rotinas de Marketplace",
-    site: "Rotinas do Site",
-    biblioteca: "Biblioteca de Tutoriais & Bases"
+    site: "Rotinas do Site"
   };
   
   const elTitulo = document.getElementById('tituloAba');
@@ -58,7 +57,6 @@ function obterDadosAbaAtual() {
       case 'time': return (typeof DATA_TIME !== 'undefined') ? DATA_TIME : [];
       case 'marketplace': return (typeof DATA_MARKETPLACE !== 'undefined') ? DATA_MARKETPLACE : [];
       case 'site': return (typeof DATA_SITE !== 'undefined') ? DATA_SITE : [];
-      case 'biblioteca': return (typeof DATA_BIBLIOTECA !== 'undefined') ? DATA_BIBLIOTECA : [];
       default: return [];
     }
   } catch (e) {
@@ -77,7 +75,6 @@ function renderizarConteudo(dadosFiltrados = null) {
   if (abaAtual === 'time') renderizarTime(dados, container);
   else if (abaAtual === 'marketplace') renderizarMarketplace(dados, container);
   else if (abaAtual === 'site') renderizarSite(dados, container);
-  else if (abaAtual === 'biblioteca') renderizarBiblioteca(dados, container);
 }
 
 function atualizarContadorResultados(total) {
@@ -301,7 +298,12 @@ function renderizarMarketplace(dados, container) {
                 ${item.materiais && item.materiais.length > 0 ? `
                   <div>
                     <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <i class="fa-solid fa-file-excel text-emerald-500"></i> Bases Utilizadas & Planilhas
+                      <span class="inline-flex items-center gap-1">
+                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
+                        <i class="fa-solid fa-file-lines text-blue-500"></i>
+                        <i class="fa-solid fa-file-word text-sky-600"></i>
+                      </span>
+                      Material de Apoio
                     </p>
                     <div class="flex flex-wrap gap-2">
                       ${item.materiais.map(mat => `
@@ -519,7 +521,12 @@ function renderizarSite(dados, container) {
                 ${item.materiais && item.materiais.length > 0 ? `
                   <div>
                     <p class="text-[11px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-1.5">
-                      <i class="fa-solid fa-file-excel text-emerald-500"></i> Bases Utilizadas & Planilhas
+                      <span class="inline-flex items-center gap-1">
+                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
+                        <i class="fa-solid fa-file-lines text-blue-500"></i>
+                        <i class="fa-solid fa-file-word text-sky-600"></i>
+                      </span>
+                      Material de Apoio
                     </p>
                     <div class="flex flex-wrap gap-2">
                       ${item.materiais.map(mat => `
@@ -572,84 +579,6 @@ function toggleLinhaRotinaSite(index) {
   }
 }
 
-// 4. Aba Biblioteca
-function renderizarBiblioteca(dados, container) {
-  if (!dados || dados.length === 0) {
-    container.innerHTML = `<div class="p-12 text-center text-gray-400 bg-white rounded-2xl border">Nenhum registro encontrado na Biblioteca.</div>`;
-    return;
-  }
-
-  let html = `<div class="space-y-4 max-w-5xl">`;
-  dados.forEach((item, index) => {
-    html += `
-      <div class="bringit-card overflow-hidden">
-        <button onclick="toggleAccordionBiblioteca(${index})" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/30 text-left transition-colors">
-          <div class="flex items-center space-x-3">
-            <span class="px-3 py-1 text-xs font-extrabold rounded-full bg-sky-50 text-[#00A3FF] border border-sky-100 uppercase tracking-wider">
-              ${item.categoria || 'Geral'}
-            </span>
-            <span class="font-bold text-[#1C275C] text-base">${item.titulo}</span>
-          </div>
-          <i id="bib-icon-${index}" class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200"></i>
-        </button>
-
-        <div id="bib-content-${index}" class="hidden p-6 border-t border-gray-100 bg-white space-y-5">
-          <div>
-            <h4 class="text-[11px] font-bold uppercase text-gray-400 mb-1 tracking-wider">Descrição & Detalhes</h4>
-            <p class="text-sm text-gray-700 leading-relaxed">${item.detalhes}</p>
-          </div>
-
-          ${item.materiais && item.materiais.length > 0 ? `
-            <div>
-              <h4 class="text-[11px] font-bold uppercase text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-file-excel text-emerald-500"></i> Bases Utilizadas & Planilhas
-              </h4>
-              <div class="flex flex-wrap gap-2.5">
-                ${item.materiais.map(mat => `
-                  <a href="${mat.url}" target="_blank" 
-                     class="btn-bringit inline-flex items-center gap-2 px-4 py-2.5 text-xs shadow-sm">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    <span>${mat.nome}</span>
-                  </a>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-
-          ${item.tutoriais && item.tutoriais.length > 0 ? `
-            <div>
-              <h4 class="text-[11px] font-bold uppercase text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-book text-[#00A3FF]"></i> Tutoriais & Procedimentos
-              </h4>
-              <div class="flex flex-wrap gap-2.5">
-                ${item.tutoriais.map(tut => `
-                  <a href="${tut.url}" target="_blank" 
-                     class="inline-flex items-center gap-2 px-4 py-2.5 bg-gray-100 text-[#1C275C] font-bold rounded-xl text-xs hover:bg-gray-200 transition-colors">
-                    <i class="fa-solid fa-circle-play text-[#00A3FF]"></i>
-                    <span>${tut.nome}</span>
-                  </a>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-        </div>
-      </div>
-    `;
-  });
-
-  html += `</div>`;
-  container.innerHTML = html;
-}
-
-function toggleAccordionBiblioteca(index) {
-  const content = document.getElementById(`bib-content-${index}`);
-  const icon = document.getElementById(`bib-icon-${index}`);
-  if (content && icon) {
-    content.classList.toggle('hidden');
-    icon.classList.toggle('rotate-180');
-  }
-}
-
 // MÓDULO DE FILTROS
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
@@ -679,8 +608,7 @@ function gerarFiltrosPorColuna() {
       tipo: "Tipo de Atividade",
       periodicidade: "Periodicidade",
       prioridade: "Prioridade",
-      responsavel: "Responsável",
-      categoria: "Categoria"
+      responsavel: "Responsável"
     };
 
     const nomeColuna = rotulos[chave] || chave.charAt(0).toUpperCase() + chave.slice(1);

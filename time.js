@@ -56,7 +56,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Sênior",
     escopo: "Site",
     email: "ingrid.fabris@bringit.com.br",
-    fotoUrl: "ingrid.png",
+    fotoUrl: "ingrid.webp",
     responsabilidades: "Gestão da equipe de cadastro, melhorias no site, Google Merchant e projetos da área.",
     canaisResponsaveis: []
   }

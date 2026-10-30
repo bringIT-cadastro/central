@@ -6,7 +6,7 @@ const DATA_TIME = [
     cargo: "Analista de Cadastro Júnior",
     escopo: "Marketplace",
     email: "daniela.lourenco@bringit.com.br",
-    fotoUrl: "daniela.png",
+    fotoUrl: "daniela.webp",
     responsabilidades: "Apoio geral a todos os canais de marketplace.",
     canaisResponsaveis: []
   },

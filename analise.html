@@ -28,11 +28,11 @@
     </div>
   </header>
 
-  <!-- Filtro Rápido por Pilar Estratégico -->
+  <!-- Barra de Filtro Rápido por Pilar -->
   <div class="bg-white/80 backdrop-blur-md border-b border-gray-200 px-8 py-3 sticky top-[77px] z-20">
     <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosPilares">
       <span class="text-xs font-bold text-gray-400 mr-2">Filtrar por Pilar:</span>
-      <button onclick="filtrarPilar('todos', this)" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition">
+      <button onclick="filtrarPilar('todos', this)" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition shadow-xs">
         Todos os Pilares
       </button>
       <!-- Pilares dinâmicos via JS -->
@@ -67,10 +67,11 @@
           <i class="fa-solid fa-cubes text-[#00A3FF]"></i>
           2. Pilares Estratégicos de Atuação & Mapeamento de Rotinas
         </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Mapeamento completo das rotinas contínuas organizadas por frente de atuação</p>
+        <p class="text-xs text-gray-500 mt-0.5">Clique em um dos pilares abaixo para filtrar o diagnóstico e as rotinas mapeadas</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6" id="gridPilaresCards">
+      <!-- Cards de Pilares Interativos (Filtros) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6" id="gridPilaresCards">
         <!-- Injetado via JS -->
       </div>
 
@@ -190,9 +191,9 @@
             <table class="w-full text-left text-xs">
               <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b">
                 <tr>
-                  <th class="p-2.5">Canal</th>
-                  <th class="p-2.5">Conta/UF</th>
-                  <th class="p-2.5">Responsável Atual</th>
+                  <th class="p-3">Canal</th>
+                  <th class="p-3">Conta/UF</th>
+                  <th class="p-3">Responsável Atual</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100" id="tabelaContasAtual">
@@ -212,10 +213,10 @@
             <table class="w-full text-left text-xs">
               <thead class="bg-sky-50/50 text-[#1C275C] font-bold uppercase border-b border-sky-100">
                 <tr>
-                  <th class="p-2.5">Canal</th>
-                  <th class="p-2.5">Conta/UF</th>
-                  <th class="p-2.5">Novo Responsável</th>
-                  <th class="p-2.5">Foco</th>
+                  <th class="p-3">Canal</th>
+                  <th class="p-3">Conta/UF</th>
+                  <th class="p-3">Novo Responsável</th>
+                  <th class="p-3">Foco</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100" id="tabelaContasProposta">
@@ -249,6 +250,8 @@
   <!-- Scripts -->
   <script src="analise_data.js"></script>
   <script>
+    let pilarAtivoGlobal = 'todos';
+
     document.addEventListener("DOMContentLoaded", () => {
       renderizarPilaresFiltro();
       renderizarGargalos();
@@ -263,7 +266,8 @@
       const container = document.getElementById('containerFiltrosPilares');
       DATA_ANALISE.pilares.forEach(p => {
         const btn = document.createElement('button');
-        btn.className = `btn-pilar-filtro px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition`;
+        btn.className = `btn-pilar-filtro px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition shadow-2xs`;
+        btn.dataset.pilar = p.id;
         btn.onclick = () => filtrarPilar(p.id, btn);
         btn.innerHTML = `<i class="${p.icone} mr-1.5 text-[#00A3FF]"></i> ${p.nome}`;
         container.appendChild(btn);
@@ -271,6 +275,8 @@
     }
 
     function filtrarPilar(pilarId, btnElement = null) {
+      pilarAtivoGlobal = pilarId;
+
       document.querySelectorAll('.btn-pilar-filtro').forEach(b => {
         b.classList.remove('bg-[#00A3FF]', 'text-white');
         b.classList.add('bg-white', 'text-gray-700');
@@ -279,10 +285,23 @@
       if (btnElement) {
         btnElement.classList.remove('bg-white', 'text-gray-700');
         btnElement.classList.add('bg-[#00A3FF]', 'text-white');
+      } else {
+        const btnTop = document.querySelector(`.btn-pilar-filtro[data-pilar="${pilarId}"]`);
+        if (btnTop) {
+          btnTop.classList.remove('bg-white', 'text-gray-700');
+          btnTop.classList.add('bg-[#00A3FF]', 'text-white');
+        } else if (pilarId === 'todos') {
+          const btnTodos = document.querySelector('.btn-pilar-filtro');
+          if (btnTodos) {
+            btnTodos.classList.remove('bg-white', 'text-gray-700');
+            btnTodos.classList.add('bg-[#00A3FF]', 'text-white');
+          }
+        }
       }
 
       renderizarGargalos(pilarId);
       renderizarRotinasColunas(pilarId);
+      renderizarPilaresCards();
     }
 
     function renderizarGargalos(pilarFiltro = 'todos') {
@@ -357,7 +376,7 @@
           cMkt.innerHTML += `
             <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
               <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-md flex-shrink-0 ${pilarObj.cor || 'bg-gray-500'}">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor || 'bg-gray-500'} shadow-2xs">
                 <i class="${pilarObj.icone} text-[9px]"></i>
                 <span>${pilarObj.nome}</span>
               </span>
@@ -374,7 +393,7 @@
           cSite.innerHTML += `
             <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
               <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-md flex-shrink-0 ${pilarObj.cor || 'bg-gray-500'}">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor || 'bg-gray-500'} shadow-2xs">
                 <i class="${pilarObj.icone} text-[9px]"></i>
                 <span>${pilarObj.nome}</span>
               </span>
@@ -388,14 +407,17 @@
       const container = document.getElementById('gridPilaresCards');
       container.innerHTML = "";
       DATA_ANALISE.pilares.forEach(p => {
+        const estaAtivo = pilarAtivoGlobal === p.id;
+        const estiloCard = estaAtivo ? 'border-[#00A3FF] ring-2 ring-[#00A3FF]/20 bg-sky-50/30' : 'border-gray-200 bg-white hover:border-[#00A3FF]';
+
         container.innerHTML += `
-          <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-2xs flex items-center gap-4">
+          <div onclick="filtrarPilar('${p.id}')" class="p-5 rounded-2xl border ${estiloCard} shadow-2xs flex items-center gap-4 cursor-pointer transition-all">
             <div class="w-12 h-12 rounded-xl text-white ${p.cor} flex items-center justify-center text-xl flex-shrink-0 shadow-xs">
               <i class="${p.icone}"></i>
             </div>
             <div>
               <h4 class="font-extrabold text-[#1C275C] text-sm">${p.nome}</h4>
-              <p class="text-xs text-gray-500 mt-0.5">Pilar Operacional</p>
+              <p class="text-xs text-gray-500 mt-0.5">Clique para filtrar</p>
             </div>
           </div>
         `;
@@ -465,12 +487,12 @@
 
       tAtual.innerHTML = DATA_ANALISE.divisaoContas.atual.map(c => `
         <tr class="hover:bg-gray-50">
-          <td class="p-2.5 font-bold">${c.canal}</td>
-          <td class="p-2.5 text-gray-500">${c.conta}</td>
-          <td class="p-2.5">
-            <div class="flex items-center gap-2">
-              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100 flex-shrink-0">
-              <span class="font-semibold text-[#1C275C]">${c.responsavel}</span>
+          <td class="p-3 font-bold">${c.canal}</td>
+          <td class="p-3 text-gray-500">${c.conta}</td>
+          <td class="p-3">
+            <div class="flex items-center gap-2.5">
+              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+              <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
             </div>
           </td>
         </tr>
@@ -478,15 +500,15 @@
 
       tProp.innerHTML = DATA_ANALISE.divisaoContas.proposta.map(c => `
         <tr class="hover:bg-sky-50/50">
-          <td class="p-2.5 font-bold text-[#1C275C]">${c.canal}</td>
-          <td class="p-2.5 text-gray-500">${c.conta}</td>
-          <td class="p-2.5">
-            <div class="flex items-center gap-2">
-              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100 flex-shrink-0">
-              <span class="font-extrabold text-[#00A3FF]">${c.responsavel}</span>
+          <td class="p-3 font-bold text-[#1C275C]">${c.canal}</td>
+          <td class="p-3 text-gray-500">${c.conta}</td>
+          <td class="p-3">
+            <div class="flex items-center gap-2.5">
+              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+              <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
             </div>
           </td>
-          <td class="p-2.5"><span class="px-2 py-0.5 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded">${c.badge}</span></td>
+          <td class="p-3"><span class="px-2.5 py-1 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded-md shadow-2xs">${c.badge}</span></td>
         </tr>
       `).join('');
     }

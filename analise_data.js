@@ -1,12 +1,11 @@
 // analise_data.js - Base de Dados Atualizada para LP de Análises bringIT
 
 const DATA_ANALISE = {
-  // Pilares de Atuação
+  // 3 Pilares Estratégicos (SEO & Qualidade unificado em Melhoria de Catálogo)
   pilares: [
     { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
-    { id: "operacional", nome: "Service Desk / Operacional", cor: "bg-amber-500", icone: "fa-solid fa-headset" },
-    { id: "qualidade", nome: "SEO & Qualidade", cor: "bg-purple-500", icone: "fa-solid fa-chart-line" }
+    { id: "operacional", nome: "Service Desk / Operacional", cor: "bg-amber-500", icone: "fa-solid fa-headset" }
   ],
 
   // Seção 1: Diagnóstico de Demandas & Gargalos Operacionais
@@ -59,7 +58,7 @@ const DATA_ANALISE = {
     {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
-      pilar: "qualidade",
+      pilar: "catalogo",
       gargaloMapeado: "Rotina potencial de rodízio bimestral/quadrimestre.",
       sla: "48h úteis",
       sugestoesAcoes: [
@@ -69,7 +68,7 @@ const DATA_ANALISE = {
     {
       id: "g6",
       titulo: "Análise de Devoluções",
-      pilar: "qualidade",
+      pilar: "catalogo",
       gargaloMapeado: "Analistas não preenchem controles devidamente. Possível não análise dos casos repassados.",
       sla: "Semanal",
       sugestoesAcoes: [
@@ -88,23 +87,23 @@ const DATA_ANALISE = {
     { pilar: "operacional", nome: "Ponte de Comando l Atualização de Atributos" },
     { pilar: "operacional", nome: "Ponte de Comando l Pausa de Anúncios" },
     { pilar: "operacional", nome: "Ponte de Comando l Reativação de Anúncios" },
-    { pilar: "qualidade", nome: "Conferência e correção de cadastros diretamente dentro dos canais" },
-    { pilar: "qualidade", nome: "Mercado Livre l Manutenção dos anúncios 'Em Revisão'" },
-    { pilar: "qualidade", nome: "Acompanhamento dos indicadores dos marketplaces" },
+    { pilar: "catalogo", nome: "Conferência e correção de cadastros diretamente dentro dos canais" },
+    { pilar: "catalogo", nome: "Mercado Livre l Manutenção dos anúncios 'Em Revisão'" },
+    { pilar: "catalogo", nome: "Acompanhamento dos indicadores dos marketplaces" },
     { pilar: "operacional", nome: "Validação de SKUs que chegam em importações" },
     { pilar: "operacional", nome: "Manutenção vínculo de identidade Platz x Canal" }
   ],
 
   rotinasSite: [
     { pilar: "novos", nome: "Validação e aprovação de novos cadastros de produtos no site" },
-    { pilar: "qualidade", nome: "Verificação de compatibilidades e especificações técnicas nas fichas" },
+    { pilar: "catalogo", nome: "Verificação de compatividades e especificações técnicas nas fichas" },
     { pilar: "catalogo", nome: "Atualização de banners, vitrines e categorias da Home" },
-    { pilar: "qualidade", nome: "Otimização de SEO On-Page (Title, Meta Description, H1)" },
+    { pilar: "catalogo", nome: "Otimização de SEO On-Page (Title, Meta Description, H1)" },
     { pilar: "operacional", nome: "Monitoramento de erros de integração Platz x Magento/VTEX" },
     { pilar: "catalogo", nome: "Gestão do Feed de Produtos do Google Merchant Center" },
-    { pilar: "qualidade", nome: "Tratamento e edição de imagens de produtos" },
+    { pilar: "catalogo", nome: "Tratamento e edição de imagens de produtos" },
     { pilar: "catalogo", nome: "Revisão e enriquecimento de descrições de produtos curva A" },
-    { pilar: "qualidade", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)" },
+    { pilar: "catalogo", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)" },
     { pilar: "operacional", nome: "Atribuição e atualização de Part Numbers no catálogo do site" }
   ],
 
@@ -128,7 +127,7 @@ const DATA_ANALISE = {
       dia: "Quarta-feira",
       foco: "Qualidade & Análise de Devoluções",
       puxadas: ["Análise de Devoluções e Reclamações de RMA", "Auditoria Mercado Livre (Em Revisão)"],
-      empurradas: ["Ajustes de fichas técnicas e compatibilidades"],
+      empurradas: ["Ajustes de fichas técnicas e compatividades"],
       slaMeta: "Tratar 100% dos alertas ML"
     },
     {
@@ -170,7 +169,7 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 5: Matriz de Divisão de Contas com Avatares
+  // Seção 5: Matriz de Divisão de Contas com Avatares e Foto Daniela Atualizada
   divisaoContas: {
     atual: [
       { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -182,9 +181,9 @@ const DATA_ANALISE = {
     ],
     proposta: [
       { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "Core ML" },
-      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Expansão ML" },
-      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
-      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
+      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Expansão ML" },
+      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
+      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
       { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Shopee" },
       { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Tech" },
       { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "1P B2B" }

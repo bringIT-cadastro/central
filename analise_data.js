@@ -1,4 +1,4 @@
-// analise_data.js - Base de Dados para a LP de Apresentação de Análises bringIT
+// analise_data.js - Base de Dados Atualizada para LP de Análises bringIT
 
 const DATA_ANALISE = {
   // Pilares de Atuação
@@ -15,62 +15,94 @@ const DATA_ANALISE = {
       id: "g1",
       titulo: "Produtos Novos (Lotes Novos & Cauda Longa)",
       pilar: "novos",
-      gerador: true,
-      origem: "Chegada de Lotes Importação / Numbimetrics / Chamados",
-      descricao: "Alto volume de cadastro e conexão de novos SKUs nos canais e no site. Necessita de esteira rápida para evitar acúmulo e atraso na publicação.",
+      gargaloMapeado: "Configuração de atributos ausentes.",
       sla: "24h a 48h úteis",
-      acoes: ["Conexão direta de anúncios", "Validação de tributação e NCM", "Cadastro no Magento/Platz"]
+      sugestoesAcoes: [
+        "Nova ronda de melhoria de processos do fluxo completo, atuar para objetivo de facilidade e segurança 100%.",
+        "Fluxo bem amarrado, garantir continuidade."
+      ]
     },
     {
       id: "g2",
       titulo: "Service Desk (Correções e Criações)",
       pilar: "operacional",
-      gerador: true,
-      origem: "Atendimento de Chamados Internos (Vendas, SAC, Compras)",
-      descricao: "Demandas pontuais que interrompem o fluxo contínuo. Exige triagem rígida para não travar a rotina diária dos analistas.",
+      gargaloMapeado: "Possível acúmulo por distribuição e alta demanda.",
       sla: "24h para triagem",
-      acoes: ["Correção de título/descrição", "Ajuste de atributos e compatibilidades", "RMA Erro de Anúncios"]
+      sugestoesAcoes: [
+        "Analisar Alternância de Responsável Único semanal.",
+        "Garante atendimento mais ágil.",
+        "Treina analistas em mais situações.",
+        "Interrompe menos nas tramitações de Ticket."
+      ]
     },
     {
       id: "g3",
       titulo: "Análise de Termos de Busca",
       pilar: "catalogo",
-      gerador: true,
-      origem: "Relatórios de busca sem resultado e palavras-chave de canais",
-      descricao: "Identificação de buscas sem conversão no site e marketplaces para enriquecimento de sinônimos, títulos e tags.",
+      gargaloMapeado: "Rotina potencial de rodízio bimestral/quadrimestre.",
       sla: "Semanal",
-      acoes: ["Criação de sinônimos na busca", "Ajuste de SEO On-Page", "Inclusão de Part Numbers buscados"]
+      sugestoesAcoes: [
+        "Garantir concentração ao máximo em um único analista."
+      ]
     },
     {
       id: "g4",
       titulo: "Phase Out & No Turn",
       pilar: "catalogo",
-      gerador: true,
-      origem: "Produtos fora de linha e sem giro de estoque",
-      descricao: "Limpeza e pausa preventiva de anúncios sem estoque ou fora de linha para otimizar a relevância das lojas e evitar penalidades.",
+      gargaloMapeado: "Analistas não estão aplicando a devida importância nas ações finais pós análise.",
       sla: "Quinzenal",
-      acoes: ["Inativação em massa de SKUs sem giro", "Ajuste de ofertas de substitutos", "Pausa em canais secundários"]
+      sugestoesAcoes: [
+        "Trazer grandes cases de ações e projeções para equipe engajar melhor.",
+        "Analisar espaçamento maior, talvez verificação a cada duas semanas, com SLA maior para garantir ações."
+      ]
     },
     {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
       pilar: "qualidade",
-      gerador: true,
-      origem: "Google Search Console / Logs do Magento",
-      descricao: "Mapeamento de links quebrados para evitar perda de tráfego orgânico e prejuízo na experiência do cliente no e-commerce.",
+      gargaloMapeado: "Rotina potencial de rodízio bimestral/quadrimestre.",
       sla: "48h úteis",
-      acoes: ["Aplicações de redirects 301", "Ajuste de links internos quebrados", "Homologação de canonicals"]
+      sugestoesAcoes: [
+        "Resolver problema do apontamento negativo do Google Search Console."
+      ]
     },
     {
       id: "g6",
       titulo: "Análise de Devoluções",
       pilar: "qualidade",
-      gerador: true,
-      origem: "Relatórios de SAC, RMA e Reclamações de Canais",
-      descricao: "Identificação de devoluções causadas por erro de compatibilidade ou ficha técnica incomum para correção imediata dos anúncios.",
+      gargaloMapeado: "Analistas não preenchem controles devidamente. Possível não análise dos casos repassados.",
       sla: "Semanal",
-      acoes: ["Ajuste imediato de compatibilidade", "Correção de fotos e especificações", "Feedback para Compras/SAC"]
+      sugestoesAcoes: [
+        "Analisar Alternância de Responsável Único semanal.",
+        "Garante atendimento mais ágil.",
+        "Treina analistas em mais situações.",
+        "Interrompe menos nas tramitações de Ticket."
+      ]
     }
+  ],
+
+  // Outras Rotinas por Pilar (Listagem Compacta)
+  outrasRotinas: [
+    { origem: "MARKETPLACE", pilar: "novos", nome: "Ponte de Comando l Novos Anúncios", periodicidade: "Diariamente" },
+    { origem: "MARKETPLACE", pilar: "novos", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", periodicidade: "2x Semana" },
+    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Atualização de Atributos", periodicidade: "Diariamente" },
+    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Pausa de Anúncios", periodicidade: "Diariamente" },
+    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Reativação de Anúncios", periodicidade: "Diariamente" },
+    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Conferência e correção de cadastros diretamente dentro dos canais", periodicidade: "Semanal" },
+    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Mercado Livre l Manutenção dos anúncios 'Em Revisão'", periodicidade: "Semanal" },
+    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Acompanhamento dos indicadores dos marketplaces", periodicidade: "Semanal" },
+    { origem: "MARKETPLACE", pilar: "operacional", nome: "Validação de SKUs que chegam em importações", periodicidade: "Conforme Demanda" },
+    { origem: "MARKETPLACE", pilar: "operacional", nome: "Manutenção vínculo de identidade Platz x Canal", periodicidade: "Conforme Demanda" },
+    { origem: "SITE", pilar: "novos", nome: "Validação e aprovação de novos cadastros de produtos no site", periodicidade: "Diariamente" },
+    { origem: "SITE", pilar: "qualidade", nome: "Verificação de compatividades e especificações técnicas nas fichas", periodicidade: "Diariamente" },
+    { origem: "SITE", pilar: "catalogo", nome: "Atualização de banners, vitrines e categorias da Home", periodicidade: "Semanal" },
+    { origem: "SITE", pilar: "qualidade", nome: "Otimização de SEO On-Page (Title, Meta Description, H1)", periodicidade: "Quinzenal" },
+    { origem: "SITE", pilar: "operacional", nome: "Monitoramento de erros de integração Platz x Magento/VTEX", periodicidade: "Diariamente" },
+    { origem: "SITE", pilar: "catalogo", nome: "Gestão do Feed de Produtos do Google Merchant Center", periodicidade: "Semanal" },
+    { origem: "SITE", pilar: "qualidade", nome: "Tratamento e edição de imagens de produtos", periodicidade: "Diariamente" },
+    { origem: "SITE", pilar: "catalogo", nome: "Revisão e enriquecimento de descrições de produtos curva A", periodicidade: "Quinzenal" },
+    { origem: "SITE", pilar: "qualidade", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)", periodicidade: "Quinzenal" },
+    { origem: "SITE", pilar: "operacional", nome: "Atribuição e atualização de Part Numbers no catálogo do site", periodicidade: "Diariamente" }
   ],
 
   // Seção 3: Macro Cronograma Semanal

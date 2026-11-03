@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apresentação de Análises Operacionais | bringIT</title>
+  <title>Diagnóstico Inicial de Gargalos | bringIT</title>
   
   <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjTdDDM6XUowBlBmsyNjafgPuMMJ7Ci1XLB8alGALxgw&s">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,15 +12,12 @@
 </head>
 <body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen flex flex-col">
 
-  <!-- Header Superior com Ação de Tela Cheia -->
+  <!-- Header Superior sem Subtítulo -->
   <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
     <div class="flex items-center gap-4">
       <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
       <div class="h-6 w-px bg-gray-200"></div>
-      <div>
-        <h1 class="text-xl font-extrabold text-[#1C275C]">Painel de Análises Estratégicas</h1>
-        <p class="text-xs text-gray-500">Mapeamento de Fluxos, Gargalos Operacionais e Matriz de Canais</p>
-      </div>
+      <h1 class="text-xl font-extrabold text-[#1C275C]">Diagnóstico inicial de gargalos, riscos e oportunidades</h1>
     </div>
 
     <div class="flex items-center gap-3">
@@ -35,7 +32,7 @@
   <div class="bg-white/80 backdrop-blur-md border-b border-gray-200 px-8 py-3 sticky top-[77px] z-20">
     <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosPilares">
       <span class="text-xs font-bold text-gray-400 mr-2">Filtrar por Pilar:</span>
-      <button onclick="filtrarPilar('todos')" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition">
+      <button onclick="filtrarPilar('todos', this)" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition">
         Todos os Pilares
       </button>
       <!-- Pilares dinâmicos via JS -->
@@ -44,30 +41,6 @@
 
   <!-- Conteúdo Principal -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-12">
-
-    <!-- HERO / INTRO -->
-    <section class="bringit-card p-8 bg-gradient-to-r from-white via-sky-50/40 to-white">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div class="space-y-2 max-w-2xl">
-          <span class="px-3 py-1 text-xs font-extrabold bg-sky-100 text-[#00A3FF] border border-sky-200 rounded-full tracking-wider uppercase">Diagnóstico Operacional</span>
-          <h2 class="text-2xl font-black text-[#1C275C]">Otimização de Frentes e Cruzamento de Rotinas</h2>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Estruturação analítica do fluxo de demandas entre **Site** e **Marketplaces**, eliminando gargalos de execução, definindo SLAs claros e desenhando um funil de conversão eficiente por canal.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 flex-shrink-0">
-          <div class="bg-white p-4 rounded-xl border border-gray-200 text-center shadow-2xs">
-            <span class="block text-2xl font-black text-[#00A3FF]">6</span>
-            <span class="text-[11px] font-bold text-gray-500 uppercase">Gargalos Mapeados</span>
-          </div>
-          <div class="bg-white p-4 rounded-xl border border-gray-200 text-center shadow-2xs">
-            <span class="block text-2xl font-black text-emerald-600">5 Dias</span>
-            <span class="text-[11px] font-bold text-gray-500 uppercase">Macro Cronograma</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- SEÇÃO 1: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
     <section id="secao-gargalos" class="space-y-6">
@@ -79,7 +52,7 @@
           </h3>
           <p class="text-xs text-gray-500 mt-0.5">As maiores rotinas geradoras de volume de chamados e ações corretivas</p>
         </div>
-        <span class="px-3 py-1 text-xs font-black bg-amber-50 text-amber-700 border border-amber-200 rounded-full">Foco da Análise</span>
+        <span class="px-3 py-1 text-xs font-black bg-amber-50 text-amber-700 border border-amber-200 rounded-full">Maiores Geradoras de Volume</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridGargalos">
@@ -87,22 +60,33 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 2: PILARES DE ATUAÇÃO -->
+    <!-- SEÇÃO 2: PILARES DE ATUAÇÃO E OUTRAS ROTINAS -->
     <section id="secao-pilares" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-cubes text-[#00A3FF]"></i>
-          2. Pilares Estratégicos de Atuação
+          2. Pilares Estratégicos de Atuação & Mapeamento de Rotinas
         </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Organização visual das frentes de trabalho</p>
+        <p class="text-xs text-gray-500 mt-0.5">Visão consolidada das rotinas contínuas do Site e Marketplace distribuídas por pilar</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="gridPilaresCards">
         <!-- Injetado via JS -->
       </div>
+
+      <!-- Lista Compacta de Outras Rotinas -->
+      <div class="bringit-card p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+          <h4 class="text-xs font-black uppercase tracking-wider text-gray-400">Outras Rotinas em Looping Operacional</h4>
+          <span id="contadorOutrasRotinas" class="text-xs font-bold text-[#00A3FF] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100">0 rotinas</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="listaOutrasRotinas">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
     </section>
 
-    <!-- SEÇÃO 3: MACRO CRONOGRAMA SEMANAL (PUXAR X EMPURRAR) -->
+    <!-- SEÇÃO 3: MACRO CRONOGRAMA SEMANAL -->
     <section id="secao-cronograma" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
@@ -235,7 +219,7 @@
         </div>
 
         <button onclick="alert('Dinâmica de backlog agendada para a última sexta-feira do mês.')" class="px-5 py-3 text-xs font-extrabold bg-[#00A3FF] hover:bg-sky-400 text-white rounded-xl shadow-md transition-all flex-shrink-0">
-          <i class="fa-solid fa-[#00A3FF] fa-lightbulb mr-2"></i> Agendar Dinâmica Mensal
+          <i class="fa-solid fa-lightbulb mr-2"></i> Agendar Dinâmica Mensal
         </button>
       </div>
     </section>
@@ -245,11 +229,11 @@
   <!-- Scripts -->
   <script src="analise_data.js"></script>
   <script>
-    // Lógica da LP de Análises
     document.addEventListener("DOMContentLoaded", () => {
       renderizarPilaresFiltro();
       renderizarGargalos();
       renderizarPilaresCards();
+      renderizarOutrasRotinas();
       renderizarCronograma();
       renderizarFunil();
       renderizarTabelasContas();
@@ -278,6 +262,7 @@
       }
 
       renderizarGargalos(pilarId);
+      renderizarOutrasRotinas(pilarId);
     }
 
     function renderizarGargalos(pilarFiltro = 'todos') {
@@ -306,20 +291,56 @@
               </div>
 
               <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${g.titulo}</h4>
-              <p class="text-xs text-gray-600 leading-relaxed">${g.descricao}</p>
               
-              <div class="pt-2">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Origem:</p>
-                <p class="text-xs font-semibold text-[#00A3FF] bg-sky-50 p-2 rounded-lg border border-sky-100">${g.origem}</p>
+              <div class="bg-amber-50/60 border border-amber-200/80 p-3 rounded-xl">
+                <p class="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-0.5">Gargalo Mapeado:</p>
+                <p class="text-xs font-bold text-amber-950 leading-relaxed">${g.gargaloMapeado}</p>
               </div>
             </div>
 
             <div class="pt-4 mt-4 border-t border-gray-100">
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Ações Necessárias:</p>
-              <ul class="space-y-1">
-                ${g.acoes.map(a => `<li class="text-xs text-gray-700 flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> ${a}</li>`).join('')}
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Sugestões de ações:</p>
+              <ul class="space-y-1.5">
+                ${g.sugestoesAcoes.map(a => `
+                  <li class="text-xs text-gray-700 flex items-start gap-1.5 leading-tight">
+                    <i class="fa-solid fa-check text-emerald-500 text-[10px] mt-0.5"></i>
+                    <span>${a}</span>
+                  </li>
+                `).join('')}
               </ul>
             </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderizarOutrasRotinas(pilarFiltro = 'todos') {
+      const container = document.getElementById('listaOutrasRotinas');
+      const contador = document.getElementById('contadorOutrasRotinas');
+      container.innerHTML = "";
+
+      const lista = pilarFiltro === 'todos' 
+        ? DATA_ANALISE.outrasRotinas 
+        : DATA_ANALISE.outrasRotinas.filter(r => r.pilar === pilarFiltro);
+
+      if (contador) contador.textContent = `${lista.length} rotinas`;
+
+      if (lista.length === 0) {
+        container.innerHTML = `<div class="col-span-2 p-4 text-center text-xs text-gray-400">Nenhuma rotina contínua vinculada a este pilar.</div>`;
+        return;
+      }
+
+      lista.forEach(r => {
+        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar) || {};
+        const corOrigem = r.origem === 'SITE' ? 'bg-sky-100 text-[#00A3FF]' : 'bg-amber-100 text-amber-800';
+
+        container.innerHTML += `
+          <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <span class="px-2 py-0.5 text-[9px] font-black rounded uppercase flex-shrink-0 ${corOrigem}">${r.origem}</span>
+              <span class="text-xs font-semibold text-[#1C275C] truncate" title="${r.nome}">${r.nome}</span>
+            </div>
+            <span class="px-2 py-0.5 text-[10px] font-bold text-gray-500 bg-white border border-gray-200 rounded-md flex-shrink-0">${r.periodicidade}</span>
           </div>
         `;
       });

@@ -1,6 +1,6 @@
 // analise_data.js - Base de Dados Atualizada para LP de Análises bringIT
 
-// Mapeamento de Logos Oficiais dos Canais (Alinhado com o projeto principal)
+// Mapeamento de Logos Oficiais dos Canais
 const LOGOS_CANOES = {
   "Mercado Livre": "https://upload.wikimedia.org/wikipedia/pt/0/04/Logotipo_MercadoLivre.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
   "Kabum": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Logotipo_da_KaBuM%21.svg/3840px-Logotipo_da_KaBuM%21.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
@@ -24,135 +24,131 @@ const DATA_ANALISE = {
       id: "g1",
       titulo: "Produtos Novos (Lotes Novos & Cauda Longa)",
       pilar: "novos",
-      gargaloMapeado: "Configuração de atributos ausentes.",
-      sla: "24h a 48h úteis",
+      gargaloMapeado: "Configuração e ausência de atributos essenciais no cadastro.",
       sugestoesAcoes: [
-        "Nova ronda de melhoria de processos do fluxo completo, atuar para objetivo de facilidade e segurança 100%.",
-        "Fluxo bem amarrado, garantir continuidade."
+        "Nova rodada de melhorias no fluxo completo de processos, visando 100% de facilidade e segurança operacional.",
+        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
       ]
     },
     {
       id: "g2",
       titulo: "Service Desk (Correções e Criações)",
       pilar: "operacional",
-      gargaloMapeado: "Possível acúmulo por distribuição e alta demanda.",
-      sla: "24h para triagem",
+      gargaloMapeado: "Possível acúmulo de chamados decorrente da distribuição e alta demanda.",
       sugestoesAcoes: [
-        "Analisar Alternância de Responsável Único semanal.",
-        "Garante atendimento mais ágil.",
-        "Treina analistas em mais situações.",
-        "Interrompe menos nas tramitações de Ticket."
+        "Analisar a adoção de alternância semanal de Responsável Único.",
+        "Garantir um atendimento mais ágil e fluido às demandas.",
+        "Capacitar e treinar os analistas em um leque maior de cenários operacionais.",
+        "Reduzir interrupções no fluxo de tramitação de tickets."
       ]
     },
     {
       id: "g3",
       titulo: "Análise de Termos de Busca",
       pilar: "catalogo",
-      gargaloMapeado: "Rotina potencial de rodízio bimestral/quadrimestre.",
-      sla: "Semanal",
+      gargaloMapeado: "Rotina com potencial para rodízio bimestral ou quadrimestral.",
       sugestoesAcoes: [
-        "Garantir concentração ao máximo em um único analista."
+        "Garantir a máxima concentração da rotina em um único analista por período."
       ]
     },
     {
       id: "g4",
       titulo: "Phase Out & No Turn",
       pilar: "catalogo",
-      gargaloMapeado: "Analistas não estão aplicando a devida importância nas ações finais pós análise.",
-      sla: "Quinzenal",
+      gargaloMapeado: "Pouca priorização por parte dos analistas nas ações finais pós-análise.",
       sugestoesAcoes: [
-        "Trazer grandes cases de ações e projeções para equipe engajar melhor.",
-        "Analisar espaçamento maior, talvez verificação a cada duas semanas, com SLA maior para garantir ações."
+        "Apresentar cases de sucesso, ações estratégicas e projeções para engajar melhor a equipe.",
+        "Avaliar um espaçamento maior (ex: verificação quinzenal) com SLA estendido para garantir a execução das ações.",
+        "Melhorar o formato da lista de ações atribuídas aos analistas após as pré-análises."
       ]
     },
     {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
       pilar: "catalogo",
-      gargaloMapeado: "Rotina potencial de rodízio bimestral/quadrimestre.",
-      sla: "48h úteis",
+      gargaloMapeado: "Rotina com potencial para rodízio bimestral ou quadrimestral.",
       sugestoesAcoes: [
-        "Resolver problema do apontamento negativo do Google Search Console."
+        "Sanar e solucionar os apontamentos negativos identificados no Google Search Console."
       ]
     },
     {
       id: "g6",
       titulo: "Análise de Devoluções",
       pilar: "catalogo",
-      gargaloMapeado: "Analistas não preenchem controles devidamente. Possível não análise dos casos repassados.",
-      sla: "Semanal",
+      gargaloMapeado: "Preenchimento inadequado dos controles por parte dos analistas e risco de não análise dos casos repassados.",
       sugestoesAcoes: [
-        "Analisar Alternância de Responsável Único semanal.",
-        "Garante atendimento mais ágil.",
-        "Treina analistas em mais situações.",
-        "Interrompe menos nas tramitações de Ticket."
+        "Analisar a adoção de alternância semanal de Responsável Único.",
+        "Garantir um atendimento e posicionamento mais ágil.",
+        "Capacitar e treinar os analistas em diferentes cenários de devolução.",
+        "Reduzir gargalos e interrupções nas tramitações de tickets."
       ]
     }
   ],
 
-  // Seção 2: Lista Completa de Rotinas Mapeadas (Marketplace x Site)
+  // Seção 2: Rotinas Oficiais Atualizadas (Marketplace)
   rotinasMarketplace: [
     { pilar: "novos", nome: "Novos Produtos l Conexão de Novos Anúncios" },
     { pilar: "novos", nome: "Ponte de Comando l Novos Anúncios" },
-    { pilar: "operacional", nome: "Ponte de Comando l Atualização de Atributos" },
-    { pilar: "operacional", nome: "Ponte de Comando l Pausa de Anúncios" },
-    { pilar: "operacional", nome: "Ponte de Comando l Reativação de Anúncios" },
+    { pilar: "catalogo", nome: "Ponte de Comando l Atualização de Atributos" },
+    { pilar: "catalogo", nome: "Ponte de Comando l Pausa de Anúncios" },
+    { pilar: "catalogo", nome: "Ponte de Comando l Reativação de Anúncios" },
     { pilar: "catalogo", nome: "Conferência e correção de cadastros diretamente dentro dos canais, produtos inativos, bloqueados…" },
-    { pilar: "catalogo", nome: "Mercado Livre l Manutenção e correção dos anúncios 'Em Revisão'" },
+    { pilar: "catalogo", nome: "Mercado Livre l Manutenção e correção dos anúncios \"Em Revisão\"" },
     { pilar: "catalogo", nome: "Acompanhamento dos indicadores dos marketplaces e identificação de correções de anúncios" },
-    { pilar: "operacional", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa dos anúncios" },
+    { pilar: "catalogo", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa dos anúncios" },
     { pilar: "operacional", nome: "Service Desk l Fila - Conexão de Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Fila - Correção de Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Fila - RMA Erro de Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Pausar ou Ativar Anúncios" },
-    { pilar: "operacional", nome: "Validação de SKUs que chegam em importações" },
-    { pilar: "operacional", nome: "Manutenção vinculo de identidade Platz x Canal" },
-    { pilar: "catalogo", nome: "Criação e atualização de documentação dos canais" },
-    { pilar: "novos", nome: "Realizar conexão de SKUs ainda sem conexões nos canais" },
+    { pilar: "novos", nome: "Validação de SKUs que chegam em importações" },
+    { pilar: "catalogo", nome: "Manutenção vínculo de identidade Platz x Canal" },
+    { pilar: "operacional", nome: "Criação e atualização de documentação dos canais" },
+    { pilar: "catalogo", nome: "Realizar conexão de SKUs ainda sem conexões nos canais" },
     { pilar: "catalogo", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques..." },
-    { pilar: "catalogo", nome: "Preenchimento e acompanhamento de KPIs" },
+    { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" },
     { pilar: "catalogo", nome: "Acompanhamento e Análise de devoluções de cada canal" }
   ],
 
+  // Seção 2: Rotinas Oficiais Atualizadas (Site)
   rotinasSite: [
-    { pilar: "novos", nome: "Validação e aprovação de novos cadastros de produtos no site" },
-    { pilar: "catalogo", nome: "Auditoria de URLs quebradas e redirecionamento de erros 404" },
-    { pilar: "catalogo", nome: "Verificação de compatividades e especificações técnicas nas fichas" },
-    { pilar: "catalogo", nome: "Atualização de banners, vitrines e categorias da Home" },
-    { pilar: "catalogo", nome: "Otimização de SEO On-Page (Title, Meta Description, H1 e alt image)" },
-    { pilar: "operacional", nome: "Monitoramento de erros de integração Platz x Magento/VTEX" },
-    { pilar: "catalogo", nome: "Gestão do Feed de Produtos do Google Merchant Center" },
-    { pilar: "operacional", nome: "Service Desk l Atendimento de Chamados Internos de Cadastro" },
-    { pilar: "catalogo", nome: "Tratamento e edição de imagens de produtos (fundo branco / padrão bringIT)" },
-    { pilar: "catalogo", nome: "Inclusão de manuais e datasheets em PDF nas páginas de produto" },
-    { pilar: "catalogo", nome: "Acompanhamento de relatórios de busca interna sem resultado no site" },
-    { pilar: "catalogo", nome: "Conferência de preços de de/por e regras de promoção do site" },
-    { pilar: "catalogo", nome: "Revisão e enriquecimento de descrições de produtos curva A" },
-    { pilar: "novos", nome: "Cadastro e alteração de atributos de peças (Voltagem, Capacidade, Cor...)" },
-    { pilar: "novos", nome: "Alinhamento de lançamentos e novos produtos com time de compras" },
-    { pilar: "catalogo", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)" },
-    { pilar: "catalogo", nome: "Análise e correção de produtos desmembrados ou duplicados" },
-    { pilar: "catalogo", nome: "Verificação e manutenção de links de navegação do menu e footer" },
-    { pilar: "catalogo", nome: "Acompanhamento de métricas de conversão e rejeição de páginas de produto" },
-    { pilar: "novos", nome: "Mapeamento de novas famílias de telas, baterias e teclados para catálogo" },
-    { pilar: "catalogo", nome: "Auditoria de avaliações de clientes nos produtos e moderação de comentários" },
-    { pilar: "catalogo", nome: "Gestão e cadastro de cupons de desconto para ações comerciais" },
-    { pilar: "operacional", nome: "Homologação de novas regras de frete e prazos na plataforma do site" },
-    { pilar: "catalogo", nome: "Acompanhamento de indexação de páginas no Google Search Console" },
-    { pilar: "novos", nome: "Atribuição e atualização de Part Numbers no catálogo do site" },
-    { pilar: "operacional", nome: "Suporte à equipe de SAC e Vendas para dúvidas técnicas de produtos do site" },
-    { pilar: "catalogo", nome: "Revisão e aplicação de Canonical Tags em páginas de variações" },
-    { pilar: "catalogo", nome: "Validação de badges e selos de garantia exibidos na vitrine" },
-    { pilar: "catalogo", nome: "Relatório quinzenal de produtos cadastrados x produtos publicados" },
-    { pilar: "operacional", nome: "Inativação preventiva de SKUs fora de linha no catálogo do site" },
-    { pilar: "catalogo", nome: "Ajustes de layout e microcopys nas páginas do checkout e carrinho" },
-    { pilar: "catalogo", nome: "Acompanhamento e correção de inconsistências de EAN/GTIN no Google Merchant" },
-    { pilar: "novos", nome: "Atualização das tabelas de compatibilidade por marca (Dell, HP, Lenovo, Asus...)" },
-    { pilar: "catalogo", nome: "Auditoria de tempo de carregamento e compressão de imagens das landing pages" },
-    { pilar: "catalogo", nome: "Criação de FAQs específicas nas páginas de categorias principais" },
-    { pilar: "catalogo", nome: "Testes operacionais de compra e usabilidade no fluxo do e-commerce" },
-    { pilar: "catalogo", nome: "Documentação de processos operacionais e melhorias da área de Site" },
-    { pilar: "catalogo", nome: "Monitoramento e atualização das políticas de troca e devoluções no site" }
+    { pilar: "operacional", nome: "Service Desk l Criar novos Cadastros - Cauda Longa" },
+    { pilar: "operacional", nome: "Service Desk l RMA - Erro de Anúncio" },
+    { pilar: "operacional", nome: "Service Desk l Correção de Anúncio" },
+    { pilar: "operacional", nome: "Service Desk l Pausar ou Ativar Anúncios" },
+    { pilar: "operacional", nome: "Service Desk l Melhorias em Anúncios" },
+    { pilar: "operacional", nome: "Service Desk l Melhorias/Alterações Site" },
+    { pilar: "operacional", nome: "Service Desk l Novos Cadastros" },
+    { pilar: "novos", nome: "Novos Produtos l Cadastro Sistema de Cadastro" },
+    { pilar: "novos", nome: "Novos Produtos l Criação de conteúdo" },
+    { pilar: "novos", nome: "Novos Produtos l Criação de nova categoria" },
+    { pilar: "novos", nome: "Novos Produtos l Estudo e cadastro de novos atributos" },
+    { pilar: "novos", nome: "Novos Produtos l Cadastrar novos produtos no Bahn" },
+    { pilar: "novos", nome: "Novos Produtos l Search Console - Realizar indexação de URL" },
+    { pilar: "novos", nome: "Novos Produtos l Google Merchant - Realizar cadastro de produto" },
+    { pilar: "novos", nome: "Novos Produtos l Preenchimento do documento - Registro do Portfólio" },
+    { pilar: "novos", nome: "Novos Produtos l Validação das Imagens" },
+    { pilar: "novos", nome: "Novos Produtos l Validação dos anúncios Ativos" },
+    { pilar: "novos", nome: "Novos Produtos l Conectar com Magento e Platz" },
+    { pilar: "operacional", nome: "Realizar treinamento e orientação ao time de Cadastro" },
+    { pilar: "catalogo", nome: "Site l Mapear e realizar redirect de anúncios desabilitados/excluídos" },
+    { pilar: "catalogo", nome: "Padrão e qualidade das imagens dos anúncios" },
+    { pilar: "catalogo", nome: "Analisar termos de busca e indicar ajustes" },
+    { pilar: "catalogo", nome: "Executar ajustes nos anúncios" },
+    { pilar: "catalogo", nome: "Validar ajustes realizados e busca do Site" },
+    { pilar: "catalogo", nome: "Melhorias no Site l Filtros" },
+    { pilar: "catalogo", nome: "Melhorias no Site l Categorias" },
+    { pilar: "catalogo", nome: "Melhorias no Site l Menu" },
+    { pilar: "catalogo", nome: "Site l Criar novas categorias" },
+    { pilar: "novos", nome: "Devoluções l Analisar casos de devoluções - Site" },
+    { pilar: "catalogo", nome: "Participar de projetos de melhorias da área de Cadastro" },
+    { pilar: "catalogo", nome: "Base de Compatibilidade l Analisar e realizar cadastros" },
+    { pilar: "catalogo", nome: "Google Merchant l Acompanhar e Corrigir erros identificados" },
+    { pilar: "catalogo", nome: "Realizar correção das URLs com erro 404" },
+    { pilar: "catalogo", nome: "Realizar análise da performance dos anúncios do Site" },
+    { pilar: "catalogo", nome: "Fotógrafo China l Indicar necessidade de novas fotos" },
+    { pilar: "catalogo", nome: "Fotógrafo Brasil l Realizar contato direto para solicitações e alinhamentos de imagens" },
+    { pilar: "catalogo", nome: "Indicadores Imagens l Analisar indicadores de performance dos anúncios com imagens atualizadas" },
+    { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" }
   ],
 
   // Seção 3: Macro Cronograma Semanal
@@ -175,7 +171,7 @@ const DATA_ANALISE = {
       dia: "Quarta-feira",
       foco: "Qualidade & Análise de Devoluções",
       puxadas: ["Análise de Devoluções e Reclamações de RMA", "Auditoria Mercado Livre (Em Revisão)"],
-      empurradas: ["Ajustes de fichas técnicas e compatividades"],
+      empurradas: ["Ajustes de fichas técnicas e compatibilidades"],
       slaMeta: "Tratar 100% dos alertas ML"
     },
     {

@@ -151,42 +151,42 @@ const DATA_ANALISE = {
     { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" }
   ],
 
-  // Seção 3: Macro Cronograma Semanal
+  // Seção 3: Macro Cronograma Semanal (Reorganizado por Volume de Demandas)
   cronograma: [
     {
       dia: "Segunda-feira",
-      foco: "Alinhamento & Ponte de Comando",
-      puxadas: ["Triagem de Service Desk acumulado", "Ponte de Comando (Pausas/Reativações)"],
-      empurradas: ["Auditoria de 404 & URLs Quebradas"],
-      slaMeta: "Concluir triagem até 12h"
+      foco: "Entrada de Volume & Produtos Novos",
+      puxadas: ["Cadastro de Produtos Novos (Lotes Novos & Cauda Longa)", "Ponte de Comando (Pausas e Reativações)"],
+      empurradas: ["Triagem de Chamados de Service Desk (Criar/Corrigir)"],
+      slaMeta: "Processar 100% dos lotes recebidos"
     },
     {
       dia: "Terça-feira",
-      foco: "Lançamentos & Conexões",
-      puxadas: ["Cadastro de Produtos Novos (Lotes)", "Conexão de Canais Secundários"],
-      empurradas: ["Revisão de Termos de Busca sem resultado"],
-      slaMeta: "Publicar lotes em até 24h"
+      foco: "Desmobilização, Phase Out & Termos",
+      puxadas: ["Phase Out & No Turn (Inativações e Ações Finais)", "Análise de Termos de Busca sem Resultado"],
+      empurradas: ["Monitoramento de URLs Quebradas e Redirects 404"],
+      slaMeta: "Aplicar ações de Phase Out quinzenal"
     },
     {
       dia: "Quarta-feira",
-      foco: "Qualidade & Análise de Devoluções",
-      puxadas: ["Análise de Devoluções e Reclamações de RMA", "Auditoria Mercado Livre (Em Revisão)"],
-      empurradas: ["Ajustes de fichas técnicas e compatibilidades"],
-      slaMeta: "Tratar 100% dos alertas ML"
+      foco: "Devoluções, RMA & Indicadores de Canais",
+      puxadas: ["Análise de Devoluções (SAC, RMA & Marketplaces)", "Auditoria Mercado Livre (Anúncios Em Revisão)"],
+      empurradas: ["Ajuste de incompatibilidades relatos em chamados"],
+      slaMeta: "Tratar 100% das devoluções do período"
     },
     {
       dia: "Quinta-feira",
-      foco: "SEO, Banners & Cauda Longa",
-      puxadas: ["Complemento Cauda Longa (Numbimetrics)", "Otimização de SEO On-Page"],
-      empurradas: ["Atualização de Vitrines e Banners Home"],
-      slaMeta: "Ajuste de top 20 SKUs"
+      foco: "Fotos, SEO On-Page & Fichas Técnicas",
+      puxadas: ["Validação e Alinhamento de Imagens (Brasil/China)", "Otimização de SEO On-Page (Top SKUs Curva A)"],
+      empurradas: ["Ajustes de Fichas Técnicas e Atributos no Site"],
+      slaMeta: "Revisão de top 20 SKUs prioritários"
     },
     {
       dia: "Sexta-feira",
-      foco: "Phase Out, KPIs & Giro de Ideias",
-      puxadas: ["Pausa Phase Out / No Turn", "Preenchimento de KPIs da Semana"],
-      empurradas: ["Dinâmica de Giro de Ideias (Quinzenal)"],
-      slaMeta: "Fechamento de chamados da semana"
+      foco: "Fechamento de Chamados, KPIs & Ideias",
+      puxadas: ["Zerar Fila de Chamados Service Desk acumulada", "Preenchimento de KPIs e Indicadores Semanais"],
+      empurradas: ["Dinâmica de Giro Mensal de Ideias & Backlog"],
+      slaMeta: "Fechamento de tickets da semana"
     }
   ],
 

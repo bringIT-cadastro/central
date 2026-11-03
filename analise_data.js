@@ -81,28 +81,31 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Outras Rotinas por Pilar (Listagem Compacta)
-  outrasRotinas: [
-    { origem: "MARKETPLACE", pilar: "novos", nome: "Ponte de Comando l Novos Anúncios", periodicidade: "Diariamente" },
-    { origem: "MARKETPLACE", pilar: "novos", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", periodicidade: "2x Semana" },
-    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Atualização de Atributos", periodicidade: "Diariamente" },
-    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Pausa de Anúncios", periodicidade: "Diariamente" },
-    { origem: "MARKETPLACE", pilar: "operacional", nome: "Ponte de Comando l Reativação de Anúncios", periodicidade: "Diariamente" },
-    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Conferência e correção de cadastros diretamente dentro dos canais", periodicidade: "Semanal" },
-    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Mercado Livre l Manutenção dos anúncios 'Em Revisão'", periodicidade: "Semanal" },
-    { origem: "MARKETPLACE", pilar: "qualidade", nome: "Acompanhamento dos indicadores dos marketplaces", periodicidade: "Semanal" },
-    { origem: "MARKETPLACE", pilar: "operacional", nome: "Validação de SKUs que chegam em importações", periodicidade: "Conforme Demanda" },
-    { origem: "MARKETPLACE", pilar: "operacional", nome: "Manutenção vínculo de identidade Platz x Canal", periodicidade: "Conforme Demanda" },
-    { origem: "SITE", pilar: "novos", nome: "Validação e aprovação de novos cadastros de produtos no site", periodicidade: "Diariamente" },
-    { origem: "SITE", pilar: "qualidade", nome: "Verificação de compatividades e especificações técnicas nas fichas", periodicidade: "Diariamente" },
-    { origem: "SITE", pilar: "catalogo", nome: "Atualização de banners, vitrines e categorias da Home", periodicidade: "Semanal" },
-    { origem: "SITE", pilar: "qualidade", nome: "Otimização de SEO On-Page (Title, Meta Description, H1)", periodicidade: "Quinzenal" },
-    { origem: "SITE", pilar: "operacional", nome: "Monitoramento de erros de integração Platz x Magento/VTEX", periodicidade: "Diariamente" },
-    { origem: "SITE", pilar: "catalogo", nome: "Gestão do Feed de Produtos do Google Merchant Center", periodicidade: "Semanal" },
-    { origem: "SITE", pilar: "qualidade", nome: "Tratamento e edição de imagens de produtos", periodicidade: "Diariamente" },
-    { origem: "SITE", pilar: "catalogo", nome: "Revisão e enriquecimento de descrições de produtos curva A", periodicidade: "Quinzenal" },
-    { origem: "SITE", pilar: "qualidade", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)", periodicidade: "Quinzenal" },
-    { origem: "SITE", pilar: "operacional", nome: "Atribuição e atualização de Part Numbers no catálogo do site", periodicidade: "Diariamente" }
+  // Seção 2: Rotinas Mapeadas Separadas por Colunas (Marketplace x Site)
+  rotinasMarketplace: [
+    { pilar: "novos", nome: "Ponte de Comando l Novos Anúncios" },
+    { pilar: "novos", nome: "Realizar conexão de SKUs ainda sem conexões nos canais" },
+    { pilar: "operacional", nome: "Ponte de Comando l Atualização de Atributos" },
+    { pilar: "operacional", nome: "Ponte de Comando l Pausa de Anúncios" },
+    { pilar: "operacional", nome: "Ponte de Comando l Reativação de Anúncios" },
+    { pilar: "qualidade", nome: "Conferência e correção de cadastros diretamente dentro dos canais" },
+    { pilar: "qualidade", nome: "Mercado Livre l Manutenção dos anúncios 'Em Revisão'" },
+    { pilar: "qualidade", nome: "Acompanhamento dos indicadores dos marketplaces" },
+    { pilar: "operacional", nome: "Validação de SKUs que chegam em importações" },
+    { pilar: "operacional", nome: "Manutenção vínculo de identidade Platz x Canal" }
+  ],
+
+  rotinasSite: [
+    { pilar: "novos", nome: "Validação e aprovação de novos cadastros de produtos no site" },
+    { pilar: "qualidade", nome: "Verificação de compatibilidades e especificações técnicas nas fichas" },
+    { pilar: "catalogo", nome: "Atualização de banners, vitrines e categorias da Home" },
+    { pilar: "qualidade", nome: "Otimização de SEO On-Page (Title, Meta Description, H1)" },
+    { pilar: "operacional", nome: "Monitoramento de erros de integração Platz x Magento/VTEX" },
+    { pilar: "catalogo", nome: "Gestão do Feed de Produtos do Google Merchant Center" },
+    { pilar: "qualidade", nome: "Tratamento e edição de imagens de produtos" },
+    { pilar: "catalogo", nome: "Revisão e enriquecimento de descrições de produtos curva A" },
+    { pilar: "qualidade", nome: "Auditoria de cross-selling e upselling (Produtos Relacionados)" },
+    { pilar: "operacional", nome: "Atribuição e atualização de Part Numbers no catálogo do site" }
   ],
 
   // Seção 3: Macro Cronograma Semanal
@@ -167,24 +170,24 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 5: Matriz de Divisão de Contas
+  // Seção 5: Matriz de Divisão de Contas com Avatares
   divisaoContas: {
     atual: [
-      { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares" },
-      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza" },
-      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza" },
-      { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza" },
-      { canal: "Temu", conta: "SC", responsavel: "Maria Soares" },
-      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza" }
+      { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
     ],
     proposta: [
-      { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", badge: "Core ML" },
-      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", badge: "Expansão ML" },
-      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais" },
-      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Social Commerce" },
-      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee" },
-      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech" },
-      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B" }
+      { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "Core ML" },
+      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Expansão ML" },
+      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
+      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Shopee" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Tech" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "1P B2B" }
     ]
   }
 };

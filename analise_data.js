@@ -218,16 +218,30 @@ const DATA_ANALISE = {
       nome: "Site Próprio (E-commerce bringIT)",
       receita: "R$ 34.226.721,33",
       pctGeral: "32,28%",
-      margemContribuicao: "44,11%",
-      nota: "Canal isolado do funil abaixo — foco exclusivo na estratégia de migração de margem cheia."
+      subtitulo: "Canal isolado do funil abaixo — foco exclusivo na estratégia de segmentação de produto por canal de marketplace."
     },
-    bocaMarketplaces: [
-      { canal: "Mercado Livre", receita: "R$ 35.795.731,80", pctMarketplaces: 49.86, cor: "bg-amber-400 text-amber-950" },
-      { canal: "MLFULL", receita: "R$ 17.215.294,60", pctMarketplaces: 23.98, cor: "bg-amber-500 text-white" },
-      { canal: "Shopee", receita: "R$ 12.989.666,96", pctMarketplaces: 18.09, cor: "bg-orange-500 text-white" },
-      { canal: "Kabum", receita: "R$ 4.668.845,16", pctMarketplaces: 6.50, cor: "bg-[#00A3FF] text-white" },
-      { canal: "Tiktok Shop", receita: "R$ 755.933,32", pctMarketplaces: 1.05, cor: "bg-slate-800 text-white" },
-      { canal: "Temu", receita: "R$ 369.837,21", pctMarketplaces: 0.52, cor: "bg-red-500 text-white" }
+    // Fatias individuais para cálculo visual exato da barra do funil
+    bocaBarra: [
+      { canal: "Mercado Livre", pctMarketplaces: 49.86, cor: "bg-amber-400 text-amber-950" },
+      { canal: "MLFULL", pctMarketplaces: 23.98, cor: "bg-amber-500 text-white" },
+      { canal: "Shopee", pctMarketplaces: 18.09, cor: "bg-orange-500 text-white" },
+      { canal: "Kabum", pctMarketplaces: 6.50, cor: "bg-[#00A3FF] text-white" },
+      { canal: "Tiktok Shop", pctMarketplaces: 1.05, cor: "bg-slate-800 text-white" },
+      { canal: "Temu", pctMarketplaces: 0.52, cor: "bg-red-500 text-white" }
+    ],
+    // Cards de detalhamento de montante (ML + MLFULL agrupados)
+    bocaLegendaAgrupada: [
+      { 
+        canal: "Total Mercado Livre (ML + MLFULL)", 
+        receita: "R$ 53.011.026,40", 
+        pctMarketplaces: "73,84%", 
+        detalhePct: "Meli: 49,86% | MLFULL: 23,98%",
+        destaque: true
+      },
+      { canal: "Shopee", receita: "R$ 12.989.666,96", pctMarketplaces: "18,09%", destaque: false },
+      { canal: "Kabum", receita: "R$ 4.668.845,16", pctMarketplaces: "6,50%", destaque: false },
+      { canal: "Tiktok Shop", receita: "R$ 755.933,32", pctMarketplaces: "1,05%", destaque: false },
+      { canal: "Temu", receita: "R$ 369.837,21", pctMarketplaces: "0,52%", destaque: false }
     ],
     meioEtapas: [
       {

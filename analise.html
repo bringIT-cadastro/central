@@ -153,13 +153,13 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 5: OTIMIZAÇÃO DE PRODUTOS POR CANAIS & FUNIL DE CONVERSÃO -->
+    <!-- SEÇÃO 5: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
     <section id="secao-funil" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between flex-wrap gap-2">
         <div>
           <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
             <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-            5. Otimização de Produtos por Canais & Funil de Conversão
+            5. Otimização de Produtos por Canais
           </h3>
           <p class="text-xs text-gray-500 mt-0.5">Segmentação quantitativa por receita de marketplaces e afunilamento estratégico de produtos</p>
         </div>
@@ -182,20 +182,20 @@
             <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
           </div>
 
-          <!-- Barra de Proporções Horizontal -->
+          <!-- Barra de Proporções Horizontal (Separação individual de %) -->
           <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
             <!-- Injetado via JS -->
           </div>
 
-          <!-- Legenda de Detalhes dos Canais -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-2" id="gridBocaLegenda">
+          <!-- Legenda de Detalhes dos Canais (Agrupada para Meli + MLFULL) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2" id="gridBocaLegenda">
             <!-- Injetado via JS -->
           </div>
         </div>
 
         <!-- CONEXÃO / DESTRUNILAMENTO -->
         <div class="flex justify-center my-2 text-sky-400">
-          <i class="fa-solid fa-[#00A3FF] fa-[#00A3FF] fa-chevron-down text-xl animate-bounce"></i>
+          <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
         </div>
 
         <!-- MEIO DO FUNIL (Largura intermediária ~85%) -->
@@ -574,7 +574,7 @@
     function renderizarFunilNovo() {
       const fData = DATA_ANALISE.funilNovo;
 
-      // 1. Linha do SITE Fora do Funil
+      // 1. Linha do SITE Fora do Funil (Com o subtítulo atualizado e sem Margem de Contribuição)
       const cSite = document.getElementById('containerSiteIndicador');
       cSite.innerHTML = `
         <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
@@ -587,7 +587,7 @@
                 <span class="font-extrabold text-sm text-white">${fData.siteIndicador.nome}</span>
                 <span class="px-2 py-0.5 bg-[#00A3FF] text-white text-[10px] font-black rounded-md">FORA DO FUNIL</span>
               </div>
-              <p class="text-xs text-gray-400 mt-0.5">${fData.siteIndicador.nota}</p>
+              <p class="text-xs text-gray-400 mt-0.5">${fData.siteIndicador.subtitulo}</p>
             </div>
           </div>
 
@@ -600,39 +600,37 @@
               <span class="text-[10px] font-bold text-gray-400 uppercase block">% Geral</span>
               <span class="text-sm font-black text-white">${fData.siteIndicador.pctGeral}</span>
             </div>
-            <div>
-              <span class="text-[10px] font-bold text-gray-400 uppercase block">Margem Contribuição</span>
-              <span class="text-sm font-black text-[#00A3FF]">${fData.siteIndicador.margemContribuicao}</span>
-            </div>
           </div>
         </div>
       `;
 
-      // 2. Boca do Funil - Barra Proporcional & Legenda
+      // 2. Boca do Funil - Barra Proporcional Separada por %
       const cBarra = document.getElementById('barraBocaFunil');
-      const cLegenda = document.getElementById('gridBocaLegenda');
       cBarra.innerHTML = "";
-      cLegenda.innerHTML = "";
-
-      fData.bocaMarketplaces.forEach(c => {
-        // Bloco na Barra
+      fData.bocaBarra.forEach(c => {
         cBarra.innerHTML += `
-          <div style="width: ${c.pctMarketplaces}%;" class="${c.cor} h-full rounded-xl flex items-center justify-center px-1 font-black text-[11px] truncate shadow-2xs transition-all hover:opacity-90" title="${c.canal}: ${c.pctMarketplaces}% (${c.receita})">
+          <div style="width: ${c.pctMarketplaces}%;" class="${c.cor} h-full rounded-xl flex items-center justify-center px-1 font-black text-[11px] truncate shadow-2xs transition-all hover:opacity-90" title="${c.canal}: ${c.pctMarketplaces}%">
             ${c.pctMarketplaces > 5 ? `${c.canal} (${c.pctMarketplaces}%)` : ''}
-          </div>
-        `;
-
-        // Card de Legenda
-        cLegenda.innerHTML += `
-          <div class="p-2.5 bg-white rounded-xl border border-gray-200 flex flex-col justify-between space-y-1">
-            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider truncate">${c.canal}</span>
-            <span class="text-xs font-black text-[#1C275C]">${c.pctMarketplaces}%</span>
-            <span class="text-[10px] font-medium text-gray-500">${c.receita}</span>
           </div>
         `;
       });
 
-      // 3. Meio do Funil - As 2 Etapas Estratégicas
+      // 3. Boca do Funil - Legenda com Montante Agrupado de Mercado Livre + MLFULL
+      const cLegenda = document.getElementById('gridBocaLegenda');
+      cLegenda.innerHTML = "";
+      fData.bocaLegendaAgrupada.forEach(c => {
+        const bgCard = c.destaque ? "bg-amber-50/90 border-amber-300 ring-1 ring-amber-300" : "bg-white border-gray-200";
+        cLegenda.innerHTML += `
+          <div class="p-3 ${bgCard} rounded-xl border flex flex-col justify-between space-y-1 shadow-2xs">
+            <span class="text-[10px] font-extrabold ${c.destaque ? 'text-amber-900' : 'text-gray-400'} uppercase tracking-wider truncate">${c.canal}</span>
+            <span class="text-sm font-black text-[#1C275C]">${c.pctMarketplaces}</span>
+            <span class="text-xs font-bold text-gray-700">${c.receita}</span>
+            ${c.detalhePct ? `<span class="text-[9px] font-medium text-amber-700 block mt-0.5 border-t border-amber-200/60 pt-1">${c.detalhePct}</span>` : ''}
+          </div>
+        `;
+      });
+
+      // 4. Meio do Funil - As 2 Etapas Estratégicas
       const cMeio = document.getElementById('gridMeioFunil');
       cMeio.innerHTML = "";
       fData.meioEtapas.forEach(m => {
@@ -650,13 +648,13 @@
         `;
       });
 
-      // 4. Final do Funil - Definições de Separação
+      // 5. Final do Funil - Definições de Separação
       const cFinal = document.getElementById('containerFinalFunil');
       const fin = fData.finalDefinicao;
       cFinal.innerHTML = `
         <div class="bringit-card p-6 bg-emerald-950 text-white border-emerald-800 space-y-4 shadow-md">
           <div class="flex items-center justify-center gap-2 border-b border-emerald-800 pb-2">
-            <i class="fa-solid fa-[#00A3FF] fa-bullseye text-emerald-400"></i>
+            <i class="fa-solid fa-bullseye text-emerald-400"></i>
             <h5 class="font-black text-sm uppercase tracking-wider text-emerald-300 text-center">${fin.titulo}</h5>
           </div>
 

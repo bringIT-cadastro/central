@@ -153,48 +153,74 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 5: MATRIZ ESTRATÉGICA DE CANAIS & FUNIL DE CONVERSÃO -->
+    <!-- SEÇÃO 5: OTIMIZAÇÃO DE PRODUTOS POR CANAIS & FUNIL DE CONVERSÃO -->
     <section id="secao-funil" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3">
-        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-          <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-          5. Otimização de Produtos por Canais & Funil de Conversão
-        </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Estratégia de atração via marketplaces e fidelização de margem no site próprio</p>
+      <div class="border-b border-gray-200 pb-3 flex items-center justify-between flex-wrap gap-2">
+        <div>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
+            5. Otimização de Produtos por Canais & Funil de Conversão
+          </h3>
+          <p class="text-xs text-gray-500 mt-0.5">Segmentação quantitativa por receita de marketplaces e afunilamento estratégico de produtos</p>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Funil Visual -->
-        <div class="lg:col-span-2 bringit-card p-6 space-y-4">
-          <h4 class="text-sm font-extrabold uppercase tracking-wider text-gray-400">Etapas do Funil de Recorrência</h4>
-          <div class="space-y-3" id="containerFunilEtapas">
+      <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
+      <div id="containerSiteIndicador">
+        <!-- Injetado via JS -->
+      </div>
+
+      <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
+      <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
+        
+        <!-- BOCA DO FUNIL (100% da largura) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+            <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
+              <i class="fa-solid fa-arrows-to-dot text-[#00A3FF]"></i> Boca do Funil: Participação por Receita (Apenas Marketplaces)
+            </span>
+            <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
+          </div>
+
+          <!-- Barra de Proporções Horizontal -->
+          <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
+            <!-- Injetado via JS -->
+          </div>
+
+          <!-- Legenda de Detalhes dos Canais -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-2" id="gridBocaLegenda">
             <!-- Injetado via JS -->
           </div>
         </div>
 
-        <!-- Matriz de Canais -->
-        <div class="bringit-card p-6 flex flex-col justify-between space-y-4 bg-gray-50/50">
-          <div>
-            <h4 class="text-sm font-extrabold uppercase tracking-wider text-gray-400 mb-3">Divisão por Função do Canal</h4>
-            
-            <div class="space-y-3">
-              <div class="p-3.5 bg-white rounded-xl border border-gray-200">
-                <span class="text-xs font-black text-[#1C275C] uppercase block mb-1">Canais Core (Alta Margem & Volume)</span>
-                <p class="text-xs text-gray-600">Mercado Livre, Shopee, Kabum</p>
-              </div>
+        <!-- CONEXÃO / DESTRUNILAMENTO -->
+        <div class="flex justify-center my-2 text-sky-400">
+          <i class="fa-solid fa-[#00A3FF] fa-[#00A3FF] fa-chevron-down text-xl animate-bounce"></i>
+        </div>
 
-              <div class="p-3.5 bg-white rounded-xl border border-gray-200">
-                <span class="text-xs font-black text-[#00A3FF] uppercase block mb-1">Canais de Entrada / Giro</span>
-                <p class="text-xs text-gray-600">Mercado Livre, Shopee, Kabum, TikTok, Temu</p>
-              </div>
-            </div>
+        <!-- MEIO DO FUNIL (Largura intermediária ~85%) -->
+        <div class="max-w-4xl mx-auto space-y-3">
+          <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
+            <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
+              <i class="fa-solid fa-vial"></i> Meio do Funil: Análises Profundas para Segmentação Estratégica
+            </span>
           </div>
 
-          <div class="p-3.5 bg-sky-50 rounded-xl border border-sky-100 text-xs text-sky-800 font-medium">
-            <i class="fa-solid fa-circle-info text-[#00A3FF] mr-1"></i>
-            Objetivo: Educar o cliente da 1ª compra no marketplace para compras recorrentes no e-commerce bringIT.
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridMeioFunil">
+            <!-- Injetado via JS -->
           </div>
         </div>
+
+        <!-- CONEXÃO / AFUNILAMENTO -->
+        <div class="flex justify-center my-2 text-emerald-500">
+          <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+        </div>
+
+        <!-- FINAL DO FUNIL (Largura reduzida ~65%) -->
+        <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
+          <!-- Injetado via JS -->
+        </div>
+
       </div>
     </section>
 
@@ -257,7 +283,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 7: METODOLOGIA CONTÍNUA (SEM LABEL SUPERIOR) -->
+    <!-- SEÇÃO 7: METODOLOGIA CONTÍNUA -->
     <section id="secao-metodologia" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
@@ -287,7 +313,7 @@
       renderizarPilaresCards();
       renderizarRotinasColunas();
       renderizarCronograma();
-      renderizarFunil();
+      renderizarFunilNovo();
       renderizarTabelasContas();
       renderizarMetodologiaContinua();
     });
@@ -338,7 +364,6 @@
       const container = document.getElementById('gridSugestoesOrganizacao');
       container.innerHTML = "";
       DATA_ANALISE.sugestoesOrganizacao.forEach(s => {
-        
         let htmlEtiquetasPilares = "";
         if (s.exibirEtiquetasPilares) {
           htmlEtiquetasPilares = `
@@ -546,20 +571,108 @@
       });
     }
 
-    function renderizarFunil() {
-      const container = document.getElementById('containerFunilEtapas');
-      container.innerHTML = "";
-      DATA_ANALISE.funil.etapas.forEach((e, idx) => {
-        container.innerHTML += `
-          <div class="p-4 rounded-xl text-white ${e.cor} shadow-xs flex items-start gap-4">
-            <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center font-black text-xs flex-shrink-0">${idx + 1}</span>
+    function renderizarFunilNovo() {
+      const fData = DATA_ANALISE.funilNovo;
+
+      // 1. Linha do SITE Fora do Funil
+      const cSite = document.getElementById('containerSiteIndicador');
+      cSite.innerHTML = `
+        <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#00A3FF]/20 text-[#00A3FF] border border-[#00A3FF]/40 flex items-center justify-center font-black text-lg flex-shrink-0">
+              <i class="fa-solid fa-globe"></i>
+            </div>
             <div>
-              <h5 class="font-extrabold text-sm">${e.etapa}</h5>
-              <p class="text-xs text-white/90 leading-relaxed mt-0.5">${e.descricao}</p>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-sm text-white">${fData.siteIndicador.nome}</span>
+                <span class="px-2 py-0.5 bg-[#00A3FF] text-white text-[10px] font-black rounded-md">FORA DO FUNIL</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-0.5">${fData.siteIndicador.nota}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-6 border-t md:border-t-0 border-slate-800 pt-3 md:pt-0">
+            <div>
+              <span class="text-[10px] font-bold text-gray-400 uppercase block">Receita Bruta</span>
+              <span class="text-sm font-black text-emerald-400">${fData.siteIndicador.receita}</span>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold text-gray-400 uppercase block">% Geral</span>
+              <span class="text-sm font-black text-white">${fData.siteIndicador.pctGeral}</span>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold text-gray-400 uppercase block">Margem Contribuição</span>
+              <span class="text-sm font-black text-[#00A3FF]">${fData.siteIndicador.margemContribuicao}</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // 2. Boca do Funil - Barra Proporcional & Legenda
+      const cBarra = document.getElementById('barraBocaFunil');
+      const cLegenda = document.getElementById('gridBocaLegenda');
+      cBarra.innerHTML = "";
+      cLegenda.innerHTML = "";
+
+      fData.bocaMarketplaces.forEach(c => {
+        // Bloco na Barra
+        cBarra.innerHTML += `
+          <div style="width: ${c.pctMarketplaces}%;" class="${c.cor} h-full rounded-xl flex items-center justify-center px-1 font-black text-[11px] truncate shadow-2xs transition-all hover:opacity-90" title="${c.canal}: ${c.pctMarketplaces}% (${c.receita})">
+            ${c.pctMarketplaces > 5 ? `${c.canal} (${c.pctMarketplaces}%)` : ''}
+          </div>
+        `;
+
+        // Card de Legenda
+        cLegenda.innerHTML += `
+          <div class="p-2.5 bg-white rounded-xl border border-gray-200 flex flex-col justify-between space-y-1">
+            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider truncate">${c.canal}</span>
+            <span class="text-xs font-black text-[#1C275C]">${c.pctMarketplaces}%</span>
+            <span class="text-[10px] font-medium text-gray-500">${c.receita}</span>
+          </div>
+        `;
+      });
+
+      // 3. Meio do Funil - As 2 Etapas Estratégicas
+      const cMeio = document.getElementById('gridMeioFunil');
+      cMeio.innerHTML = "";
+      fData.meioEtapas.forEach(m => {
+        cMeio.innerHTML += `
+          <div class="bringit-card p-5 bg-white border-sky-100 flex items-start gap-4 shadow-2xs hover:border-[#00A3FF] transition">
+            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] border border-sky-100 flex items-center justify-center font-black text-lg flex-shrink-0">
+              <i class="${m.icone}"></i>
+            </div>
+            <div class="space-y-1">
+              <span class="px-2 py-0.5 text-[9px] font-black uppercase bg-sky-100 text-[#00A3FF] rounded">${m.etapaNum}</span>
+              <h5 class="font-extrabold text-[#1C275C] text-sm">${m.titulo}</h5>
+              <p class="text-xs text-gray-600 font-medium leading-relaxed">${m.foco}</p>
             </div>
           </div>
         `;
       });
+
+      // 4. Final do Funil - Definições de Separação
+      const cFinal = document.getElementById('containerFinalFunil');
+      const fin = fData.finalDefinicao;
+      cFinal.innerHTML = `
+        <div class="bringit-card p-6 bg-emerald-950 text-white border-emerald-800 space-y-4 shadow-md">
+          <div class="flex items-center justify-center gap-2 border-b border-emerald-800 pb-2">
+            <i class="fa-solid fa-[#00A3FF] fa-bullseye text-emerald-400"></i>
+            <h5 class="font-black text-sm uppercase tracking-wider text-emerald-300 text-center">${fin.titulo}</h5>
+          </div>
+
+          <div class="space-y-2.5">
+            ${fin.pontos.map(p => `
+              <div class="p-3 bg-emerald-900/60 rounded-xl border border-emerald-700/50 flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-emerald-400 text-xs mt-0.5 flex-shrink-0"></i>
+                <div class="text-xs">
+                  <strong class="text-emerald-200 block font-extrabold">${p.rotulo}</strong>
+                  <span class="text-emerald-50/90 leading-tight block mt-0.5 font-medium">${p.desc}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
     }
 
     function renderizarTabelasContas() {

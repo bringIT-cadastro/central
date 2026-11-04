@@ -212,27 +212,45 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 5: Estrutura do Funil de Conversão
-  funil: {
-    canaisCore: ["Mercado Livre", "Shopee", "Kabum"],
-    canaisEntrada: ["Mercado Livre", "Shopee", "Kabum", "TikTok", "Temu"],
-    etapas: [
+  // Seção 5: Dados do Funil Estratégico de Conversão de Canais (Excluído o Site)
+  funilNovo: {
+    siteIndicador: {
+      nome: "Site Próprio (E-commerce bringIT)",
+      receita: "R$ 34.226.721,33",
+      pctGeral: "32,28%",
+      margemContribuicao: "44,11%",
+      nota: "Canal isolado do funil abaixo — foco exclusivo na estratégia de migração de margem cheia."
+    },
+    bocaMarketplaces: [
+      { canal: "Mercado Livre", receita: "R$ 35.795.731,80", pctMarketplaces: 49.86, cor: "bg-amber-400 text-amber-950" },
+      { canal: "MLFULL", receita: "R$ 17.215.294,60", pctMarketplaces: 23.98, cor: "bg-amber-500 text-white" },
+      { canal: "Shopee", receita: "R$ 12.989.666,96", pctMarketplaces: 18.09, cor: "bg-orange-500 text-white" },
+      { canal: "Kabum", receita: "R$ 4.668.845,16", pctMarketplaces: 6.50, cor: "bg-[#00A3FF] text-white" },
+      { canal: "Tiktok Shop", receita: "R$ 755.933,32", pctMarketplaces: 1.05, cor: "bg-slate-800 text-white" },
+      { canal: "Temu", receita: "R$ 369.837,21", pctMarketplaces: 0.52, cor: "bg-red-500 text-white" }
+    ],
+    meioEtapas: [
       {
-        etapa: "Entrada & Atração (Marketplaces)",
-        descricao: "Geração de tráfego massivo e primeira compra no cliente utilizando canais de giro rápido (TikTok, Temu, Shopee, Meli).",
-        cor: "bg-[#00A3FF]"
+        etapaNum: "Etapa 1",
+        titulo: "Qual a melhor condição de vendas do CORE?",
+        foco: "Análise profunda de Margem, comissões praticadas por canal e potencial/qualidade real de venda.",
+        icone: "fa-solid fa-chart-pie"
       },
       {
-        etapa: "Qualificação & Experiência",
-        descricao: "Entrega com excelência, encarte na caixa e convite para conhecer o portfólio completo na loja oficial.",
-        cor: "bg-sky-600"
-      },
-      {
-        etapa: "Conversão no Site Próprio / Canais Fixos",
-        descricao: "Migração e fidelização do cliente com margem cheia, suporte especializado e cupons exclusivos no e-commerce bringIT.",
-        cor: "bg-[#1C275C]"
+        etapaNum: "Etapa 2",
+        titulo: "Análise de Recompra & Aquisição",
+        foco: "Mapeamento dos canais com maior % de primeira compra vs. potencial de fidelização.",
+        icone: "fa-solid fa-repeat"
       }
-    ]
+    ],
+    finalDefinicao: {
+      titulo: "Definição & Separação Estratégica dos Canais",
+      pontos: [
+        { rotulo: "Canais para Listas Core", desc: "Direcionar produtos de alta recorrência para os canais de tração massiva." },
+        { rotulo: "Kabum (Fatia Efetiva)", desc: "Aproveitamento focado do público tech com margens mais rentáveis e conversão especializada." },
+        { rotulo: "Canais de Produtos Acabados", desc: "Alocação estratégica de portfólio de giro rápido em marketplaces emergentes." }
+      ]
+    }
   },
 
   // Seção 6: Matriz de Divisão de Contas
@@ -278,7 +296,7 @@ const DATA_ANALISE = {
       num: 3,
       titulo: "3. Cases de Sucesso",
       foco: "Engajamento & Visão de Mercado",
-      icone: "fa-solid fa-[#00A3FF] fa-trophy",
+      icone: "fa-solid fa-trophy",
       corBadge: "bg-amber-500",
       descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
     }

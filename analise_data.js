@@ -11,11 +11,11 @@ const LOGOS_CANOES = {
 };
 
 const DATA_ANALISE = {
-  // 3 Pilares Estratégicos
+  // 3 Pilares Estratégicos (Ajustado Service Desk)
   pilares: [
     { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
-    { id: "operacional", nome: "Service Desk / Operacional", cor: "bg-amber-500", icone: "fa-solid fa-headset" }
+    { id: "operacional", nome: "Service Desk", cor: "bg-amber-500", icone: "fa-solid fa-headset" }
   ],
 
   // Seção 1: Sugestões Estratégicas de Organização
@@ -68,9 +68,9 @@ const DATA_ANALISE = {
       id: "g3",
       titulo: "Análise de Termos de Busca",
       pilar: "catalogo",
-      gargaloMapeado: "Rotina com potencial para rodízio bimestral ou quadrimestral.",
+      gargaloMapeado: null,
       sugestoesAcoes: [
-        "Garantir a máxima concentração da rotina em um único analista por período."
+        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
       ]
     },
     {
@@ -88,9 +88,9 @@ const DATA_ANALISE = {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
       pilar: "catalogo",
-      gargaloMapeado: "Rotina com potencial para rodízio bimestral ou quadrimestral.",
+      gargaloMapeado: null,
       sugestoesAcoes: [
-        "Sanar e solucionar os apontamentos negativos identificados no Google Search Console."
+        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
       ]
     },
     {
@@ -124,10 +124,10 @@ const DATA_ANALISE = {
     { pilar: "operacional", nome: "Service Desk l Pausar ou Ativar Anúncios" },
     { pilar: "novos", nome: "Validação de SKUs que chegam em importações" },
     { pilar: "catalogo", nome: "Manutenção vínculo de identidade Platz x Canal" },
-    { pilar: "operacional", nome: "Criação e atualização de documentação dos canais" },
+    { pilar: "catalogo", nome: "Criação e atualização de documentação dos canais" },
     { pilar: "catalogo", nome: "Realizar conexão de SKUs ainda sem conexões nos canais" },
     { pilar: "catalogo", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques..." },
-    { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" },
+    { pilar: null, nome: "Preenchimento e acompanhamento de KPIs" },
     { pilar: "catalogo", nome: "Acompanhamento e Análise de devoluções de cada canal" }
   ],
 
@@ -151,7 +151,7 @@ const DATA_ANALISE = {
     { pilar: "novos", nome: "Novos Produtos l Validação das Imagens" },
     { pilar: "novos", nome: "Novos Produtos l Validação dos anúncios Ativos" },
     { pilar: "novos", nome: "Novos Produtos l Conectar com Magento e Platz" },
-    { pilar: "operacional", nome: "Realizar treinamento e orientação ao time de Cadastro" },
+    { pilar: "catalogo", nome: "Realizar treinamento e orientação ao time de Cadastro" },
     { pilar: "catalogo", nome: "Site l Mapear e realizar redirect de anúncios desabilitados/excluídos" },
     { pilar: "catalogo", nome: "Padrão e qualidade das imagens dos anúncios" },
     { pilar: "catalogo", nome: "Analisar termos de busca e indicar ajustes" },
@@ -170,7 +170,7 @@ const DATA_ANALISE = {
     { pilar: "catalogo", nome: "Fotógrafo China l Indicar necessidade de novas fotos" },
     { pilar: "catalogo", nome: "Fotógrafo Brasil l Realizar contato direto para solicitações e alinhamentos de imagens" },
     { pilar: "catalogo", nome: "Indicadores Imagens l Analisar indicadores de performance dos anúncios com imagens atualizadas" },
-    { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" }
+    { pilar: null, nome: "Preenchimento e acompanhamento de KPIs" }
   ],
 
   // Seção 4: Macro Cronograma Semanal
@@ -220,7 +220,6 @@ const DATA_ANALISE = {
       pctGeral: "32,28%",
       subtitulo: "Canal isolado do funil abaixo — foco exclusivo na estratégia de segmentação de produto por canal de marketplace."
     },
-    // Fatias individuais para cálculo visual exato da barra do funil
     bocaBarra: [
       { canal: "Mercado Livre", pctMarketplaces: 49.86, cor: "bg-amber-400 text-amber-950" },
       { canal: "MLFULL", pctMarketplaces: 23.98, cor: "bg-amber-500 text-white" },
@@ -229,7 +228,6 @@ const DATA_ANALISE = {
       { canal: "Tiktok Shop", pctMarketplaces: 1.05, cor: "bg-slate-800 text-white" },
       { canal: "Temu", pctMarketplaces: 0.52, cor: "bg-red-500 text-white" }
     ],
-    // Cards de detalhamento de montante (ML + MLFULL agrupados)
     bocaLegendaAgrupada: [
       { 
         canal: "Total Mercado Livre (ML + MLFULL)", 

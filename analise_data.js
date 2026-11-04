@@ -25,7 +25,8 @@ const DATA_ANALISE = {
       titulo: "1. Organização por Pilares Estratégicos & Comitês de Gestão",
       pilarTarget: "visão macro",
       icone: "fa-solid fa-people-group",
-      descricao: "Estruturação das frentes operacionais em três eixos centrais: **Produtos Novos**, **Service Desk / Operacional** e **Melhoria de Catálogo**.",
+      descricao: "Estruturação das frentes operacionais em três eixos centrais:",
+      exibirEtiquetasPilares: true,
       detalhes: "Cada pilar contará com um **comitê dedicado** encarregado de evoluir continuamente o escopo de atividades, identificar necessidades de automação e mapear inovações do mercado. Sempre que um analista sinalizar uma nova demanda ou oportunidade referente àquele pilar, o comitê será responsável por desenhar e implementar o fluxo de execução de forma otimizada."
     },
     {
@@ -34,6 +35,7 @@ const DATA_ANALISE = {
       pilarTarget: "foco e volumetria",
       icone: "fa-solid fa-layer-group",
       descricao: "Separação analítica rigorosa entre as **Maiores Geradoras de Volume** (gargalos e chamados recorrentes) e as **Rotinas Secundárias em Looping**.",
+      exibirEtiquetasPilares: false,
       detalhes: "Esta distinção permite direcionar o olhar estratégico e o tempo dos analistas para as frentes que causam maior impacto na operação e nos resultados da empresa, sem perder o controle do fluxo contínuo mantido em background."
     }
   ],
@@ -191,7 +193,7 @@ const DATA_ANALISE = {
       dia: "Quarta-feira",
       foco: "Devoluções, RMA & Indicadores de Canais",
       puxadas: ["Análise de Devoluções (SAC, RMA & Marketplaces)", "Auditoria Mercado Livre (Anúncios Em Revisão)"],
-      empurradas: ["Ajuste de incompatibilidades relatos em chamados"],
+      empurradas: ["Ajuste de incompatividades relatos em chamados"],
       slaMeta: "Tratar 100% das devoluções do período"
     },
     {

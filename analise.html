@@ -42,13 +42,31 @@
   <!-- Conteúdo Principal -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-12">
 
-    <!-- SEÇÃO 1: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
+    <!-- SEÇÃO 1: SUGESTÕES ESTRATÉGICAS DE ORGANIZAÇÃO -->
+    <section id="secao-sugestoes" class="space-y-6">
+      <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-[#00A3FF] fa-compass text-[#00A3FF]"></i>
+            1. Sugestões Estratégicas de Organização
+          </h3>
+          <p class="text-xs text-gray-500 mt-0.5">Diretrizes fundamentais que antecedem e orientam o diagnóstico de rotinas</p>
+        </div>
+        <span class="px-3 py-1 text-xs font-black bg-sky-50 text-[#00A3FF] border border-sky-200 rounded-full">Base do Mapeamento</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="gridSugestoesOrganizacao">
+        <!-- Injetado via JS -->
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
     <section id="secao-gargalos" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
           <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
             <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
-            1. Diagnóstico de Demandas & Gargalos Operacionais
+            2. Diagnóstico de Demandas & Gargalos Operacionais
           </h3>
           <p class="text-xs text-gray-500 mt-0.5">As maiores rotinas geradoras de volume de chamados e ações corretivas</p>
         </div>
@@ -60,12 +78,12 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 2: PILARES ESTRATÉGICOS & MAPEAMENTO DE ROTINAS EM COLUNAS -->
+    <!-- SEÇÃO 3: PILARES ESTRATÉGICOS & MAPEAMENTO DE ROTINAS EM COLUNAS -->
     <section id="secao-pilares" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-cubes text-[#00A3FF]"></i>
-          2. Pilares Estratégicos de Atuação & Mapeamento de Rotinas
+          3. Pilares Estratégicos de Atuação & Mapeamento de Rotinas
         </h3>
         <p class="text-xs text-gray-500 mt-0.5">Clique em um dos pilares abaixo para filtrar o diagnóstico e as rotinas mapeadas</p>
       </div>
@@ -107,12 +125,12 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 3: MACRO CRONOGRAMA SEMANAL -->
+    <!-- SEÇÃO 4: MACRO CRONOGRAMA SEMANAL -->
     <section id="secao-cronograma" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-calendar-week text-purple-600"></i>
-          3. Macro Cronograma Semanal de Encaixe de Demandas
+          4. Macro Cronograma Semanal de Encaixe de Demandas
         </h3>
         <p class="text-xs text-gray-500 mt-0.5">Visão demonstrativa de cadência semanal com foco no fluxo das rotinas geradoras de demanda</p>
       </div>
@@ -135,12 +153,12 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 4: MATRIZ ESTRATÉGICA DE CANAIS & FUNIL DE CONVERSÃO -->
+    <!-- SEÇÃO 5: MATRIZ ESTRATÉGICA DE CANAIS & FUNIL DE CONVERSÃO -->
     <section id="secao-funil" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-          4. Otimização de Produtos por Canais & Funil de Conversão
+          5. Otimização de Produtos por Canais & Funil de Conversão
         </h3>
         <p class="text-xs text-gray-500 mt-0.5">Estratégia de atração via marketplaces e fidelização de margem no site próprio</p>
       </div>
@@ -180,13 +198,13 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 5: NOVA DIVISÃO DE CONTAS -->
+    <!-- SEÇÃO 6: NOVA DIVISÃO DE CONTAS -->
     <section id="secao-contas" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
           <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
             <i class="fa-solid fa-users-gear text-sky-600"></i>
-            5. Estudo de Redistribuição de Contas & Canais
+            6. Estudo de Redistribuição de Contas & Canais
           </h3>
           <p class="text-xs text-gray-500 mt-0.5">Comparativo entre a alocação atual e a nova proposta de escopo por analista</p>
         </div>
@@ -239,20 +257,24 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 6: GIRO MENSUAL DE IDEIAS -->
-    <section id="secao-giro" class="bringit-card p-8 bg-gradient-to-br from-[#1C275C] to-slate-900 text-white space-y-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <!-- SEÇÃO 7: METODOLOGIA CONTÍNUA (FORMATO LABEL) -->
+    <section id="secao-metodologia" class="space-y-6">
+      <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
-          <span class="px-3 py-1 text-xs font-black bg-sky-500 text-white rounded-full uppercase tracking-wider">Metodologia Contínua</span>
-          <h3 class="text-xl font-black mt-2">6. Giro Mensal de Ideias & Backlog Estratégico</h3>
-          <p class="text-xs text-gray-300 max-w-2xl mt-1 leading-relaxed">
-            Espaço dinâmico mensal para alinhamento entre as frentes de Site e Marketplace, revisão de projetos engavetados e priorização de ideias inovadoras no backlog.
-          </p>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-arrows-spin text-emerald-600"></i>
+            7. Metodologia Contínua
+          </h3>
+          <p class="text-xs text-gray-500 mt-0.5">Rituais periódicos para inovação, desenvolvimento do time e visibilidade de resultados</p>
         </div>
+        <span class="px-3.5 py-1 text-xs font-black bg-emerald-500 text-white rounded-full uppercase tracking-wider shadow-2xs">
+          Label: Metodologia Contínua
+        </span>
+      </div>
 
-        <button onclick="alert('Dinâmica de backlog agendada para a última sexta-feira do mês.')" class="px-5 py-3 text-xs font-extrabold bg-[#00A3FF] hover:bg-sky-400 text-white rounded-xl shadow-md transition-all flex-shrink-0">
-          <i class="fa-solid fa-lightbulb mr-2"></i> Agendar Dinâmica Mensal
-        </button>
+      <!-- Grid dos 3 Sub-tópicos -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="gridMetodologiaContinua">
+        <!-- Injetado via JS -->
       </div>
     </section>
 
@@ -265,12 +287,14 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       renderizarPilaresFiltro();
+      renderizarSugestoesOrganizacao();
       renderizarGargalos();
       renderizarPilaresCards();
       renderizarRotinasColunas();
       renderizarCronograma();
       renderizarFunil();
       renderizarTabelasContas();
+      renderizarMetodologiaContinua();
     });
 
     function renderizarPilaresFiltro() {
@@ -313,6 +337,35 @@
       renderizarGargalos(pilarId);
       renderizarRotinasColunas(pilarId);
       renderizarPilaresCards();
+    }
+
+    function renderizarSugestoesOrganizacao() {
+      const container = document.getElementById('gridSugestoesOrganizacao');
+      container.innerHTML = "";
+      DATA_ANALISE.sugestoesOrganizacao.forEach(s => {
+        container.innerHTML += `
+          <div class="bringit-card p-6 bg-white space-y-4 hover:border-[#00A3FF] transition shadow-2xs flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 text-[#00A3FF] flex items-center justify-center text-lg font-black">
+                  <i class="${s.icone}"></i>
+                </div>
+                <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-sky-100 text-[#00A3FF] rounded-md">
+                  ${s.pilarTarget}
+                </span>
+              </div>
+              
+              <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${s.titulo}</h4>
+              <p class="text-xs text-gray-700 font-semibold leading-relaxed">${s.descricao.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-xs text-gray-600 leading-relaxed space-y-1">
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Como Funciona na Prática:</p>
+              <p>${s.detalhes.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+            </div>
+          </div>
+        `;
+      });
     }
 
     function renderizarGargalos(pilarFiltro = 'todos') {
@@ -533,6 +586,38 @@
           <td class="p-3"><span class="px-2.5 py-1 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded-md shadow-2xs">${c.badge}</span></td>
         </tr>
       `).join('');
+    }
+
+    function renderizarMetodologiaContinua() {
+      const container = document.getElementById('gridMetodologiaContinua');
+      container.innerHTML = "";
+
+      DATA_ANALISE.metodologiaContinua.forEach(m => {
+        container.innerHTML += `
+          <div class="bringit-card p-6 bg-white flex flex-col justify-between hover:border-emerald-500 transition shadow-2xs space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white ${m.corBadge} rounded-full shadow-2xs">
+                  ${m.foco}
+                </span>
+                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-sm">
+                  <i class="${m.icone}"></i>
+                </div>
+              </div>
+
+              <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${m.titulo}</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">${m.descricao}</p>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100">
+              <button onclick="alert('Iniciativa agendada no plano mensal de governança.')" class="w-full py-2 px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-xl border border-emerald-200 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-calendar-check text-emerald-600"></i>
+                <span>Agendar Sessão Mensal</span>
+              </button>
+            </div>
+          </div>
+        `;
+      });
     }
 
     function toggleModoApresentacao() {

@@ -18,7 +18,27 @@ const DATA_ANALISE = {
     { id: "operacional", nome: "Service Desk / Operacional", cor: "bg-amber-500", icone: "fa-solid fa-headset" }
   ],
 
-  // Seção 1: Diagnóstico de Demandas & Gargalos Operacionais
+  // Seção 1: Sugestões Estratégicas de Organização
+  sugestoesOrganizacao: [
+    {
+      id: "sug-pilares",
+      titulo: "1. Organização por Pilares Estratégicos & Comitês de Gestão",
+      pilarTarget: "visão macro",
+      icone: "fa-solid fa-people-group",
+      descricao: "Estruturação das frentes operacionais em três eixos centrais: **Produtos Novos**, **Service Desk / Operacional** e **Melhoria de Catálogo**.",
+      detalhes: "Cada pilar contará com um **comitê dedicado** encarregado de evoluir continuamente o escopo de atividades, identificar necessidades de automação e mapear inovações do mercado. Sempre que um analista sinalizar uma nova demanda ou oportunidade referente àquele pilar, o comitê será responsável por desenhar e implementar o fluxo de execução de forma otimizada."
+    },
+    {
+      id: "sug-priorizacao",
+      titulo: "2. Matriz de Priorização: Demandas Críticas x Rotinas Secundárias",
+      pilarTarget: "foco e volumetria",
+      icone: "fa-solid fa-layer-group",
+      descricao: "Separação analítica rigorosa entre as **Maiores Geradoras de Volume** (gargalos e chamados recorrentes) e as **Rotinas Secundárias em Looping**.",
+      detalhes: "Esta distinção permite direcionar o olhar estratégico e o tempo dos analistas para as frentes que causam maior impacto na operação e nos resultados da empresa, sem perder o controle do fluxo contínuo mantido em background."
+    }
+  ],
+
+  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais
   gargalos: [
     {
       id: "g1",
@@ -85,7 +105,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 2: Rotinas Oficiais Atualizadas (Marketplace)
+  // Seção 3: Rotinas Oficiais (Marketplace)
   rotinasMarketplace: [
     { pilar: "novos", nome: "Novos Produtos l Conexão de Novos Anúncios" },
     { pilar: "novos", nome: "Ponte de Comando l Novos Anúncios" },
@@ -109,7 +129,7 @@ const DATA_ANALISE = {
     { pilar: "catalogo", nome: "Acompanhamento e Análise de devoluções de cada canal" }
   ],
 
-  // Seção 2: Rotinas Oficiais Atualizadas (Site)
+  // Seção 3: Rotinas Oficiais (Site)
   rotinasSite: [
     { pilar: "operacional", nome: "Service Desk l Criar novos Cadastros - Cauda Longa" },
     { pilar: "operacional", nome: "Service Desk l RMA - Erro de Anúncio" },
@@ -151,7 +171,7 @@ const DATA_ANALISE = {
     { pilar: "operacional", nome: "Preenchimento e acompanhamento de KPIs" }
   ],
 
-  // Seção 3: Macro Cronograma Semanal (Reorganizado por Volume de Demandas)
+  // Seção 4: Macro Cronograma Semanal
   cronograma: [
     {
       dia: "Segunda-feira",
@@ -190,7 +210,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 4: Estrutura do Funil de Conversão
+  // Seção 5: Estrutura do Funil de Conversão
   funil: {
     canaisCore: ["Mercado Livre", "Shopee", "Kabum"],
     canaisEntrada: ["Mercado Livre", "Shopee", "Kabum", "TikTok", "Temu"],
@@ -213,7 +233,7 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 5: Matriz de Divisão de Contas
+  // Seção 6: Matriz de Divisão de Contas
   divisaoContas: {
     atual: [
       { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -232,5 +252,33 @@ const DATA_ANALISE = {
       { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Tech" },
       { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "1P B2B" }
     ]
-  }
+  },
+
+  // Seção 7: Sub-tópicos da Metodologia Contínua
+  metodologiaContinua: [
+    {
+      num: 1,
+      titulo: "1. Giro Mensal de Ideias & Backlog Estratégico",
+      foco: "Coleta de Ideias Inovadoras",
+      icone: "fa-solid fa-lightbulb",
+      corBadge: "bg-sky-500",
+      descricao: "Espaço dinâmico mensal para alinhamento entre as frentes de Site e Marketplace, revisão de projetos engavetados e priorização de ideias inovadoras no backlog. O foco principal é promover a captação contínua de inovações para a área."
+    },
+    {
+      num: 2,
+      titulo: "2. Workshop de Cadastro",
+      foco: "Capacitação & Alinhamento Técnico",
+      icone: "fa-solid fa-chalkboard-user",
+      corBadge: "bg-emerald-500",
+      descricao: "Espaço mensal dedicado a compartilhar treinamentos curtos sobre assuntos gerais e específicos da área de cadastro, garantindo padronização, reciclagem de conhecimentos e elevação do nível técnico da equipe."
+    },
+    {
+      num: 3,
+      titulo: "3. Cases de Sucesso",
+      foco: "Engajamento & Visão de Mercado",
+      icone: "fa-solid fa-[#00A3FF] fa-trophy",
+      corBadge: "bg-amber-500",
+      descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
+    }
+  ]
 };

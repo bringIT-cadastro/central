@@ -40,22 +40,24 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais (Texto Padronizado + Visão em Lista + Novas Atividades com Alerta)
+  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais
   gargalos: [
     {
       id: "g1",
       titulo: "Produtos Novos (Lotes Novos & Cauda Longa)",
       pilar: "novos",
+      estrelaDestaque: true,
       geradoraVolume: false,
-      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
+      gargaloMapeado: "Prioridade baixa para análise de fluxo (processo já flui muito bem no dia a dia).",
       sugestoesAcoes: [
-        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
+        "Comitê manterá acompanhamento passivo, visto que a rotina já flui muito bem."
       ]
     },
     {
       id: "g2",
       titulo: "Service Desk (Correções e Criações)",
       pilar: "operacional",
+      estrelaDestaque: false,
       geradoraVolume: false,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -66,6 +68,7 @@ const DATA_ANALISE = {
       id: "g3",
       titulo: "Análise de Termos de Busca",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: false,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -76,6 +79,7 @@ const DATA_ANALISE = {
       id: "g4",
       titulo: "Phase Out & No Turn",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: false,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -86,6 +90,7 @@ const DATA_ANALISE = {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: false,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -96,17 +101,18 @@ const DATA_ANALISE = {
       id: "g6",
       titulo: "Análise de Devoluções",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: false,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
         "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
-    // NOVAS ATIVIDADES ADICIONADAS COM ALERTA
     {
       id: "g7",
       titulo: "Criação de Anúncios Genéricos",
       pilar: "novos",
+      estrelaDestaque: false,
       geradoraVolume: true,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -117,6 +123,7 @@ const DATA_ANALISE = {
       id: "g8",
       titulo: "Análise Quinzenal de Produtos em Queda",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: true,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
@@ -127,6 +134,7 @@ const DATA_ANALISE = {
       id: "g9",
       titulo: "Melhoria Continua Mercado Livre",
       pilar: "catalogo",
+      estrelaDestaque: false,
       geradoraVolume: true,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [

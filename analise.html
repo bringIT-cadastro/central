@@ -60,7 +60,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS (Formatado em Lista Ampla) -->
+    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
     <section id="secao-gargalos" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
@@ -73,7 +73,7 @@
         <span class="px-3 py-1 text-xs font-black bg-amber-50 text-amber-700 border border-amber-200 rounded-full">Maiores Geradoras de Volume</span>
       </div>
 
-      <!-- Container Vertical da Lista de Atividades (1 atividade por linha) -->
+      <!-- Container Vertical da Lista de Atividades -->
       <div class="space-y-3" id="gridGargalos">
         <!-- Injetado via JS em formato de lista ampla -->
       </div>
@@ -410,7 +410,7 @@
       });
     }
 
-    // RENDERIZAÇÃO DA SEÇÃO 2 EM LISTA HORIZONTA/AMPLA DE LARGURA TOTAL (1 ATIVIDADE POR LINHA)
+    // RENDERIZAÇÃO DA SEÇÃO 2 EM LISTA COM ESTRELA E INDICADORES DE BAIXA PRIORIDADE
     function renderizarGargalos(pilarFiltro = 'todos') {
       const container = document.getElementById('gridGargalos');
       container.innerHTML = "";
@@ -425,30 +425,43 @@
       lista.forEach(g => {
         const pilarObj = DATA_ANALISE.pilares.find(p => p.id === g.pilar) || {};
         
-        // Badge de Alerta para as novas atividades
-        const htmlAlertaVolume = g.geradoraVolume 
-          ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
-               <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
-               Possível Geradora de Volume
-             </span>`
+        // Estrela e Badge de Baixa Prioridade para "Produtos Novos (Lotes Novos & Cauda Longa)"
+        const htmlEstrela = g.estrelaDestaque 
+          ? `<i class="fa-solid fa-star text-amber-400 text-base" title="Processo fluindo muito bem - Prioridade baixa para análise"></i>` 
           : '';
 
+        const htmlBadgeDestaque = g.estrelaDestaque
+          ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+               ⭐ Fluxo Fluindo Bem (Prioridade Baixa)
+             </span>`
+          : (g.geradoraVolume 
+              ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+                   <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+                   Possível Geradora de Volume
+                 </span>` 
+              : '');
+
+        const bordaCard = g.estrelaDestaque ? 'border-amber-300 bg-amber-50/20' : 'border-gray-200 bg-white';
+
         container.innerHTML += `
-          <div class="bringit-card p-5 bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="bringit-card p-5 ${bordaCard} hover:border-[#00A3FF] transition shadow-2xs flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             
-            <!-- Coluna 1: Título da Atividade e Badges -->
+            <!-- Coluna 1: Título da Atividade com Estrela e Badges -->
             <div class="lg:w-1/3 space-y-2">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="px-2.5 py-0.5 text-[10px] font-black uppercase rounded-full text-white ${pilarObj.cor || 'bg-gray-500'} shadow-2xs">
                   ${pilarObj.nome || 'Geral'}
                 </span>
-                ${htmlAlertaVolume}
+                ${htmlBadgeDestaque}
               </div>
-              <h4 class="font-extrabold text-[#1C275C] text-base leading-tight">${g.titulo}</h4>
+              <h4 class="font-extrabold text-[#1C275C] text-base leading-tight flex items-center gap-2">
+                <span>${g.titulo}</span>
+                ${htmlEstrela}
+              </h4>
             </div>
 
             <!-- Coluna 2: Gargalo Mapeado -->
-            <div class="lg:w-1/3 bg-amber-50/70 border border-amber-200 p-3 rounded-xl">
+            <div class="lg:w-1/3 ${g.estrelaDestaque ? 'bg-amber-100/60 border-amber-300' : 'bg-amber-50/70 border-amber-200'} border p-3 rounded-xl">
               <p class="text-[10px] font-extrabold text-amber-800 uppercase tracking-wider mb-0.5 flex items-center gap-1">
                 <i class="fa-solid fa-magnifying-glass"></i> Gargalo Mapeado:
               </p>
@@ -456,7 +469,7 @@
             </div>
 
             <!-- Coluna 3: Sugestões de Ações -->
-            <div class="lg:w-1/3 bg-sky-50/70 border border-sky-100 p-3 rounded-xl">
+            <div class="lg:w-1/3 ${g.estrelaDestaque ? 'bg-sky-100/50 border-sky-200' : 'bg-sky-50/70 border-sky-100'} border p-3 rounded-xl">
               <p class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider mb-0.5 flex items-center gap-1">
                 <i class="fa-solid fa-lightbulb"></i> Sugestões de Ações:
               </p>

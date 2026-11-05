@@ -11,7 +11,7 @@ const LOGOS_CANOES = {
 };
 
 const DATA_ANALISE = {
-  // 3 Pilares Estratégicos (Ajustado Service Desk)
+  // 3 Pilares Estratégicos
   pilares: [
     { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
@@ -40,69 +40,97 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais
+  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais (Texto Padronizado + Visão em Lista + Novas Atividades com Alerta)
   gargalos: [
     {
       id: "g1",
       titulo: "Produtos Novos (Lotes Novos & Cauda Longa)",
       pilar: "novos",
-      gargaloMapeado: "Configuração e ausência de atributos essenciais no cadastro.",
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Nova rodada de melhorias no fluxo completo de processos, visando 100% de facilidade e segurança operacional.",
-        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
     {
       id: "g2",
       titulo: "Service Desk (Correções e Criações)",
       pilar: "operacional",
-      gargaloMapeado: "Possível acúmulo de chamados decorrente da distribuição e alta demanda.",
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Analisar a adoção de alternância semanal de Responsável Único.",
-        "Garantir um atendimento mais ágil e fluido às demandas.",
-        "Capacitar e treinar os analistas em um leque maior de cenários operacionais.",
-        "Reduzir interrupções no fluxo de tramitação de tickets."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
     {
       id: "g3",
       titulo: "Análise de Termos de Busca",
       pilar: "catalogo",
-      gargaloMapeado: null,
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
     {
       id: "g4",
       titulo: "Phase Out & No Turn",
       pilar: "catalogo",
-      gargaloMapeado: "Pouca priorização por parte dos analistas nas ações finais pós-análise.",
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Apresentar cases de sucesso, ações estratégicas e projeções para engajar melhor a equipe.",
-        "Avaliar um espaçamento maior (ex: verificação quinzenal) com SLA estendido para garantir a execução das ações.",
-        "Melhorar o formato da lista de ações atribuídas aos analistas após as pré-análises."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
     {
       id: "g5",
       titulo: "Monitoramento de URL (Redirects 404 & Erros)",
       pilar: "catalogo",
-      gargaloMapeado: null,
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Garantir a continuidade do fluxo que já se encontra bem estruturado."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     },
     {
       id: "g6",
       titulo: "Análise de Devoluções",
       pilar: "catalogo",
-      gargaloMapeado: "Preenchimento inadequado dos controles por parte dos analistas e risco de não análise dos casos repassados.",
+      geradoraVolume: false,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
-        "Analisar a adoção de alternância semanal de Responsável Único.",
-        "Garantir um atendimento e posicionamento mais ágil.",
-        "Capacitar e treinar os analistas em diferentes cenários de devolução.",
-        "Reduzir gargalos e interrupções nas tramitações de tickets."
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
+      ]
+    },
+    // NOVAS ATIVIDADES ADICIONADAS COM ALERTA
+    {
+      id: "g7",
+      titulo: "Criação de Anúncios Genéricos",
+      pilar: "novos",
+      geradoraVolume: true,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
+      sugestoesAcoes: [
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
+      ]
+    },
+    {
+      id: "g8",
+      titulo: "Análise Quinzenal de Produtos em Queda",
+      pilar: "catalogo",
+      geradoraVolume: true,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
+      sugestoesAcoes: [
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
+      ]
+    },
+    {
+      id: "g9",
+      titulo: "Melhoria Continua Mercado Livre",
+      pilar: "catalogo",
+      geradoraVolume: true,
+      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
+      sugestoesAcoes: [
+        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
     }
   ],
@@ -212,7 +240,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 5: Dados do Funil Estratégico de Conversão de Canais (Excluído o Site)
+  // Seção 5: Dados do Funil Estratégico de Conversão de Canais
   funilNovo: {
     siteIndicador: {
       nome: "Site Próprio (E-commerce bringIT)",

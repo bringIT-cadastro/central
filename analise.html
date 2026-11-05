@@ -60,7 +60,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
+    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS (Formatado em Lista Ampla) -->
     <section id="secao-gargalos" class="space-y-6">
       <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
         <div>
@@ -68,13 +68,14 @@
             <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
             2. Diagnóstico de Demandas & Gargalos Operacionais
           </h3>
-          <p class="text-xs text-gray-500 mt-0.5">As maiores rotinas geradoras de volume de chamados e ações corretivas</p>
+          <p class="text-xs text-gray-500 mt-0.5">Visão consolidada por atividade com atuação mapeada via Comitê</p>
         </div>
         <span class="px-3 py-1 text-xs font-black bg-amber-50 text-amber-700 border border-amber-200 rounded-full">Maiores Geradoras de Volume</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gridGargalos">
-        <!-- Injetado via JS -->
+      <!-- Container Vertical da Lista de Atividades (1 atividade por linha) -->
+      <div class="space-y-3" id="gridGargalos">
+        <!-- Injetado via JS em formato de lista ampla -->
       </div>
     </section>
 
@@ -173,7 +174,7 @@
       <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
       <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
         
-        <!-- BOCA DO FUNIL (100% da largura) -->
+        <!-- BOCA DO FUNIL -->
         <div class="space-y-2">
           <div class="flex items-center justify-between border-b border-gray-200 pb-2">
             <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
@@ -198,7 +199,7 @@
           <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
         </div>
 
-        <!-- MEIO DO FUNIL (Largura intermediária ~85%) -->
+        <!-- MEIO DO FUNIL -->
         <div class="max-w-4xl mx-auto space-y-3">
           <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
             <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
@@ -216,7 +217,7 @@
           <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
         </div>
 
-        <!-- FINAL DO FUNIL (Largura reduzida ~65%) -->
+        <!-- FINAL DO FUNIL -->
         <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
           <!-- Injetado via JS -->
         </div>
@@ -409,6 +410,7 @@
       });
     }
 
+    // RENDERIZAÇÃO DA SEÇÃO 2 EM LISTA HORIZONTA/AMPLA DE LARGURA TOTAL (1 ATIVIDADE POR LINHA)
     function renderizarGargalos(pilarFiltro = 'todos') {
       const container = document.getElementById('gridGargalos');
       container.innerHTML = "";
@@ -416,51 +418,58 @@
       const lista = pilarFiltro === 'todos' ? DATA_ANALISE.gargalos : DATA_ANALISE.gargalos.filter(g => g.pilar === pilarFiltro);
 
       if (lista.length === 0) {
-        container.innerHTML = `<div class="col-span-3 p-8 text-center text-xs text-gray-400 bg-white rounded-2xl border">Nenhum gargalo associado a este pilar.</div>`;
+        container.innerHTML = `<div class="p-8 text-center text-xs text-gray-400 bg-white rounded-2xl border">Nenhum item associado a este pilar.</div>`;
         return;
       }
 
       lista.forEach(g => {
         const pilarObj = DATA_ANALISE.pilares.find(p => p.id === g.pilar) || {};
         
-        let htmlGargalo = '';
-        if (g.gargaloMapeado) {
-          htmlGargalo = `
-            <div class="bg-amber-50/80 border border-amber-200 p-3 rounded-xl">
-              <p class="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-0.5">Gargalo Mapeado:</p>
-              <p class="text-xs font-bold text-amber-950 leading-relaxed">${g.gargaloMapeado}</p>
-            </div>
-          `;
-        }
+        // Badge de Alerta para as novas atividades
+        const htmlAlertaVolume = g.geradoraVolume 
+          ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+               <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+               Possível Geradora de Volume
+             </span>`
+          : '';
 
         container.innerHTML += `
-          <div class="bringit-card p-6 flex flex-col justify-between hover:border-[#00A3FF] transition shadow-2xs">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 text-[10px] font-black uppercase rounded-full text-white ${pilarObj.cor || 'bg-gray-500'}">
+          <div class="bringit-card p-5 bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            
+            <!-- Coluna 1: Título da Atividade e Badges -->
+            <div class="lg:w-1/3 space-y-2">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2.5 py-0.5 text-[10px] font-black uppercase rounded-full text-white ${pilarObj.cor || 'bg-gray-500'} shadow-2xs">
                   ${pilarObj.nome || 'Geral'}
                 </span>
+                ${htmlAlertaVolume}
               </div>
-
-              <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${g.titulo}</h4>
-              ${htmlGargalo}
+              <h4 class="font-extrabold text-[#1C275C] text-base leading-tight">${g.titulo}</h4>
             </div>
 
-            <div class="pt-3 mt-4 border-t border-gray-100">
-              <div class="bg-sky-50/70 border border-sky-100 p-3.5 rounded-xl space-y-2">
-                <p class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider flex items-center gap-1.5">
-                  <i class="fa-solid fa-lightbulb text-sky-500"></i> Sugestões de Ações
-                </p>
-                <ul class="space-y-1.5">
-                  ${g.sugestoesAcoes.map(a => `
-                    <li class="text-xs text-gray-700 flex items-start gap-1.5 leading-tight">
-                      <i class="fa-solid fa-check text-emerald-500 text-[10px] mt-0.5 flex-shrink-0"></i>
-                      <span>${a}</span>
-                    </li>
-                  `).join('')}
-                </ul>
-              </div>
+            <!-- Coluna 2: Gargalo Mapeado -->
+            <div class="lg:w-1/3 bg-amber-50/70 border border-amber-200 p-3 rounded-xl">
+              <p class="text-[10px] font-extrabold text-amber-800 uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                <i class="fa-solid fa-magnifying-glass"></i> Gargalo Mapeado:
+              </p>
+              <p class="text-xs font-bold text-amber-950 leading-relaxed">${g.gargaloMapeado}</p>
             </div>
+
+            <!-- Coluna 3: Sugestões de Ações -->
+            <div class="lg:w-1/3 bg-sky-50/70 border border-sky-100 p-3 rounded-xl">
+              <p class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                <i class="fa-solid fa-lightbulb"></i> Sugestões de Ações:
+              </p>
+              <ul class="space-y-1">
+                ${g.sugestoesAcoes.map(a => `
+                  <li class="text-xs font-semibold text-gray-700 flex items-start gap-1.5 leading-tight">
+                    <i class="fa-solid fa-check text-emerald-500 text-[10px] mt-0.5 flex-shrink-0"></i>
+                    <span>${a}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
           </div>
         `;
       });

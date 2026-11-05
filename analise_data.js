@@ -322,7 +322,7 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 7: Sub-tópicos da Metodologia Contínua
+  // Seção 7: Gestão Horizontal (Sub-tópicos)
   metodologiaContinua: [
     {
       num: 1,

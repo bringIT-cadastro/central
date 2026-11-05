@@ -9,6 +9,27 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Suporte suave de expansão de conteúdo */
+    .secao-conteudo {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .secao-card.aberta .secao-conteudo {
+      max-height: 3500px; /* valor amplo para acomodar os grids */
+      opacity: 1;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+    .secao-card.aberta .icone-seta {
+      transform: rotate(180deg);
+    }
+  </style>
 </head>
 <body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen flex flex-col">
 
@@ -28,281 +49,352 @@
     </div>
   </header>
 
-  <!-- Barra de Filtro Rápido por Pilar -->
+  <!-- Barra de Filtro Rápido por Pilar Operacional -->
   <div class="bg-white/80 backdrop-blur-md border-b border-gray-200 px-8 py-3 sticky top-[77px] z-20">
     <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosPilares">
-      <span class="text-xs font-bold text-gray-400 mr-2">Filtrar por Pilar:</span>
+      <span class="text-xs font-bold text-gray-400 mr-2">Filtrar por Pilar Operacional:</span>
       <button onclick="filtrarPilar('todos', this)" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition shadow-xs">
-        Todos os Pilares
+        Todos os Pilares Operacionais
       </button>
       <!-- Pilares dinâmicos via JS -->
     </div>
   </div>
 
   <!-- Conteúdo Principal -->
-  <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-12">
+  <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
 
-    <!-- SEÇÃO 1: SUGESTÕES ESTRATÉGICAS DE ORGANIZAÇÃO -->
-    <section id="secao-sugestoes" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
-        <div>
+    <!-- BANNER DE AVISO: CORRELAÇÃO DAS SEÇÕES 1 A 4 (DESENVOLVIMENTO ESCALONADO) -->
+    <div class="p-4 bg-gradient-to-r from-indigo-900 via-sky-900 to-slate-900 text-white rounded-2xl border border-indigo-700 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-start md:items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/30 text-indigo-300 border border-indigo-400/40 flex items-center justify-center text-lg font-black flex-shrink-0 mt-0.5 md:mt-0">
+          <i class="fa-solid fa-diagram-next"></i>
+        </div>
+        <div class="space-y-0.5">
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm text-indigo-200 uppercase tracking-wider">Trilha Estruturada de Implementação</span>
+            <span class="px-2 py-0.5 bg-indigo-500 text-white text-[10px] font-black rounded-md">Seções Correlatas (1 a 4)</span>
+          </div>
+          <p class="text-xs text-indigo-100/90 leading-relaxed font-medium">
+            A aprovação integral da <strong>Sugestão 1</strong> aciona a evolução gradual e encadeada das fases subsequentes: <strong>Fase 1 (Diagnóstico) ➔ Fase 2 (Rotinas) ➔ Fase 3 (Cronograma)</strong>.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-[11px] font-bold text-indigo-200 bg-indigo-950/60 px-3 py-2 rounded-xl border border-indigo-800 flex-shrink-0">
+        <i class="fa-solid fa-layer-group text-sky-400"></i>
+        <span>Desenvolvimento Escalonado</span>
+      </div>
+    </div>
+
+    <!-- SEÇÃO 1: SUGESTÕES ESTRATÉGICAS DE ORGANIZAÇÃO (FASE 1) -->
+    <section id="secao-sugestoes" class="secao-card bringit-card overflow-hidden border-2 border-indigo-200 bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-sugestoes')" class="p-6 cursor-pointer bg-gradient-to-r from-indigo-50/70 via-white to-white flex items-center justify-between border-b border-indigo-100 hover:bg-indigo-50 transition">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white rounded-md">Fase 1</span>
           <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-            <i class="fa-solid fa-compass text-[#00A3FF]"></i>
+            <i class="fa-solid fa-compass text-indigo-600"></i>
             1. Sugestões Estratégicas de Organização
           </h3>
-          <p class="text-xs text-gray-500 mt-0.5">Diretrizes fundamentais que antecedem e orientam o diagnóstico de rotinas</p>
         </div>
-        <span class="px-3 py-1 text-xs font-black bg-sky-50 text-[#00A3FF] border border-sky-200 rounded-full">Base do Mapeamento</span>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-indigo-700 font-bold hidden sm:inline-block">Base do Mapeamento</span>
+          <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="gridSugestoesOrganizacao">
-        <!-- Injetado via JS -->
+      <div class="secao-conteudo px-6">
+        <p class="text-xs text-gray-500 mb-4">Diretrizes fundamentais que antecedem e orientam o diagnóstico de rotinas operacionais.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="gridSugestoesOrganizacao">
+          <!-- Injetado via JS -->
+        </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS -->
-    <section id="secao-gargalos" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
-        <div>
+    <!-- SEÇÃO 2: DIAGNÓSTICO DE DEMANDAS & GARGALOS OPERACIONAIS (FASE 2) -->
+    <section id="secao-gargalos" class="secao-card bringit-card overflow-hidden border-2 border-indigo-200 bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-gargalos')" class="p-6 cursor-pointer bg-gradient-to-r from-indigo-50/70 via-white to-white flex items-center justify-between border-b border-indigo-100 hover:bg-indigo-50 transition">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white rounded-md">Fase 2</span>
           <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
             <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
             2. Diagnóstico de Demandas & Gargalos Operacionais
           </h3>
-          <p class="text-xs text-gray-500 mt-0.5">Visão consolidada por atividade com atuação mapeada via Comitê</p>
         </div>
-        <span class="px-3 py-1 text-xs font-black bg-amber-50 text-amber-700 border border-amber-200 rounded-full">Maiores Geradoras de Volume</span>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-amber-700 font-bold hidden sm:inline-block">Maiores Geradoras de Volume</span>
+          <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
       </div>
 
-      <!-- Container Vertical da Lista de Atividades -->
-      <div class="space-y-3" id="gridGargalos">
-        <!-- Injetado via JS em formato de lista ampla -->
+      <div class="secao-conteudo px-6">
+        <p class="text-xs text-gray-500 mb-4">Visão consolidada por atividade com atuação mapeada via Comitê Operacional.</p>
+        <div class="space-y-3" id="gridGargalos">
+          <!-- Injetado via JS em formato de lista ampla -->
+        </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 3: PILARES ESTRATÉGICOS & MAPEAMENTO DE ROTINAS EM COLUNAS -->
-    <section id="secao-pilares" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3">
-        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-          <i class="fa-solid fa-cubes text-[#00A3FF]"></i>
-          3. Pilares Estratégicos de Atuação & Mapeamento de Rotinas
-        </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Clique em um dos pilares abaixo para filtrar o diagnóstico e as rotinas mapeadas</p>
-      </div>
-
-      <!-- Cards de Pilares Interativos (Filtros) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6" id="gridPilaresCards">
-        <!-- Injetado via JS -->
-      </div>
-
-      <!-- Tabela em Colunas Lado a Lado com Rolagem Interna -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- Coluna Marketplace -->
-        <div class="bringit-card p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-            <h4 class="text-sm font-extrabold text-[#1C275C] flex items-center gap-2">
-              <i class="fa-solid fa-store text-amber-500"></i> Rotinas de Marketplace
-            </h4>
-            <span id="contadorRotinasMkt" class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">0 rotinas</span>
-          </div>
-          <div class="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar" id="listaRotinasMarketplace">
-            <!-- Injetado via JS -->
+    <!-- SEÇÃO 3: PILARES OPERACIONAIS & MAPEAMENTO DE ROTINAS (FASE 3) -->
+    <section id="secao-pilares" class="secao-card bringit-card overflow-hidden border-2 border-indigo-200 bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-pilares')" class="p-6 cursor-pointer bg-gradient-to-r from-indigo-50/70 via-white to-white flex items-center justify-between border-b border-indigo-100 hover:bg-indigo-50 transition">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white rounded-md">Fase 3</span>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-cubes text-[#00A3FF]"></i>
+            3. Pilares Operacionais & Mapeamento de Rotinas
+          </h3>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-indigo-700 font-bold hidden sm:inline-block">Mapeamento em Colunas</span>
+          <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
           </div>
         </div>
+      </div>
 
-        <!-- Coluna Site -->
-        <div class="bringit-card p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-            <h4 class="text-sm font-extrabold text-[#1C275C] flex items-center gap-2">
-              <i class="fa-solid fa-globe text-[#00A3FF]"></i> Rotinas do Site
-            </h4>
-            <span id="contadorRotinasSite" class="text-xs font-bold text-[#00A3FF] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200">0 rotinas</span>
-          </div>
-          <div class="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar" id="listaRotinasSite">
-            <!-- Injetado via JS -->
-          </div>
+      <div class="secao-conteudo px-6 space-y-6">
+        <p class="text-xs text-gray-500">Clique em um dos pilares operacionais abaixo para filtrar o diagnóstico e as rotinas mapeadas.</p>
+
+        <!-- Cards de Pilares Interativos (Filtros) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridPilaresCards">
+          <!-- Injetado via JS -->
         </div>
 
+        <!-- Tabela em Colunas Lado a Lado -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+          
+          <!-- Coluna Marketplace -->
+          <div class="bringit-card p-6 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <h4 class="text-sm font-extrabold text-[#1C275C] flex items-center gap-2">
+                <i class="fa-solid fa-store text-amber-500"></i> Rotinas de Marketplace
+              </h4>
+              <span id="contadorRotinasMkt" class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">0 rotinas</span>
+            </div>
+            <div class="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar" id="listaRotinasMarketplace">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+          <!-- Coluna Site -->
+          <div class="bringit-card p-6 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <h4 class="text-sm font-extrabold text-[#1C275C] flex items-center gap-2">
+                <i class="fa-solid fa-globe text-[#00A3FF]"></i> Rotinas do Site
+              </h4>
+              <span id="contadorRotinasSite" class="text-xs font-bold text-[#00A3FF] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200">0 rotinas</span>
+            </div>
+            <div class="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar" id="listaRotinasSite">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 4: MACRO CRONOGRAMA SEMANAL DE ENCAIXE DE DEMANDAS -->
-    <section id="secao-cronograma" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3">
-        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-          <i class="fa-solid fa-calendar-week text-purple-600"></i>
-          4. Macro Cronograma Semanal de Encaixe de Demandas
-        </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Visão demonstrativa de cadência semanal com foco no fluxo das rotinas geradoras de demanda</p>
-      </div>
-
-      <!-- Box Informativo de Exemplo / Alerta -->
-      <div class="p-4 bg-purple-50/70 border border-purple-200/90 rounded-2xl flex items-start gap-3 shadow-2xs">
-        <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i class="fa-solid fa-circle-info text-sm"></i>
+    <!-- SEÇÃO 4: MACRO CRONOGRAMA SEMANAL DE ENCAIXE DE DEMANDAS (FASE 4) -->
+    <section id="secao-cronograma" class="secao-card bringit-card overflow-hidden border-2 border-indigo-200 bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-cronograma')" class="p-6 cursor-pointer bg-gradient-to-r from-indigo-50/70 via-white to-white flex items-center justify-between border-b border-indigo-100 hover:bg-indigo-50 transition">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white rounded-md">Fase 4</span>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-calendar-week text-purple-600"></i>
+            4. Macro Cronograma Semanal de Encaixe de Demandas
+          </h3>
         </div>
-        <div class="space-y-1 text-xs text-purple-950">
-          <p class="font-extrabold uppercase tracking-wider text-purple-900">Nota sobre o Cronograma Exemplo:</p>
-          <p class="leading-relaxed font-medium">
-            A estrutura abaixo apresenta uma <strong>proposta demonstrativa de encaixe de rotinas</strong>. Para a implementação definitiva, será iniciada uma verificação detalhada junto aos analistas, analisando e alinhando exatamente o que é <strong>puxado</strong> (rotina contínua) e o que é <strong>empurrado</strong> (demanda sob demanda) de forma perfeitamente sincronizada.
-          </p>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-purple-700 font-bold hidden sm:inline-block">Cadência & Apoio IA</span>
+          <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
         </div>
       </div>
 
-      <!-- 3 CARDS EXPLICATIVOS DA ESTRUTURAÇÃO DO CRONOGRAMA (INJETADOS LOGO APÓS A NOTA) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridCardsEstruturacaoCronograma">
-        <!-- Injetado via JS -->
-      </div>
+      <div class="secao-conteudo px-6 space-y-6">
+        <!-- Box Informativo de Exemplo / Alerta -->
+        <div class="p-4 bg-purple-50/70 border border-purple-200/90 rounded-2xl flex items-start gap-3 shadow-2xs">
+          <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i class="fa-solid fa-circle-info text-sm"></i>
+          </div>
+          <div class="space-y-1 text-xs text-purple-950">
+            <p class="font-extrabold uppercase tracking-wider text-purple-900">Nota sobre o Cronograma Exemplo:</p>
+            <p class="leading-relaxed font-medium">
+              A estrutura abaixo apresenta uma <strong>proposta demonstrativa de encaixe de rotinas</strong>. Para a implementação definitiva, será iniciada uma verificação detalhada junto aos analistas, analisando e alinhando exatamente o que é <strong>puxado</strong> (rotina contínua) e o que é <strong>empurrado</strong> (demanda sob demanda) de forma perfeitamente sincronizada.
+            </p>
+          </div>
+        </div>
 
-      <!-- Grid dos Dias da Semana -->
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="gridCronograma">
-        <!-- Injetado via JS -->
+        <!-- 3 CARDS EXPLICATIVOS DA ESTRUTURAÇÃO DO CRONOGRAMA -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridCardsEstruturacaoCronograma">
+          <!-- Injetado via JS -->
+        </div>
+
+        <!-- Grid dos Dias da Semana -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="gridCronograma">
+          <!-- Injetado via JS -->
+        </div>
       </div>
     </section>
 
     <!-- SEÇÃO 5: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
-    <section id="secao-funil" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3 flex items-center justify-between flex-wrap gap-2">
-        <div>
-          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-            <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-            5. Otimização de Produtos por Canais
-          </h3>
-          <p class="text-xs text-gray-500 mt-0.5">Segmentação quantitativa por receita de marketplaces e afunilamento estratégico de produtos</p>
+    <section id="secao-funil" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-funil')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
+        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+          <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
+          5. Otimização de Produtos por Canais
+        </h3>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Afunilamento de Canais</span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
         </div>
       </div>
 
-      <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
-      <div id="containerSiteIndicador">
-        <!-- Injetado via JS -->
-      </div>
-
-      <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
-      <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
-        
-        <!-- BOCA DO FUNIL -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-            <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
-              <i class="fa-solid fa-arrows-to-dot text-[#00A3FF]"></i> Boca do Funil: Participação por Receita (Apenas Marketplaces)
-            </span>
-            <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
-          </div>
-
-          <!-- Barra de Proporções Horizontal -->
-          <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
-            <!-- Injetado via JS -->
-          </div>
-
-          <!-- Legenda de Detalhes dos Canais -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2" id="gridBocaLegenda">
-            <!-- Injetado via JS -->
-          </div>
-        </div>
-
-        <!-- CONEXÃO / DESTRUNILAMENTO -->
-        <div class="flex justify-center my-2 text-sky-400">
-          <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
-        </div>
-
-        <!-- MEIO DO FUNIL -->
-        <div class="max-w-4xl mx-auto space-y-3">
-          <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
-            <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
-              <i class="fa-solid fa-vial"></i> Meio do Funil: Análises Profundas para Segmentação Estratégica
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridMeioFunil">
-            <!-- Injetado via JS -->
-          </div>
-        </div>
-
-        <!-- CONEXÃO / AFUNILAMENTO -->
-        <div class="flex justify-center my-2 text-emerald-500">
-          <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
-        </div>
-
-        <!-- FINAL DO FUNIL -->
-        <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
+      <div class="secao-conteudo px-6 space-y-6">
+        <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
+        <div id="containerSiteIndicador">
           <!-- Injetado via JS -->
         </div>
 
+        <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
+        <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
+          
+          <!-- BOCA DO FUNIL -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+              <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
+                <i class="fa-solid fa-arrows-to-dot text-[#00A3FF]"></i> Boca do Funil: Participação por Receita (Apenas Marketplaces)
+              </span>
+              <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
+            </div>
+
+            <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
+              <!-- Injetado via JS -->
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2" id="gridBocaLegenda">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+          <div class="flex justify-center my-2 text-sky-400">
+            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+          </div>
+
+          <!-- MEIO DO FUNIL -->
+          <div class="max-w-4xl mx-auto space-y-3">
+            <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
+              <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
+                <i class="fa-solid fa-vial"></i> Meio do Funil: Análises Profundas para Segmentação Estratégica
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridMeioFunil">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+          <div class="flex justify-center my-2 text-emerald-500">
+            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+          </div>
+
+          <!-- FINAL DO FUNIL -->
+          <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
+            <!-- Injetado via JS -->
+          </div>
+
+        </div>
       </div>
     </section>
 
     <!-- SEÇÃO 6: NOVA DIVISÃO DE CONTAS -->
-    <section id="secao-contas" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-            <i class="fa-solid fa-users-gear text-sky-600"></i>
-            6. Estudo de Redistribuição de Contas & Canais
-          </h3>
-          <p class="text-xs text-gray-500 mt-0.5">Comparativo entre a alocação atual e a nova proposta de escopo por analista</p>
+    <section id="secao-contas" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-contas')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
+        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+          <i class="fa-solid fa-users-gear text-sky-600"></i>
+          6. Estudo de Redistribuição de Contas & Canais
+        </h3>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Redistribuição de Escopo</span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Alocação Atual -->
-        <div class="bringit-card overflow-hidden">
-          <div class="p-4 bg-gray-50 border-b border-gray-200 font-extrabold text-xs uppercase tracking-wider text-gray-500">
-            Alocação Atual
+      <div class="secao-conteudo px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Alocação Atual -->
+          <div class="bringit-card overflow-hidden">
+            <div class="p-4 bg-gray-50 border-b border-gray-200 font-extrabold text-xs uppercase tracking-wider text-gray-500">
+              Alocação Atual
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Responsável Atual</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100" id="tabelaContasAtual">
+                  <!-- Injetado via JS -->
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="p-4 overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b">
-                <tr>
-                  <th class="p-3">Canal</th>
-                  <th class="p-3">Conta/UF</th>
-                  <th class="p-3">Responsável Atual</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100" id="tabelaContasAtual">
-                <!-- Injetado via JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
 
-        <!-- Proposta Nova -->
-        <div class="bringit-card overflow-hidden border-[#00A3FF]">
-          <div class="p-4 bg-sky-50 border-b border-sky-100 font-extrabold text-xs uppercase tracking-wider text-[#00A3FF] flex items-center justify-between">
-            <span>Nova Proposta Recomendada</span>
-            <span class="px-2 py-0.5 bg-[#00A3FF] text-white rounded text-[10px]">Otimizada</span>
-          </div>
-          <div class="p-4 overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-sky-50/50 text-[#1C275C] font-bold uppercase border-b border-sky-100">
-                <tr>
-                  <th class="p-3">Canal</th>
-                  <th class="p-3">Conta/UF</th>
-                  <th class="p-3">Novo Responsável</th>
-                  <th class="p-3">Foco</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100" id="tabelaContasProposta">
-                <!-- Injetado via JS -->
-              </tbody>
-            </table>
+          <!-- Proposta Nova -->
+          <div class="bringit-card overflow-hidden border-[#00A3FF]">
+            <div class="p-4 bg-sky-50 border-b border-sky-100 font-extrabold text-xs uppercase tracking-wider text-[#00A3FF] flex items-center justify-between">
+              <span>Nova Proposta Recomendada</span>
+              <span class="px-2 py-0.5 bg-[#00A3FF] text-white rounded text-[10px]">Otimizada</span>
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-sky-50/50 text-[#1C275C] font-bold uppercase border-b border-sky-100">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Novo Responsável</th>
+                    <th class="p-3">Foco</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100" id="tabelaContasProposta">
+                  <!-- Injetado via JS -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- SEÇÃO 7: GESTÃO HORIZONTAL -->
-    <section id="secao-metodologia" class="space-y-6">
-      <div class="border-b border-gray-200 pb-3">
+    <section id="secao-metodologia" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-metodologia')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-arrows-spin text-emerald-600"></i>
           7. Gestão Horizontal
         </h3>
-        <p class="text-xs text-gray-500 mt-0.5">Rituais periódicos para inovação, desenvolvimento do time e visibilidade de resultados</p>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Rituais & Inovação</span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
       </div>
 
-      <!-- Grid dos 3 Sub-tópicos -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="gridMetodologiaContinua">
-        <!-- Injetado via JS -->
+      <div class="secao-conteudo px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="gridMetodologiaContinua">
+          <!-- Injetado via JS -->
+        </div>
       </div>
     </section>
 
@@ -325,6 +417,14 @@
       renderizarTabelasContas();
       renderizarMetodologiaContinua();
     });
+
+    // Função de alternância do Acordeão Expansível por Seção
+    function toggleSecao(secaoId) {
+      const el = document.getElementById(secaoId);
+      if (el) {
+        el.classList.toggle('aberta');
+      }
+    }
 
     function renderizarPilaresFiltro() {
       const container = document.getElementById('containerFiltrosPilares');
@@ -573,7 +673,6 @@
       });
     }
 
-    // RENDERIZAÇÃO DOS 3 CARDS EXPLICATIVOS DO CRONOGRAMA
     function renderizarCardsEstruturacaoCronograma() {
       const container = document.getElementById('gridCardsEstruturacaoCronograma');
       container.innerHTML = "";
@@ -647,7 +746,6 @@
     function renderizarFunilNovo() {
       const fData = DATA_ANALISE.funilNovo;
 
-      // 1. Linha do SITE Fora do Funil
       const cSite = document.getElementById('containerSiteIndicador');
       cSite.innerHTML = `
         <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
@@ -677,7 +775,6 @@
         </div>
       `;
 
-      // 2. Boca do Funil - Barra Proporcional Separada por %
       const cBarra = document.getElementById('barraBocaFunil');
       cBarra.innerHTML = "";
       fData.bocaBarra.forEach(c => {
@@ -688,7 +785,6 @@
         `;
       });
 
-      // 3. Boca do Funil - Legenda com Montante Agrupado de Mercado Livre + MLFULL
       const cLegenda = document.getElementById('gridBocaLegenda');
       cLegenda.innerHTML = "";
       fData.bocaLegendaAgrupada.forEach(c => {
@@ -703,7 +799,6 @@
         `;
       });
 
-      // 4. Meio do Funil - As 2 Etapas Estratégicas
       const cMeio = document.getElementById('gridMeioFunil');
       cMeio.innerHTML = "";
       fData.meioEtapas.forEach(m => {
@@ -721,7 +816,6 @@
         `;
       });
 
-      // 5. Final do Funil - Definições de Separação
       const cFinal = document.getElementById('containerFinalFunil');
       const fin = fData.finalDefinicao;
       cFinal.innerHTML = `
@@ -807,13 +901,6 @@
 
               <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${m.titulo}</h4>
               <p class="text-xs text-gray-600 leading-relaxed">${m.descricao}</p>
-            </div>
-
-            <div class="pt-3 border-t border-gray-100">
-              <button onclick="alert('Iniciativa agendada no plano mensal de governança.')" class="w-full py-2 px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-xl border border-emerald-200 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-calendar-check text-emerald-600"></i>
-                <span>Agendar Sessão Mensal</span>
-              </button>
             </div>
           </div>
         `;

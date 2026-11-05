@@ -11,7 +11,7 @@ const LOGOS_CANOES = {
 };
 
 const DATA_ANALISE = {
-  // 3 Pilares Estratégicos
+  // 3 Pilares Operacionais (Nome atualizado)
   pilares: [
     { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
@@ -22,7 +22,7 @@ const DATA_ANALISE = {
   sugestoesOrganizacao: [
     {
       id: "sug-pilares",
-      titulo: "1. Organização por Pilares Estratégicos & Comitês de Gestão",
+      titulo: "1. Organização por Pilares Operacionais & Comitês de Gestão",
       pilarTarget: "visão macro",
       icone: "fa-solid fa-people-group",
       descricao: "Estruturação das frentes operacionais em três eixos centrais:",
@@ -228,7 +228,7 @@ const DATA_ANALISE = {
     {
       titulo: "Assistente Pessoal de Agenda (IA)",
       subtitulo: "Agente de IA Diário & Lembretes",
-      icone: "fa-solid fa-[#00A3FF] fa-robot",
+      icone: "fa-solid fa-robot",
       corIcone: "text-emerald-600 bg-emerald-50 border-emerald-100",
       descricao: "Agente virtual inteligente que avisa diariamente os focos do dia, dispara alertas de microatividades, auxilia no cumprimento de SLAs e atua como assistente pessoal de agenda da equipe."
     }

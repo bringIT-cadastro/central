@@ -126,7 +126,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 4: MACRO CRONOGRAMA SEMANAL -->
+    <!-- SEÇÃO 4: MACRO CRONOGRAMA SEMANAL DE ENCAIXE DE DEMANDAS -->
     <section id="secao-cronograma" class="space-y-6">
       <div class="border-b border-gray-200 pb-3">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
@@ -149,6 +149,12 @@
         </div>
       </div>
 
+      <!-- 3 CARDS EXPLICATIVOS DA ESTRUTURAÇÃO DO CRONOGRAMA (INJETADOS LOGO APÓS A NOTA) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridCardsEstruturacaoCronograma">
+        <!-- Injetado via JS -->
+      </div>
+
+      <!-- Grid dos Dias da Semana -->
       <div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="gridCronograma">
         <!-- Injetado via JS -->
       </div>
@@ -313,6 +319,7 @@
       renderizarGargalos();
       renderizarPilaresCards();
       renderizarRotinasColunas();
+      renderizarCardsEstruturacaoCronograma();
       renderizarCronograma();
       renderizarFunilNovo();
       renderizarTabelasContas();
@@ -560,6 +567,36 @@
             <div>
               <h4 class="font-extrabold text-[#1C275C] text-sm">${p.nome}</h4>
               <p class="text-xs text-gray-500 mt-0.5">Clique para filtrar</p>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // RENDERIZAÇÃO DOS 3 CARDS EXPLICATIVOS DO CRONOGRAMA
+    function renderizarCardsEstruturacaoCronograma() {
+      const container = document.getElementById('gridCardsEstruturacaoCronograma');
+      container.innerHTML = "";
+
+      DATA_ANALISE.cardsEstruturacaoCronograma.forEach(c => {
+        container.innerHTML += `
+          <div class="bringit-card p-5 bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl border flex items-center justify-center text-lg ${c.corIcone}">
+                  <i class="${c.icone}"></i>
+                </div>
+                <span class="px-2.5 py-0.5 text-[9px] font-black uppercase tracking-wider bg-gray-100 text-gray-600 rounded-md">
+                  Pilar de Apoio
+                </span>
+              </div>
+
+              <div>
+                <h4 class="font-extrabold text-[#1C275C] text-sm leading-snug">${c.titulo}</h4>
+                <span class="text-[10px] font-bold text-[#00A3FF] block mt-0.5">${c.subtitulo}</span>
+              </div>
+
+              <p class="text-xs text-gray-600 leading-relaxed font-medium">${c.descricao}</p>
             </div>
           </div>
         `;

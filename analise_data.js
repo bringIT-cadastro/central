@@ -209,6 +209,31 @@ const DATA_ANALISE = {
     { pilar: null, nome: "Preenchimento e acompanhamento de KPIs" }
   ],
 
+  // Seção 4: Cards Explicativos da Estruturação do Cronograma
+  cardsEstruturacaoCronograma: [
+    {
+      titulo: "Macro Cronograma da Área",
+      subtitulo: "Visão Geral das Principais Rotinas",
+      icone: "fa-solid fa-sitemap",
+      corIcone: "text-[#00A3FF] bg-sky-50 border-sky-100",
+      descricao: "Mapeamento amplo de todas as demandas fundamentais da área de cadastro, organizadas por cadência e prioridade para garantir visibilidade ponta a ponta dos fluxos operacionais."
+    },
+    {
+      titulo: "Cronograma de Apoio por Analista",
+      subtitulo: "Norte Individual de Trabalho",
+      icone: "fa-solid fa-user-gear",
+      corIcone: "text-purple-600 bg-purple-50 border-purple-100",
+      descricao: "Estruturação de um guia personalizado para cada integrante do time, servindo como bússola para organizar entregas diárias, equilibrar demandas puxadas/empurradas e otimizar a rotina."
+    },
+    {
+      titulo: "Assistente Pessoal de Agenda (IA)",
+      subtitulo: "Agente de IA Diário & Lembretes",
+      icone: "fa-solid fa-[#00A3FF] fa-robot",
+      corIcone: "text-emerald-600 bg-emerald-50 border-emerald-100",
+      descricao: "Agente virtual inteligente que avisa diariamente os focos do dia, dispara alertas de microatividades, auxilia no cumprimento de SLAs e atua como assistente pessoal de agenda da equipe."
+    }
+  ],
+
   // Seção 4: Macro Cronograma Semanal
   cronograma: [
     {

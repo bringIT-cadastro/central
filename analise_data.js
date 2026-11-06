@@ -336,7 +336,7 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 7: Gestão Horizontal (Sub-tópicos)
+  // Seção 7: Gestão Horizontal (4 Cards Incluindo o Novo de Capacidades Técnicas)
   metodologiaContinua: [
     {
       num: 1,
@@ -361,15 +361,18 @@ const DATA_ANALISE = {
       icone: "fa-solid fa-trophy",
       corBadge: "bg-amber-500",
       descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
+    },
+    {
+      num: 4,
+      titulo: "4. Portfólio de Capacidades Técnicas & Inovação",
+      foco: "Evolução de Domínio & Excelência",
+      icone: "fa-solid fa-brain",
+      corBadge: "bg-purple-600",
+      descricao: "Mapeamento e desenvolvimento contínuo de competências avançadas — Taxonomia de Categorias, Neurociência do Consumo, CRO Visual (imagens de alta conversão), SEO On-Page & Engenharia de IA. Transformando a área em referência técnica complementar para antecipar cenários e otimizar novos projetos."
     }
   ],
 
-  // Seção 8: Ficha de Perfil do Time (LIDERANÇA SITUACIONAL VINCULADA A CADA COMPETÊNCIA)
-  // Legenda dos Estilos de Liderança Situacional:
-  // E1: Direcionar (Baixa competência / Alvo de instruções diretas)
-  // E2: Orientar (Média-baixa competência / Acompanhamento e instrução)
-  // E3: Apoiar (Média-alta competência / Autonomia com suporte pontual)
-  // E4: Delegar (Alta competência / Autonomia total na tomada de decisão)
+  // Seção 8: Ficha de Perfil do Time (6 Integrantes)
   fichasTime: [
     {
       id: "membro-maria",
@@ -417,6 +420,54 @@ const DATA_ANALISE = {
         { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
         { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
         { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
+    },
+    {
+      id: "membro-ingrid",
+      nome: "Ingrid",
+      cargo: "Analista de Cadastro",
+      fotoUrl: "ingrid.jpg",
+      resumoPerfil: "Integrante focada na qualidade de catálogo, estruturação visual de produtos e manutenção de rotinas operacionais no site e marketplaces com consistência de dados.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
+    },
+    {
+      id: "membro-jennifer",
+      nome: "Jennifer",
+      cargo: "Analista de Operações & Cadastro",
+      fotoUrl: "jennifer.jpg",
+      resumoPerfil: "Responsável pelo suporte a chamados via Service Desk, otimização de novos cadastros e integração de sistemas para manutenção contínua dos canais.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
+      ]
+    },
+    {
+      id: "membro-patrick",
+      nome: "Patrick",
+      cargo: "Analista de Processos & Dados",
+      fotoUrl: "patrick.jpg",
+      resumoPerfil: "Focado no acompanhamento de indicadores, análise de performance de anúncios e suporte no desenvolvimento técnico de automações e ferramentas da área.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" }
       ]
     }
   ]

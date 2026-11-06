@@ -13,7 +13,7 @@ const LOGOS_CANOES = {
 const DATA_ANALISE = {
   // 3 Pilares Operacionais
   pilares: [
-    { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
+    { id: "novos", nome: "Novos Cadastros", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
     { id: "operacional", nome: "Service Desk", cor: "bg-amber-500", icone: "fa-solid fa-headset" }
   ],
@@ -44,7 +44,7 @@ const DATA_ANALISE = {
   gargalos: [
     {
       id: "g1",
-      titulo: "Produtos Novos (Lotes Novos & Cauda Longa)",
+      titulo: "Novos Cadastros (Lotes Novos & Cauda Longa)",
       pilar: "novos",
       estrelaDestaque: true,
       geradoraVolume: false,
@@ -134,7 +134,7 @@ const DATA_ANALISE = {
 
   // Seção 3: Rotinas Oficiais (Marketplace)
   rotinasMarketplace: [
-    { pilar: "novos", nome: "Novos Produtos l Conexão de Novos Anúncios" },
+    { pilar: "novos", nome: "Novos Cadastros l Conexão de Novos Anúncios" },
     { pilar: "novos", nome: "Ponte de Comando l Novos Anúncios" },
     { pilar: "catalogo", nome: "Ponte de Comando l Atualização de Atributos" },
     { pilar: "catalogo", nome: "Ponte de Comando l Pausa de Anúncios" },
@@ -165,17 +165,17 @@ const DATA_ANALISE = {
     { pilar: "operacional", nome: "Service Desk l Melhorias em Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Melhorias/Alterações Site" },
     { pilar: "operacional", nome: "Service Desk l Novos Cadastros" },
-    { pilar: "novos", nome: "Novos Produtos l Cadastro Sistema de Cadastro" },
-    { pilar: "novos", nome: "Novos Produtos l Criação de conteúdo" },
-    { pilar: "novos", nome: "Novos Produtos l Criação de nova categoria" },
-    { pilar: "novos", nome: "Novos Produtos l Estudo e cadastro de novos atributos" },
-    { pilar: "novos", nome: "Novos Produtos l Cadastrar novos produtos no Bahn" },
-    { pilar: "novos", nome: "Novos Produtos l Search Console - Realizar indexação de URL" },
-    { pilar: "novos", nome: "Novos Produtos l Google Merchant - Realizar cadastro de produto" },
-    { pilar: "novos", nome: "Novos Produtos l Preenchimento do documento - Registro do Portfólio" },
-    { pilar: "novos", nome: "Novos Produtos l Validação das Imagens" },
-    { pilar: "novos", nome: "Novos Produtos l Validação dos anúncios Ativos" },
-    { pilar: "novos", nome: "Novos Produtos l Conectar com Magento e Platz" },
+    { pilar: "novos", nome: "Novos Cadastros l Cadastro Sistema de Cadastro" },
+    { pilar: "novos", nome: "Novos Cadastros l Criação de conteúdo" },
+    { pilar: "novos", nome: "Novos Cadastros l Criação de nova categoria" },
+    { pilar: "novos", nome: "Novos Cadastros l Estudo e cadastro de novos atributos" },
+    { pilar: "novos", nome: "Novos Cadastros l Cadastrar novos produtos no Bahn" },
+    { pilar: "novos", nome: "Novos Cadastros l Search Console - Realizar indexação de URL" },
+    { pilar: "novos", nome: "Novos Cadastros l Google Merchant - Realizar cadastro de produto" },
+    { pilar: "novos", nome: "Novos Cadastros l Preenchimento do documento - Registro do Portfólio" },
+    { pilar: "novos", nome: "Novos Cadastros l Validação das Imagens" },
+    { pilar: "novos", nome: "Novos Cadastros l Validação dos anúncios Ativos" },
+    { pilar: "novos", nome: "Novos Cadastros l Conectar com Magento e Platz" },
     { pilar: "catalogo", nome: "Realizar treinamento e orientação ao time de Cadastro" },
     { pilar: "catalogo", nome: "Site l Mapear e realizar redirect de anúncios desabilitados/excluídos" },
     { pilar: "catalogo", nome: "Padrão e qualidade das imagens dos anúncios" },
@@ -227,8 +227,8 @@ const DATA_ANALISE = {
   cronograma: [
     {
       dia: "Segunda-feira",
-      foco: "Entrada de Volume & Produtos Novos",
-      puxadas: ["Cadastro de Produtos Novos (Lotes Novos & Cauda Longa)", "Ponte de Comando (Pausas e Reativações)"],
+      foco: "Entrada de Volume & Novos Cadastros",
+      puxadas: ["Novos Cadastros (Lotes Novos & Cauda Longa)", "Ponte de Comando (Pausas e Reativações)"],
       empurradas: ["Triagem de Chamados de Service Desk (Criar/Corrigir)"],
       slaMeta: "Processar 100% dos lotes recebidos"
     },
@@ -262,7 +262,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 5: Ficha de Perfil do Time (Cargos e Imagens Corrigidos)
+  // Seção 5: Ficha de Perfil do Time (Carregada na Central Privada gestao_time.html)
   fichasTime: [
     {
       id: "membro-patrick",
@@ -362,7 +362,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 6: Matriz de Divisão de Contas
+  // Seção de Matriz de Divisão de Contas
   divisaoContas: {
     atual: [
       { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -373,8 +373,8 @@ const DATA_ANALISE = {
       { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
     ],
     proposta: [
-      { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "Core ML" },
-      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Expansão ML" },
+      { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "CD SC & MG" },
+      { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "CD SP & PR" },
       { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
       { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
       { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Shopee" },
@@ -383,7 +383,7 @@ const DATA_ANALISE = {
     ]
   },
 
-  // Seção 7: Gestão Horizontal
+  // Seção: Gestão Horizontal (Com links para as páginas dedicadas)
   metodologiaContinua: [
     {
       num: 1,
@@ -391,6 +391,7 @@ const DATA_ANALISE = {
       foco: "Coleta de Ideias Inovadoras",
       icone: "fa-solid fa-lightbulb",
       corBadge: "bg-sky-500",
+      linkPage: "gestao_giro_ideias.html",
       descricao: "Espaço dinâmico mensal para alinhamento entre as frentes de Site e Marketplace, revisão de projetos engavetados e priorização de ideias inovadoras no backlog. O foco principal é promover a captação contínua de inovações para a área."
     },
     {
@@ -399,6 +400,7 @@ const DATA_ANALISE = {
       foco: "Capacitação & Alinhamento Técnico",
       icone: "fa-solid fa-chalkboard-user",
       corBadge: "bg-emerald-500",
+      linkPage: "gestao_workshop.html",
       descricao: "Espaço mensal dedicado a compartilhar treinamentos curtos sobre assuntos gerais e específicos da área de cadastro, garantindo padronização, reciclagem de conhecimentos e elevação do nível técnico da equipe."
     },
     {
@@ -407,6 +409,7 @@ const DATA_ANALISE = {
       foco: "Engajamento & Visão de Mercado",
       icone: "fa-solid fa-trophy",
       corBadge: "bg-amber-500",
+      linkPage: "gestao_cases_sucesso.html",
       descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
     },
     {
@@ -415,11 +418,12 @@ const DATA_ANALISE = {
       foco: "Evolução de Domínio & Excelência",
       icone: "fa-solid fa-brain",
       corBadge: "bg-purple-600",
+      linkPage: "gestao_prateleira_tecnica.html",
       descricao: "Mapeamento e desenvolvimento contínuo de competências avançadas — Taxonomia de Categorias, Neurociência do Consumo, CRO Visual (imagens de alta conversão), SEO On-Page & Engenharia de IA. Transformando a área em referência técnica complementar para antecipar cenários e otimizar novos projetos."
     }
   ],
 
-  // Seção 8: Otimização de Produtos por Canais
+  // Seção: Otimização de Produtos por Canais
   funilNovo: {
     siteIndicador: {
       nome: "Site Próprio (E-commerce bringIT)",

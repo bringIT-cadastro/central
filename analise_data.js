@@ -11,7 +11,7 @@ const LOGOS_CANOES = {
 };
 
 const DATA_ANALISE = {
-  // 3 Pilares Operacionais (Nome atualizado)
+  // 3 Pilares Operacionais
   pilares: [
     { id: "novos", nome: "Produtos Novos", cor: "bg-blue-500", icone: "fa-solid fa-box-open" },
     { id: "catalogo", nome: "Melhoria de Catálogo", cor: "bg-emerald-500", icone: "fa-solid fa-sliders" },
@@ -40,7 +40,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais
+  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais (Sem "Criação de Anúncios Genéricos")
   gargalos: [
     {
       id: "g1",
@@ -103,17 +103,6 @@ const DATA_ANALISE = {
       pilar: "catalogo",
       estrelaDestaque: false,
       geradoraVolume: false,
-      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
-      sugestoesAcoes: [
-        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
-      ]
-    },
-    {
-      id: "g7",
-      titulo: "Criação de Anúncios Genéricos",
-      pilar: "novos",
-      estrelaDestaque: false,
-      geradoraVolume: true,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
       sugestoesAcoes: [
         "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."

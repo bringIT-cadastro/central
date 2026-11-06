@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* Suporte suave de expansão de conteúdo das Seções e dos Cards */
     .secao-conteudo {
       max-height: 0;
       overflow: hidden;
@@ -29,21 +28,6 @@
     .secao-card.aberta .icone-seta {
       transform: rotate(180deg);
     }
-
-    /* Expansão individual dos cards dos colaboradores */
-    .membro-detalhes {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
-      opacity: 0;
-    }
-    .membro-card.aberto .membro-detalhes {
-      max-height: 2500px;
-      opacity: 1;
-    }
-    .membro-card.aberto .icone-seta-membro {
-      transform: rotate(180deg);
-    }
   </style>
 </head>
 <body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen flex flex-col">
@@ -57,23 +41,18 @@
     </div>
 
     <div class="flex items-center gap-3">
+      <!-- Botão Acesso Privado de Gestão -->
+      <a href="gestao_time.html" title="Acessar Central Restrita do Time" class="px-3.5 py-2 text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-lock text-slate-500"></i>
+        <span class="hidden sm:inline">Gestão de Time</span>
+      </a>
+
       <button onclick="toggleModoApresentacao()" title="Ativar Tela Cheia" class="px-4 py-2 text-xs font-bold bg-sky-50 text-[#00A3FF] hover:bg-[#00A3FF] hover:text-white border border-sky-200 rounded-xl transition-all flex items-center gap-2 shadow-xs">
         <i class="fa-solid fa-expand text-sm"></i>
         <span>Modo Apresentação</span>
       </button>
     </div>
   </header>
-
-  <!-- Barra de Filtro Rápido por Pilar Operacional -->
-  <div class="bg-white/80 backdrop-blur-md border-b border-gray-200 px-8 py-3 sticky top-[77px] z-20">
-    <div class="flex items-center gap-2 flex-wrap" id="containerFiltrosPilares">
-      <span class="text-xs font-bold text-gray-400 mr-2">Filtrar por Pilar Operacional:</span>
-      <button onclick="filtrarPilar('todos', this)" class="btn-pilar-filtro active px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-[#00A3FF] text-white transition shadow-xs">
-        Todos os Pilares Operacionais
-      </button>
-      <!-- Pilares dinâmicos via JS -->
-    </div>
-  </div>
 
   <!-- Conteúdo Principal -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
@@ -147,7 +126,7 @@
       <div class="secao-conteudo px-6">
         <p class="text-xs text-gray-500 mb-4">Visão consolidada por atividade com atuação mapeada via Comitê Operacional.</p>
         <div class="space-y-3" id="gridGargalos">
-          <!-- Injetado via JS em formato de lista ampla -->
+          <!-- Injetado via JS -->
         </div>
       </div>
     </section>
@@ -171,16 +150,11 @@
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-        <p class="text-xs text-gray-500">Clique em um dos pilares operacionais abaixo para filtrar o diagnóstico e as rotinas mapeadas.</p>
-
-        <!-- Cards de Pilares Interativos (Filtros) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridPilaresCards">
           <!-- Injetado via JS -->
         </div>
 
-        <!-- Tabela em Colunas Lado a Lado -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
-          
           <!-- Coluna Marketplace -->
           <div class="bringit-card p-6 space-y-4">
             <div class="flex items-center justify-between border-b border-gray-100 pb-3">
@@ -206,7 +180,6 @@
               <!-- Injetado via JS -->
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -230,7 +203,6 @@
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-        <!-- Box Informativo de Exemplo / Alerta -->
         <div class="p-4 bg-purple-50/70 border border-purple-200/90 rounded-2xl flex items-start gap-3 shadow-2xs">
           <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0 mt-0.5">
             <i class="fa-solid fa-circle-info text-sm"></i>
@@ -243,57 +215,22 @@
           </div>
         </div>
 
-        <!-- 3 CARDS EXPLICATIVOS DA ESTRUTURAÇÃO DO CRONOGRAMA -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridCardsEstruturacaoCronograma">
           <!-- Injetado via JS -->
         </div>
 
-        <!-- Grid dos Dias da Semana -->
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="gridCronograma">
           <!-- Injetado via JS -->
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 5: FICHA DE PERFIL DO TIME -->
-    <section id="secao-fichas-time" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs border-2 border-sky-200">
-      <div onclick="toggleSecao('secao-fichas-time')" class="p-6 cursor-pointer bg-gradient-to-r from-sky-50/70 via-white to-white flex items-center justify-between border-b border-sky-100 hover:bg-sky-50 transition">
-        <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-[#00A3FF] text-white rounded-md">Equipe</span>
-          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-            <i class="fa-solid fa-address-card text-[#00A3FF]"></i>
-            5. Ficha de Perfil do Time
-          </h3>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-[#00A3FF] font-bold hidden sm:inline-block">Nível Técnico & Liderança Situacional por Competência</span>
-          <div class="w-8 h-8 rounded-full bg-sky-100 text-[#00A3FF] flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
-            <i class="fa-solid fa-chevron-down"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="secao-conteudo px-6 space-y-6">
-        <div class="p-4 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
-          <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
-          <p class="text-xs text-slate-700 font-medium leading-relaxed">
-            <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
-          </p>
-        </div>
-        
-        <!-- Lista de Cards Expansíveis dos Membros do Time -->
-        <div class="space-y-4" id="listaFichasTime">
-          <!-- Injetado via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- SEÇÃO 6: NOVA DIVISÃO DE CONTAS -->
+    <!-- SEÇÃO 5: REDISTRIBUIÇÃO DE CONTAS -->
     <section id="secao-contas" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
       <div onclick="toggleSecao('secao-contas')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-users-gear text-sky-600"></i>
-          6. Estudo de Redistribuição de Contas & Canais
+          5. Estudo de Redistribuição de Contas & Canais
         </h3>
         <div class="flex items-center gap-3">
           <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Redistribuição de Escopo</span>
@@ -305,7 +242,6 @@
 
       <div class="secao-conteudo px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Alocação Atual -->
           <div class="bringit-card overflow-hidden">
             <div class="p-4 bg-gray-50 border-b border-gray-200 font-extrabold text-xs uppercase tracking-wider text-gray-500">
               Alocação Atual
@@ -326,7 +262,6 @@
             </div>
           </div>
 
-          <!-- Proposta Nova -->
           <div class="bringit-card overflow-hidden border-[#00A3FF]">
             <div class="p-4 bg-sky-50 border-b border-sky-100 font-extrabold text-xs uppercase tracking-wider text-[#00A3FF] flex items-center justify-between">
               <span>Nova Proposta Recomendada</span>
@@ -352,12 +287,12 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 7: GESTÃO HORIZONTAL -->
+    <!-- SEÇÃO 6: GESTÃO HORIZONTAL -->
     <section id="secao-metodologia" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
       <div onclick="toggleSecao('secao-metodologia')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-arrows-spin text-emerald-600"></i>
-          7. Gestão Horizontal
+          6. Gestão Horizontal
         </h3>
         <div class="flex items-center gap-3">
           <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Inovação & Capacidades</span>
@@ -369,17 +304,17 @@
 
       <div class="secao-conteudo px-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gridMetodologiaContinua">
-          <!-- Injetado via JS (4 Cards) -->
+          <!-- Injetado via JS -->
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 8: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
+    <!-- SEÇÃO 7: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
     <section id="secao-funil" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
       <div onclick="toggleSecao('secao-funil')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-          8. Otimização de Produtos por Canais
+          7. Otimização de Produtos por Canais
         </h3>
         <div class="flex items-center gap-3">
           <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Indicação de Segmentação de Produtos</span>
@@ -390,15 +325,12 @@
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-        <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
         <div id="containerSiteIndicador">
           <!-- Injetado via JS -->
         </div>
 
-        <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
         <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
           
-          <!-- BOCA DO FUNIL -->
           <div class="space-y-2">
             <div class="flex items-center justify-between border-b border-gray-200 pb-2">
               <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
@@ -420,7 +352,6 @@
             <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
           </div>
 
-          <!-- MEIO DO FUNIL -->
           <div class="max-w-4xl mx-auto space-y-3">
             <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
               <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
@@ -437,7 +368,6 @@
             <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
           </div>
 
-          <!-- FINAL DO FUNIL -->
           <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
             <!-- Injetado via JS -->
           </div>
@@ -451,17 +381,13 @@
   <!-- Scripts -->
   <script src="analise_data.js"></script>
   <script>
-    let pilarAtivoGlobal = 'todos';
-
     document.addEventListener("DOMContentLoaded", () => {
-      renderizarPilaresFiltro();
       renderizarSugestoesOrganizacao();
       renderizarGargalos();
       renderizarPilaresCards();
       renderizarRotinasColunas();
       renderizarCardsEstruturacaoCronograma();
       renderizarCronograma();
-      renderizarFichasTime();
       renderizarTabelasContas();
       renderizarMetodologiaContinua();
       renderizarFunilNovo();
@@ -472,55 +398,6 @@
       if (el) {
         el.classList.toggle('aberta');
       }
-    }
-
-    function toggleMembro(membroId) {
-      const card = document.getElementById(membroId);
-      if (card) {
-        card.classList.toggle('aberto');
-      }
-    }
-
-    function renderizarPilaresFiltro() {
-      const container = document.getElementById('containerFiltrosPilares');
-      DATA_ANALISE.pilares.forEach(p => {
-        const btn = document.createElement('button');
-        btn.className = `btn-pilar-filtro px-3.5 py-1.5 text-xs font-bold rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition shadow-2xs`;
-        btn.dataset.pilar = p.id;
-        btn.onclick = () => filtrarPilar(p.id, btn);
-        btn.innerHTML = `<i class="${p.icone} mr-1.5 text-[#00A3FF]"></i> ${p.nome}`;
-        container.appendChild(btn);
-      });
-    }
-
-    function filtrarPilar(pilarId, btnElement = null) {
-      pilarAtivoGlobal = pilarId;
-
-      document.querySelectorAll('.btn-pilar-filtro').forEach(b => {
-        b.classList.remove('bg-[#00A3FF]', 'text-white');
-        b.classList.add('bg-white', 'text-gray-700');
-      });
-
-      if (btnElement) {
-        btnElement.classList.remove('bg-white', 'text-gray-700');
-        btnElement.classList.add('bg-[#00A3FF]', 'text-white');
-      } else {
-        const btnTop = document.querySelector(`.btn-pilar-filtro[data-pilar="${pilarId}"]`);
-        if (btnTop) {
-          btnTop.classList.remove('bg-white', 'text-gray-700');
-          btnTop.classList.add('bg-[#00A3FF]', 'text-white');
-        } else if (pilarId === 'todos') {
-          const btnTodos = document.querySelector('.btn-pilar-filtro');
-          if (btnTodos) {
-            btnTodos.classList.remove('bg-white', 'text-gray-700');
-            btnTodos.classList.add('bg-[#00A3FF]', 'text-white');
-          }
-        }
-      }
-
-      renderizarGargalos(pilarId);
-      renderizarRotinasColunas(pilarId);
-      renderizarPilaresCards();
     }
 
     function renderizarSugestoesOrganizacao() {
@@ -572,18 +449,11 @@
       });
     }
 
-    function renderizarGargalos(pilarFiltro = 'todos') {
+    function renderizarGargalos() {
       const container = document.getElementById('gridGargalos');
       container.innerHTML = "";
 
-      const lista = pilarFiltro === 'todos' ? DATA_ANALISE.gargalos : DATA_ANALISE.gargalos.filter(g => g.pilar === pilarFiltro);
-
-      if (lista.length === 0) {
-        container.innerHTML = `<div class="p-8 text-center text-xs text-gray-400 bg-white rounded-2xl border">Nenhum item associado a este pilar.</div>`;
-        return;
-      }
-
-      lista.forEach(g => {
+      DATA_ANALISE.gargalos.forEach(g => {
         const pilarObj = DATA_ANALISE.pilares.find(p => p.id === g.pilar) || {};
         
         const htmlEstrela = g.estrelaDestaque 
@@ -645,7 +515,7 @@
       });
     }
 
-    function renderizarRotinasColunas(pilarFiltro = 'todos') {
+    function renderizarRotinasColunas() {
       const cMkt = document.getElementById('listaRotinasMarketplace');
       const cSite = document.getElementById('listaRotinasSite');
       const contMkt = document.getElementById('contadorRotinasMkt');
@@ -654,74 +524,60 @@
       cMkt.innerHTML = "";
       cSite.innerHTML = "";
 
-      const listMkt = pilarFiltro === 'todos' ? DATA_ANALISE.rotinasMarketplace : DATA_ANALISE.rotinasMarketplace.filter(r => r.pilar === pilarFiltro);
-      const listSite = pilarFiltro === 'todos' ? DATA_ANALISE.rotinasSite : DATA_ANALISE.rotinasSite.filter(r => r.pilar === pilarFiltro);
+      if (contMkt) contMkt.textContent = `${DATA_ANALISE.rotinasMarketplace.length} rotinas`;
+      if (contSite) contSite.textContent = `${DATA_ANALISE.rotinasSite.length} rotinas`;
 
-      if (contMkt) contMkt.textContent = `${listMkt.length} rotinas`;
-      if (contSite) contSite.textContent = `${listSite.length} rotinas`;
+      DATA_ANALISE.rotinasMarketplace.forEach(r => {
+        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
+        const pilarBadge = pilarObj 
+          ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
+               <i class="${pilarObj.icone} text-[9px]"></i>
+               <span>${pilarObj.nome}</span>
+             </span>`
+          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold text-gray-500 bg-gray-200 rounded-lg flex-shrink-0">
+               Geral
+             </span>`;
 
-      if (listMkt.length === 0) {
-        cMkt.innerHTML = `<div class="p-4 text-center text-xs text-gray-400">Nenhuma rotina neste pilar.</div>`;
-      } else {
-        listMkt.forEach(r => {
-          const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
-          const pilarBadge = pilarObj 
-            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
-                 <i class="${pilarObj.icone} text-[9px]"></i>
-                 <span>${pilarObj.nome}</span>
-               </span>`
-            : `<span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold text-gray-500 bg-gray-200 rounded-lg flex-shrink-0">
-                 Geral
-               </span>`;
+        cMkt.innerHTML += `
+          <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
+            <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
+            ${pilarBadge}
+          </div>
+        `;
+      });
 
-          cMkt.innerHTML += `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
-              <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
-              ${pilarBadge}
-            </div>
-          `;
-        });
-      }
+      DATA_ANALISE.rotinasSite.forEach(r => {
+        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
+        const pilarBadge = pilarObj 
+          ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
+               <i class="${pilarObj.icone} text-[9px]"></i>
+               <span>${pilarObj.nome}</span>
+             </span>`
+          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold text-gray-500 bg-gray-200 rounded-lg flex-shrink-0">
+               Geral
+             </span>`;
 
-      if (listSite.length === 0) {
-        cSite.innerHTML = `<div class="p-4 text-center text-xs text-gray-400">Nenhuma rotina neste pilar.</div>`;
-      } else {
-        listSite.forEach(r => {
-          const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
-          const pilarBadge = pilarObj 
-            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
-                 <i class="${pilarObj.icone} text-[9px]"></i>
-                 <span>${pilarObj.nome}</span>
-               </span>`
-            : `<span class="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold text-gray-500 bg-gray-200 rounded-lg flex-shrink-0">
-                 Geral
-               </span>`;
-
-          cSite.innerHTML += `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
-              <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
-              ${pilarBadge}
-            </div>
-          `;
-        });
-      }
+        cSite.innerHTML += `
+          <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-between gap-3 hover:bg-white transition-colors">
+            <span class="text-xs font-semibold text-[#1C275C]">${r.nome}</span>
+            ${pilarBadge}
+          </div>
+        `;
+      });
     }
 
     function renderizarPilaresCards() {
       const container = document.getElementById('gridPilaresCards');
       container.innerHTML = "";
       DATA_ANALISE.pilares.forEach(p => {
-        const estaAtivo = pilarAtivoGlobal === p.id;
-        const estiloCard = estaAtivo ? 'border-[#00A3FF] ring-2 ring-[#00A3FF]/20 bg-sky-50/30' : 'border-gray-200 bg-white hover:border-[#00A3FF]';
-
         container.innerHTML += `
-          <div onclick="filtrarPilar('${p.id}')" class="p-5 rounded-2xl border ${estiloCard} shadow-2xs flex items-center gap-4 cursor-pointer transition-all">
+          <div class="p-5 rounded-2xl border border-gray-200 bg-white shadow-2xs flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl text-white ${p.cor} flex items-center justify-center text-xl flex-shrink-0 shadow-xs">
               <i class="${p.icone}"></i>
             </div>
             <div>
               <h4 class="font-extrabold text-[#1C275C] text-sm">${p.nome}</h4>
-              <p class="text-xs text-gray-500 mt-0.5">Clique para filtrar</p>
+              <p class="text-xs text-gray-500 mt-0.5">Eixo de Operação</p>
             </div>
           </div>
         `;
@@ -792,96 +648,6 @@
 
             <div class="pt-3 border-t border-gray-100 text-[10px] text-gray-500 font-bold text-center bg-gray-50 p-2 rounded-lg">
               Meta: ${c.slaMeta}
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function renderizarFichasTime() {
-      const container = document.getElementById('listaFichasTime');
-      if (!container || !DATA_ANALISE.fichasTime) return;
-
-      container.innerHTML = "";
-
-      DATA_ANALISE.fichasTime.forEach(m => {
-        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
-
-        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
-          let corBarra = "bg-amber-400";
-          if (t.nivelPct === 25) corBarra = "bg-red-400";
-          else if (t.nivelPct === 50) corBarra = "bg-amber-400";
-          else if (t.nivelPct === 75) corBarra = "bg-sky-500";
-          else if (t.nivelPct === 100) corBarra = "bg-emerald-500";
-
-          let badgeLideranca = "";
-          if (t.lideranca === "E1") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md" title="E1: Direcionar - Acompanhamento constante e instrução detalhada">E1: Direcionar</span>`;
-          } else if (t.lideranca === "E2") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md" title="E2: Orientar - Instrução acompanhada com explicações do porquê">E2: Orientar</span>`;
-          } else if (t.lideranca === "E3") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md" title="E3: Apoiar - Facilitação e encorajamento com autonomia">E3: Apoiar</span>`;
-          } else if (t.lideranca === "E4") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md" title="E4: Delegar - Autonomia total para tomada de decisão e execução">E4: Delegar</span>`;
-          }
-
-          return `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
-                <div class="flex items-center gap-2">
-                  ${badgeLideranca}
-                  <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
-                </div>
-              </div>
-              
-              <div class="h-2.5 w-full bg-gray-200/70 rounded-full overflow-hidden border border-gray-200">
-                <div class="h-full ${corBarra} rounded-full transition-all duration-500" style="width: ${t.nivelPct}%;"></div>
-              </div>
-            </div>
-          `;
-        }).join('');
-
-        container.innerHTML += `
-          <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
-            
-            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
-              <div class="flex items-center gap-4">
-                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
-                <div>
-                  <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
-                  <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para ver ficha completa</span>
-                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="membro-detalhes px-6 space-y-6">
-              
-              <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
-                <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
-                <p class="font-medium">${m.resumoPerfil}</p>
-              </div>
-
-              <div class="space-y-3 pt-1">
-                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
-                  </span>
-                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  ${htmlBarrasTecnicas}
-                </div>
-              </div>
-
             </div>
           </div>
         `;

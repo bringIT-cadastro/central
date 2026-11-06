@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Gestão de Time | Privado</title>
+  
+  <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjTdDDM6XUowBlBmsyNjafgPuMMJ7Ci1XLB8alGALxgw&s">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .membro-detalhes {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+    .membro-card.aberto .membro-detalhes {
+      max-height: 2500px;
+      opacity: 1;
+      padding-bottom: 1.5rem;
+    }
+    .membro-card.aberto .icone-seta-membro {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- MODAL DE ACESSO POR SENHA -->
+  <div id="modalLock" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-gray-100 text-center space-y-5">
+      <div class="w-14 h-14 bg-sky-100 text-[#00A3FF] rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-xs">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <div>
+        <h2 class="text-xl font-extrabold text-[#1C275C]">Área Restrita de Gestão</h2>
+        <p class="text-xs text-gray-500 mt-1 font-medium">Informe a senha de acesso para visualizar o perfil e maturidade técnica do time.</p>
+      </div>
+
+      <form onsubmit="validarSenha(event)" class="space-y-4">
+        <div>
+          <input type="password" id="inputSenha" placeholder="Digite a senha..." required class="w-full px-4 py-3 text-sm rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] focus:border-transparent text-center font-bold tracking-widest">
+          <p id="msgErro" class="text-xs text-red-500 font-bold mt-2 hidden">Senha incorreta. Tente novamente.</p>
+        </div>
+        <button type="submit" class="w-full py-3 bg-[#00A3FF] hover:bg-sky-600 text-white font-extrabold text-xs rounded-xl shadow-md transition">
+          Acessar Central
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRIVADO (OCULTO ATÉ A AUTENTICAÇÃO) -->
+  <div id="conteudoPrivado" class="hidden flex-1 flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
+        <div class="h-6 w-px bg-gray-200"></div>
+        <h1 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2">
+          <i class="fa-solid fa-[#00A3FF] fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil do Time
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="analise.html" class="px-4 py-2 text-xs font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300 rounded-xl transition flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Voltar ao Diagnóstico
+        </a>
+        <button onclick="bloquearAcesso()" class="px-4 py-2 text-xs font-bold bg-red-50 text-red-600 hover:bg-red-100 border border-red-200 rounded-xl transition flex items-center gap-2">
+          <i class="fa-solid fa-right-from-bracket"></i> Sair
+        </button>
+      </div>
+    </header>
+
+    <!-- Conteúdo -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
+      
+      <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
+        <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
+        <p class="text-xs text-slate-700 font-medium leading-relaxed">
+          <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
+        </p>
+      </div>
+
+      <!-- Lista de Fichas -->
+      <div class="space-y-4" id="listaFichasTime">
+        <!-- Injetado via JS -->
+      </div>
+    </main>
+  </div>
+
+  <script src="analise_data.js"></script>
+  <script>
+    // DEFINA A SUA SENHA AQUI
+    const SENHA_ACESSO = "bringit2026";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (sessionStorage.getItem("acessoAutorizado") === "true") {
+        exibirConteudo();
+      }
+    });
+
+    function validarSenha(e) {
+      e.preventDefault();
+      const input = document.getElementById("inputSenha").value;
+      const msgErro = document.getElementById("msgErro");
+
+      if (input === SENHA_ACESSO) {
+        sessionStorage.setItem("acessoAutorizado", "true");
+        exibirConteudo();
+      } else {
+        msgErro.classList.remove("hidden");
+      }
+    }
+
+    function exibirConteudo() {
+      document.getElementById("modalLock").classList.add("hidden");
+      document.getElementById("conteudoPrivado").classList.remove("hidden");
+      renderizarFichasTime();
+    }
+
+    function bloquearAcesso() {
+      sessionStorage.removeItem("acessoAutorizado");
+      location.reload();
+    }
+
+    function toggleMembro(membroId) {
+      const card = document.getElementById(membroId);
+      if (card) {
+        card.classList.toggle('aberto');
+      }
+    }
+
+    function renderizarFichasTime() {
+      const container = document.getElementById('listaFichasTime');
+      if (!container || !DATA_ANALISE.fichasTime) return;
+
+      container.innerHTML = "";
+
+      DATA_ANALISE.fichasTime.forEach(m => {
+        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
+
+        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
+          let corBarra = "bg-amber-400";
+          if (t.nivelPct === 25) corBarra = "bg-red-400";
+          else if (t.nivelPct === 50) corBarra = "bg-amber-400";
+          else if (t.nivelPct === 75) corBarra = "bg-sky-500";
+          else if (t.nivelPct === 100) corBarra = "bg-emerald-500";
+
+          let badgeLideranca = "";
+          if (t.lideranca === "E1") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md">E1: Direcionar</span>`;
+          } else if (t.lideranca === "E2") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md">E2: Orientar</span>`;
+          } else if (t.lideranca === "E3") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md">E3: Apoiar</span>`;
+          } else if (t.lideranca === "E4") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md">E4: Delegar</span>`;
+          }
+
+          return `
+            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
+                <div class="flex items-center gap-2">
+                  ${badgeLideranca}
+                  <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
+                </div>
+              </div>
+              
+              <div class="h-2.5 w-full bg-gray-200/70 rounded-full overflow-hidden border border-gray-200">
+                <div class="h-full ${corBarra} rounded-full transition-all duration-500" style="width: ${t.nivelPct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.innerHTML += `
+          <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
+            
+            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <div>
+                  <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
+                  <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para expandir</span>
+                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="membro-detalhes px-6 space-y-6">
+              <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
+                <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
+                <p class="font-medium">${m.resumoPerfil}</p>
+              </div>
+
+              <div class="space-y-3 pt-1">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
+                  </span>
+                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  ${htmlBarrasTecnicas}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>

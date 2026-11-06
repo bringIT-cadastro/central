@@ -262,7 +262,164 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 5: Dados do Funil Estratégico de Conversão de Canais
+  // Seção 5: Ficha de Perfil do Time (Resumos Atualizados e Matriz de Liderança 100% Alinhada)
+  fichasTime: [
+    {
+      id: "membro-patrick",
+      nome: "Patrick Nunes",
+      cargo: "Analista de Site",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Profissional extremamente detalhista, com perfil focado, mais reservado e forte inclinação executora, garantindo alta precisão na condução das tarefas operacionais.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Workspace Google", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
+    },
+    {
+      id: "membro-daniela",
+      nome: "Daniela Lourenço",
+      cargo: "Analista de Marketplace",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Perfil altamente comunicativo com perfil executor. Apresenta natural insegurança por estar em fase inicial de desenvolvimento nas rotinas da área.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Sistemas", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Workspace Google", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
+    },
+    {
+      id: "membro-maria",
+      nome: "Maria Soares",
+      cargo: "Analista de Marketplace",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Analista com excelente visão sistêmica, comunicação transparente e alta clareza de cenários, demonstrando grande potencial para liderar e conduzir projetos.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Sistemas", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Análise de Dados", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" }
+      ]
+    },
+    {
+      id: "membro-raqueline",
+      nome: "Raqueline Souza",
+      cargo: "Analista de Marketplace",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Profissional receptiva, com estilo de comunicação objetivo e direto, mantendo forte orientação executora na realização das demandas operacionais.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Workspace Google", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
+    },
+    {
+      id: "membro-jennifer",
+      nome: "Jennifer Valle",
+      cargo: "Analista Júnior de Cadastro",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Perfil direto, rigorosamente detalhista e com olhar sistêmico refinado, impulsionado por uma sólida bagagem de experiência no ecossistema comercial.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Sistemas", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
+      ]
+    },
+    {
+      id: "membro-ingrid",
+      nome: "Ingrid Fabris",
+      cargo: "Líder de Cadastro / Site",
+      fotoUrl: "https://via.placeholder.com/150",
+      resumoPerfil: "Detentora do domínio técnico mais avançado da equipe. Apresenta postura direta, altamente solícita e pronta para orientar o time com excelência.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Sistemas", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Workspace Google", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Digital Commerce", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Análise de Dados", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" }
+      ]
+    }
+  ],
+
+  // Seção 6: Matriz de Divisão de Contas
+  divisaoContas: {
+    atual: [
+      { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "https://via.placeholder.com/150" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150" },
+      { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150" },
+      { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "https://via.placeholder.com/150" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150" }
+    ],
+    proposta: [
+      { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", fotoUrl: "https://via.placeholder.com/150", badge: "Core ML" },
+      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Expansão ML" },
+      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
+      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "https://via.placeholder.com/150", badge: "Novos Canais" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150", badge: "Core Shopee" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150", badge: "Core Tech" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://via.placeholder.com/150", badge: "1P B2B" }
+    ]
+  },
+
+  // Seção 7: Gestão Horizontal
+  metodologiaContinua: [
+    {
+      num: 1,
+      titulo: "1. Giro Mensal de Ideias & Backlog Estratégico",
+      foco: "Coleta de Ideias Inovadoras",
+      icone: "fa-solid fa-lightbulb",
+      corBadge: "bg-sky-500",
+      descricao: "Espaço dinâmico mensal para alinhamento entre as frentes de Site e Marketplace, revisão de projetos engavetados e priorização de ideias inovadoras no backlog. O foco principal é promover a captação contínua de inovações para a área."
+    },
+    {
+      num: 2,
+      titulo: "2. Workshop de Cadastro",
+      foco: "Capacitação & Alinhamento Técnico",
+      icone: "fa-solid fa-chalkboard-user",
+      corBadge: "bg-emerald-500",
+      descricao: "Espaço mensal dedicado a compartilhar treinamentos curtos sobre assuntos gerais e específicos da área de cadastro, garantindo padronização, reciclagem de conhecimentos e elevação do nível técnico da equipe."
+    },
+    {
+      num: 3,
+      titulo: "3. Cases de Sucesso",
+      foco: "Engajamento & Visão de Mercado",
+      icone: "fa-solid fa-trophy",
+      corBadge: "bg-amber-500",
+      descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
+    },
+    {
+      num: 4,
+      titulo: "4. Portfólio de Capacidades Técnicas & Inovação",
+      foco: "Evolução de Domínio & Excelência",
+      icone: "fa-solid fa-brain",
+      corBadge: "bg-purple-600",
+      descricao: "Mapeamento e desenvolvimento contínuo de competências avançadas — Taxonomia de Categorias, Neurociência do Consumo, CRO Visual (imagens de alta conversão), SEO On-Page & Engenharia de IA. Transformando a área em referência técnica complementar para antecipar cenários e otimizar novos projetos."
+    }
+  ],
+
+  // Seção 8: Otimização de Produtos por Canais
   funilNovo: {
     siteIndicador: {
       nome: "Site Próprio (E-commerce bringIT)",
@@ -313,162 +470,5 @@ const DATA_ANALISE = {
         { rotulo: "Canais de Produtos Acabados", desc: "Alocação estratégica de portfólio de giro rápido em marketplaces emergentes." }
       ]
     }
-  },
-
-  // Seção 6: Matriz de Divisão de Contas
-  divisaoContas: {
-    atual: [
-      { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-      { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-      { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
-    ],
-    proposta: [
-      { canal: "Mercado Livre", conta: "SC / SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "Core ML" },
-      { canal: "Mercado Livre", conta: "SP (PR) / MG", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Expansão ML" },
-      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
-      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
-      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Shopee" },
-      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Tech" },
-      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "1P B2B" }
-    ]
-  },
-
-  // Seção 7: Gestão Horizontal (4 Cards Incluindo o Novo de Capacidades Técnicas)
-  metodologiaContinua: [
-    {
-      num: 1,
-      titulo: "1. Giro Mensal de Ideias & Backlog Estratégico",
-      foco: "Coleta de Ideias Inovadoras",
-      icone: "fa-solid fa-lightbulb",
-      corBadge: "bg-sky-500",
-      descricao: "Espaço dinâmico mensal para alinhamento entre as frentes de Site e Marketplace, revisão de projetos engavetados e priorização de ideias inovadoras no backlog. O foco principal é promover a captação contínua de inovações para a área."
-    },
-    {
-      num: 2,
-      titulo: "2. Workshop de Cadastro",
-      foco: "Capacitação & Alinhamento Técnico",
-      icone: "fa-solid fa-chalkboard-user",
-      corBadge: "bg-emerald-500",
-      descricao: "Espaço mensal dedicado a compartilhar treinamentos curtos sobre assuntos gerais e específicos da área de cadastro, garantindo padronização, reciclagem de conhecimentos e elevação do nível técnico da equipe."
-    },
-    {
-      num: 3,
-      titulo: "3. Cases de Sucesso",
-      foco: "Engajamento & Visão de Mercado",
-      icone: "fa-solid fa-trophy",
-      corBadge: "bg-amber-500",
-      descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
-    },
-    {
-      num: 4,
-      titulo: "4. Portfólio de Capacidades Técnicas & Inovação",
-      foco: "Evolução de Domínio & Excelência",
-      icone: "fa-solid fa-brain",
-      corBadge: "bg-purple-600",
-      descricao: "Mapeamento e desenvolvimento contínuo de competências avançadas — Taxonomia de Categorias, Neurociência do Consumo, CRO Visual (imagens de alta conversão), SEO On-Page & Engenharia de IA. Transformando a área em referência técnica complementar para antecipar cenários e otimizar novos projetos."
-    }
-  ],
-
-  // Seção 8: Ficha de Perfil do Time (6 Integrantes)
-  fichasTime: [
-    {
-      id: "membro-maria",
-      nome: "Maria Soares",
-      cargo: "Analista de Cadastro Senior",
-      fotoUrl: "maria.jpeg",
-      resumoPerfil: "Profissional altamente focada em rotinas operacionais críticas de marketplaces e conexão de contas core. Demonstra forte capacidade de resolução técnica e ótimo domínio dos fluxos do ecossistema de e-commerce.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Digital Commerce", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
-      ]
-    },
-    {
-      id: "membro-raqueline",
-      nome: "Raqueline Souza",
-      cargo: "Analista de Marketplace",
-      fotoUrl: "raqueline.jpg",
-      resumoPerfil: "Especialista no gerenciamento de frentes tech e canais parceiros como Shopee, Kabum e Amazon 1P. Possui perfil proativo com alta orientação para otimização contínua do catálogo.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
-      ]
-    },
-    {
-      id: "membro-daniela",
-      nome: "Daniela Lourenço",
-      cargo: "Analista de Expansão & Canais",
-      fotoUrl: "daniela.webp",
-      resumoPerfil: "Focada na prospecção e estruturação de novos canais de vendas (TikTok Shop, Temu) e expansão regional das contas Mercado Livre. Possui olhar crítico para inovação de processos.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
-      ]
-    },
-    {
-      id: "membro-ingrid",
-      nome: "Ingrid",
-      cargo: "Analista de Cadastro",
-      fotoUrl: "ingrid.jpg",
-      resumoPerfil: "Integrante focada na qualidade de catálogo, estruturação visual de produtos e manutenção de rotinas operacionais no site e marketplaces com consistência de dados.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
-      ]
-    },
-    {
-      id: "membro-jennifer",
-      nome: "Jennifer",
-      cargo: "Analista de Operações & Cadastro",
-      fotoUrl: "jennifer.jpg",
-      resumoPerfil: "Responsável pelo suporte a chamados via Service Desk, otimização de novos cadastros e integração de sistemas para manutenção contínua dos canais.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
-      ]
-    },
-    {
-      id: "membro-patrick",
-      nome: "Patrick",
-      cargo: "Analista de Processos & Dados",
-      fotoUrl: "patrick.jpg",
-      resumoPerfil: "Focado no acompanhamento de indicadores, análise de performance de anúncios e suporte no desenvolvimento técnico de automações e ferramentas da área.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" }
-      ]
-    }
-  ]
+  }
 };

@@ -255,74 +255,35 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 5: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
-    <section id="secao-funil" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
-      <div onclick="toggleSecao('secao-funil')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
-        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-          <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
-          5. Otimização de Produtos por Canais
-        </h3>
+    <!-- SEÇÃO 5: FICHA DE PERFIL DO TIME -->
+    <section id="secao-fichas-time" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs border-2 border-sky-200">
+      <div onclick="toggleSecao('secao-fichas-time')" class="p-6 cursor-pointer bg-gradient-to-r from-sky-50/70 via-white to-white flex items-center justify-between border-b border-sky-100 hover:bg-sky-50 transition">
         <div class="flex items-center gap-3">
-          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Afunilamento de Canais</span>
-          <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-[#00A3FF] text-white rounded-md">Equipe</span>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-address-card text-[#00A3FF]"></i>
+            5. Ficha de Perfil do Time
+          </h3>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-[#00A3FF] font-bold hidden sm:inline-block">Nível Técnico & Liderança Situacional por Competência</span>
+          <div class="w-8 h-8 rounded-full bg-sky-100 text-[#00A3FF] flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
             <i class="fa-solid fa-chevron-down"></i>
           </div>
         </div>
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-        <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
-        <div id="containerSiteIndicador">
-          <!-- Injetado via JS -->
+        <div class="p-4 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
+          <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
+          <p class="text-xs text-slate-700 font-medium leading-relaxed">
+            <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
+          </p>
         </div>
-
-        <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
-        <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
-          
-          <!-- BOCA DO FUNIL -->
-          <div class="space-y-2">
-            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-              <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
-                <i class="fa-solid fa-arrows-to-dot text-[#00A3FF]"></i> Boca do Funil: Participação por Receita (Apenas Marketplaces)
-              </span>
-              <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
-            </div>
-
-            <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
-              <!-- Injetado via JS -->
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2" id="gridBocaLegenda">
-              <!-- Injetado via JS -->
-            </div>
-          </div>
-
-          <div class="flex justify-center my-2 text-sky-400">
-            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
-          </div>
-
-          <!-- MEIO DO FUNIL -->
-          <div class="max-w-4xl mx-auto space-y-3">
-            <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
-              <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
-                <i class="fa-solid fa-vial"></i> Meio do Funil: Análises Profundas para Segmentação Estratégica
-              </span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridMeioFunil">
-              <!-- Injetado via JS -->
-            </div>
-          </div>
-
-          <div class="flex justify-center my-2 text-emerald-500">
-            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
-          </div>
-
-          <!-- FINAL DO FUNIL -->
-          <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
-            <!-- Injetado via JS -->
-          </div>
-
+        
+        <!-- Lista de Cards Expansíveis dos Membros do Time -->
+        <div class="space-y-4" id="listaFichasTime">
+          <!-- Injetado via JS -->
         </div>
       </div>
     </section>
@@ -391,15 +352,15 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 7: GESTÃO HORIZONTAL (AGORA COM 4 GRID CARDS) -->
+    <!-- SEÇÃO 7: GESTÃO HORIZONTAL -->
     <section id="secao-metodologia" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
       <div onclick="toggleSecao('secao-metodologia')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
           <i class="fa-solid fa-arrows-spin text-emerald-600"></i>
-          7. Gestão Horizontal & Domínio Técnico
+          7. Gestão Horizontal
         </h3>
         <div class="flex items-center gap-3">
-          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Rituais, Inovação & Capacidades</span>
+          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Inovação & Capacidades</span>
           <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
             <i class="fa-solid fa-chevron-down"></i>
           </div>
@@ -413,35 +374,74 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 8: FICHA DE PERFIL DO TIME -->
-    <section id="secao-fichas-time" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs border-2 border-sky-200">
-      <div onclick="toggleSecao('secao-fichas-time')" class="p-6 cursor-pointer bg-gradient-to-r from-sky-50/70 via-white to-white flex items-center justify-between border-b border-sky-100 hover:bg-sky-50 transition">
+    <!-- SEÇÃO 8: OTIMIZAÇÃO DE PRODUTOS POR CANAIS -->
+    <section id="secao-funil" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
+      <div onclick="toggleSecao('secao-funil')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
+        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+          <i class="fa-solid fa-filter-circle-dollar text-emerald-600"></i>
+          8. Otimização de Produtos por Canais
+        </h3>
         <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-[#00A3FF] text-white rounded-md">Equipe</span>
-          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
-            <i class="fa-solid fa-address-card text-[#00A3FF]"></i>
-            8. Ficha de Perfil do Time
-          </h3>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-[#00A3FF] font-bold hidden sm:inline-block">Nível Técnico & Liderança Situacional por Competência</span>
-          <div class="w-8 h-8 rounded-full bg-sky-100 text-[#00A3FF] flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+          <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Indicação de Segmentação de Produtos</span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
             <i class="fa-solid fa-chevron-down"></i>
           </div>
         </div>
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-        <div class="p-4 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
-          <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
-          <p class="text-xs text-slate-700 font-medium leading-relaxed">
-            <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
-          </p>
-        </div>
-        
-        <!-- Lista de Cards Expansíveis dos Membros do Time -->
-        <div class="space-y-4" id="listaFichasTime">
+        <!-- Linha Externa Destacada: Indicador do SITE Fora do Funil -->
+        <div id="containerSiteIndicador">
           <!-- Injetado via JS -->
+        </div>
+
+        <!-- ESTRUTURA VISUAL DE FUNIL TRAPEZOIDAL -->
+        <div class="bringit-card p-6 md:p-8 space-y-6 bg-gradient-to-b from-white via-slate-50/50 to-sky-50/30 border-[#00A3FF]">
+          
+          <!-- BOCA DO FUNIL -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+              <span class="text-xs font-black uppercase tracking-wider text-[#1C275C] flex items-center gap-2">
+                <i class="fa-solid fa-arrows-to-dot text-[#00A3FF]"></i> Boca do Funil: Participação por Receita (Apenas Marketplaces)
+              </span>
+              <span class="text-[11px] font-bold text-gray-500">100% dos Marketplaces (R$ 71.795.309,05)</span>
+            </div>
+
+            <div class="h-14 w-full rounded-2xl overflow-hidden flex shadow-sm border border-gray-200 p-1 bg-gray-100 gap-1" id="barraBocaFunil">
+              <!-- Injetado via JS -->
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2" id="gridBocaLegenda">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+          <div class="flex justify-center my-2 text-sky-400">
+            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+          </div>
+
+          <!-- MEIO DO FUNIL -->
+          <div class="max-w-4xl mx-auto space-y-3">
+            <div class="flex items-center justify-center gap-2 border-b border-sky-100 pb-2">
+              <span class="text-xs font-black uppercase tracking-wider text-[#00A3FF] flex items-center gap-2">
+                <i class="fa-solid fa-vial"></i> Meio do Funil: Análises Profundas para Segmentação Estratégica
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="gridMeioFunil">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+
+          <div class="flex justify-center my-2 text-emerald-500">
+            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+          </div>
+
+          <!-- FINAL DO FUNIL -->
+          <div class="max-w-2xl mx-auto space-y-3" id="containerFinalFunil">
+            <!-- Injetado via JS -->
+          </div>
+
         </div>
       </div>
     </section>
@@ -461,10 +461,10 @@
       renderizarRotinasColunas();
       renderizarCardsEstruturacaoCronograma();
       renderizarCronograma();
-      renderizarFunilNovo();
+      renderizarFichasTime();
       renderizarTabelasContas();
       renderizarMetodologiaContinua();
-      renderizarFichasTime();
+      renderizarFunilNovo();
     });
 
     function toggleSecao(secaoId) {
@@ -798,6 +798,163 @@
       });
     }
 
+    function renderizarFichasTime() {
+      const container = document.getElementById('listaFichasTime');
+      if (!container || !DATA_ANALISE.fichasTime) return;
+
+      container.innerHTML = "";
+
+      DATA_ANALISE.fichasTime.forEach(m => {
+        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
+
+        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
+          let corBarra = "bg-amber-400";
+          if (t.nivelPct === 25) corBarra = "bg-red-400";
+          else if (t.nivelPct === 50) corBarra = "bg-amber-400";
+          else if (t.nivelPct === 75) corBarra = "bg-sky-500";
+          else if (t.nivelPct === 100) corBarra = "bg-emerald-500";
+
+          let badgeLideranca = "";
+          if (t.lideranca === "E1") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md" title="E1: Direcionar - Acompanhamento constante e instrução detalhada">E1: Direcionar</span>`;
+          } else if (t.lideranca === "E2") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md" title="E2: Orientar - Instrução acompanhada com explicações do porquê">E2: Orientar</span>`;
+          } else if (t.lideranca === "E3") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md" title="E3: Apoiar - Facilitação e encorajamento com autonomia">E3: Apoiar</span>`;
+          } else if (t.lideranca === "E4") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md" title="E4: Delegar - Autonomia total para tomada de decisão e execução">E4: Delegar</span>`;
+          }
+
+          return `
+            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
+                <div class="flex items-center gap-2">
+                  ${badgeLideranca}
+                  <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
+                </div>
+              </div>
+              
+              <div class="h-2.5 w-full bg-gray-200/70 rounded-full overflow-hidden border border-gray-200">
+                <div class="h-full ${corBarra} rounded-full transition-all duration-500" style="width: ${t.nivelPct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.innerHTML += `
+          <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
+            
+            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <div>
+                  <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
+                  <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para ver ficha completa</span>
+                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="membro-detalhes px-6 space-y-6">
+              
+              <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
+                <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
+                <p class="font-medium">${m.resumoPerfil}</p>
+              </div>
+
+              <div class="space-y-3 pt-1">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
+                  </span>
+                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  ${htmlBarrasTecnicas}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderizarTabelasContas() {
+      const tAtual = document.getElementById('tabelaContasAtual');
+      const tProp = document.getElementById('tabelaContasProposta');
+
+      const obterHtmlLogo = (nomeCanal) => {
+        const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
+        if (urlLogo) {
+          const isTikTok = nomeCanal === "TikTok";
+          const estilo = isTikTok ? "h-6 w-20 object-cover scale-125" : "h-6 w-auto object-contain max-w-[80px]";
+          return `<div class="h-7 flex items-center justify-start overflow-hidden"><img src="${urlLogo}" alt="${nomeCanal}" title="${nomeCanal}" loading="lazy" class="${estilo}"></div>`;
+        }
+        return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
+      };
+
+      tAtual.innerHTML = DATA_ANALISE.divisaoContas.atual.map(c => `
+        <tr class="hover:bg-gray-50">
+          <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+          <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
+          <td class="p-3">
+            <div class="flex items-center gap-2.5">
+              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+              <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      tProp.innerHTML = DATA_ANALISE.divisaoContas.proposta.map(c => `
+        <tr class="hover:bg-sky-50/50">
+          <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+          <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
+          <td class="p-3">
+            <div class="flex items-center gap-2.5">
+              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+              <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
+            </div>
+          </td>
+          <td class="p-3"><span class="px-2.5 py-1 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded-md shadow-2xs">${c.badge}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function renderizarMetodologiaContinua() {
+      const container = document.getElementById('gridMetodologiaContinua');
+      container.innerHTML = "";
+
+      DATA_ANALISE.metodologiaContinua.forEach(m => {
+        container.innerHTML += `
+          <div class="bringit-card p-6 bg-white flex flex-col justify-between hover:border-[#00A3FF] transition shadow-2xs space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white ${m.corBadge} rounded-full shadow-2xs">
+                  ${m.foco}
+                </span>
+                <div class="w-8 h-8 rounded-lg bg-sky-50 text-[#00A3FF] flex items-center justify-center font-black text-sm">
+                  <i class="${m.icone}"></i>
+                </div>
+              </div>
+
+              <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${m.titulo}</h4>
+              <p class="text-xs text-gray-600 leading-relaxed font-medium">${m.descricao}</p>
+            </div>
+          </div>
+        `;
+      });
+    }
+
     function renderizarFunilNovo() {
       const fData = DATA_ANALISE.funilNovo;
 
@@ -893,163 +1050,6 @@
           </div>
         </div>
       `;
-    }
-
-    function renderizarTabelasContas() {
-      const tAtual = document.getElementById('tabelaContasAtual');
-      const tProp = document.getElementById('tabelaContasProposta');
-
-      const obterHtmlLogo = (nomeCanal) => {
-        const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
-        if (urlLogo) {
-          const isTikTok = nomeCanal === "TikTok";
-          const estilo = isTikTok ? "h-6 w-20 object-cover scale-125" : "h-6 w-auto object-contain max-w-[80px]";
-          return `<div class="h-7 flex items-center justify-start overflow-hidden"><img src="${urlLogo}" alt="${nomeCanal}" title="${nomeCanal}" loading="lazy" class="${estilo}"></div>`;
-        }
-        return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
-      };
-
-      tAtual.innerHTML = DATA_ANALISE.divisaoContas.atual.map(c => `
-        <tr class="hover:bg-gray-50">
-          <td class="p-3">${obterHtmlLogo(c.canal)}</td>
-          <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
-          <td class="p-3">
-            <div class="flex items-center gap-2.5">
-              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
-              <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
-            </div>
-          </td>
-        </tr>
-      `).join('');
-
-      tProp.innerHTML = DATA_ANALISE.divisaoContas.proposta.map(c => `
-        <tr class="hover:bg-sky-50/50">
-          <td class="p-3">${obterHtmlLogo(c.canal)}</td>
-          <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
-          <td class="p-3">
-            <div class="flex items-center gap-2.5">
-              <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-9 h-9 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
-              <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
-            </div>
-          </td>
-          <td class="p-3"><span class="px-2.5 py-1 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded-md shadow-2xs">${c.badge}</span></td>
-        </tr>
-      `).join('');
-    }
-
-    function renderizarMetodologiaContinua() {
-      const container = document.getElementById('gridMetodologiaContinua');
-      container.innerHTML = "";
-
-      DATA_ANALISE.metodologiaContinua.forEach(m => {
-        container.innerHTML += `
-          <div class="bringit-card p-6 bg-white flex flex-col justify-between hover:border-[#00A3FF] transition shadow-2xs space-y-4">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white ${m.corBadge} rounded-full shadow-2xs">
-                  ${m.foco}
-                </span>
-                <div class="w-8 h-8 rounded-lg bg-sky-50 text-[#00A3FF] flex items-center justify-center font-black text-sm">
-                  <i class="${m.icone}"></i>
-                </div>
-              </div>
-
-              <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${m.titulo}</h4>
-              <p class="text-xs text-gray-600 leading-relaxed font-medium">${m.descricao}</p>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function renderizarFichasTime() {
-      const container = document.getElementById('listaFichasTime');
-      if (!container || !DATA_ANALISE.fichasTime) return;
-
-      container.innerHTML = "";
-
-      DATA_ANALISE.fichasTime.forEach(m => {
-        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
-
-        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
-          let corBarra = "bg-amber-400";
-          if (t.nivelPct === 25) corBarra = "bg-red-400";
-          else if (t.nivelPct === 50) corBarra = "bg-amber-400";
-          else if (t.nivelPct === 75) corBarra = "bg-sky-500";
-          else if (t.nivelPct === 100) corBarra = "bg-emerald-500";
-
-          let badgeLideranca = "";
-          if (t.lideranca === "E1") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md" title="E1: Direcionar - Acompanhamento constante e instrução detalhada">E1: Direcionar</span>`;
-          } else if (t.lideranca === "E2") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md" title="E2: Orientar - Instrução acompanhada com explicações do porquê">E2: Orientar</span>`;
-          } else if (t.lideranca === "E3") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md" title="E3: Apoiar - Facilitação e encorajamento com autonomia">E3: Apoiar</span>`;
-          } else if (t.lideranca === "E4") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md" title="E4: Delegar - Autonomia total para tomada de decisão e execução">E4: Delegar</span>`;
-          }
-
-          return `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
-                <div class="flex items-center gap-2">
-                  ${badgeLideranca}
-                  <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
-                </div>
-              </div>
-              
-              <div class="h-2.5 w-full bg-gray-200/70 rounded-full overflow-hidden border border-gray-200">
-                <div class="h-full ${corBarra} rounded-full transition-all duration-500" style="width: ${t.nivelPct}%;"></div>
-              </div>
-            </div>
-          `;
-        }).join('');
-
-        container.innerHTML += `
-          <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
-            
-            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
-              <div class="flex items-center gap-4">
-                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
-                <div>
-                  <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
-                  <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para ver ficha completa</span>
-                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="membro-detalhes px-6 space-y-6">
-              
-              <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
-                <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
-                <p class="font-medium">${m.resumoPerfil}</p>
-              </div>
-
-              <div class="space-y-3 pt-1">
-                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
-                  <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
-                  </span>
-                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  ${htmlBarrasTecnicas}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        `;
-      });
     }
 
     function toggleModoApresentacao() {

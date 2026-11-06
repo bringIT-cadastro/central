@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* Suporte suave de expansão de conteúdo */
+    /* Suporte suave de expansão de conteúdo das Seções e dos Cards */
     .secao-conteudo {
       max-height: 0;
       overflow: hidden;
@@ -21,12 +21,27 @@
       padding-bottom: 0;
     }
     .secao-card.aberta .secao-conteudo {
-      max-height: 3500px;
+      max-height: 5000px;
       opacity: 1;
       padding-top: 1.25rem;
       padding-bottom: 1.25rem;
     }
     .secao-card.aberta .icone-seta {
+      transform: rotate(180deg);
+    }
+
+    /* Expansão individual dos cards dos colaboradores */
+    .membro-detalhes {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+    .membro-card.aberto .membro-detalhes {
+      max-height: 2500px;
+      opacity: 1;
+    }
+    .membro-card.aberto .icone-seta-membro {
       transform: rotate(180deg);
     }
   </style>
@@ -398,6 +413,39 @@
       </div>
     </section>
 
+    <!-- SEÇÃO 8: FICHA DE PERFIL DO TIME (COM LIDERANÇA SITUACIONAL POR COMPETÊNCIA) -->
+    <section id="secao-fichas-time" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs border-2 border-sky-200">
+      <div onclick="toggleSecao('secao-fichas-time')" class="p-6 cursor-pointer bg-gradient-to-r from-sky-50/70 via-white to-white flex items-center justify-between border-b border-sky-100 hover:bg-sky-50 transition">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-[#00A3FF] text-white rounded-md">Equipe</span>
+          <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+            <i class="fa-solid fa-address-card text-[#00A3FF]"></i>
+            8. Ficha de Perfil do Time
+          </h3>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-[#00A3FF] font-bold hidden sm:inline-block">Nível Técnico & Liderança Situacional por Competência</span>
+          <div class="w-8 h-8 rounded-full bg-sky-100 text-[#00A3FF] flex items-center justify-center text-sm transition-transform duration-300 icone-seta">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="secao-conteudo px-6 space-y-6">
+        <div class="p-4 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
+          <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
+          <p class="text-xs text-slate-700 font-medium leading-relaxed">
+            <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
+          </p>
+        </div>
+        
+        <!-- Lista de Cards Expansíveis dos Membros do Time -->
+        <div class="space-y-4" id="listaFichasTime">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Scripts -->
@@ -416,6 +464,7 @@
       renderizarFunilNovo();
       renderizarTabelasContas();
       renderizarMetodologiaContinua();
+      renderizarFichasTime();
     });
 
     // Função de alternância do Acordeão Expansível por Seção
@@ -423,6 +472,14 @@
       const el = document.getElementById(secaoId);
       if (el) {
         el.classList.toggle('aberta');
+      }
+    }
+
+    // Função para expandir/recolher card individual de cada colaborador
+    function toggleMembro(membroId) {
+      const card = document.getElementById(membroId);
+      if (card) {
+        card.classList.toggle('aberto');
       }
     }
 
@@ -901,6 +958,101 @@
 
               <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${m.titulo}</h4>
               <p class="text-xs text-gray-600 leading-relaxed">${m.descricao}</p>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // RENDERIZAÇÃO DA SEÇÃO 8: FICHAS DO TIME COM LIDERANÇA POR COMPETÊNCIA
+    function renderizarFichasTime() {
+      const container = document.getElementById('listaFichasTime');
+      if (!container || !DATA_ANALISE.fichasTime) return;
+
+      container.innerHTML = "";
+
+      DATA_ANALISE.fichasTime.forEach(m => {
+        // Renderização das 7 Barras com Badge da Liderança Situacional por Competência
+        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
+          let corBarra = "bg-amber-400";
+          if (t.nivelPct === 25) corBarra = "bg-red-400";
+          else if (t.nivelPct === 50) corBarra = "bg-amber-400";
+          else if (t.nivelPct === 75) corBarra = "bg-sky-500";
+          else if (t.nivelPct === 100) corBarra = "bg-emerald-500";
+
+          // Estilização das Badges de Liderança Situacional (E1 a E4)
+          let badgeLideranca = "";
+          if (t.lideranca === "E1") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md" title="E1: Direcionar - Acompanhamento constante e instrução detalhada">E1: Direcionar</span>`;
+          } else if (t.lideranca === "E2") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md" title="E2: Orientar - Instrução acompanhada com explicações do porquê">E2: Orientar</span>`;
+          } else if (t.lideranca === "E3") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md" title="E3: Apoiar - Facilitação e encorajamento com autonomia">E3: Apoiar</span>`;
+          } else if (t.lideranca === "E4") {
+            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md" title="E4: Delegar - Autonomia total para tomada de decisão e execução">E4: Delegar</span>`;
+          }
+
+          return `
+            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
+                <div class="flex items-center gap-2">
+                  ${badgeLideranca}
+                  <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
+                </div>
+              </div>
+              
+              <div class="h-2.5 w-full bg-gray-200/70 rounded-full overflow-hidden border border-gray-200">
+                <div class="h-full ${corBarra} rounded-full transition-all duration-500" style="width: ${t.nivelPct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.innerHTML += `
+          <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
+            
+            <!-- Cabeçalho Principal da Ficha -->
+            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <img src="${m.fotoUrl}" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <div>
+                  <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
+                  <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para ver ficha completa</span>
+                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Corpo Expansível da Ficha do Membro -->
+            <div class="membro-detalhes px-6 space-y-6">
+              
+              <!-- Resumo do Perfil -->
+              <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
+                <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
+                <p class="font-medium">${m.resumoPerfil}</p>
+              </div>
+
+              <!-- Avaliações Técnicas com Estilo de Liderança Situacional por Competência -->
+              <div class="space-y-3 pt-1">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                  <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
+                  </span>
+                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  ${htmlBarrasTecnicas}
+                </div>
+              </div>
+
             </div>
           </div>
         `;

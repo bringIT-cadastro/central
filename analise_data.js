@@ -40,7 +40,7 @@ const DATA_ANALISE = {
     }
   ],
 
-  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais (Sem "Criação de Anúncios Genéricos")
+  // Seção 2: Diagnóstico de Demandas & Gargalos Operacionais
   gargalos: [
     {
       id: "g1",
@@ -361,6 +361,63 @@ const DATA_ANALISE = {
       icone: "fa-solid fa-trophy",
       corBadge: "bg-amber-500",
       descricao: "Espaço mensal para compartilhar os maiores feitos do mês, grandes desafios superados e o giro mensal de mudanças do ecossistema de e-commerce: Mantendo o time perfeitamente sintonizado na mesma página interna e externa sob a ótica do e-commerce."
+    }
+  ],
+
+  // Seção 8: Ficha de Perfil do Time (LIDERANÇA SITUACIONAL VINCULADA A CADA COMPETÊNCIA)
+  // Legenda dos Estilos de Liderança Situacional:
+  // E1: Direcionar (Baixa competência / Alvo de instruções diretas)
+  // E2: Orientar (Média-baixa competência / Acompanhamento e instrução)
+  // E3: Apoiar (Média-alta competência / Autonomia com suporte pontual)
+  // E4: Delegar (Alta competência / Autonomia total na tomada de decisão)
+  fichasTime: [
+    {
+      id: "membro-maria",
+      nome: "Maria Soares",
+      cargo: "Analista de Cadastro Senior",
+      fotoUrl: "maria.jpeg",
+      resumoPerfil: "Profissional altamente focada em rotinas operacionais críticas de marketplaces e conexão de contas core. Demonstra forte capacidade de resolução técnica e ótimo domínio dos fluxos do ecossistema de e-commerce.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Digital Commerce", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
+      ]
+    },
+    {
+      id: "membro-raqueline",
+      nome: "Raqueline Souza",
+      cargo: "Analista de Marketplace",
+      fotoUrl: "raqueline.jpg",
+      resumoPerfil: "Especialista no gerenciamento de frentes tech e canais parceiros como Shopee, Kabum e Amazon 1P. Possui perfil proativo com alta orientação para otimização contínua do catálogo.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
+        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
+      ]
+    },
+    {
+      id: "membro-daniela",
+      nome: "Daniela Lourenço",
+      cargo: "Analista de Expansão & Canais",
+      fotoUrl: "daniela.webp",
+      resumoPerfil: "Focada na prospecção e estruturação de novos canais de vendas (TikTok Shop, Temu) e expansão regional das contas Mercado Livre. Possui olhar crítico para inovação de processos.",
+      niveisTecnicos: [
+        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Sistemas", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Ferramentas de IA", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
+        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
+        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
+      ]
     }
   ]
 };

@@ -18,16 +18,12 @@
       opacity: 0;
     }
     .membro-card.aberto .membro-detalhes {
-      max-height: 3500px;
+      max-height: 4500px;
       opacity: 1;
       padding-bottom: 1.5rem;
     }
     .membro-card.aberto .icone-seta-membro {
       transform: rotate(180deg);
-    }
-    .checkbox-competencia:checked + label {
-      border-color: #00A3FF;
-      background-color: #F0F9FF;
     }
   </style>
 </head>
@@ -56,7 +52,30 @@
     </div>
   </div>
 
-  <!-- CONTEÚDO PRIVADO (OCULTO ATÉ A AUTENTICAÇÃO) -->
+  <!-- MODAL DE LEGENDA CONTEXTUAL DAS COMPETÊNCIAS -->
+  <div id="modalLegendaCompetencia" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200 space-y-4 relative">
+      <button onclick="fecharModalLegenda()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+        <i class="fa-solid fa-circle-xmark text-xl"></i>
+      </button>
+
+      <div class="flex items-center gap-3 border-b border-gray-100 pb-3">
+        <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center text-lg font-black">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+        <div>
+          <span class="text-[10px] font-black uppercase text-gray-400 tracking-wider">Matriz de Maturidade</span>
+          <h3 id="modalLegendaTitulo" class="text-base font-extrabold text-[#1C275C]">Qualidade e SEO</h3>
+        </div>
+      </div>
+
+      <div class="space-y-2.5 text-xs" id="modalLegendaConteudo">
+        <!-- Injetado via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRIVADO -->
   <div id="conteudoPrivado" class="hidden flex-1 flex flex-col">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
@@ -78,14 +97,29 @@
       </div>
     </header>
 
-    <!-- Conteúdo -->
+    <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
       
-      <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
-        <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
-        <p class="text-xs text-slate-700 font-medium leading-relaxed">
-          <strong>Selecionador de Projetos Integrado:</strong> Marque os checkboxes das competências envolvidas no novo projeto para calcular o <strong>Estilo de Liderança Combinado</strong> e obter o link do modelo de cronograma ideal (E1 a E4)[cite: 3].
-        </p>
+      <!-- BANNER DE DESTAQUE DO SELECIONADOR DE PROJETOS -->
+      <div class="p-5 bg-gradient-to-r from-indigo-900 via-sky-900 to-slate-900 text-white rounded-2xl border border-indigo-700 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-start md:items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-indigo-500/30 text-indigo-300 border border-indigo-400/40 flex items-center justify-center text-xl font-black flex-shrink-0 mt-0.5 md:mt-0">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-black text-sm text-indigo-200 uppercase tracking-wider">Selecionador de Projetos Integrado</span>
+              <span class="px-2.5 py-0.5 bg-[#00A3FF] text-white text-[10px] font-black rounded-md">10 Competências Mapeadas</span>
+            </div>
+            <p class="text-xs text-indigo-100/90 leading-relaxed font-medium">
+              Marque os checkboxes das competências envolvidas no novo projeto para calcular o <strong>Estilo de Liderança Combinado</strong> e obter o link direto do modelo de cronograma ideal (E1 a E4).
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-[11px] font-bold text-indigo-200 bg-indigo-950/60 px-3.5 py-2.5 rounded-xl border border-indigo-800 flex-shrink-0">
+          <i class="fa-solid fa-sliders text-[#00A3FF]"></i>
+          <span>Liderança Situacional</span>
+        </div>
       </div>
 
       <!-- Lista de Fichas -->
@@ -99,12 +133,11 @@
   <script>
     const SENHA_ACESSO = "bringit2026";
 
-    // URLs dos Modelos de Cronograma por Estilo de Liderança
     const URLS_CRONOGRAMAS = {
-      E1: "https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690", // E1: Direcionar (Detalhado)
-      E2: "https://docs.google.com/spreadsheets/d/1yQmVl64oh2-sO6A3MP8JrskM18XKShpQyhBxJdGIUzk/edit?gid=1900549214#gid=1900549214", // E2: Orientar (Compacto/Intermediário)
-      E3: "https://docs.google.com/spreadsheets/d/1QWAUuQgwwbOlhmk0s_hsoxD-KGgl84LA/edit?gid=1542147505#gid=1542147505", // E3: Apoiar (Marcos/Milestones)
-      E4: "https://docs.google.com/spreadsheets/d/16-q1M6LN42bnH_tRYfJcPlL6-5oHUwkMzrKrW8bqZ58/edit?gid=1132074376#gid=1132074376"  // E4: Delegar (Resumido/Executive)
+      E1: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E2: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E3: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E4: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470"
     };
 
     const DETALHES_ESTILOS = {
@@ -112,6 +145,69 @@
       E2: { nome: "E2: Orientar", cor: "bg-amber-500", textCor: "text-amber-800", bgLight: "bg-amber-50", border: "border-amber-200", desc: "Cronograma **Estruturado e Compacto**, combinando instrução clara com validações periódicas de entendimento." },
       E3: { nome: "E3: Apoiar", cor: "bg-sky-500", textCor: "text-sky-800", bgLight: "bg-sky-50", border: "border-sky-200", desc: "Cronograma **Direto com Foco em Marcos (Milestones)**, apoiando o analista nas entregas principais." },
       E4: { nome: "E4: Delegar", cor: "bg-emerald-500", textCor: "text-emerald-800", bgLight: "bg-emerald-50", border: "border-emerald-200", desc: "Cronograma **Resumido de Acompanhamento High-Level**, fornecendo autonomia total ao colaborador." }
+    };
+
+    const DICTIONARY_LEGENDAS_CAPACIDADES = {
+      "Publicação de Produtos": {
+        E1: "Necessita de roteiros detalhados e revisão de 100% dos SKUs antes de subir para o canal.",
+        E2: "Realiza os cadastros com poucas dúvidas, exigindo revisão por amostragem das variações.",
+        E3: "Conduz o fluxo completo de publicação, acionando suporte apenas em categorias complexas.",
+        E4: "Autonomia total no cadastro de massa, criação de regras e homologação direta."
+      },
+      "Qualidade e SEO": {
+        E1: "Executa padronização básica via checklist; necessita instrução em títulos e atributos.",
+        E2: "Domina a escrita de títulos e bullet points, ajustando otimizações via feedback.",
+        E3: "Aplica boas práticas de SEO nativamente e ajusta palavras-chave por canal de forma autônoma.",
+        E4: "Define diretrizes de qualidade do catálogo e otimiza conversão com base em métricas avançadas."
+      },
+      "Sistemas": {
+        E1: "Operação assistida no ERP/Platz; precisa de orientação nos passos de integração.",
+        E2: "Conhece as telas principais e resolve pequenos erros de sincronização com instrução.",
+        E3: "Conduz integrações e mapeamentos entre Platz, canais e ERP com segurança.",
+        E4: "Domina a arquitetura de sistemas, identificando causa-raiz em falhas de API/payload."
+      },
+      "Workspace Google": {
+        E1: "Utilização básica de planilhas e Drive; necessita de modelos prontos.",
+        E2: "Constrói relatórios organizados e utiliza fórmulas intermediárias no Sheets.",
+        E3: "Desenvolve planilhas automatizadas de controle e gestão de dados do time.",
+        E4: "Cria ferramentas avançadas e rotinas eficientes no Workspace Google para a operação."
+      },
+      "Ferramentas de IA": {
+        E1: "Utiliza IA apenas com prompts pré-definidos fornecidos pela liderança.",
+        E2: "Cria prompts próprios para otimizar textos e descrições de produtos.",
+        E3: "Integra ferramentas de IA na rotina diária para ganho de velocidade e tratamento de dados.",
+        E4: "Mapeia novos casos de uso de IA e capacita o restante da equipe em inovação."
+      },
+      "Digital Commerce": {
+        E1: "Compreensão inicial dos fluxos de e-commerce e regras comerciais de marketplaces.",
+        E2: "Entende o funcionamento dos ecossistemas de canais e particularidades de cada loja.",
+        E3: "Visão abrangente sobre margens, regras de frete e posicionamento de produtos.",
+        E4: "Visão estratégica total de e-commerce, recomendando otimizaciones de portfólio por canal."
+      },
+      "Análise de Dados": {
+        E1: "Leitura de relatórios prontos; necessita de auxílio para cruzar informações.",
+        E2: "Identifica anomalias em relatórios e gera insights básicos sobre o desempenho.",
+        E3: "Gera relatórios comparativos completos e aponta oportunidades de melhoria de vendas.",
+        E4: "Constrói análises preditivas, dashboards e orienta decisões estratégicas com dados."
+      },
+      "Gestão de Prazos & SLAs": {
+        E1: "Dificuldade em estimar prazos; necessita de metas diárias fragmentadas pelo gestor.",
+        E2: "Cumpre prazos de rotina, mas precisa de alinhamento ao lidar com projetos concorrentes.",
+        E3: "Excelente autogestão; requer apoio do gestor apenas para repriorização em picos de demanda.",
+        E4: "Gerencia sua própria fila com maestria, cumprindo SLAs e sinalizando riscos de forma antecipada."
+      },
+      "Resolução de Problemas": {
+        E1: "Depende do gestor/sênior para diagnosticar a causa-raiz de qualquer erro ou rejeição.",
+        E2: "Identifica a ocorrência do erro, mas necessita de orientação na investigação do motivo.",
+        E3: "Diagnostica a causa-raiz e apresenta propostas de solução prontas para validação.",
+        E4: "Resolve travamentos técnicos complexos autonomamente e documenta o aprendizado para o time."
+      },
+      "Comunicação Interdepartamental": {
+        E1: "Necessita da intermediação direta do gestor ao interagir com outros setores.",
+        E2: "Comunica-se com clareza, mas precisa de orientação prévia antes de reuniões decisivas.",
+        E3: "Conduz alinhamentos com Comercial, SAC e TI de forma autônoma, acionando a gestão só em conflitos.",
+        E4: "Lidera reuniões e handovers interdepartamentais com alta fluidez e excelente articulação."
+      }
     };
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -151,7 +247,49 @@
       }
     }
 
-    // Função de Cálculo Ponderado e Desempate por Elevação de Autonomia
+    function abrirModalLegenda(nomeFluxo, estiloDesignado) {
+      const modal = document.getElementById('modalLegendaCompetencia');
+      const titulo = document.getElementById('modalLegendaTitulo');
+      const conteudo = document.getElementById('modalLegendaConteudo');
+
+      titulo.textContent = nomeFluxo;
+      const dictCap = DICTIONARY_LEGENDAS_CAPACIDADES[nomeFluxo] || {
+        E1: "Treinamento inicial e direcionamento diário.",
+        E2: "Acompanhamento estruturado com checagens.",
+        E3: "Suporte pontual em entregas estratégicas.",
+        E4: "Autonomia total na condução do processo."
+      };
+
+      const niveis = [
+        { code: "E1", nome: "E1: Direcionar (25%)", desc: dictCap.E1, bg: "bg-red-50 border-red-200 text-red-900", badge: "bg-red-500 text-white" },
+        { code: "E2", nome: "E2: Orientar (50%)", desc: dictCap.E2, bg: "bg-amber-50 border-amber-200 text-amber-900", badge: "bg-amber-500 text-white" },
+        { code: "E3", nome: "E3: Apoiar (75%)", desc: dictCap.E3, bg: "bg-sky-50 border-sky-200 text-sky-900", badge: "bg-sky-500 text-white" },
+        { code: "E4", nome: "E4: Delegar (100%)", desc: dictCap.E4, bg: "bg-emerald-50 border-emerald-200 text-emerald-900", badge: "bg-emerald-500 text-white" }
+      ];
+
+      conteudo.innerHTML = niveis.map(n => {
+        const isSelected = n.code === estiloDesignado;
+        const destaqueBorder = isSelected ? 'ring-2 ring-indigo-600 font-bold shadow-sm' : 'opacity-70';
+        const tagAtual = isSelected ? `<span class="ml-auto px-2 py-0.5 bg-indigo-900 text-white text-[9px] font-black uppercase rounded">Nível Atual do Analista</span>` : '';
+
+        return `
+          <div class="p-3 rounded-xl border ${n.bg} ${destaqueBorder} transition-all">
+            <div class="flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 text-[10px] font-black uppercase rounded ${n.badge}">${n.nome}</span>
+              ${tagAtual}
+            </div>
+            <p class="text-xs leading-relaxed font-medium">${n.desc}</p>
+          </div>
+        `;
+      }).join('');
+
+      modal.classList.remove('hidden');
+    }
+
+    function fecharModalLegenda() {
+      document.getElementById('modalLegendaCompetencia').classList.add('hidden');
+    }
+
     function calcularEstiloResultante(membroId) {
       const checkboxes = document.querySelectorAll(`.chk-${membroId}:checked`);
       const containerResultado = document.getElementById(`resultado-projeto-${membroId}`);
@@ -167,19 +305,14 @@
       }
 
       const contagem = { E1: 0, E2: 0, E3: 0, E4: 0 };
-      const selecionadasNomes = [];
-
       checkboxes.forEach(chk => {
         const estilo = chk.dataset.estilo;
         contagem[estilo]++;
-        selecionadasNomes.push(chk.dataset.fluxo);
       });
 
-      // Regra de Moda e Desempate:
       const maxCount = Math.max(...Object.values(contagem));
       const candidatas = Object.keys(contagem).filter(est => contagem[est] === maxCount);
 
-      // Em caso de empate na contagem máxima, pega a de maior autonomia (ex: E2 empata com E1 -> assume E2)
       candidatas.sort((a, b) => parseInt(b[1]) - parseInt(a[1]));
       const estiloFinal = candidatas[0];
 
@@ -197,7 +330,6 @@
               </div>
             </div>
 
-            <!-- Botão Modelo de Cronograma -->
             <a href="${urlModelo}" target="_blank" class="px-4 py-2.5 bg-white hover:bg-slate-50 text-[#1C275C] border border-gray-300 font-extrabold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-2xs">
               <i class="fa-solid fa-file-excel text-emerald-600 text-sm"></i>
               <span>Abrir Modelo Cronograma (${estiloFinal})</span>
@@ -214,13 +346,11 @@
 
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
-      if (!container || !DATA_ANALISE.fichasTime) return;
+      if (!container || typeof DATA_ANALISE === 'undefined' || !DATA_ANALISE.fichasTime) return;
 
       container.innerHTML = "";
 
       DATA_ANALISE.fichasTime.forEach(m => {
-        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
-
         const htmlBarrasTecnicas = m.niveisTecnicos.map((t, idx) => {
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
@@ -230,13 +360,13 @@
 
           let badgeLideranca = "";
           if (t.lideranca === "E1") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md">E1: Direcionar</span>`;
+            badgeLideranca = `<button onclick="abrirModalLegenda('${t.fluxo}', 'E1')" title="Clique para ver o critério de cada nível" class="px-2 py-0.5 text-[10px] font-black bg-red-100 text-red-700 border border-red-200 rounded-md hover:bg-red-200 transition cursor-pointer flex items-center gap-1"><span>E1: Direcionar</span> <i class="fa-solid fa-circle-info text-[9px]"></i></button>`;
           } else if (t.lideranca === "E2") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md">E2: Orientar</span>`;
+            badgeLideranca = `<button onclick="abrirModalLegenda('${t.fluxo}', 'E2')" title="Clique para ver o critério de cada nível" class="px-2 py-0.5 text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 rounded-md hover:bg-amber-200 transition cursor-pointer flex items-center gap-1"><span>E2: Orientar</span> <i class="fa-solid fa-circle-info text-[9px]"></i></button>`;
           } else if (t.lideranca === "E3") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md">E3: Apoiar</span>`;
+            badgeLideranca = `<button onclick="abrirModalLegenda('${t.fluxo}', 'E3')" title="Clique para ver o critério de cada nível" class="px-2 py-0.5 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md hover:bg-sky-200 transition cursor-pointer flex items-center gap-1"><span>E3: Apoiar</span> <i class="fa-solid fa-circle-info text-[9px]"></i></button>`;
           } else if (t.lideranca === "E4") {
-            badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md">E4: Delegar</span>`;
+            badgeLideranca = `<button onclick="abrirModalLegenda('${t.fluxo}', 'E4')" title="Clique para ver o critério de cada nível" class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md hover:bg-emerald-200 transition cursor-pointer flex items-center gap-1"><span>E4: Delegar</span> <i class="fa-solid fa-circle-info text-[9px]"></i></button>`;
           }
 
           const chkId = `chk-${m.id}-${idx}`;
@@ -244,8 +374,6 @@
           return `
             <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2 relative hover:border-sky-200 transition">
               <div class="flex items-center justify-between gap-2 flex-wrap">
-                
-                <!-- Title + Compact Checkbox -->
                 <div class="flex items-center gap-2">
                   <input type="checkbox" id="${chkId}" data-estilo="${t.lideranca}" data-fluxo="${t.fluxo}" onchange="calcularEstiloResultante('${m.id}')" class="chk-${m.id} w-4 h-4 text-[#00A3FF] rounded border-gray-300 focus:ring-[#00A3FF] cursor-pointer">
                   <label for="${chkId}" class="font-extrabold text-[#1C275C] text-xs cursor-pointer select-none">${t.fluxo}</label>
@@ -269,7 +397,9 @@
             
             <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
               <div class="flex items-center gap-4">
-                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                  <img src="${m.fotoUrl}" alt="${m.nome}" class="w-full h-full object-cover">
+                </div>
                 <div>
                   <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
                   <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>
@@ -293,9 +423,9 @@
               <div class="space-y-3 pt-1">
                 <div class="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Avaliação Técnica (Marque as competências do projeto)
+                    <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Avaliação Técnica (10 Competências Mapeadas)
                   </span>
-                  <span class="text-[10px] font-bold text-gray-400">Marque os checkboxes para simular</span>
+                  <span class="text-[10px] font-bold text-gray-400">Clique na tag E1-E4 para ver o critério</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -303,7 +433,6 @@
                 </div>
               </div>
 
-              <!-- Painel Resultado do Selecionador de Projetos -->
               <div class="pt-2">
                 <div class="border-t border-gray-100 pt-4">
                   <h5 class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider mb-2 flex items-center gap-2">

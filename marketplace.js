@@ -1,49 +1,27 @@
-// marketplace.js - Central de Atividades Marketplace bringIT
+// marketplace.js - Gestão e Operações de Marketplace bringIT
 
 const DATA_MARKETPLACE = {
-  filtrosCriticos: [
-    {
-      titulo: "Filtros Críticos Mercado Livre",
-      cor: "bg-amber-50 border-amber-200 text-amber-900",
-      corIcone: "bg-amber-100 text-amber-700",
-      filtros: [
-        { nome: "Anúncios em Revisão", url: "#", desc: "Anúncios bloqueados ou sob análise da plataforma" },
-        { nome: "Erros de Atributos Críticos", url: "#", desc: "Falta de especificações técnicas obrigatórias" },
-        { nome: "Produtos sem Categoria", url: "#", desc: "Itens em categorias genéricas ou incorretas" }
-      ]
-    },
-    {
-      titulo: "Filtros Críticos Shopee",
-      cor: "bg-orange-50 border-orange-200 text-orange-900",
-      corIcone: "bg-orange-100 text-orange-700",
-      filtros: [
-        { nome: "Produtos Inativados por Violação", url: "#", desc: "Alertas de marca, palavras proibidas ou imagens" },
-        { nome: "Falha de Sincronização Platz", url: "#", desc: "Divergência entre estoque/preço no ERP e Shopee" }
-      ]
-    }
-  ],
-
   rotinas: [
-    { id: "MKT-01", nome: "Novos Cadastros l Conexão de Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", pilar: "Novos Cadastros", responsavel: "Maria Soares" },
-    { id: "MKT-02", nome: "Ponte de Comando l Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", pilar: "Novos Cadastros", responsavel: "Maria Soares" },
-    { id: "MKT-03", nome: "Ponte de Comando l Atualização de Atributos", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-04", nome: "Ponte de Comando l Pausa de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-05", nome: "Ponte de Comando l Reativação de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-06", nome: "Conferência e correção de cadastros nos canais, produtos inativos/bloqueados", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", pilar: "Melhoria de Catálogo", responsavel: "Maria Soares" },
-    { id: "MKT-07", nome: "Mercado Livre l Manutenção e correção dos anúncios \"Em Revisão\"", tipo: "Puxada", periodicidade: "Quinzenal", prioridade: "Alta", pilar: "Melhoria de Catálogo", responsavel: "Maria Soares" },
-    { id: "MKT-08", nome: "Acompanhamento dos indicadores dos marketplaces e identificação de correções", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-09", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Baixa", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-10", nome: "Service Desk l Fila - Conexão de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", pilar: "Service Desk", responsavel: "Maria Soares" },
-    { id: "MKT-11", nome: "Service Desk l Fila - Correção de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", pilar: "Service Desk", responsavel: "Raqueline Souza" },
-    { id: "MKT-12", nome: "Service Desk l Fila - RMA Erro de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", pilar: "Service Desk", responsavel: "Maria Soares" },
-    { id: "MKT-13", nome: "Service Desk l Pausar ou Ativar Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Média", pilar: "Service Desk", responsavel: "Raqueline Souza" },
-    { id: "MKT-14", nome: "Validação de SKUs que chegam em importações", tipo: "Puxada", periodicidade: "Pontual", prioridade: "Média", pilar: "Novos Cadastros", responsavel: "Maria Soares" },
-    { id: "MKT-15", nome: "Manutenção vínculo de identidade Platz x Canal", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-16", nome: "Criação e atualização de documentação dos canais", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Baixa", pilar: "Melhoria de Catálogo", responsavel: "Maria Soares" },
-    { id: "MKT-17", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", pilar: "Melhoria de Catálogo", responsavel: "Maria Soares" },
-    { id: "MKT-18", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", pilar: "Melhoria de Catálogo", responsavel: "Raqueline Souza" },
-    { id: "MKT-19", nome: "Preenchimento e acompanhamento de KPIs", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", pilar: "Geral", responsavel: "Equipe Cadastro" },
-    { id: "MKT-20", nome: "Acompanhamento e Análise de devoluções de cada canal", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", pilar: "Melhoria de Catálogo", responsavel: "Maria Soares" }
+    { id: "MKT-01", nome: "Novos Cadastros l Conexão de Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-02", nome: "Ponte de Comando l Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-03", nome: "Ponte de Comando l Atualização de Atributos", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-04", nome: "Ponte de Comando l Pausa de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-05", nome: "Ponte de Comando l Reativação de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-06", nome: "Conferência e correção de cadastros nos canais, produtos inativos/bloqueados", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-07", nome: "Mercado Livre l Manutenção e correção dos anúncios \"Em Revisão\"", tipo: "Puxada", periodicidade: "Quinzenal", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-08", nome: "Acompanhamento dos indicadores dos marketplaces e identificação de correções", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-09", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Baixa", responsavel: "Raqueline Souza" },
+    { id: "MKT-10", nome: "Service Desk l Fila - Conexão de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-11", nome: "Service Desk l Fila - Correção de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Raqueline Souza" },
+    { id: "MKT-12", nome: "Service Desk l Fila - RMA Erro de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-13", nome: "Service Desk l Pausar ou Ativar Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-14", nome: "Validação de SKUs que chegam em importações", tipo: "Puxada", periodicidade: "Pontual", prioridade: "Média", responsavel: "Maria Soares" },
+    { id: "MKT-15", nome: "Manutenção vínculo de identidade Platz x Canal", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-16", nome: "Criação e atualização de documentação dos canais", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Baixa", responsavel: "Maria Soares" },
+    { id: "MKT-17", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" },
+    { id: "MKT-18", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
+    { id: "MKT-19", nome: "Preenchimento e acompanhamento de KPIs", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Equipe Cadastro" },
+    { id: "MKT-20", nome: "Acompanhamento e Análise de devoluções de cada canal", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" }
   ]
 };
 
@@ -51,7 +29,6 @@ function renderizarMarketplace() {
   renderizarAbaMarketplace();
 }
 
-// Renderização Principal da Aba Marketplace (ORDEM CORRIGIDA)
 function renderizarAbaMarketplace() {
   const container = document.getElementById('conteudoAba');
   if (!container) return;
@@ -59,17 +36,17 @@ function renderizarAbaMarketplace() {
   container.innerHTML = `
     <div class="space-y-6">
       
-      <!-- 1ª OPÇÃO: ESTUDO DE REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
+      <!-- 1º LUGAR: ESTUDO DE REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
       <div id="containerRedistribuicaoContasMarketplace">
         ${renderizarEstruturaRedistribuicaoHtml()}
       </div>
 
-      <!-- 2ª OPÇÃO: FILTROS CRÍTICOS (MELI E SHOPEE) -->
+      <!-- 2º LUGAR: FILTROS CRÍTICOS ML E SHOPEE (UTILIZANDO DATA_FILTROS) -->
       <div class="space-y-4">
         ${renderizarFiltrosCriticosMarketplace()}
       </div>
 
-      <!-- 3ª OPÇÃO: TABELA DE ROTINAS E ATIVIDADES -->
+      <!-- 3º LUGAR: TABELA DE ROTINAS E ATIVIDADES -->
       <div class="bringit-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-2xs space-y-4 p-6">
         <div class="flex items-center justify-between border-b border-gray-100 pb-4">
           <div class="flex items-center gap-2">
@@ -108,40 +85,79 @@ function renderizarAbaMarketplace() {
   }
 }
 
+// Renderizador dos Filtros Críticos usando a base completa do filtros.js
 function renderizarFiltrosCriticosMarketplace() {
-  return DATA_MARKETPLACE.filtrosCriticos.map((fc, idx) => `
-    <div class="bringit-card ${fc.cor} rounded-2xl p-5 border shadow-2xs space-y-3">
-      <div class="flex items-center justify-between cursor-pointer" onclick="toggleFiltroCritico('fc-mkt-${idx}')">
+  const listaFiltros = (typeof DATA_FILTROS !== 'undefined') ? DATA_FILTROS : [];
+  
+  const filtrosML = listaFiltros.filter(f => f.categoriaPrincipal === "ML" || f.canal === "Mercado Livre");
+  const filtrosShopee = listaFiltros.filter(f => f.categoriaPrincipal === "Shopee" || f.canal === "Shopee");
+
+  return `
+    <!-- Filtros Mercado Livre -->
+    <div class="bringit-card bg-amber-50 border-amber-200 text-amber-900 rounded-2xl p-5 border shadow-2xs space-y-3">
+      <div class="flex items-center justify-between cursor-pointer" onclick="toggleFiltroCritico('fc-mkt-ml')">
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl ${fc.corIcone} flex items-center justify-center font-black text-sm">
+          <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-black text-sm">
             <i class="fa-solid fa-filter"></i>
           </div>
           <div>
-            <h4 class="font-extrabold text-[#1C275C] text-sm">${fc.titulo}</h4>
-            <p class="text-xs text-gray-500">Atalhos rápidos e cópia de URLs de filtros</p>
+            <h4 class="font-extrabold text-[#1C275C] text-sm">Filtros Críticos Mercado Livre (${filtrosML.length} Atalhos)</h4>
+            <p class="text-xs text-gray-500">Links diretos para moderações, revisões e experiências de compra</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para visualizar</span>
-          <i id="seta-fc-mkt-${idx}" class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform"></i>
+          <i id="seta-fc-mkt-ml" class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform"></i>
         </div>
       </div>
 
-      <div id="fc-mkt-${idx}" class="hidden pt-3 border-t border-gray-200/60 grid grid-cols-1 md:grid-cols-3 gap-3">
-        ${fc.filtros.map(f => `
-          <a href="${f.url}" target="_blank" class="p-3 bg-white hover:bg-sky-50/50 rounded-xl border border-gray-200 transition flex flex-col justify-between space-y-1">
+      <div id="fc-mkt-ml" class="hidden pt-3 border-t border-gray-200/60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        ${filtrosML.map(f => `
+          <a href="${f.url}" target="_blank" class="p-3 bg-white hover:bg-amber-100/50 rounded-xl border border-amber-200 transition flex flex-col justify-between space-y-1">
             <span class="font-extrabold text-[#1C275C] text-xs flex items-center justify-between">
               ${f.nome}
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-[#00A3FF]"></i>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-amber-600"></i>
             </span>
-            <span class="text-[11px] text-gray-500">${f.desc}</span>
+            <span class="text-[10px] text-gray-400 uppercase font-black">Mercado Livre</span>
           </a>
         `).join('')}
       </div>
     </div>
-  `).join('');
+
+    <!-- Filtros Shopee -->
+    <div class="bringit-card bg-orange-50 border-orange-200 text-orange-900 rounded-2xl p-5 border shadow-2xs space-y-3">
+      <div class="flex items-center justify-between cursor-pointer" onclick="toggleFiltroCritico('fc-mkt-shopee')">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm">
+            <i class="fa-solid fa-filter"></i>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-[#1C275C] text-sm">Filtros Críticos Shopee (${filtrosShopee.length} Atalhos)</h4>
+            <p class="text-xs text-gray-500">Links diretos para banimentos, deboost e produtos sob análise</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para visualizar</span>
+          <i id="seta-fc-mkt-shopee" class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform"></i>
+        </div>
+      </div>
+
+      <div id="fc-mkt-shopee" class="hidden pt-3 border-t border-gray-200/60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        ${filtrosShopee.map(f => `
+          <a href="${f.url}" target="_blank" class="p-3 bg-white hover:bg-orange-100/50 rounded-xl border border-orange-200 transition flex flex-col justify-between space-y-1">
+            <span class="font-extrabold text-[#1C275C] text-xs flex items-center justify-between">
+              ${f.nome}
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-orange-600"></i>
+            </span>
+            <span class="text-[10px] text-gray-400 uppercase font-black">Shopee</span>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
 }
 
+// Renderiza a tabela comparativa usando as imagens locais oficiais do projeto
 function renderizarEstruturaRedistribuicaoHtml() {
   const obterHtmlLogo = (nomeCanal) => {
     const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
@@ -153,13 +169,24 @@ function renderizarEstruturaRedistribuicaoHtml() {
     return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
   };
 
-  const getSvgAvatar = (name) => {
-    const fn = (typeof gerarAvatarSvgSeguro === 'function') ? gerarAvatarSvgSeguro : (n) => `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" fill="%2300A3FF"/><text x="50%" y="50%" fill="%23FFF" font-size="48" text-anchor="middle" dominant-baseline="middle">${n[0]}</text></svg>`;
-    return fn(name);
-  };
+  const dadosAtual = [
+    { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "TikTok Shop", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
+  ];
 
-  const dadosAtual = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.atual : [];
-  const dadosProposta = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.proposta : [];
+  const dadosProposta = [
+    { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", badge: "CD SC & MG", fotoUrl: "maria.jpeg" },
+    { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", badge: "CD SP & PR", fotoUrl: "daniela.webp" },
+    { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "daniela.webp" },
+    { canal: "TikTok Shop", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "daniela.webp" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee", fotoUrl: "raqueline.jpg" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech", fotoUrl: "raqueline.jpg" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B", fotoUrl: "raqueline.jpg" }
+  ];
 
   const htmlAtual = dadosAtual.map(c => `
     <tr class="hover:bg-gray-50 transition-colors">
@@ -167,7 +194,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" onerror="this.src='${getSvgAvatar(c.responsavel)}'" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
           <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
         </div>
       </td>
@@ -180,7 +207,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" onerror="this.src='${getSvgAvatar(c.responsavel)}'" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
           <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
         </div>
       </td>

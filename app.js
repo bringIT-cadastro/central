@@ -1,17 +1,16 @@
-// app.js - Núcleo de Navegação e Roteamento da Central bringIT
+// app.js - Roteador Central e Gerenciador de Navegação bringIT
 
 let abaAtual = 'time';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializa na aba padrão ao carregar a página
+  // Inicializa na aba padrão ao carregar
   navegarAba('time');
 });
 
-// Função principal de navegação por abas
 function navegarAba(aba) {
   abaAtual = aba;
 
-  // 1. Atualizar visual dos botões do menu lateral
+  // 1. Atualizar destaque dos botões do menu lateral
   const botoes = document.querySelectorAll('.menu-link');
   botoes.forEach(btn => {
     btn.classList.remove('bg-[#00A3FF]', 'text-white', 'shadow-md');
@@ -24,7 +23,7 @@ function navegarAba(aba) {
     btnAtivo.classList.add('bg-[#00A3FF]', 'text-white', 'shadow-md');
   }
 
-  // 2. Atualizar Título do Cabeçalho Principal
+  // 2. Atualizar título do cabeçalho
   const tituloAba = document.getElementById('tituloAba');
   if (tituloAba) {
     if (aba === 'time') tituloAba.textContent = 'Rotinas do Time';
@@ -32,13 +31,13 @@ function navegarAba(aba) {
     else if (aba === 'site') tituloAba.textContent = 'Rotinas do Site';
   }
 
-  // 3. Limpar painel de conteúdo anterior
+  // 3. Limpar conteúdo anterior
   const container = document.getElementById('conteudoAba');
   if (container) {
     container.innerHTML = '';
   }
 
-  // 4. Executar renderização com tratamento defensivo contra erros
+  // 4. Executar renderização correspondente
   try {
     if (aba === 'time') {
       if (typeof renderizarAbaTime === 'function') renderizarAbaTime();
@@ -50,38 +49,15 @@ function navegarAba(aba) {
       if (typeof renderizarAbaSite === 'function') renderizarAbaSite();
       else if (typeof renderizarSite === 'function') renderizarSite();
     }
-  } catch (erro) {
-    console.error("Erro ao renderizar aba:", aba, erro);
-  }
-
-  // 5. Renderizar filtros de topo específicos
-  if (typeof renderizarFiltrosDaAba === 'function') {
-    renderizarFiltrosDaAba(aba);
+  } catch (err) {
+    console.error("Erro ao alternar para a aba:", aba, err);
   }
 }
 
-// Atualizador seguro do contador do Header
+// Atualiza o contador de resultados no header
 function atualizarContadorHeader(total) {
   const badge = document.getElementById('contadorResultados');
   if (badge) {
-    if (total !== undefined && total !== null && !isNaN(total)) {
-      badge.textContent = `${total} registros encontrados`;
-      badge.classList.remove('hidden');
-    } else {
-      badge.textContent = `0 registros encontrados`;
-    }
-  }
-}
-
-// Toggle recolher/expandir sidebar lateral
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebarMenu');
-  const icon = document.getElementById('iconSidebarToggle');
-  if (sidebar) {
-    sidebar.classList.toggle('w-64');
-    sidebar.classList.toggle('w-20');
-  }
-  if (icon) {
-    icon.classList.toggle('rotate-180');
+    badge.textContent = `${total !== undefined ? total : 0} registros encontrados`;
   }
 }

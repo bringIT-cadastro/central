@@ -129,17 +129,7 @@ const DATA_ANALISE = {
       sugestoesAcoes: [
         "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
       ]
-    },
-    {
-      id: "g10",
-      titulo: "Novos Cadastros Base Contadora por Modelo",
-      pilar: "novos",
-      estrelaDestaque: true,
-      geradoraVolume: false,
-      gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
-      sugestoesAcoes: [
-        "Comitê irá levantar melhorias nas rotinas das mais importantes para mais secundárias."
-      ]
+    }
   ],
 
   // Seção 3: Rotinas Oficiais (Marketplace)

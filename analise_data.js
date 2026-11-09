@@ -2,12 +2,12 @@
 
 // Mapeamento de Logos Oficiais dos Canais
 const LOGOS_CANOES = {
-  "Mercado Livre": "mercadolivre.png",
-  "Kabum": "kabum.png",
-  "Shopee": "shopee.png",
-  "Amazon 1P": "amazon.png",
-  "Temu": "temu.png",
-  "TikTok": "tiktok.png",
+  "Mercado Livre": "https://upload.wikimedia.org/wikipedia/pt/0/04/Logotipo_MercadoLivre.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
+  "Kabum": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Logotipo_da_KaBuM%21.svg/3840px-Logotipo_da_KaBuM%21.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+  "Shopee": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
+  "Amazon 1P": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/3840px-Amazon_logo.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+  "Temu": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Temu_logo.svg/3840px-Temu_logo.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+  "TikTok": "https://media.licdn.com/dms/image/v2/D4D12AQFMQxqIPodlUQ/article-cover_image-shrink_720_1280/B4DZa07390GwAI-/0/1746792317268?e=2147483647&v=beta&t=iE6ekpWuqfUt3RDNmQ073cVCEnEB9enmKA54T7oyjvc"
 };
 
 const DATA_ANALISE = {
@@ -159,7 +159,7 @@ const DATA_ANALISE = {
     { pilar: "catalogo", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa dos anúncios" },
     { pilar: "operacional", nome: "Service Desk l Fila - Conexão de Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Fila - Correção de Anúncios" },
-    { pilar: "operacional", nome: "Service Desk l Fila - RMA Erro de Anúncios" },
+    { pilar: "operacional", nome: "Service Desk l RMA Erro de Anúncios" },
     { pilar: "operacional", nome: "Service Desk l Pausar ou Ativar Anúncios" },
     { pilar: "novos", nome: "Validação de SKUs que chegam em importações" },
     { pilar: "catalogo", nome: "Manutenção vínculo de identidade Platz x Canal" },
@@ -273,106 +273,6 @@ const DATA_ANALISE = {
       puxadas: ["Zerar Fila de Chamados Service Desk acumulada", "Preenchimento de KPIs e Indicadores Semanais"],
       empurradas: ["Dinâmica de Giro Mensal de Ideias & Backlog"],
       slaMeta: "Fechamento de tickets da semana"
-    }
-  ],
-
-  // Seção 5: Ficha de Perfil do Time (Carregada na Central Privada gestao_time.html)
-  fichasTime: [
-    {
-      id: "membro-patrick",
-      nome: "Patrick Nunes",
-      cargo: "Analista de Cadastro Júnior",
-      fotoUrl: "patrick.jpeg",
-      resumoPerfil: "Profissional extremamente detalhista, com perfil focado, mais reservado e forte inclinação executora, garantindo alta precisão na condução das tarefas operacionais.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Workspace Google", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
-      ]
-    },
-    {
-      id: "membro-daniela",
-      nome: "Daniela Lourenço",
-      cargo: "Analista de Cadastro Júnior",
-      fotoUrl: "daniela.webp",
-      resumoPerfil: "Perfil altamente comunicativo com perfil executor. Apresenta natural insegurança por estar em fase inicial de desenvolvimento nas rotinas da área.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Sistemas", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Workspace Google", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
-      ]
-    },
-    {
-      id: "membro-maria",
-      nome: "Maria Soares",
-      cargo: "Analista de Cadastro Júnior",
-      fotoUrl: "maria.jpeg",
-      resumoPerfil: "Analista com excelente visão sistêmica, comunicação transparente e alta clareza de cenários, demonstrando grande potencial para liderar e conduzir projetos.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Sistemas", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Análise de Dados", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" }
-      ]
-    },
-    {
-      id: "membro-raqueline",
-      nome: "Raqueline Souza",
-      cargo: "Analista de Cadastro Júnior",
-      fotoUrl: "raqueline.jpg",
-      resumoPerfil: "Profissional receptiva, com estilo de comunicação objetivo e direto, mantendo forte orientação executora na realização das demandas operacionais.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Sistemas", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Workspace Google", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Digital Commerce", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
-        { fluxo: "Análise de Dados", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" }
-      ]
-    },
-    {
-      id: "membro-jennifer",
-      nome: "Jennifer Valle",
-      cargo: "Analista de Cadastro Júnior",
-      fotoUrl: "jennifer.webp",
-      resumoPerfil: "Perfil direto, rigorosamente detalhista e com olhar sistêmico refinado, impulsionado por uma sólida bagagem de experiência no ecossistema comercial.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Sistemas", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
-        { fluxo: "Workspace Google", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Digital Commerce", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
-        { fluxo: "Análise de Dados", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" }
-      ]
-    },
-    {
-      id: "membro-ingrid",
-      nome: "Ingrid Fabris",
-      cargo: "Analista de Cadastro Sênior",
-      fotoUrl: "ingrid.webp",
-      resumoPerfil: "Detentora do domínio técnico mais avançado da equipe. Apresenta postura direta, altamente solícita e pronta para orientar o time com excelência.",
-      niveisTecnicos: [
-        { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Sistemas", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Workspace Google", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Ferramentas de IA", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Digital Commerce", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
-        { fluxo: "Análise de Dados", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" }
-      ]
     }
   ],
 

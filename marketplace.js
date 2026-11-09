@@ -99,7 +99,7 @@ function renderizarAbaMarketplace() {
     </div>
   `;
 
-  // Atualiza o contador do header principal se existir a função no app.js
+  // Atualiza o contador do header principal se a função existir no app.js
   if (typeof atualizarContadorHeader === 'function') {
     atualizarContadorHeader(DATA_MARKETPLACE.rotinas.length);
   }
@@ -140,7 +140,7 @@ function renderizarFiltrosCriticosMarketplace() {
   `).join('');
 }
 
-// Renderiza o HTML da Nova Seção Comparativa de Contas
+// Renderiza a Estrutura Comparativa de Contas (Alocação Atual vs Nova Proposta)
 function renderizarEstruturaRedistribuicaoHtml() {
   const obterHtmlLogo = (nomeCanal) => {
     const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
@@ -152,7 +152,26 @@ function renderizarEstruturaRedistribuicaoHtml() {
     return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
   };
 
-  const htmlAtual = DATA_ANALISE.divisaoContas.atual.map(c => `
+  const dadosAtual = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.atual : [
+    { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
+    { canal: "TikTok Shop", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
+    { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" }
+  ];
+
+  const dadosProposta = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.proposta : [
+    { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", badge: "CD SC & MG", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
+    { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", badge: "CD SP & PR", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
+    { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
+    { canal: "TikTok Shop", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" }
+  ];
+
+  const htmlAtual = dadosAtual.map(c => `
     <tr class="hover:bg-gray-50 transition-colors">
       <td class="p-3">${obterHtmlLogo(c.canal)}</td>
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
@@ -165,7 +184,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
     </tr>
   `).join('');
 
-  const htmlProposta = DATA_ANALISE.divisaoContas.proposta.map(c => `
+  const htmlProposta = dadosProposta.map(c => `
     <tr class="hover:bg-sky-50/50 transition-colors">
       <td class="p-3">${obterHtmlLogo(c.canal)}</td>
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
@@ -249,7 +268,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
   `;
 }
 
-// Helper para Renderizar Linhas da Tabela de Rotinas
+// Renderiza as Linhas da Tabela de Rotinas
 function renderizarLinhasRotinasMarketplace(lista) {
   if (!lista || lista.length === 0) {
     return `<tr><td colspan="6" class="p-8 text-center text-gray-400 font-medium">Nenhuma rotina encontrada.</td></tr>`;

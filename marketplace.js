@@ -25,6 +25,7 @@ const DATA_MARKETPLACE = {
   ]
 };
 
+// Garantia de apelidos para chamadas externas
 function renderizarMarketplace() {
   renderizarAbaMarketplace();
 }
@@ -78,7 +79,7 @@ function renderizarAbaMarketplace() {
   }
 }
 
-// Renderizador fiel da tabela de Redistribuição idêntico à imagem
+// Renderizador da tabela de Redistribuição de Contas
 function renderizarEstruturaRedistribuicaoHtml() {
   const obterHtmlLogo = (nomeCanal) => {
     const urlLogo = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[nomeCanal]) ? LOGOS_CANOES[nomeCanal] : null;

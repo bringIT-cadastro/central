@@ -136,7 +136,7 @@ const DATA_ANALISE = {
       id: "g10",
       titulo: "Novos Cadastros Base Contadora por Modelo",
       pilar: "novos",
-      estrelaDestaque: true,
+      estrelaDestaque: false,
       geradoraVolume: false,
       possivelGeradoraVolume: true,
       gargaloMapeado: "Comitê irá atuar no levantamento de gargalos.",
@@ -363,7 +363,7 @@ const DATA_ANALISE = {
       nome: "Ingrid Fabris",
       cargo: "Analista de Cadastro Sênior",
       fotoUrl: "ingrid.webp",
-      resumoPerfil: "Detentora do domínio técnico mais avançado da equipe. Apresenta postura direta, highly solícita e pronta para orientar o time com excelência.",
+      resumoPerfil: "Detentora do domínio técnico mais avançado da equipe. Apresenta postura direta, altamente solícita e pronta para orientar o time com excelência.",
       niveisTecnicos: [
         { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
         { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },

@@ -93,7 +93,7 @@ function atualizarContadorResultados(total) {
 }
 
 // -------------------------------------------------------------
-// 1. Aba Time
+// 1. Aba Time (Nova Estrutura: Linhas Recolhíveis + Cronograma Semanal)
 // -------------------------------------------------------------
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
@@ -107,64 +107,124 @@ function renderizarTime(dados, container) {
     'Geral': 'bg-purple-50 text-purple-700 border-purple-200'
   };
 
-  let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
+  let html = `<div class="space-y-4">`;
+
   dados.forEach(membro => {
     const estiloTagEscopo = CORES_ESCOPO[membro.escopo] || 'bg-gray-50 text-gray-700 border-gray-200';
+    
+    // Busca o cronograma individual do analista no objeto DATA_CRONOGRAMA_TIME
+    const cronograma = (typeof DATA_CRONOGRAMA_TIME !== 'undefined' && DATA_CRONOGRAMA_TIME[membro.id]) 
+      ? DATA_CRONOGRAMA_TIME[membro.id] 
+      : null;
 
     let htmlLogos = '';
     if (membro.canaisResponsaveis && membro.canaisResponsaveis.length > 0 && typeof LOGOS_CANOES !== 'undefined') {
-      htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap mt-2.5 bg-gray-50 p-2 rounded-xl border border-gray-100">`;
+      htmlLogos = `<div class="flex items-center gap-1.5 flex-wrap">`;
       membro.canaisResponsaveis.forEach(canal => {
         const logoUrl = LOGOS_CANOES[canal];
         if (logoUrl) {
-          htmlLogos += `<img src="${logoUrl}" title="${canal}" alt="${canal}" loading="lazy" class="h-5 w-auto object-contain max-w-[50px] bg-white p-0.5 rounded shadow-sm border border-gray-100">`;
+          htmlLogos += `<img src="${logoUrl}" title="${canal}" alt="${canal}" loading="lazy" class="h-5 w-auto object-contain max-w-[45px] bg-white p-0.5 rounded border border-gray-200 shadow-2xs">`;
         }
       });
       htmlLogos += `</div>`;
     }
 
-    html += `
-      <div class="bringit-card p-6 flex flex-col justify-between">
-        <div>
-          <div class="flex items-start space-x-4 mb-4">
-            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" loading="lazy" class="w-16 h-16 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm bg-gray-100">
-            <div class="flex-1">
-              <h3 class="font-extrabold text-[#1C275C] text-xl leading-snug">${membro.nome}</h3>
-              <p class="text-sm font-bold text-gray-500 mt-0.5">${membro.cargo}</p>
-              
-              <div class="flex items-center gap-2 mt-2 flex-wrap">
-                <span class="inline-block px-3 py-1 text-xs font-black rounded-full border uppercase tracking-wider ${estiloTagEscopo}">
-                  ${membro.escopo || 'Geral'}
-                </span>
-              </div>
+    const diasSemana = [
+      { chave: 'segunda', nome: 'Segunda-feira' },
+      { chave: 'terca', nome: 'Terça-feira' },
+      { chave: 'quarta', nome: 'Quarta-feira' },
+      { chave: 'quinta', nome: 'Quinta-feira' },
+      { chave: 'sexta', nome: 'Sexta-feira' }
+    ];
 
-              ${htmlLogos}
+    let htmlCronogramaCols = '';
+    
+    diasSemana.forEach(dia => {
+      const infoDia = cronograma ? cronograma[dia.chave] : null;
+      
+      let htmlRotinas = '';
+      if (infoDia && infoDia.rotinas && infoDia.rotinas.length > 0) {
+        infoDia.rotinas.forEach(r => {
+          htmlRotinas += `
+            <div class="p-2.5 bg-emerald-50/60 border border-emerald-200/80 rounded-xl text-xs text-emerald-900 font-semibold leading-tight shadow-2xs">
+              ${r}
+            </div>
+          `;
+        });
+      } else {
+        htmlRotinas = `<div class="p-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs text-gray-400 italic">Sem rotinas fixadas</div>`;
+      }
+
+      htmlCronogramaCols += `
+        <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-2xs flex flex-col justify-between space-y-4">
+          <div>
+            <h4 class="font-extrabold text-[#1C275C] text-sm">${dia.nome}</h4>
+            <p class="text-xs font-bold text-[#00A3FF] mt-0.5 mb-3 leading-snug">${infoDia ? infoDia.foco : 'A definir'}</p>
+            
+            <div class="space-y-2">
+              ${htmlRotinas}
             </div>
           </div>
 
-          <div class="pt-3 border-t border-gray-100 mt-4">
-            <button onclick="toggleResponsabilidade('${membro.id}')" class="w-full flex items-center justify-between text-xs font-extrabold text-[#1C275C] hover:text-[#00A3FF] transition-colors py-1">
-              <span class="flex items-center gap-1.5 text-sm">
-                <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Responsabilidades Principais
-              </span>
-              <i id="resp-icon-${membro.id}" class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
-            </button>
-            
-            <div id="resp-content-${membro.id}" class="hidden mt-3">
-              <p class="leading-relaxed bg-gray-50 p-3.5 rounded-xl text-xs font-medium text-gray-700 border border-gray-100">${membro.responsabilidades}</p>
+          ${infoDia && infoDia.meta ? `
+            <div class="pt-3 border-t border-gray-100 bg-gray-50/50 p-2.5 rounded-xl border border-gray-100">
+              <p class="text-[11px] font-medium text-gray-500"><strong class="text-gray-700 font-bold">Meta:</strong> ${infoDia.meta}</p>
             </div>
+          ` : ''}
+        </div>
+      `;
+    });
+
+    html += `
+      <div class="bringit-card overflow-hidden bg-white border border-gray-200/90 rounded-2xl shadow-sm transition hover:border-[#00A3FF]">
+        <!-- Linha do Analista (Cabeçalho Recolhível) -->
+        <button onclick="toggleCronogramaAnalista('${membro.id}')" class="w-full p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white hover:bg-sky-50/40 transition-colors text-left">
+          
+          <div class="flex items-center gap-4">
+            <img src="${membro.fotoUrl || 'https://via.placeholder.com/150'}" alt="${membro.nome}" loading="lazy" class="w-12 h-12 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+            
+            <div>
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <h3 class="font-extrabold text-[#1C275C] text-lg leading-tight">${membro.nome}</h3>
+                <span class="inline-block px-2.5 py-0.5 text-[10px] font-black rounded-full border uppercase tracking-wider ${estiloTagEscopo}">
+                  ${membro.escopo || 'Geral'}
+                </span>
+              </div>
+              <p class="text-xs font-bold text-gray-500 mt-0.5">${membro.cargo}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 flex-wrap sm:flex-nowrap justify-between sm:justify-end w-full sm:w-auto">
+            ${htmlLogos}
+            
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-[#00A3FF] bg-sky-50 px-3 py-1 rounded-xl border border-sky-100">
+                Cronograma Semanal
+              </span>
+              <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 shadow-2xs">
+                <i id="crono-icon-${membro.id}" class="fa-solid fa-chevron-down text-xs transition-transform duration-200"></i>
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Área Expandida (Grid do Cronograma de Seg a Sex) -->
+        <div id="crono-content-${membro.id}" class="hidden p-5 border-t border-gray-100 bg-gray-50/40">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            ${htmlCronogramaCols}
           </div>
         </div>
       </div>
     `;
   });
+
   html += `</div>`;
   container.innerHTML = html;
 }
 
-function toggleResponsabilidade(id) {
-  const content = document.getElementById(`resp-content-${id}`);
-  const icon = document.getElementById(`resp-icon-${id}`);
+function toggleCronogramaAnalista(id) {
+  const content = document.getElementById(`crono-content-${id}`);
+  const icon = document.getElementById(`crono-icon-${id}`);
   if (content && icon) {
     content.classList.toggle('hidden');
     icon.classList.toggle('rotate-180');
@@ -326,7 +386,6 @@ function toggleLinhaRotinaGenerica(aba, index) {
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
-  // Matriz de Divisão de Contas (Alocação Atual vs Nova Proposta Recomendada)
   const divisaoContas = {
     atual: [
       { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -604,7 +663,6 @@ function gerarFiltrosPorColuna() {
 
   const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto', 'atividade'];
   
-  // Coleta de todas as chaves existentes no array inteiro
   const chavesUnicas = new Set();
   dados.forEach(item => {
     Object.keys(item).forEach(k => {

@@ -36,9 +36,9 @@
   <!-- Header Superior -->
   <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
     <div class="flex items-center gap-4">
-     <a href="index.html" class="hover:opacity-80 transition-opacity">
-  <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
-</a>
+      <a href="index.html" class="hover:opacity-80 transition-opacity">
+        <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
+      </a>
       <div class="h-6 w-px bg-gray-200"></div>
       <h1 class="text-xl font-extrabold text-[#1C275C]">Diagnóstico inicial de gargalos, riscos e oportunidades</h1>
     </div>
@@ -154,7 +154,6 @@
       </div>
 
       <div class="secao-conteudo px-6 space-y-6">
-
         <!-- Cards de Pilares Informativos -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="gridPilaresCards">
           <!-- Injetado via JS -->
@@ -162,7 +161,6 @@
 
         <!-- Tabela em Colunas Lado a Lado -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
-          
           <!-- Coluna Marketplace -->
           <div class="bringit-card p-6 space-y-4">
             <div class="flex items-center justify-between border-b border-gray-100 pb-3">
@@ -188,7 +186,6 @@
               <!-- Injetado via JS -->
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -246,7 +243,6 @@
         </h3>
         
         <div class="flex items-center gap-3">
-          <!-- ATALHO ATUALIZADO PARA A PLANILHA DO GOOGLE SHEETS DE HANDOVER -->
           <a href="https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470" target="_blank" onclick="event.stopPropagation()" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-2xs">
             <i class="fa-solid fa-file-excel text-emerald-600"></i>
             <span class="hidden sm:inline">Cronograma Handover (Sheets)</span>
@@ -308,7 +304,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 6: GESTÃO HORIZONTAL (COM BOTÕES PARA AS 4 PÁGINAS DEDICADAS) -->
+    <!-- SEÇÃO 6: GESTÃO HORIZONTAL -->
     <section id="secao-metodologia" class="secao-card bringit-card overflow-hidden bg-white transition-all shadow-2xs">
       <div onclick="toggleSecao('secao-metodologia')" class="p-6 cursor-pointer bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100 hover:bg-gray-50 transition">
         <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
@@ -428,13 +424,18 @@
 
     function renderizarSugestoesOrganizacao() {
       const container = document.getElementById('gridSugestoesOrganizacao');
+      if (!container) return;
       container.innerHTML = "";
-      DATA_ANALISE.sugestoesOrganizacao.forEach(s => {
+
+      const dados = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.sugestoesOrganizacao) ? DATA_ANALISE.sugestoesOrganizacao : [];
+      const pilares = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.pilares) ? DATA_ANALISE.pilares : [];
+
+      dados.forEach(s => {
         let htmlEtiquetasPilares = "";
         if (s.exibirEtiquetasPilares) {
           htmlEtiquetasPilares = `
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-3">
-              ${DATA_ANALISE.pilares.map(p => `
+              ${pilares.map(p => `
                 <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex items-center gap-3">
                   <div class="w-9 h-9 rounded-lg text-white ${p.cor} flex items-center justify-center text-sm flex-shrink-0 shadow-2xs">
                     <i class="${p.icone}"></i>
@@ -461,14 +462,14 @@
               </div>
               
               <h4 class="font-extrabold text-[#1C275C] text-base leading-snug">${s.titulo}</h4>
-              <p class="text-xs text-gray-700 font-semibold leading-relaxed">${s.descricao.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+              <p class="text-xs text-gray-700 font-semibold leading-relaxed">${s.descricao ? s.descricao.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : ''}</p>
               
               ${htmlEtiquetasPilares}
             </div>
 
             <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 text-xs text-gray-600 leading-relaxed space-y-1">
               <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Como Funciona na Prática:</p>
-              <p>${s.detalhes.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+              <p>${s.detalhes ? s.detalhes.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : ''}</p>
             </div>
           </div>
         `;
@@ -477,25 +478,35 @@
 
     function renderizarGargalos() {
       const container = document.getElementById('gridGargalos');
+      if (!container) return;
       container.innerHTML = "";
 
-      DATA_ANALISE.gargalos.forEach(g => {
-        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === g.pilar) || {};
+      const dados = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.gargalos) ? DATA_ANALISE.gargalos : [];
+      const pilares = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.pilares) ? DATA_ANALISE.pilares : [];
+
+      dados.forEach(g => {
+        const pilarObj = pilares.find(p => p.id === g.pilar) || {};
         
         const htmlEstrela = g.estrelaDestaque 
           ? `<i class="fa-solid fa-star text-amber-400 text-base" title="Processo fluindo muito bem - Prioridade baixa para análise"></i>` 
           : '';
 
-        const htmlBadgeDestaque = g.estrelaDestaque
-          ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+        let htmlBadgeDestaque = '';
+        if (g.estrelaDestaque) {
+          htmlBadgeDestaque = `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
                ⭐ Fluxo Fluindo Bem (Prioridade Baixa)
-             </span>`
-          : (g.geradoraVolume 
-              ? `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
-                   <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
-                   Possível Geradora de Volume
-                 </span>` 
-              : '');
+             </span>`;
+        } else if (g.possivelGeradoraVolume) {
+          htmlBadgeDestaque = `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+               <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+               Possível Geradora de Volume
+             </span>`;
+        } else if (g.geradoraVolume) {
+          htmlBadgeDestaque = `<span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200 rounded-lg flex items-center gap-1.5 shadow-2xs">
+               <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+               Maiores Geradoras de Volume
+             </span>`;
+        }
 
         const bordaCard = g.estrelaDestaque ? 'border-amber-300 bg-amber-50/20' : 'border-gray-200 bg-white';
 
@@ -527,12 +538,12 @@
                 <i class="fa-solid fa-lightbulb"></i> Sugestões de Ações:
               </p>
               <ul class="space-y-1">
-                ${g.sugestoesAcoes.map(a => `
+                ${g.sugestoesAcoes ? g.sugestoesAcoes.map(a => `
                   <li class="text-xs font-semibold text-gray-700 flex items-start gap-1.5 leading-tight">
                     <i class="fa-solid fa-check text-emerald-500 text-[10px] mt-0.5 flex-shrink-0"></i>
                     <span>${a}</span>
                   </li>
-                `).join('')}
+                `).join('') : ''}
               </ul>
             </div>
 
@@ -547,14 +558,19 @@
       const contMkt = document.getElementById('contadorRotinasMkt');
       const contSite = document.getElementById('contadorRotinasSite');
 
+      if (!cMkt || !cSite) return;
       cMkt.innerHTML = "";
       cSite.innerHTML = "";
 
-      if (contMkt) contMkt.textContent = `${DATA_ANALISE.rotinasMarketplace.length} rotinas`;
-      if (contSite) contSite.textContent = `${DATA_ANALISE.rotinasSite.length} rotinas`;
+      const rMkt = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.rotinasMarketplace) ? DATA_ANALISE.rotinasMarketplace : [];
+      const rSite = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.rotinasSite) ? DATA_ANALISE.rotinasSite : [];
+      const pilares = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.pilares) ? DATA_ANALISE.pilares : [];
 
-      DATA_ANALISE.rotinasMarketplace.forEach(r => {
-        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
+      if (contMkt) contMkt.textContent = `${rMkt.length} rotinas`;
+      if (contSite) contSite.textContent = `${rSite.length} rotinas`;
+
+      rMkt.forEach(r => {
+        const pilarObj = pilares.find(p => p.id === r.pilar);
         const pilarBadge = pilarObj 
           ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
                <i class="${pilarObj.icone} text-[9px]"></i>
@@ -572,8 +588,8 @@
         `;
       });
 
-      DATA_ANALISE.rotinasSite.forEach(r => {
-        const pilarObj = DATA_ANALISE.pilares.find(p => p.id === r.pilar);
+      rSite.forEach(r => {
+        const pilarObj = pilares.find(p => p.id === r.pilar);
         const pilarBadge = pilarObj 
           ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-extrabold text-white rounded-lg flex-shrink-0 ${pilarObj.cor} shadow-2xs">
                <i class="${pilarObj.icone} text-[9px]"></i>
@@ -594,8 +610,11 @@
 
     function renderizarPilaresCards() {
       const container = document.getElementById('gridPilaresCards');
+      if (!container) return;
       container.innerHTML = "";
-      DATA_ANALISE.pilares.forEach(p => {
+
+      const pilares = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.pilares) ? DATA_ANALISE.pilares : [];
+      pilares.forEach(p => {
         container.innerHTML += `
           <div class="p-5 rounded-2xl border border-gray-200 bg-white shadow-2xs flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl text-white ${p.cor} flex items-center justify-center text-xl flex-shrink-0 shadow-xs">
@@ -612,9 +631,11 @@
 
     function renderizarCardsEstruturacaoCronograma() {
       const container = document.getElementById('gridCardsEstruturacaoCronograma');
+      if (!container) return;
       container.innerHTML = "";
 
-      DATA_ANALISE.cardsEstruturacaoCronograma.forEach(c => {
+      const cards = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.cardsEstruturacaoCronograma) ? DATA_ANALISE.cardsEstruturacaoCronograma : [];
+      cards.forEach(c => {
         container.innerHTML += `
           <div class="bringit-card p-5 bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs flex flex-col justify-between space-y-3">
             <div class="space-y-2">
@@ -641,8 +662,11 @@
 
     function renderizarCronograma() {
       const container = document.getElementById('gridCronograma');
+      if (!container) return;
       container.innerHTML = "";
-      DATA_ANALISE.cronograma.forEach(c => {
+
+      const cronograma = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.cronograma) ? DATA_ANALISE.cronograma : [];
+      cronograma.forEach(c => {
         container.innerHTML += `
           <div class="bringit-card p-5 space-y-4 bg-white flex flex-col justify-between shadow-2xs">
             <div>
@@ -657,7 +681,7 @@
                     <i class="fa-solid fa-arrow-down-long"></i> Puxadas (Rotina)
                   </p>
                   <ul class="space-y-1">
-                    ${c.puxadas.map(p => `<li class="text-xs text-gray-700 leading-tight bg-emerald-50/50 p-2 rounded-lg border border-emerald-100">${p}</li>`).join('')}
+                    ${c.puxadas ? c.puxadas.map(p => `<li class="text-xs text-gray-700 leading-tight bg-emerald-50/50 p-2 rounded-lg border border-emerald-100">${p}</li>`).join('') : ''}
                   </ul>
                 </div>
 
@@ -666,7 +690,7 @@
                     <i class="fa-solid fa-arrow-right-long"></i> Empurradas (Demanda)
                   </p>
                   <ul class="space-y-1">
-                    ${c.empurradas.map(e => `<li class="text-xs text-gray-700 leading-tight bg-purple-50/50 p-2 rounded-lg border border-purple-100">${e}</li>`).join('')}
+                    ${c.empurradas ? c.empurradas.map(e => `<li class="text-xs text-gray-700 leading-tight bg-purple-50/50 p-2 rounded-lg border border-purple-100">${e}</li>`).join('') : ''}
                   </ul>
                 </div>
               </div>
@@ -683,6 +707,10 @@
     function renderizarTabelasContas() {
       const tAtual = document.getElementById('tabelaContasAtual');
       const tProp = document.getElementById('tabelaContasProposta');
+      if (!tAtual || !tProp) return;
+
+      const contasAtual = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas && DATA_ANALISE.divisaoContas.atual) ? DATA_ANALISE.divisaoContas.atual : [];
+      const contasProposta = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas && DATA_ANALISE.divisaoContas.proposta) ? DATA_ANALISE.divisaoContas.proposta : [];
 
       const obterHtmlLogo = (nomeCanal) => {
         const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
@@ -694,7 +722,7 @@
         return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
       };
 
-      tAtual.innerHTML = DATA_ANALISE.divisaoContas.atual.map(c => `
+      tAtual.innerHTML = contasAtual.map(c => `
         <tr class="hover:bg-gray-50">
           <td class="p-3">${obterHtmlLogo(c.canal)}</td>
           <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
@@ -707,7 +735,7 @@
         </tr>
       `).join('');
 
-      tProp.innerHTML = DATA_ANALISE.divisaoContas.proposta.map(c => `
+      tProp.innerHTML = contasProposta.map(c => `
         <tr class="hover:bg-sky-50/50">
           <td class="p-3">${obterHtmlLogo(c.canal)}</td>
           <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
@@ -724,9 +752,11 @@
 
     function renderizarMetodologiaContinua() {
       const container = document.getElementById('gridMetodologiaContinua');
+      if (!container) return;
       container.innerHTML = "";
 
-      DATA_ANALISE.metodologiaContinua.forEach(m => {
+      const metodologia = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.metodologiaContinua) ? DATA_ANALISE.metodologiaContinua : [];
+      metodologia.forEach(m => {
         container.innerHTML += `
           <div class="bringit-card p-6 bg-white flex flex-col justify-between hover:border-[#00A3FF] transition shadow-2xs space-y-4">
             <div class="space-y-3">
@@ -753,100 +783,111 @@
     }
 
     function renderizarFunilNovo() {
-      const fData = DATA_ANALISE.funilNovo;
+      const fData = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.funilNovo) ? DATA_ANALISE.funilNovo : null;
+      if (!fData) return;
 
       const cSite = document.getElementById('containerSiteIndicador');
-      cSite.innerHTML = `
-        <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-[#00A3FF]/20 text-[#00A3FF] border border-[#00A3FF]/40 flex items-center justify-center font-black text-lg flex-shrink-0">
-              <i class="fa-solid fa-globe"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-sm text-white">${fData.siteIndicador.nome}</span>
-                <span class="px-2 py-0.5 bg-[#00A3FF] text-white text-[10px] font-black rounded-md">FORA DO FUNIL</span>
+      if (cSite && fData.siteIndicador) {
+        cSite.innerHTML = `
+          <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#00A3FF]/20 text-[#00A3FF] border border-[#00A3FF]/40 flex items-center justify-center font-black text-lg flex-shrink-0">
+                <i class="fa-solid fa-globe"></i>
               </div>
-              <p class="text-xs text-gray-400 mt-0.5">${fData.siteIndicador.subtitulo}</p>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold text-sm text-white">${fData.siteIndicador.nome}</span>
+                  <span class="px-2 py-0.5 bg-[#00A3FF] text-white text-[10px] font-black rounded-md">FORA DO FUNIL</span>
+                </div>
+                <p class="text-xs text-gray-400 mt-0.5">${fData.siteIndicador.subtitulo}</p>
+              </div>
             </div>
-          </div>
 
-          <div class="flex items-center gap-6 border-t md:border-t-0 border-slate-800 pt-3 md:pt-0">
-            <div>
-              <span class="text-[10px] font-bold text-gray-400 uppercase block">Receita Bruta</span>
-              <span class="text-sm font-black text-emerald-400">${fData.siteIndicador.receita}</span>
-            </div>
-            <div>
-              <span class="text-[10px] font-bold text-gray-400 uppercase block">% Geral</span>
-              <span class="text-sm font-black text-white">${fData.siteIndicador.pctGeral}</span>
+            <div class="flex items-center gap-6 border-t md:border-t-0 border-slate-800 pt-3 md:pt-0">
+              <div>
+                <span class="text-[10px] font-bold text-gray-400 uppercase block">Receita Bruta</span>
+                <span class="text-sm font-black text-emerald-400">${fData.siteIndicador.receita}</span>
+              </div>
+              <div>
+                <span class="text-[10px] font-bold text-gray-400 uppercase block">% Geral</span>
+                <span class="text-sm font-black text-white">${fData.siteIndicador.pctGeral}</span>
+              </div>
             </div>
           </div>
-        </div>
-      `;
+        `;
+      }
 
       const cBarra = document.getElementById('barraBocaFunil');
-      cBarra.innerHTML = "";
-      fData.bocaBarra.forEach(c => {
-        cBarra.innerHTML += `
-          <div style="width: ${c.pctMarketplaces}%;" class="${c.cor} h-full rounded-xl flex items-center justify-center px-1 font-black text-[11px] truncate shadow-2xs transition-all hover:opacity-90" title="${c.canal}: ${c.pctMarketplaces}%">
-            ${c.pctMarketplaces > 5 ? `${c.canal} (${c.pctMarketplaces}%)` : ''}
-          </div>
-        `;
-      });
+      if (cBarra && fData.bocaBarra) {
+        cBarra.innerHTML = "";
+        fData.bocaBarra.forEach(c => {
+          cBarra.innerHTML += `
+            <div style="width: ${c.pctMarketplaces}%;" class="${c.cor} h-full rounded-xl flex items-center justify-center px-1 font-black text-[11px] truncate shadow-2xs transition-all hover:opacity-90" title="${c.canal}: ${c.pctMarketplaces}%">
+              ${c.pctMarketplaces > 5 ? `${c.canal} (${c.pctMarketplaces}%)` : ''}
+            </div>
+          `;
+        });
+      }
 
       const cLegenda = document.getElementById('gridBocaLegenda');
-      cLegenda.innerHTML = "";
-      fData.bocaLegendaAgrupada.forEach(c => {
-        const bgCard = c.destaque ? "bg-amber-50/90 border-amber-300 ring-1 ring-amber-300" : "bg-white border-gray-200";
-        cLegenda.innerHTML += `
-          <div class="p-3 ${bgCard} rounded-xl border flex flex-col justify-between space-y-1 shadow-2xs">
-            <span class="text-[10px] font-extrabold ${c.destaque ? 'text-amber-900' : 'text-gray-400'} uppercase tracking-wider truncate">${c.canal}</span>
-            <span class="text-sm font-black text-[#1C275C]">${c.pctMarketplaces}</span>
-            <span class="text-xs font-bold text-gray-700">${c.receita}</span>
-            ${c.detalhePct ? `<span class="text-[9px] font-medium text-amber-700 block mt-0.5 border-t border-amber-200/60 pt-1">${c.detalhePct}</span>` : ''}
-          </div>
-        `;
-      });
+      if (cLegenda && fData.bocaLegendaAgrupada) {
+        cLegenda.innerHTML = "";
+        fData.bocaLegendaAgrupada.forEach(c => {
+          const bgCard = c.destaque ? "bg-amber-50/90 border-amber-300 ring-1 ring-amber-300" : "bg-white border-gray-200";
+          cLegenda.innerHTML += `
+            <div class="p-3 ${bgCard} rounded-xl border flex flex-col justify-between space-y-1 shadow-2xs">
+              <span class="text-[10px] font-extrabold ${c.destaque ? 'text-amber-900' : 'text-gray-400'} uppercase tracking-wider truncate">${c.canal}</span>
+              <span class="text-sm font-black text-[#1C275C]">${c.pctMarketplaces}</span>
+              <span class="text-xs font-bold text-gray-700">${c.receita}</span>
+              ${c.detalhePct ? `<span class="text-[9px] font-medium text-amber-700 block mt-0.5 border-t border-amber-200/60 pt-1">${c.detalhePct}</span>` : ''}
+            </div>
+          `;
+        });
+      }
 
       const cMeio = document.getElementById('gridMeioFunil');
-      cMeio.innerHTML = "";
-      fData.meioEtapas.forEach(m => {
-        cMeio.innerHTML += `
-          <div class="bringit-card p-5 bg-white border-sky-100 flex items-start gap-4 shadow-2xs hover:border-[#00A3FF] transition">
-            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] border border-sky-100 flex items-center justify-center font-black text-lg flex-shrink-0">
-              <i class="${m.icone}"></i>
+      if (cMeio && fData.meioEtapas) {
+        cMeio.innerHTML = "";
+        fData.meioEtapas.forEach(m => {
+          cMeio.innerHTML += `
+            <div class="bringit-card p-5 bg-white border-sky-100 flex items-start gap-4 shadow-2xs hover:border-[#00A3FF] transition">
+              <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] border border-sky-100 flex items-center justify-center font-black text-lg flex-shrink-0">
+                <i class="${m.icone}"></i>
+              </div>
+              <div class="space-y-1">
+                <span class="px-2 py-0.5 text-[9px] font-black uppercase bg-sky-100 text-[#00A3FF] rounded">${m.etapaNum}</span>
+                <h5 class="font-extrabold text-[#1C275C] text-sm">${m.titulo}</h5>
+                <p class="text-xs text-gray-600 font-medium leading-relaxed">${m.foco}</p>
+              </div>
             </div>
-            <div class="space-y-1">
-              <span class="px-2 py-0.5 text-[9px] font-black uppercase bg-sky-100 text-[#00A3FF] rounded">${m.etapaNum}</span>
-              <h5 class="font-extrabold text-[#1C275C] text-sm">${m.titulo}</h5>
-              <p class="text-xs text-gray-600 font-medium leading-relaxed">${m.foco}</p>
-            </div>
-          </div>
-        `;
-      });
+          `;
+        });
+      }
 
       const cFinal = document.getElementById('containerFinalFunil');
       const fin = fData.finalDefinicao;
-      cFinal.innerHTML = `
-        <div class="bringit-card p-6 bg-emerald-950 text-white border-emerald-800 space-y-4 shadow-md">
-          <div class="flex items-center justify-center gap-2 border-b border-emerald-800 pb-2">
-            <i class="fa-solid fa-bullseye text-emerald-400"></i>
-            <h5 class="font-black text-sm uppercase tracking-wider text-emerald-300 text-center">${fin.titulo}</h5>
-          </div>
+      if (cFinal && fin) {
+        cFinal.innerHTML = `
+          <div class="bringit-card p-6 bg-emerald-950 text-white border-emerald-800 space-y-4 shadow-md">
+            <div class="flex items-center justify-center gap-2 border-b border-emerald-800 pb-2">
+              <i class="fa-solid fa-bullseye text-emerald-400"></i>
+              <h5 class="font-black text-sm uppercase tracking-wider text-emerald-300 text-center">${fin.titulo}</h5>
+            </div>
 
-          <div class="space-y-2.5">
-            ${fin.pontos.map(p => `
-              <div class="p-3 bg-emerald-900/60 rounded-xl border border-emerald-700/50 flex items-start gap-3">
-                <i class="fa-solid fa-circle-check text-emerald-400 text-xs mt-0.5 flex-shrink-0"></i>
-                <div class="text-xs">
-                  <strong class="text-emerald-200 block font-extrabold">${p.rotulo}</strong>
-                  <span class="text-emerald-50/90 leading-tight block mt-0.5 font-medium">${p.desc}</span>
+            <div class="space-y-2.5">
+              ${fin.pontos ? fin.pontos.map(p => `
+                <div class="p-3 bg-emerald-900/60 rounded-xl border border-emerald-700/50 flex items-start gap-3">
+                  <i class="fa-solid fa-circle-check text-emerald-400 text-xs mt-0.5 flex-shrink-0"></i>
+                  <div class="text-xs">
+                    <strong class="text-emerald-200 block font-extrabold">${p.rotulo}</strong>
+                    <span class="text-emerald-50/90 leading-tight block mt-0.5 font-medium">${p.desc}</span>
+                  </div>
                 </div>
-              </div>
-            `).join('')}
+              `).join('') : ''}
+            </div>
           </div>
-        </div>
-      `;
+        `;
+      }
     }
 
     function toggleModoApresentacao() {

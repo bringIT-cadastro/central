@@ -60,7 +60,7 @@
         <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
         <div class="h-6 w-px bg-gray-200"></div>
         <h1 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2">
-          <i class="fa-solid fa-[#00A3FF] fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil do Time
+          <i class="fa-solid fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil do Time
         </h1>
       </div>
 
@@ -76,7 +76,6 @@
 
     <!-- Conteúdo -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
-      
       <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
         <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
         <p class="text-xs text-slate-700 font-medium leading-relaxed">
@@ -91,7 +90,7 @@
     </main>
   </div>
 
-  <script src="analise_data.js"></script>
+  <script src="gestao_time_data.js"></script>
   <script>
     // DEFINA A SUA SENHA AQUI
     const SENHA_ACESSO = "bringit2026";
@@ -135,14 +134,14 @@
 
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
-      if (!container || !DATA_ANALISE.fichasTime) return;
+      if (!container || typeof DATA_GESTAO_TIME === 'undefined' || !DATA_GESTAO_TIME.fichasTime) return;
 
       container.innerHTML = "";
 
-      DATA_ANALISE.fichasTime.forEach(m => {
+      DATA_GESTAO_TIME.fichasTime.forEach(m => {
         const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
 
-        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
+        const htmlBarrasTecnicas = m.niveisTecnicos ? m.niveisTecnicos.map(t => {
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
           else if (t.nivelPct === 50) corBarra = "bg-amber-400";
@@ -175,11 +174,10 @@
               </div>
             </div>
           `;
-        }).join('');
+        }).join('') : '';
 
         container.innerHTML += `
           <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
-            
             <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
               <div class="flex items-center gap-4">
                 <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">

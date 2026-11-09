@@ -47,12 +47,11 @@ const DATA_MARKETPLACE = {
   ]
 };
 
-// Aliases para compatibilidade entre chamadas do app.js
 function renderizarMarketplace() {
   renderizarAbaMarketplace();
 }
 
-// Renderização Principal da Aba Marketplace
+// Renderização Principal da Aba Marketplace (ORDEM CORRIGIDA)
 function renderizarAbaMarketplace() {
   const container = document.getElementById('conteudoAba');
   if (!container) return;
@@ -60,17 +59,17 @@ function renderizarAbaMarketplace() {
   container.innerHTML = `
     <div class="space-y-6">
       
-      <!-- SEÇÃO 1: FILTROS CRÍTICOS -->
-      <div class="space-y-4">
-        ${renderizarFiltrosCriticosMarketplace()}
-      </div>
-
-      <!-- SEÇÃO 2: ESTUDO DE REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
+      <!-- 1ª OPÇÃO: ESTUDO DE REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
       <div id="containerRedistribuicaoContasMarketplace">
         ${renderizarEstruturaRedistribuicaoHtml()}
       </div>
 
-      <!-- SEÇÃO 3: TABELA DE ROTINAS E ATIVIDADES -->
+      <!-- 2ª OPÇÃO: FILTROS CRÍTICOS (MELI E SHOPEE) -->
+      <div class="space-y-4">
+        ${renderizarFiltrosCriticosMarketplace()}
+      </div>
+
+      <!-- 3ª OPÇÃO: TABELA DE ROTINAS E ATIVIDADES -->
       <div class="bringit-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-2xs space-y-4 p-6">
         <div class="flex items-center justify-between border-b border-gray-100 pb-4">
           <div class="flex items-center gap-2">
@@ -104,13 +103,11 @@ function renderizarAbaMarketplace() {
     </div>
   `;
 
-  // Atualiza o contador do header principal de forma segura
   if (typeof atualizarContadorHeader === 'function') {
     atualizarContadorHeader(DATA_MARKETPLACE.rotinas.length);
   }
 }
 
-// Renderiza os Cards de Filtros Críticos
 function renderizarFiltrosCriticosMarketplace() {
   return DATA_MARKETPLACE.filtrosCriticos.map((fc, idx) => `
     <div class="bringit-card ${fc.cor} rounded-2xl p-5 border shadow-2xs space-y-3">
@@ -145,7 +142,6 @@ function renderizarFiltrosCriticosMarketplace() {
   `).join('');
 }
 
-// Renderiza a Estrutura Comparativa de Contas (Alocação Atual vs Nova Proposta)
 function renderizarEstruturaRedistribuicaoHtml() {
   const obterHtmlLogo = (nomeCanal) => {
     const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
@@ -157,24 +153,13 @@ function renderizarEstruturaRedistribuicaoHtml() {
     return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
   };
 
-  const dadosAtual = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.atual : [
-    { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
-    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
-    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
-    { canal: "TikTok Shop", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
-    { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
-    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" }
-  ];
+  const getSvgAvatar = (name) => {
+    const fn = (typeof gerarAvatarSvgSeguro === 'function') ? gerarAvatarSvgSeguro : (n) => `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" fill="%2300A3FF"/><text x="50%" y="50%" fill="%23FFF" font-size="48" text-anchor="middle" dominant-baseline="middle">${n[0]}</text></svg>`;
+    return fn(name);
+  };
 
-  const dadosProposta = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.proposta : [
-    { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", badge: "CD SC & MG", fotoUrl: "https://ui-avatars.com/api/?name=Maria+Soares&background=00A3FF&color=fff" },
-    { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", badge: "CD SP & PR", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
-    { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
-    { canal: "TikTok Shop", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "https://ui-avatars.com/api/?name=Daniela+Lourenco&background=00A3FF&color=fff" },
-    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
-    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" },
-    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B", fotoUrl: "https://ui-avatars.com/api/?name=Raqueline+Souza&background=00A3FF&color=fff" }
-  ];
+  const dadosAtual = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.atual : [];
+  const dadosProposta = (typeof DATA_ANALISE !== 'undefined' && DATA_ANALISE.divisaoContas) ? DATA_ANALISE.divisaoContas.proposta : [];
 
   const htmlAtual = dadosAtual.map(c => `
     <tr class="hover:bg-gray-50 transition-colors">
@@ -182,7 +167,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <img src="${c.fotoUrl}" onerror="this.src='${getSvgAvatar(c.responsavel)}'" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
           <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
         </div>
       </td>
@@ -195,7 +180,7 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <img src="${c.fotoUrl}" onerror="this.src='${getSvgAvatar(c.responsavel)}'" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
           <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
         </div>
       </td>
@@ -273,7 +258,6 @@ function renderizarEstruturaRedistribuicaoHtml() {
   `;
 }
 
-// Renderiza as Linhas da Tabela de Rotinas
 function renderizarLinhasRotinasMarketplace(lista) {
   if (!lista || lista.length === 0) {
     return `<tr><td colspan="6" class="p-8 text-center text-gray-400 font-medium">Nenhuma rotina encontrada.</td></tr>`;
@@ -299,7 +283,6 @@ function renderizarLinhasRotinasMarketplace(lista) {
   `).join('');
 }
 
-// Toggle para os Filtros Críticos
 function toggleFiltroCritico(id) {
   const el = document.getElementById(id);
   const seta = document.getElementById(`seta-${id}`);

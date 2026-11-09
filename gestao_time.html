@@ -351,7 +351,7 @@
       container.innerHTML = "";
 
       DATA_ANALISE.fichasTime.forEach(m => {
-        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
+        const avatarSvgFallback = (typeof gerarAvatarSvgSeguro === 'function') ? gerarAvatarSvgSeguro(m.nome) : `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" fill="%2300A3FF"/><text x="50%" y="50%" fill="%23FFF" font-size="48" text-anchor="middle" dominant-baseline="middle">${m.nome[0]}</text></svg>`;
 
         const htmlBarrasTecnicas = m.niveisTecnicos.map((t, idx) => {
           let corBarra = "bg-amber-400";
@@ -399,7 +399,7 @@
             
             <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
               <div class="flex items-center gap-4">
-                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarSvgFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
                 <div>
                   <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
                   <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>

@@ -326,67 +326,134 @@ function toggleLinhaRotinaGenerica(aba, index) {
 function renderizarMarketplace(dados, container) {
   let html = ``;
 
-  if (typeof DATA_MARKETPLACE_CANOES !== 'undefined' && DATA_MARKETPLACE_CANOES.length > 0) {
-    html += `
-      <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
-        <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition-colors text-left">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center border border-sky-100">
-              <i class="fa-solid fa-store text-lg"></i>
-            </div>
-            <div>
-              <h3 class="text-base font-extrabold text-[#1C275C]">Responsáveis por Loja</h3>
-              <p class="text-xs text-gray-500 font-medium">Matriz de colaboradores x contas dos canais</p>
-            </div>
+  // Matriz de Divisão de Contas (Alocação Atual vs Nova Proposta Recomendada)
+  const divisaoContas = {
+    atual: [
+      { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+      { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
+    ],
+    proposta: [
+      { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg", badge: "CD SC & MG" },
+      { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "CD SP & PR" },
+      { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
+      { canal: "TikTok", conta: "Geral", responsavel: "Daniela Lourenço", fotoUrl: "daniela.webp", badge: "Novos Canais" },
+      { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Shopee" },
+      { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "Core Tech" },
+      { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg", badge: "1P B2B" }
+    ]
+  };
+
+  const obterHtmlLogo = (nomeCanal) => {
+    const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
+    if (urlLogo) {
+      const isTikTok = nomeCanal === "TikTok";
+      const estilo = isTikTok ? "h-6 w-20 object-cover scale-125" : "h-6 w-auto object-contain max-w-[80px]";
+      return `<div class="h-7 flex items-center justify-start overflow-hidden"><img src="${urlLogo}" alt="${nomeCanal}" title="${nomeCanal}" loading="lazy" class="${estilo}"></div>`;
+    }
+    return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
+  };
+
+  html += `
+    <div class="bringit-card mb-6 overflow-hidden border border-gray-200 shadow-sm">
+      <button onclick="toggleSecaoLojas()" class="w-full flex items-center justify-between p-5 bg-white hover:bg-sky-50/50 transition-colors text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center border border-sky-100">
+            <i class="fa-solid fa-store text-lg"></i>
           </div>
-          
-          <div class="flex items-center gap-3">
-            <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-lg">
-              Clique para visualizar
-            </span>
-            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
-              <i id="icon-secao-lojas" class="fa-solid fa-chevron-down transition-transform duration-200"></i>
-            </div>
-          </div>
-        </button>
-
-        <div id="conteudo-secao-lojas" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-    `;
-    
-    DATA_MARKETPLACE_CANOES.forEach(item => {
-      const urlLogo = (typeof LOGOS_CANOES !== 'undefined' && LOGOS_CANOES[item.canal]) ? LOGOS_CANOES[item.canal] : '';
-      const fotoResp = item.foto || item.fotoUrl || 'https://via.placeholder.com/150';
-      const isTikTok = item.canal === "TikTok";
-      const estiloLogo = isTikTok ? "h-10 w-32 object-cover scale-125 rounded-md" : "max-h-full max-w-full object-contain";
-
-      html += `
-        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-sm flex flex-col justify-between hover:border-[#00A3FF] transition">
-          <div class="flex items-center justify-between gap-3 mb-4 h-12">
-            ${urlLogo ? `
-              <div class="h-10 w-32 flex items-center justify-start overflow-hidden">
-                <img src="${urlLogo}" alt="${item.canal}" loading="lazy" class="${estiloLogo}">
-              </div>
-            ` : `<span class="font-extrabold text-[#1C275C] text-base">${item.canal}</span>`}
-
-            <span class="px-3 py-1.5 text-xs font-black bg-[#00A3FF] text-white rounded-xl shadow-sm tracking-wider">
-              ${item.conta}
-            </span>
-          </div>
-
-          <div class="text-xs text-gray-700 flex items-center gap-3 pt-3.5 border-t border-gray-100">
-            <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-10 h-10 rounded-full object-cover border-2 border-[#00A3FF] shadow-sm flex-shrink-0 bg-gray-100">
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Responsável</p>
-              <span class="font-extrabold text-[#1C275C] text-sm leading-tight block">${item.responsavel}</span>
-            </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1C275C]">Responsáveis por Loja</h3>
+            <p class="text-xs text-gray-500 font-medium">Matriz de colaboradores x contas dos canais</p>
           </div>
         </div>
-      `;
-    });
-    
-    html += `</div></div></div>`;
-  }
+        
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:inline-block px-3 py-1 text-xs font-bold text-[#00A3FF] bg-sky-50 border border-sky-100 rounded-lg">
+            Clique para visualizar
+          </span>
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+            <i id="icon-secao-lojas" class="fa-solid fa-chevron-down transition-transform duration-200"></i>
+          </div>
+        </div>
+      </button>
+
+      <div id="conteudo-secao-lojas" class="hidden p-6 border-t border-gray-100 bg-gray-50/40">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Alocação Atual -->
+          <div class="bringit-card overflow-hidden bg-white border border-gray-200 rounded-2xl">
+            <div class="p-4 bg-gray-50 border-b border-gray-200 font-extrabold text-xs uppercase tracking-wider text-gray-500">
+              Alocação Atual
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b border-gray-100">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Responsável Atual</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  ${divisaoContas.atual.map(c => `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                      <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+                      <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
+                      <td class="p-3">
+                        <div class="flex items-center gap-2.5">
+                          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-2xs bg-gray-100 flex-shrink-0">
+                          <span class="font-extrabold text-[#1C275C] text-xs">${c.responsavel}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Nova Proposta Recomendada -->
+          <div class="bringit-card overflow-hidden bg-white border-2 border-[#00A3FF] rounded-2xl shadow-xs">
+            <div class="p-4 bg-sky-50 border-b border-sky-100 font-extrabold text-xs uppercase tracking-wider text-[#00A3FF] flex items-center justify-between">
+              <span>Nova Proposta Recomendada</span>
+              <span class="px-2.5 py-0.5 bg-[#00A3FF] text-white rounded-md text-[10px] font-black tracking-wider">Otimizada</span>
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-sky-50/50 text-[#1C275C] font-bold uppercase border-b border-sky-100">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Novo Responsável</th>
+                    <th class="p-3">Foco</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  ${divisaoContas.proposta.map(c => `
+                    <tr class="hover:bg-sky-50/50 transition-colors">
+                      <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+                      <td class="p-3 text-gray-500 font-medium">${c.conta}</td>
+                      <td class="p-3">
+                        <div class="flex items-center gap-2.5">
+                          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-2xs bg-gray-100 flex-shrink-0">
+                          <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
+                        </div>
+                      </td>
+                      <td class="p-3"><span class="px-2.5 py-1 text-[10px] font-black bg-sky-100 text-sky-800 border border-sky-200 rounded-md shadow-2xs">${c.badge}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  `;
 
   if (typeof DATA_FILTROS !== 'undefined' && DATA_FILTROS.length > 0) {
     const filtrosML = DATA_FILTROS.filter(f => f.categoriaPrincipal === 'ML');

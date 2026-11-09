@@ -77,12 +77,62 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
       
-      <!-- Card Informativo Inicial -->
-      <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
-        <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
-        <p class="text-xs text-slate-700 font-medium leading-relaxed">
-          <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
-        </p>
+      <!-- CABEÇALHO SUPERIOR NO MESMO PADRÃO DA PÁGINA DE ANÁLISE -->
+      <div class="bg-gradient-to-r from-[#1C275C] via-[#16204c] to-[#0A1128] text-white p-6 rounded-2xl shadow-lg border border-slate-800 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-[#00A3FF] border border-sky-400/30 text-[11px] font-black uppercase tracking-wider">
+              <i class="fa-solid fa-layer-group"></i> Matriz de Liderança Situacional
+            </div>
+            <h2 class="text-xl font-black text-white tracking-tight">Liderança Situacional Aplicada por Competência</h2>
+            <p class="text-xs text-slate-300 max-w-3xl leading-relaxed">
+              O estilo de abordagem do gestor varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico exigido pelo projeto.
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-2 bg-white/5 p-2 rounded-xl border border-white/10 self-start md:self-auto">
+            <span class="text-[10px] uppercase font-bold text-slate-400 px-2">Eixos:</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-red-500/20 text-red-300 border border-red-500/30">E1: Direcionar</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30">E2: Orientar</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-sky-500/20 text-sky-300 border border-sky-500/30">E3: Apoiar</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">E4: Delegar</span>
+          </div>
+        </div>
+
+        <!-- Indicadores Resumidos dos Estilos -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/10 text-xs">
+          <div class="bg-white/5 p-2.5 rounded-xl border border-white/5 flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-red-500/30 text-red-300 flex items-center justify-center font-black text-[10px]">01</span>
+            <div>
+              <p class="font-bold text-white text-[11px]">E1: Direcionar</p>
+              <p class="text-[10px] text-slate-400">25% • Baixa Autonomia</p>
+            </div>
+          </div>
+          
+          <div class="bg-white/5 p-2.5 rounded-xl border border-white/5 flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-amber-500/30 text-amber-300 flex items-center justify-center font-black text-[10px]">02</span>
+            <div>
+              <p class="font-bold text-white text-[11px]">E2: Orientar</p>
+              <p class="text-[10px] text-slate-400">50% • Autonomia Média</p>
+            </div>
+          </div>
+
+          <div class="bg-white/5 p-2.5 rounded-xl border border-white/5 flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-sky-500/30 text-sky-300 flex items-center justify-center font-black text-[10px]">03</span>
+            <div>
+              <p class="font-bold text-white text-[11px]">E3: Apoiar</p>
+              <p class="text-[10px] text-slate-400">75% • Autonomia Alta</p>
+            </div>
+          </div>
+
+          <div class="bg-white/5 p-2.5 rounded-xl border border-white/5 flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-emerald-500/30 text-emerald-300 flex items-center justify-center font-black text-[10px]">04</span>
+            <div>
+              <p class="font-bold text-white text-[11px]">E4: Delegar</p>
+              <p class="text-[10px] text-slate-400">100% • Autonomia Total</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- PAINEL DE SIMULAÇÃO DE PROJETOS -->
@@ -105,7 +155,7 @@
           </div>
         </div>
 
-        <!-- Opções de Capacidades Exigidas (10 Capacidades) -->
+        <!-- Opções de Capacidades Exigidas com Ícones Específicos -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3" id="containerCheckboxesCapacidades">
           <!-- Injetado via JS -->
         </div>
@@ -122,6 +172,20 @@
   <script>
     const SENHA_ACESSO = "bringit2026";
 
+    // Mapeamento fixo e exclusivo de ícones para cada uma das 10 capacidades
+    const ICONES_CAPACIDADES = {
+      "Publicação de Produtos": "fa-box-open",
+      "Qualidade e SEO": "fa-magnifying-glass-chart",
+      "Sistemas": "fa-laptop-code",
+      "Workspace Google": "fa-brands fa-google",
+      "Ferramentas de IA": "fa-robot",
+      "Digital Commerce": "fa-shopping-cart",
+      "Análise de Dados": "fa-chart-pie",
+      "Gestão de Prazos & SLAs": "fa-clock",
+      "Resolução de Problemas": "fa-puzzle-piece",
+      "Comunicação Interdepartamental": "fa-comments"
+    };
+
     // URLs das planilhas de referência para cada nível de liderança
     const URLS_PLANILHAS = {
       E1: "https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690",
@@ -131,18 +195,7 @@
     };
 
     // Lista com o nome exato das 10 capacidades
-    const CAPACIDADES_PROJETO = [
-      "Publicação de Produtos",
-      "Qualidade e SEO",
-      "Sistemas",
-      "Workspace Google",
-      "Ferramentas de IA",
-      "Digital Commerce",
-      "Análise de Dados",
-      "Gestão de Prazos & SLAs",
-      "Resolução de Problemas",
-      "Comunicação Interdepartamental"
-    ];
+    const CAPACIDADES_PROJETO = Object.keys(ICONES_CAPACIDADES);
 
     // Estado das capacidades selecionadas para a simulação (por padrão, todas ativas)
     let capacidadesSelecionadas = new Set(CAPACIDADES_PROJETO);
@@ -185,16 +238,19 @@
       }
     }
 
-    // Renderiza os seletores de capacidade do simulador
+    // Renderiza os seletores de capacidade do simulador com os ícones correspondentes
     function renderizarCheckboxesCapacidades() {
       const container = document.getElementById('containerCheckboxesCapacidades');
       if (!container) return;
 
       container.innerHTML = CAPACIDADES_PROJETO.map(cap => {
         const marcada = capacidadesSelecionadas.has(cap);
+        const icone = ICONES_CAPACIDADES[cap] || "fa-check";
+
         return `
           <label class="flex items-center gap-2 p-2.5 rounded-xl border ${marcada ? 'bg-sky-50 border-sky-300 text-[#1C275C]' : 'bg-gray-50 border-gray-200 text-gray-500'} cursor-pointer hover:border-[#00A3FF] transition text-xs font-bold">
             <input type="checkbox" ${marcada ? 'checked' : ''} onchange="toggleCapacidade('${cap}')" class="rounded text-[#00A3FF] focus:ring-[#00A3FF]">
+            <i class="fa-solid ${icone} ${marcada ? 'text-[#00A3FF]' : 'text-gray-400'} text-xs"></i>
             <span class="truncate" title="${cap}">${cap}</span>
           </label>
         `;
@@ -254,7 +310,6 @@
       let nivelVencedor = "E1";
 
       if (niveisEmpatados.length === 1) {
-        // Vitória por Moda simples
         nivelVencedor = niveisEmpatados[0];
       } else if (niveisEmpatados.length > 1) {
         // 2. Desempate por Elevação de Autonomia (pega o maior nível empatado)
@@ -284,7 +339,7 @@
       };
     }
 
-    // Renderiza a lista de membros mantendo o layout original
+    // Renderiza a lista de membros mantendo os ícones ao lado de cada capacidade
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
       if (!container || typeof DATA_GESTAO_TIME === 'undefined' || !DATA_GESTAO_TIME.fichasTime) return;
@@ -302,6 +357,7 @@
 
         const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
           const estaAtivoNoProjeto = capacidadesSelecionadas.has(t.fluxo);
+          const iconeCapacidade = ICONES_CAPACIDADES[t.fluxo] || "fa-circle-check";
 
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
@@ -325,9 +381,9 @@
           return `
             <div class="p-3 rounded-xl border space-y-2 ${opacidadeCard}">
               <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="font-extrabold text-[#1C275C] text-xs flex items-center gap-1.5">
-                  ${estaAtivoNoProjeto ? `<i class="fa-solid fa-check-circle text-[#00A3FF] text-[10px]"></i>` : ''}
-                  ${t.fluxo}
+                <span class="font-extrabold text-[#1C275C] text-xs flex items-center gap-2">
+                  <i class="fa-solid ${iconeCapacidade} text-[#00A3FF]"></i>
+                  <span>${t.fluxo}</span>
                 </span>
                 <div class="flex items-center gap-2">
                   ${badgeLideranca}

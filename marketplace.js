@@ -1,214 +1,120 @@
-// marketplace.js - Logos, Matriz de Lojas e Rotinas da Aba Marketplace
+// marketplace.js - Mapeamento e Renderização da Distribuição de Contas & Canais
 
-const LOGOS_CANOES = {
-  "Mercado Livre": "https://upload.wikimedia.org/wikipedia/pt/0/04/Logotipo_MercadoLivre.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
-  "Kabum": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Logotipo_da_KaBuM%21.svg/3840px-Logotipo_da_KaBuM%21.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
-  "Shopee": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
-  "Amazon 1P": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/3840px-Amazon_logo.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
-  "Temu": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Temu_logo.svg/3840px-Temu_logo.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
-  "TikTok": "https://media.licdn.com/dms/image/v2/D4D12AQFMQxqIPodlUQ/article-cover_image-shrink_720_1280/B4DZa07390GwAI-/0/1746792317268?e=2147483647&v=beta&t=iE6ekpWuqfUt3RDNmQ073cVCEnEB9enmKA54T7oyjvc",
-  "Site": "https://www.bringit.com.br/assets/images/brand/logo-bringit.svg"
-};
+function renderizarEstudoRedistribuicaoContas() {
+  const container = document.getElementById('containerRedistribuicaoContasMarketplace');
+  if (!container) return;
 
-const DATA_MARKETPLACE_CANOES = [
-  { canal: "Mercado Livre", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "SP", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "PR", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-  { canal: "Mercado Livre", conta: "MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-  { canal: "Shopee", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Shopee", conta: "SP", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Shopee", conta: "MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Kabum", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Kabum", conta: "SP", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Kabum", conta: "MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "TikTok", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
-  { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
-  { canal: "Amazon 1P", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
-];
+  const obterHtmlLogo = (nomeCanal) => {
+    const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
+    if (urlLogo) {
+      const isTikTok = nomeCanal === "TikTok" || nomeCanal === "TikTok Shop";
+      const estilo = isTikTok ? "h-6 w-20 object-cover scale-125" : "h-6 w-auto object-contain max-w-[80px]";
+      return `<div class="h-7 flex items-center justify-start overflow-hidden"><img src="${urlLogo}" alt="${nomeCanal}" title="${nomeCanal}" loading="lazy" class="${estilo}"></div>`;
+    }
+    return `<span class="font-bold text-[#1C275C] text-xs">${nomeCanal}</span>`;
+  };
 
-const DATA_MARKETPLACE = [
-  {
-    id: 101,
-    atividade: "Novos Produtos l Conexão de Novos Anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Alta",
-    tipo: "Conexão e Cadastro",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 102,
-    atividade: "Ponte de Comando l Novos Anúncios",
-    periodicidade: "Diariamente",
-    prioridade: "Alta",
-    tipo: "Ponte de Comando",
-    materiais: [
-      { nome: "Planilha de Acompanhamento - Ponte", url: "#" }
-    ],
-    tutoriais: [
-      { nome: "Procedimento Padrão Ponte de Comando", url: "#" }
-    ]
-  },
-  {
-    id: 103,
-    atividade: "Ponte de Comando l Atualização de Atributos",
-    periodicidade: "Diariamente",
-    prioridade: "Média",
-    tipo: "Ponte de Comando",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 104,
-    atividade: "Ponte de Comando l Pausa de Anúncios",
-    periodicidade: "Diariamente",
-    prioridade: "Alta",
-    tipo: "Ponte de Comando",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 105,
-    atividade: "Ponte de Comando l Reativação de Anúncios",
-    periodicidade: "Diariamente",
-    prioridade: "Média",
-    tipo: "Ponte de Comando",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 106,
-    atividade: "Conferência e correção de cadastros diretamente dentro dos canais, produtos inativos, bloqueados…",
-    periodicidade: "Semanal",
-    prioridade: "Alta",
-    tipo: "Auditoria",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 107,
-    atividade: "Mercado Livre l Manutenção e correção dos anúncios 'Em Revisão'",
-    periodicidade: "Semanal",
-    prioridade: "Alta",
-    tipo: "Mercado Livre",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 108,
-    atividade: "Acompanhamento dos indicadores dos marketplaces e identificação de correções de anúncios",
-    periodicidade: "Semanal",
-    prioridade: "Média",
-    tipo: "Indicadores",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 109,
-    atividade: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa dos anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Média",
-    tipo: "Manutenção",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 110,
-    atividade: "Service Desk l Fila - Conexão de Anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Alta",
-    tipo: "Service Desk",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 111,
-    atividade: "Service Desk l Fila - Correção de Anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Alta",
-    tipo: "Service Desk",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 112,
-    atividade: "Service Desk l Fila - RMA Erro de Anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Alta",
-    tipo: "Service Desk",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 113,
-    atividade: "Service Desk l Pausar ou Ativar Anúncios",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Média",
-    tipo: "Service Desk",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 114,
-    atividade: "Validação de SKUs que chegam em importações",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Média",
-    tipo: "Validação",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 115,
-    atividade: "Manutenção vínculo de identidade Platz x Canal",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Média",
-    tipo: "Integração",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 116,
-    atividade: "Criação e atualização de documentação dos canais",
-    periodicidade: "Conforme Demanda",
-    prioridade: "Baixa",
-    tipo: "Documentação",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 117,
-    atividade: "Realizar conexão de SKUs ainda sem conexões nos canais",
-    periodicidade: "2x Semana",
-    prioridade: "Alta",
-    tipo: "Conexão e Cadastro",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 118,
-    atividade: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques...",
-    periodicidade: "Quinzenal",
-    prioridade: "Média",
-    tipo: "Performance",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 119,
-    atividade: "Preenchimento e acompanhamento de KPIs",
-    periodicidade: "Semanal",
-    prioridade: "Média",
-    tipo: "KPIs",
-    materiais: [],
-    tutoriais: []
-  },
-  {
-    id: 120,
-    atividade: "Acompanhamento e Análise de devoluções de cada canal",
-    periodicidade: "Semanal",
-    prioridade: "Alta",
-    tipo: "Análise / RMA",
-    materiais: [],
-    tutoriais: []
-  }
-];
+  const htmlAtual = DATA_ANALISE.divisaoContas.atual.map(c => `
+    <tr class="hover:bg-gray-50 transition-colors">
+      <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+      <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
+      <td class="p-3">
+        <div class="flex items-center gap-2.5">
+          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  const htmlProposta = DATA_ANALISE.divisaoContas.proposta.map(c => `
+    <tr class="hover:bg-sky-50/50 transition-colors">
+      <td class="p-3">${obterHtmlLogo(c.canal)}</td>
+      <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
+      <td class="p-3">
+        <div class="flex items-center gap-2.5">
+          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
+        </div>
+      </td>
+      <td class="p-3">
+        <span class="px-2.5 py-1 text-[10px] font-extrabold bg-sky-100 text-sky-800 rounded-md shadow-2xs">${c.badge}</span>
+      </td>
+    </tr>
+  `).join('');
+
+  container.innerHTML = `
+    <!-- SEÇÃO DE REDISTRIBUIÇÃO DE CONTAS -->
+    <div class="bringit-card overflow-hidden bg-white transition-all shadow-2xs border border-gray-200 rounded-2xl">
+      
+      <!-- Cabeçalho da Seção com Botão de Atalho para o Sheets -->
+      <div class="p-6 bg-gradient-to-r from-gray-50 via-white to-white flex items-center justify-between border-b border-gray-100">
+        <h3 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2.5">
+          <i class="fa-solid fa-users-gear text-sky-600"></i>
+          Redistribuição de Contas & Canais
+        </h3>
+        
+        <!-- Atalho Google Sheets -->
+        <a href="https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470" 
+           target="_blank" 
+           class="px-3.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-2xs">
+          <i class="fa-solid fa-file-excel text-emerald-600"></i>
+          <span>Cronograma Handover (Sheets)</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Grid Comparativo 2 Colunas -->
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Alocação Atual -->
+          <div class="bringit-card overflow-hidden border border-gray-200 rounded-xl">
+            <div class="p-4 bg-gray-50 border-b border-gray-200 font-extrabold text-xs uppercase tracking-wider text-gray-500">
+              Alocação Atual
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Responsável Atual</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  ${htmlAtual}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Proposta Nova -->
+          <div class="bringit-card overflow-hidden border-2 border-[#00A3FF] rounded-xl">
+            <div class="p-4 bg-sky-50 border-b border-sky-100 font-extrabold text-xs uppercase tracking-wider text-[#00A3FF] flex items-center justify-between">
+              <span>Nova Proposta Recomendada</span>
+              <span class="px-2 py-0.5 bg-[#00A3FF] text-white rounded text-[10px] font-black uppercase">Otimizada</span>
+            </div>
+            <div class="p-4 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-sky-50/50 text-[#1C275C] font-bold uppercase border-b border-sky-100">
+                  <tr>
+                    <th class="p-3">Canal</th>
+                    <th class="p-3">Conta/UF</th>
+                    <th class="p-3">Novo Responsável</th>
+                    <th class="p-3">Foco</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  ${htmlProposta}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  `;
+}

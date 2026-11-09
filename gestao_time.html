@@ -61,7 +61,7 @@
 
       <div class="flex items-center gap-3 border-b border-gray-100 pb-3">
         <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center text-lg font-black">
-          <i class="fa-solid fa-[#00A3FF] fa-sliders"></i>
+          <i class="fa-solid fa-sliders"></i>
         </div>
         <div>
           <span class="text-[10px] font-black uppercase text-gray-400 tracking-wider">Matriz de Maturidade</span>
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <!-- CONTEÚDO PRIVADO (OCULTO ATÉ A AUTENTICAÇÃO) -->
+  <!-- CONTEÚDO PRIVADO -->
   <div id="conteudoPrivado" class="hidden flex-1 flex flex-col">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
@@ -100,7 +100,7 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
       
-      <!-- BANNER DE DESTAQUE DO SELECIONADOR DE PROJETOS (ESTILO REFORÇADO / ANALISE) -->
+      <!-- BANNER DE DESTAQUE DO SELECIONADOR DE PROJETOS -->
       <div class="p-5 bg-gradient-to-r from-indigo-900 via-sky-900 to-slate-900 text-white rounded-2xl border border-indigo-700 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div class="flex items-start md:items-center gap-3.5">
           <div class="w-11 h-11 rounded-xl bg-indigo-500/30 text-indigo-300 border border-indigo-400/40 flex items-center justify-center text-xl font-black flex-shrink-0 mt-0.5 md:mt-0">
@@ -133,12 +133,11 @@
   <script>
     const SENHA_ACESSO = "bringit2026";
 
-    // URLs dos Modelos de Cronograma por Estilo de Liderança
     const URLS_CRONOGRAMAS = {
-      E1: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E1: Direcionar
-      E2: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E2: Orientar
-      E3: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E3: Apoiar
-      E4: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470"  // E4: Delegar
+      E1: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E2: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E3: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470",
+      E4: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470"
     };
 
     const DETALHES_ESTILOS = {
@@ -148,7 +147,6 @@
       E4: { nome: "E4: Delegar", cor: "bg-emerald-500", textCor: "text-emerald-800", bgLight: "bg-emerald-50", border: "border-emerald-200", desc: "Cronograma **Resumido de Acompanhamento High-Level**, fornecendo autonomia total ao colaborador." }
     };
 
-    // Dicionário de Legendas por Capacidade (Maturidade E1 a E4)
     const DICTIONARY_LEGENDAS_CAPACIDADES = {
       "Publicação de Produtos": {
         E1: "Necessita de roteiros detalhados e revisão de 100% dos SKUs antes de subir para o canal.",
@@ -249,7 +247,6 @@
       }
     }
 
-    // Modal de Legenda Contextual
     function abrirModalLegenda(nomeFluxo, estiloDesignado) {
       const modal = document.getElementById('modalLegendaCompetencia');
       const titulo = document.getElementById('modalLegendaTitulo');
@@ -293,7 +290,6 @@
       document.getElementById('modalLegendaCompetencia').classList.add('hidden');
     }
 
-    // Cálculo Ponderado e Desempate por Elevação de Autonomia
     function calcularEstiloResultante(membroId) {
       const checkboxes = document.querySelectorAll(`.chk-${membroId}:checked`);
       const containerResultado = document.getElementById(`resultado-projeto-${membroId}`);
@@ -350,7 +346,7 @@
 
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
-      if (!container || !DATA_ANALISE.fichasTime) return;
+      if (!container || typeof DATA_ANALISE === 'undefined' || !DATA_ANALISE.fichasTime) return;
 
       container.innerHTML = "";
 
@@ -437,7 +433,6 @@
                 </div>
               </div>
 
-              <!-- Painel Resultado do Selecionador de Projetos -->
               <div class="pt-2">
                 <div class="border-t border-gray-100 pt-4">
                   <h5 class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider mb-2 flex items-center gap-2">

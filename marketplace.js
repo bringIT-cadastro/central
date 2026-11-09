@@ -47,6 +47,11 @@ const DATA_MARKETPLACE = {
   ]
 };
 
+// Aliases para compatibilidade entre chamadas do app.js
+function renderizarMarketplace() {
+  renderizarAbaMarketplace();
+}
+
 // Renderização Principal da Aba Marketplace
 function renderizarAbaMarketplace() {
   const container = document.getElementById('conteudoAba');
@@ -99,7 +104,7 @@ function renderizarAbaMarketplace() {
     </div>
   `;
 
-  // Atualiza o contador do header principal se a função existir no app.js
+  // Atualiza o contador do header principal de forma segura
   if (typeof atualizarContadorHeader === 'function') {
     atualizarContadorHeader(DATA_MARKETPLACE.rotinas.length);
   }

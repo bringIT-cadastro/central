@@ -18,12 +18,16 @@
       opacity: 0;
     }
     .membro-card.aberto .membro-detalhes {
-      max-height: 2500px;
+      max-height: 3500px;
       opacity: 1;
       padding-bottom: 1.5rem;
     }
     .membro-card.aberto .icone-seta-membro {
       transform: rotate(180deg);
+    }
+    .checkbox-competencia:checked + label {
+      border-color: #00A3FF;
+      background-color: #F0F9FF;
     }
   </style>
 </head>
@@ -60,7 +64,7 @@
         <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
         <div class="h-6 w-px bg-gray-200"></div>
         <h1 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2">
-          <i class="fa-solid fa-[#00A3FF] fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil do Time
+          <i class="fa-solid fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil & Selecionador de Projetos
         </h1>
       </div>
 
@@ -80,7 +84,7 @@
       <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
         <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
         <p class="text-xs text-slate-700 font-medium leading-relaxed">
-          <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
+          <strong>Selecionador de Projetos Integrado:</strong> Marque os checkboxes das competências envolvidas no novo projeto para calcular o <strong>Estilo de Liderança Combinado</strong> e obter o link do modelo de cronograma ideal (E1 a E4)[cite: 3].
         </p>
       </div>
 
@@ -93,8 +97,22 @@
 
   <script src="analise_data.js"></script>
   <script>
-    // DEFINA A SUA SENHA AQUI
     const SENHA_ACESSO = "bringit2026";
+
+    // URLs dos Modelos de Cronograma por Estilo de Liderança
+    const URLS_CRONOGRAMAS = {
+      E1: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E1: Direcionar (Detalhado)
+      E2: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E2: Orientar (Compacto/Intermediário)
+      E3: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470", // E3: Apoiar (Marcos/Milestones)
+      E4: "https://docs.google.com/spreadsheets/d/1gXBlrApa9qVbqL2FeGQCY1BmX8o3zYrm/edit?gid=967994470#gid=967994470"  // E4: Delegar (Resumido/Executive)
+    };
+
+    const DETALHES_ESTILOS = {
+      E1: { nome: "E1: Direcionar", cor: "bg-red-500", textCor: "text-red-700", bgLight: "bg-red-50", border: "border-red-200", desc: "Cronograma **Bem Detalhado** com tarefas diárias, checkpoints frequentes e instruções passo a passo." },
+      E2: { nome: "E2: Orientar", cor: "bg-amber-500", textCor: "text-amber-800", bgLight: "bg-amber-50", border: "border-amber-200", desc: "Cronograma **Estruturado e Compacto**, combinando instrução clara com validações periódicas de entendimento." },
+      E3: { nome: "E3: Apoiar", cor: "bg-sky-500", textCor: "text-sky-800", bgLight: "bg-sky-50", border: "border-sky-200", desc: "Cronograma **Direto com Foco em Marcos (Milestones)**, apoiando o analista nas entregas principais." },
+      E4: { nome: "E4: Delegar", cor: "bg-emerald-500", textCor: "text-emerald-800", bgLight: "bg-emerald-50", border: "border-emerald-200", desc: "Cronograma **Resumido de Acompanhamento High-Level**, fornecendo autonomia total ao colaborador." }
+    };
 
     document.addEventListener("DOMContentLoaded", () => {
       if (sessionStorage.getItem("acessoAutorizado") === "true") {
@@ -133,6 +151,67 @@
       }
     }
 
+    // Função de Cálculo Ponderado e Desempate por Elevação de Autonomia
+    function calcularEstiloResultante(membroId) {
+      const checkboxes = document.querySelectorAll(`.chk-${membroId}:checked`);
+      const containerResultado = document.getElementById(`resultado-projeto-${membroId}`);
+      
+      if (!checkboxes || checkboxes.length === 0) {
+        containerResultado.innerHTML = `
+          <div class="p-4 bg-slate-100 rounded-xl border border-slate-200 text-center text-xs text-gray-500 font-medium">
+            <i class="fa-solid fa-square-check text-slate-400 mr-1.5"></i>
+            Selecione uma ou mais competências acima para simular a destinação de um projeto.
+          </div>
+        `;
+        return;
+      }
+
+      const contagem = { E1: 0, E2: 0, E3: 0, E4: 0 };
+      const selecionadasNomes = [];
+
+      checkboxes.forEach(chk => {
+        const estilo = chk.dataset.estilo;
+        contagem[estilo]++;
+        selecionadasNomes.push(chk.dataset.fluxo);
+      });
+
+      // Regra de Moda e Desempate:
+      const maxCount = Math.max(...Object.values(contagem));
+      const candidatas = Object.keys(contagem).filter(est => contagem[est] === maxCount);
+
+      // Em caso de empate na contagem máxima, pega a de maior autonomia (ex: E2 empata com E1 -> assume E2)
+      candidatas.sort((a, b) => parseInt(b[1]) - parseInt(a[1]));
+      const estiloFinal = candidatas[0];
+
+      const infoEstilo = DETALHES_ESTILOS[estiloFinal];
+      const urlModelo = URLS_CRONOGRAMAS[estiloFinal];
+
+      containerResultado.innerHTML = `
+        <div class="p-5 ${infoEstilo.bgLight} rounded-2xl border ${infoEstilo.border} space-y-4 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-3 ${infoEstilo.border}">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block">Estilo de Liderança Recomendado para o Projeto:</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="px-3 py-1 text-xs font-black text-white ${infoEstilo.cor} rounded-lg shadow-2xs">${infoEstilo.nome}</span>
+                <span class="text-xs font-bold text-gray-600">(${checkboxes.length} competência(s) selecionada(s))</span>
+              </div>
+            </div>
+
+            <!-- Botão Modelo de Cronograma -->
+            <a href="${urlModelo}" target="_blank" class="px-4 py-2.5 bg-white hover:bg-slate-50 text-[#1C275C] border border-gray-300 font-extrabold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-2xs">
+              <i class="fa-solid fa-file-excel text-emerald-600 text-sm"></i>
+              <span>Abrir Modelo Cronograma (${estiloFinal})</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-gray-400"></i>
+            </a>
+          </div>
+
+          <div class="text-xs ${infoEstilo.textCor} leading-relaxed font-medium">
+            <p><strong>Diretriz de Condução:</strong> ${infoEstilo.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+          </div>
+        </div>
+      `;
+    }
+
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
       if (!container || !DATA_ANALISE.fichasTime) return;
@@ -142,7 +221,7 @@
       DATA_ANALISE.fichasTime.forEach(m => {
         const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
 
-        const htmlBarrasTecnicas = m.niveisTecnicos.map(t => {
+        const htmlBarrasTecnicas = m.niveisTecnicos.map((t, idx) => {
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
           else if (t.nivelPct === 50) corBarra = "bg-amber-400";
@@ -160,10 +239,18 @@
             badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md">E4: Delegar</span>`;
           }
 
+          const chkId = `chk-${m.id}-${idx}`;
+
           return `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
+            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2 relative hover:border-sky-200 transition">
               <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
+                
+                <!-- Title + Compact Checkbox -->
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" id="${chkId}" data-estilo="${t.lideranca}" data-fluxo="${t.fluxo}" onchange="calcularEstiloResultante('${m.id}')" class="chk-${m.id} w-4 h-4 text-[#00A3FF] rounded border-gray-300 focus:ring-[#00A3FF] cursor-pointer">
+                  <label for="${chkId}" class="font-extrabold text-[#1C275C] text-xs cursor-pointer select-none">${t.fluxo}</label>
+                </div>
+
                 <div class="flex items-center gap-2">
                   ${badgeLideranca}
                   <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
@@ -206,15 +293,31 @@
               <div class="space-y-3 pt-1">
                 <div class="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
+                    <i class="fa-solid fa-list-check text-[#00A3FF]"></i> Avaliação Técnica (Marque as competências do projeto)
                   </span>
-                  <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
+                  <span class="text-[10px] font-bold text-gray-400">Marque os checkboxes para simular</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                   ${htmlBarrasTecnicas}
                 </div>
               </div>
+
+              <!-- Painel Resultado do Selecionador de Projetos -->
+              <div class="pt-2">
+                <div class="border-t border-gray-100 pt-4">
+                  <h5 class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project text-[#00A3FF]"></i> Resultado do Selecionador de Projetos
+                  </h5>
+                  <div id="resultado-projeto-${m.id}">
+                    <div class="p-4 bg-slate-100 rounded-xl border border-slate-200 text-center text-xs text-gray-500 font-medium">
+                      <i class="fa-solid fa-square-check text-slate-400 mr-1.5"></i>
+                      Selecione uma ou mais competências acima para simular a destinação de um projeto.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         `;

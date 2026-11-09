@@ -12,7 +12,7 @@ function navegarAba(aba) {
   abaAtual = aba;
 
   var botoes = document.querySelectorAll('.menu-link');
-  if (botoes.length > 0) {
+  if (botoes && botoes.length > 0) {
     botoes.forEach(function(btn) {
       btn.classList.remove('bg-[#00A3FF]', 'text-white', 'shadow-md');
       btn.classList.add('text-gray-700', 'hover:bg-sky-50');

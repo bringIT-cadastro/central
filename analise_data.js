@@ -5,15 +5,17 @@ if (typeof DATA_ANALISE === 'undefined') {
 }
 
 // 1. Logos Oficiais dos Canais
-var LOGOS_CANOES = {
-  "Mercado Livre": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.1/mercadolibre/logo__large_plus.png",
-  "Shopee": "https://upload.wikimedia.org/wikipedia/commons/fe/fe/Shopee.svg",
-  "Kabum": "https://static.kabum.com.br/conteudo/icons/logo.svg",
-  "TikTok": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
-  "TikTok Shop": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
-  "Temu": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Temu_logo.svg",
-  "Amazon": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-};
+if (typeof LOGOS_CANOES === 'undefined') {
+  var LOGOS_CANOES = {
+    "Mercado Livre": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.1/mercadolibre/logo__large_plus.png",
+    "Shopee": "https://upload.wikimedia.org/wikipedia/commons/fe/fe/Shopee.svg",
+    "Kabum": "https://static.kabum.com.br/conteudo/icons/logo.svg",
+    "TikTok": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
+    "TikTok Shop": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
+    "Temu": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Temu_logo.svg",
+    "Amazon": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+  };
+}
 
 // 2. Gargalos Operacionais (Seção 2) com suporte ao g10
 DATA_ANALISE.gargalosOperacionais = [
@@ -140,7 +142,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Patrick Nunes",
     cargo: "Analista de Cadastro Júnior",
     fotoUrl: "patrick.jpeg",
-    resumoPerfil: "Profissional extremamente detalhista, com perfil focado, mais reservado e forte inclinação executora.",
+    resumoPerfil: "Profissional extremamente detalhista, com perfil focado, mais reservado e forte inclinação executora, garantindo alta precisão na condução das tarefas operacionais.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
       { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
@@ -159,7 +161,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Daniela Lourenço",
     cargo: "Analista de Cadastro Júnior",
     fotoUrl: "daniela.webp",
-    resumoPerfil: "Perfil ágil e adaptável, com foco na curva de aprendizado rápido para novos canais.",
+    resumoPerfil: "Perfil ágil e adaptável, com foco na curva de aprendizado rápido para novos canais e rotinas operacionais em expansão.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
       { fluxo: "Qualidade e SEO", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
@@ -178,7 +180,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Maria Soares",
     cargo: "Analista de Cadastro Pleno",
     fotoUrl: "maria.jpeg",
-    resumoPerfil: "Elevado domínio técnico em sistemas e catálogo core.",
+    resumoPerfil: "Elevado domínio técnico em sistemas e catálogo core, atuando como referência técnica no suporte a fluxos complexos.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
       { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
@@ -197,7 +199,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Raqueline Souza",
     cargo: "Analista de Cadastro Pleno",
     fotoUrl: "raqueline.jpg",
-    resumoPerfil: "Forte foco na gestão de marketplaces core (Shopee/Kabum/Amazon).",
+    resumoPerfil: "Forte foco na gestão de marketplaces core (Shopee/Kabum/Amazon), com boa desenvoltura em comunicação e alinhamentos interdepartamentais.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
       { fluxo: "Qualidade e SEO", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
@@ -216,7 +218,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Jennifer Valle",
     cargo: "Analista de Cadastro Pleno",
     fotoUrl: "jennifer.webp",
-    resumoPerfil: "Consistente maturidade em padronização de catálogo, SEO e ferramentas.",
+    resumoPerfil: "Consistente maturidade em padronização de catálogo, SEO e ferramentas de apoio no Workspace Google.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
       { fluxo: "Qualidade e SEO", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
@@ -235,7 +237,7 @@ DATA_ANALISE.fichasTime = [
     nome: "Ingrid Fabris",
     cargo: "Líder / Coordenadora de Operações",
     fotoUrl: "ingrid.webp",
-    resumoPerfil: "Nível máximo de autonomia técnica e operacional (E4).",
+    resumoPerfil: "Nível máximo de autonomia técnica e operacional (E4) na maioria dos pilares, atuando no direcionamento estratégico e troubleshooting complexo.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },
       { fluxo: "Qualidade e SEO", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },

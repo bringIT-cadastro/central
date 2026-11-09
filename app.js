@@ -93,7 +93,7 @@ function atualizarContadorResultados(total) {
 }
 
 // -------------------------------------------------------------
-// 1. Aba Time (Nova Estrutura: Linhas Recolhíveis + Cronograma Semanal)
+// 1. Aba Time (Linhas Recolhíveis + Cronograma Semanal)
 // -------------------------------------------------------------
 function renderizarTime(dados, container) {
   if (!dados || dados.length === 0) {
@@ -112,7 +112,6 @@ function renderizarTime(dados, container) {
   dados.forEach(membro => {
     const estiloTagEscopo = CORES_ESCOPO[membro.escopo] || 'bg-gray-50 text-gray-700 border-gray-200';
     
-    // Busca o cronograma individual do analista no objeto DATA_CRONOGRAMA_TIME
     const cronograma = (typeof DATA_CRONOGRAMA_TIME !== 'undefined' && DATA_CRONOGRAMA_TIME[membro.id]) 
       ? DATA_CRONOGRAMA_TIME[membro.id] 
       : null;
@@ -177,7 +176,6 @@ function renderizarTime(dados, container) {
 
     html += `
       <div class="bringit-card overflow-hidden bg-white border border-gray-200/90 rounded-2xl shadow-sm transition hover:border-[#00A3FF]">
-        <!-- Linha do Analista (Cabeçalho Recolhível) -->
         <button onclick="toggleCronogramaAnalista('${membro.id}')" class="w-full p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white hover:bg-sky-50/40 transition-colors text-left">
           
           <div class="flex items-center gap-4">
@@ -208,7 +206,6 @@ function renderizarTime(dados, container) {
           </div>
         </button>
 
-        <!-- Área Expandida (Grid do Cronograma de Seg a Sex) -->
         <div id="crono-content-${membro.id}" class="hidden p-5 border-t border-gray-100 bg-gray-50/40">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             ${htmlCronogramaCols}
@@ -232,7 +229,7 @@ function toggleCronogramaAnalista(id) {
 }
 
 // -------------------------------------------------------------
-// Componente Reutilizável: Renderizador de Tabela de Rotinas
+// Componente Reutilizável: Renderizador de Tabela de Rotinas (Sem Coluna Tipo)
 // -------------------------------------------------------------
 function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsavel = false }) {
   const CORES_PERIODICIDADE = {
@@ -258,7 +255,6 @@ function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsa
               <th class="p-4 w-12 text-center"></th>
               <th class="p-4">ID</th>
               <th class="p-4">Atividade / Rotina</th>
-              <th class="p-4">Tipo</th>
               ${incluirResponsavel ? `<th class="p-4">Responsável</th>` : ''}
               <th class="p-4">Periodicidade</th>
               ${!incluirResponsavel ? `<th class="p-4">Prioridade</th>` : ''}
@@ -268,7 +264,8 @@ function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsa
   `;
 
   if (!dados || dados.length === 0) {
-    html += `<tr><td colspan="${incluirResponsavel ? 6 : 6}" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
+    const colSpanTotal = incluirResponsavel ? 5 : 5;
+    html += `<tr><td colspan="${colSpanTotal}" class="p-8 text-center text-gray-400">Nenhuma rotina encontrada.</td></tr>`;
   } else {
     dados.forEach((item, index) => {
       const pColor = item.prioridade === 'Alta' ? 'bg-red-50 text-red-600 border-red-100' : (item.prioridade === 'Média' ? 'bg-amber-50 text-amber-600 border-amber-100' : 'bg-gray-50 text-gray-600 border-gray-100');
@@ -297,13 +294,12 @@ function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsa
               ` : ''}
             </div>
           </td>
-          <td class="p-4"><span class="px-2.5 py-1 text-xs rounded-full bg-sky-50 text-[#00A3FF] font-semibold border border-sky-100">${item.tipo || 'Geral'}</span></td>
           
           ${incluirResponsavel ? `
             <td class="p-4">
-              <div class="flex items-center gap-2">
-                <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-6 h-6 rounded-full object-cover border border-[#00A3FF] bg-gray-100">
-                <span class="font-bold text-[#1C275C]">${item.responsavel}</span>
+              <div class="flex items-center gap-2.5">
+                <img src="${fotoResp}" alt="${item.responsavel}" loading="lazy" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+                <span class="font-extrabold text-[#1C275C] text-xs sm:text-sm">${item.responsavel}</span>
               </div>
             </td>
           ` : ''}
@@ -316,7 +312,7 @@ function renderizarTabelaRotinasGenerica({ dados, titulo, icone, incluirResponsa
         </tr>
 
         <tr id="rotina-content-${abaAtual}-${index}" class="hidden bg-sky-50/20 border-t-0">
-          <td colspan="6" class="p-5 pl-14">
+          <td colspan="5" class="p-5 pl-14">
             ${temApoio ? `
               <div class="space-y-3">
                 ${numMateriais > 0 ? `
@@ -651,7 +647,7 @@ function renderizarSite(dados, container) {
 }
 
 // -------------------------------------------------------------
-// Módulo Geral de Filtros
+// Módulo Geral de Filtros (Com remoção do filtro 'tipo')
 // -------------------------------------------------------------
 function gerarFiltrosPorColuna() {
   const container = document.getElementById('containerFiltrosColunas');
@@ -661,7 +657,8 @@ function gerarFiltrosPorColuna() {
   const dados = obterDadosAbaAtual();
   if (!dados || dados.length === 0) return;
 
-  const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto', 'atividade'];
+  // Adicionada a chave 'tipo' nas chaves ignoradas para omitir o filtro do topo
+  const chavesIgnoradas = ['id', 'fotoUrl', 'responsabilidades', 'materiais', 'tutoriais', 'email', 'canaisResponsaveis', 'foto', 'atividade', 'tipo'];
   
   const chavesUnicas = new Set();
   dados.forEach(item => {
@@ -684,7 +681,6 @@ function gerarFiltrosPorColuna() {
       nome: "Colaborador",
       cargo: "Cargo",
       escopo: "Escopo",
-      tipo: "Tipo de Atividade",
       periodicidade: "Periodicidade",
       prioridade: "Prioridade",
       responsavel: "Responsável"

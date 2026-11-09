@@ -4,44 +4,34 @@ if (typeof DATA_ANALISE === 'undefined') {
   var DATA_ANALISE = {};
 }
 
-// Helper seguro para avatares via SVG Data URI (à prova de falhas de carregamento/CORS)
-function gerarAvatarSvgSeguro(nome, corFundo = "00A3FF") {
-  const iniciais = nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-    <rect width="128" height="128" rx="64" fill="#${corFundo}"/>
-    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="48" font-weight="bold">${iniciais}</text>
-  </svg>`;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-}
-
-// 1. Mapeamento de Redistribuição de Contas & Canais
+// 1. Mapeamento de Redistribuição de Contas & Canais com Imagens Locais do Repositório
 DATA_ANALISE.divisaoContas = {
   atual: [
-    { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: gerarAvatarSvgSeguro("Maria Soares") },
-    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") },
-    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") },
-    { canal: "TikTok Shop", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") },
-    { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: gerarAvatarSvgSeguro("Maria Soares") },
-    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") }
+    { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "TikTok Shop", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" },
+    { canal: "Temu", conta: "SC", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", fotoUrl: "raqueline.jpg" }
   ],
   proposta: [
-    { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", badge: "CD SC & MG", fotoUrl: gerarAvatarSvgSeguro("Maria Soares") },
-    { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", badge: "CD SP & PR", fotoUrl: gerarAvatarSvgSeguro("Daniela Lourenco") },
-    { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: gerarAvatarSvgSeguro("Daniela Lourenco") },
-    { canal: "TikTok Shop", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: gerarAvatarSvgSeguro("Daniela Lourenco") },
-    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") },
-    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") },
-    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B", fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza") }
+    { canal: "Mercado Livre", conta: "SC / MG", responsavel: "Maria Soares", badge: "CD SC & MG", fotoUrl: "maria.jpeg" },
+    { canal: "Mercado Livre", conta: "SP (PR) / SP", responsavel: "Daniela Lourenço", badge: "CD SP & PR", fotoUrl: "daniela.webp" },
+    { canal: "Temu", conta: "SC", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "daniela.webp" },
+    { canal: "TikTok Shop", conta: "Geral", responsavel: "Daniela Lourenço", badge: "Novos Canais", fotoUrl: "daniela.webp" },
+    { canal: "Shopee", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Shopee", fotoUrl: "raqueline.jpg" },
+    { canal: "Kabum", conta: "SC / SP / MG", responsavel: "Raqueline Souza", badge: "Core Tech", fotoUrl: "raqueline.jpg" },
+    { canal: "Amazon", conta: "SC", responsavel: "Raqueline Souza", badge: "1P B2B", fotoUrl: "raqueline.jpg" }
   ]
 };
 
-// 2. Fichas de Perfil do Time (10 Competências Mapeadas)
+// 2. Fichas de Perfil do Time (10 Competências Mapeadas & Fotos Locais)
 DATA_ANALISE.fichasTime = [
   {
     id: "patrick-nunes",
     nome: "Patrick Nunes",
     cargo: "Analista de Cadastro Júnior",
-    fotoUrl: gerarAvatarSvgSeguro("Patrick Nunes"),
+    fotoUrl: "patrick.jpeg",
     resumoPerfil: "Profissional extremamente detalhista, com perfil focado, mais reservado e forte inclinação executora, garantindo alta precisão na condução das tarefas operacionais.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
@@ -60,7 +50,7 @@ DATA_ANALISE.fichasTime = [
     id: "daniela-lourenco",
     nome: "Daniela Lourenço",
     cargo: "Analista de Cadastro Júnior",
-    fotoUrl: gerarAvatarSvgSeguro("Daniela Lourenco"),
+    fotoUrl: "daniela.webp",
     resumoPerfil: "Perfil ágil e adaptável, com foco na curva de aprendizado rápido para novos canais e rotinas operacionais em expansão.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
@@ -79,7 +69,7 @@ DATA_ANALISE.fichasTime = [
     id: "maria-soares",
     nome: "Maria Soares",
     cargo: "Analista de Cadastro Pleno",
-    fotoUrl: gerarAvatarSvgSeguro("Maria Soares"),
+    fotoUrl: "maria.jpeg",
     resumoPerfil: "Elevado domínio técnico em sistemas e catálogo core, atuando como referência técnica no suporte a fluxos complexos.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 75, rotuloNivel: "75%", lideranca: "E3", liderancaNome: "Apoiar" },
@@ -98,7 +88,7 @@ DATA_ANALISE.fichasTime = [
     id: "raqueline-souza",
     nome: "Raqueline Souza",
     cargo: "Analista de Cadastro Pleno",
-    fotoUrl: gerarAvatarSvgSeguro("Raqueline Souza"),
+    fotoUrl: "raqueline.jpg",
     resumoPerfil: "Forte foco na gestão de marketplaces core (Shopee/Kabum/Amazon), com boa desenvoltura em comunicação e alinhamentos interdepartamentais.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 50, rotuloNivel: "50%", lideranca: "E2", liderancaNome: "Orientar" },
@@ -117,7 +107,7 @@ DATA_ANALISE.fichasTime = [
     id: "jennifer-valle",
     nome: "Jennifer Valle",
     cargo: "Analista de Cadastro Pleno",
-    fotoUrl: gerarAvatarSvgSeguro("Jennifer Valle"),
+    fotoUrl: "jennifer.webp",
     resumoPerfil: "Consistente maturidade em padronização de catálogo, SEO e ferramentas de apoio no Workspace Google.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 25, rotuloNivel: "25%", lideranca: "E1", liderancaNome: "Direcionar" },
@@ -136,7 +126,7 @@ DATA_ANALISE.fichasTime = [
     id: "ingrid-fabris",
     nome: "Ingrid Fabris",
     cargo: "Líder / Coordenadora de Operações",
-    fotoUrl: gerarAvatarSvgSeguro("Ingrid Fabris"),
+    fotoUrl: "ingrid.webp",
     resumoPerfil: "Nível máximo de autonomia técnica e operacional (E4) na maioria dos pilares, atuando no direcionamento estratégico e troubleshooting complexo.",
     niveisTecnicos: [
       { fluxo: "Publicação de Produtos", nivelPct: 100, rotuloNivel: "100%", lideranca: "E4", liderancaNome: "Delegar" },

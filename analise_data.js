@@ -17,7 +17,29 @@ if (typeof LOGOS_CANOES === 'undefined') {
   };
 }
 
-// 2. Gargalos Operacionais (Seção 2) com suporte ao g10
+// 2. Sugestões Estratégicas de Organização (Fase 1 - Exigido pelo analise.html)
+DATA_ANALISE.sugestoesEstrategicas = [
+  {
+    id: "s1",
+    titulo: "Sugestão 1: Especialização por Tipo de Canal (Shopee/Kabum/Amazon vs ML)",
+    descricao: "Divisão clara do time entre canais de alta volatilidade e catálogo generalista.",
+    detalhes: [
+      "Concentração de escopo por analista para ganho de curva de aprendizado.",
+      "Redução da fragmentação de contexto diária."
+    ]
+  },
+  {
+    id: "s2",
+    titulo: "Sugestão 2: Redistribuição de Contas por Estado/Depósito (CD SC / MG / SP)",
+    descricao: "Alocação focada da operação por infraestrutura e CDs.",
+    detalhes: [
+      "Foco em regras fiscais e operacionais de cada região.",
+      "Melhoria na velocidade de atendimento de chamados regionais."
+    ]
+  }
+];
+
+// 3. Gargalos Operacionais (Fase 2) - Incluindo g10
 DATA_ANALISE.gargalosOperacionais = [
   {
     id: "g1",
@@ -114,7 +136,7 @@ DATA_ANALISE.gargalosOperacionais = [
   }
 ];
 
-// 3. Divisão de Contas (Seção 5)
+// 4. Divisão de Contas (Fase 5)
 DATA_ANALISE.divisaoContas = {
   atual: [
     { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -135,7 +157,7 @@ DATA_ANALISE.divisaoContas = {
   ]
 };
 
-// 4. Fichas de Perfil do Time
+// 5. Fichas de Perfil do Time
 DATA_ANALISE.fichasTime = [
   {
     id: "patrick-nunes",

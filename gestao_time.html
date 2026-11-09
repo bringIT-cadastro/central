@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central de Gestão de Time | Privado</title>
-  
-  <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjTdDDM6XUowBlBmsyNjafgPuMMJ7Ci1XLB8alGALxgw&s">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    .membro-detalhes {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
-      opacity: 0;
-    }
-    .membro-card.aberto .membro-detalhes {
-      max-height: 2500px;
-      opacity: 1;
-      padding-bottom: 1.5rem;
-    }
-    .membro-card.aberto .icone-seta-membro {
-      transform: rotate(180deg);
-    }
-  </style>
-</head>
-<body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen flex flex-col">
-
-  <!-- MODAL DE ACESSO POR SENHA -->
-  <div id="modalLock" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-gray-100 text-center space-y-5">
-      <div class="w-14 h-14 bg-sky-100 text-[#00A3FF] rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-xs">
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <div>
-        <h2 class="text-xl font-extrabold text-[#1C275C]">Área Restrita de Gestão</h2>
-        <p class="text-xs text-gray-500 mt-1 font-medium">Informe a senha de acesso para visualizar o perfil e maturidade técnica do time.</p>
-      </div>
-
-      <form onsubmit="validarSenha(event)" class="space-y-4">
-        <div>
-          <input type="password" id="inputSenha" placeholder="Digite a senha..." required class="w-full px-4 py-3 text-sm rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00A3FF] focus:border-transparent text-center font-bold tracking-widest">
-          <p id="msgErro" class="text-xs text-red-500 font-bold mt-2 hidden">Senha incorreta. Tente novamente.</p>
-        </div>
-        <button type="submit" class="w-full py-3 bg-[#00A3FF] hover:bg-sky-600 text-white font-extrabold text-xs rounded-xl shadow-md transition">
-          Acessar Central
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- CONTEÚDO PRIVADO (OCULTO ATÉ A AUTENTICAÇÃO) -->
-  <div id="conteudoPrivado" class="hidden flex-1 flex flex-col">
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-200 px-8 py-5 sticky top-0 z-30 shadow-sm flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <img src="https://www.bringit.com.br/assets/images/brand/logo-bringit.svg" alt="bringIT" class="h-8 object-contain">
-        <div class="h-6 w-px bg-gray-200"></div>
-        <h1 class="text-xl font-extrabold text-[#1C275C] flex items-center gap-2">
-          <i class="fa-solid fa-user-shield text-[#00A3FF]"></i> Central Interna | Fichas de Perfil do Time
-        </h1>
-      </div>
-
+<!-- ... existing code ... -->
       <div class="flex items-center gap-3">
         <a href="analise.html" class="px-4 py-2 text-xs font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300 rounded-xl transition flex items-center gap-2">
           <i class="fa-solid fa-arrow-left"></i> Voltar ao Diagnóstico
@@ -76,14 +11,126 @@
 
     <!-- Conteúdo -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-8 space-y-6">
-      <div class="p-4 bg-sky-50/80 border border-sky-100 rounded-2xl flex items-start gap-3 shadow-2xs">
-        <i class="fa-solid fa-circle-info text-[#00A3FF] text-sm mt-0.5"></i>
-        <p class="text-xs text-slate-700 font-medium leading-relaxed">
-          <strong>Liderança Situacional Aplicada por Competência:</strong> O estilo de abordagem do gestor (<strong>E1: Direcionar</strong> | <strong>E2: Orientar</strong> | <strong>E3: Apoiar</strong> | <strong>E4: Delegar</strong>) varia de acordo com o nível técnico demonstrado pelo colaborador em cada fluxo específico do projeto.
-        </p>
+      
+      <!-- PAINEL DE GUIAS DE LIDERANÇA SITUACIONAL -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690" target="_blank" class="p-4 bg-white border border-red-200 rounded-2xl shadow-2xs hover:border-red-400 transition flex items-center justify-between group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-black text-sm border border-red-100">E1</div>
+            <div>
+              <h5 class="font-extrabold text-xs text-[#1C275C] group-hover:text-red-600 transition-colors">E1: Direcionar</h5>
+              <p class="text-[11px] font-medium text-gray-500">Alta Direção / Pouco Apoio</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400 group-hover:text-red-600 transition-colors"></i>
+        </a>
+
+        <a href="https://docs.google.com/spreadsheets/d/1yQmVl64oh2-sO6A3MP8JrskM18XKShpQyhBxJdGIUzk/edit?gid=1900549214#gid=1900549214" target="_blank" class="p-4 bg-white border border-amber-200 rounded-2xl shadow-2xs hover:border-amber-400 transition flex items-center justify-between group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-black text-sm border border-amber-100">E2</div>
+            <div>
+              <h5 class="font-extrabold text-xs text-[#1C275C] group-hover:text-amber-700 transition-colors">E2: Orientar</h5>
+              <p class="text-[11px] font-medium text-gray-500">Alta Direção / Alto Apoio</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400 group-hover:text-amber-700 transition-colors"></i>
+        </a>
+
+        <a href="https://docs.google.com/spreadsheets/d/1QWAUuQgwwbOlhmk0s_hsoxD-KGgl84LA/edit?gid=1542147505#gid=1542147505" target="_blank" class="p-4 bg-white border border-sky-200 rounded-2xl shadow-2xs hover:border-sky-400 transition flex items-center justify-between group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#00A3FF] flex items-center justify-center font-black text-sm border border-sky-100">E3</div>
+            <div>
+              <h5 class="font-extrabold text-xs text-[#1C275C] group-hover:text-[#00A3FF] transition-colors">E3: Apoiar</h5>
+              <p class="text-[11px] font-medium text-gray-500">Pouca Direção / Alto Apoio</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400 group-hover:text-[#00A3FF] transition-colors"></i>
+        </a>
+
+        <a href="https://docs.google.com/spreadsheets/d/16-q1M6LN42bnH_tRYfJcPlL6-5oHUwkMzrKrW8bqZ58/edit?gid=1132074376#gid=1132074376" target="_blank" class="p-4 bg-white border border-emerald-200 rounded-2xl shadow-2xs hover:border-emerald-400 transition flex items-center justify-between group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-sm border border-emerald-100">E4</div>
+            <div>
+              <h5 class="font-extrabold text-xs text-[#1C275C] group-hover:text-emerald-600 transition-colors">E4: Delegar</h5>
+              <p class="text-[11px] font-medium text-gray-500">Pouca Direção / Pouco Apoio</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400 group-hover:text-emerald-600 transition-colors"></i>
+        </a>
       </div>
 
-      <!-- Lista de Fichas -->
+      <!-- SIMULADOR & SELECIONADOR DE PROJETOS -->
+      <section class="bringit-card p-6 bg-white border-2 border-indigo-200 rounded-2xl space-y-6 shadow-xs">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-black text-lg border border-indigo-100">
+              <i class="fa-solid fa-diagram-project"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-[#1C275C]">Selecionador de Projetos & Liderança Situacional</h3>
+              <p class="text-xs text-gray-500 font-medium">Selecione um projeto modelo ou personalize as competências exigidas para diagnosticar o estilo de liderança ideal do time.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="salvarOuExportarProjeto()" class="px-3.5 py-2 text-xs font-extrabold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition flex items-center gap-2 shadow-2xs">
+              <i class="fa-solid fa-download"></i>
+              <span>Exportar Diagnóstico</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Coluna 1: Escolha do Modelo de Projeto -->
+          <div class="space-y-3">
+            <label class="block text-xs font-extrabold uppercase text-[#1C275C] tracking-wider">1. Modelo de Projeto</label>
+            <select id="selectModeloProjeto" onchange="carregarModeloProjeto()" class="w-full px-3.5 py-2.5 text-xs font-extrabold text-[#1C275C] bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+              <option value="custom">-- Personalizado (Selecionar Competências) --</option>
+              <option value="cat_mkt" selected>Implantação de Novo Marketplace / Catálogo</option>
+              <option value="revamp_seo">Revamp de Qualidade, Imagens & SEO do Site</option>
+              <option value="ia_automation">Automação de Rotinas com IA & Análise de Dados</option>
+              <option value="gestao_sla">Reestruturação de SLAs Interdepartamentais</option>
+            </select>
+            <input type="text" id="inputNomeProjeto" value="Implantação de Novo Marketplace" placeholder="Nome do Projeto..." class="w-full px-3.5 py-2 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Coluna 2 e 3: Seleção das 10 Capacidades Exigidas pelo Projeto -->
+          <div class="md:col-span-2 space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="block text-xs font-extrabold uppercase text-[#1C275C] tracking-wider">2. Competências Necessárias no Projeto (<span id="countCompSelecionadas">0</span>/10)</label>
+              <div class="flex items-center gap-2 text-[11px]">
+                <button type="button" onclick="marcarTodasCompetencias(true)" class="font-bold text-indigo-600 hover:underline">Marcar Todas</button>
+                <span class="text-gray-300">|</span>
+                <button type="button" onclick="marcarTodasCompetencias(false)" class="font-bold text-gray-500 hover:underline">Limpar</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" id="gridCheckboxCompetencias">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BARRA DE AVISO DA REGRA DE CÁLCULO -->
+      <div class="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/30 text-indigo-300 border border-indigo-400/40 flex items-center justify-center font-black text-lg flex-shrink-0">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-sm text-indigo-200 uppercase tracking-wider">Motor de Diagnóstico Tríplice</span>
+              <span class="px-2 py-0.5 bg-indigo-500 text-white text-[10px] font-black rounded-md">Moda + Autonomia + Ponderação</span>
+            </div>
+            <p class="text-xs text-gray-300 font-medium leading-relaxed">
+              O diagnóstico analisa o peso acumulado das competências selecionadas. Em empates diretos de frequência, prevalece a <strong>elevação de autonomia</strong> para prevenir a sobrecarga de microgestão.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Fichas dos Colaboradores com Diagnóstico do Projeto -->
       <div class="space-y-4" id="listaFichasTime">
         <!-- Injetado via JS -->
       </div>
@@ -94,6 +141,40 @@
   <script>
     // DEFINA A SUA SENHA AQUI
     const SENHA_ACESSO = "bringit2026";
+
+    const COMPETENCIAS_LISTA = [
+      "Publicação de Produtos",
+      "Qualidade e SEO",
+      "Sistemas",
+      "Workspace Google",
+      "Ferramentas de IA",
+      "Digital Commerce",
+      "Análise de Dados",
+      "Gestão de Prazos & SLAs",
+      "Resolução de Problemas",
+      "Comunicação Interdepartamental"
+    ];
+
+    const MODELOS_PROJETOS = {
+      cat_mkt: {
+        nome: "Implantação de Novo Marketplace",
+        competencias: ["Publicação de Produtos", "Digital Commerce", "Qualidade e SEO", "Gestão de Prazos & SLAs"]
+      },
+      revamp_seo: {
+        nome: "Revamp de Qualidade & SEO do Site",
+        competencias: ["Qualidade e SEO", "Sistemas", "Workspace Google", "Digital Commerce"]
+      },
+      ia_automation: {
+        nome: "Automação de Rotinas com IA & Análise de Dados",
+        competencias: ["Ferramentas de IA", "Análise de Dados", "Sistemas", "Resolução de Problemas"]
+      },
+      gestao_sla: {
+        nome: "Reestruturação de SLAs Interdepartamentais",
+        competencias: ["Gestão de Prazos & SLAs", "Resolução de Problemas", "Comunicação Interdepartamental"]
+      }
+    };
+
+    let projetoCompetenciasSelecionadas = ["Publicação de Produtos", "Digital Commerce", "Qualidade e SEO", "Gestão de Prazos & SLAs"];
 
     document.addEventListener("DOMContentLoaded", () => {
       if (sessionStorage.getItem("acessoAutorizado") === "true") {
@@ -117,6 +198,7 @@
     function exibirConteudo() {
       document.getElementById("modalLock").classList.add("hidden");
       document.getElementById("conteudoPrivado").classList.remove("hidden");
+      renderizarGridCompetencias();
       renderizarFichasTime();
     }
 
@@ -132,16 +214,171 @@
       }
     }
 
+    function renderizarGridCompetencias() {
+      const container = document.getElementById('gridCheckboxCompetencias');
+      if (!container) return;
+      container.innerHTML = "";
+
+      COMPETENCIAS_LISTA.forEach((comp, idx) => {
+        const marcada = projetoCompetenciasSelecionadas.includes(comp);
+        container.innerHTML += `
+          <label class="flex items-center gap-2 p-2 rounded-xl border ${marcada ? 'bg-indigo-50/80 border-indigo-300 text-indigo-950 font-bold' : 'bg-gray-50 border-gray-200 text-gray-600 font-medium'} text-xs cursor-pointer hover:border-indigo-400 transition">
+            <input type="checkbox" value="${comp}" ${marcada ? 'checked' : ''} onchange="onToggleCompetencia(this)" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5">
+            <span class="truncate" title="${comp}">${comp}</span>
+          </label>
+        `;
+      });
+
+      const spanCount = document.getElementById('countCompSelecionadas');
+      if (spanCount) spanCount.textContent = projetoCompetenciasSelecionadas.length;
+    }
+
+    function carregarModeloProjeto() {
+      const select = document.getElementById('selectModeloProjeto');
+      const inputNome = document.getElementById('inputNomeProjeto');
+      const val = select.value;
+
+      if (val === 'custom') {
+        if (inputNome) inputNome.value = "Projeto Personalizado";
+      } else if (MODELOS_PROJETOS[val]) {
+        const mod = MODELOS_PROJETOS[val];
+        if (inputNome) inputNome.value = mod.nome;
+        projetoCompetenciasSelecionadas = [...mod.competencias];
+      }
+
+      renderizarGridCompetencias();
+      renderizarFichasTime();
+    }
+
+    function onToggleCompetencia(chk) {
+      const comp = chk.value;
+      if (chk.checked) {
+        if (!projetoCompetenciasSelecionadas.includes(comp)) projetoCompetenciasSelecionadas.push(comp);
+      } else {
+        projetoCompetenciasSelecionadas = projetoCompetenciasSelecionadas.filter(c => c !== comp);
+      }
+
+      const select = document.getElementById('selectModeloProjeto');
+      if (select) select.value = 'custom';
+      
+      const spanCount = document.getElementById('countCompSelecionadas');
+      if (spanCount) spanCount.textContent = projetoCompetenciasSelecionadas.length;
+
+      renderizarGridCompetencias();
+      renderizarFichasTime();
+    }
+
+    function marcarTodasCompetencias(marcar) {
+      if (marcar) {
+        projetoCompetenciasSelecionadas = [...COMPETENCIAS_LISTA];
+      } else {
+        projetoCompetenciasSelecionadas = [];
+      }
+
+      const select = document.getElementById('selectModeloProjeto');
+      if (select) select.value = 'custom';
+
+      renderizarGridCompetencias();
+      renderizarFichasTime();
+    }
+
+    /**
+     * MOTOR DE CÁLCULO DE LIDERANÇA SITUACIONAL POR PROJETO
+     * Regra 1: Moda (Frequência Predominante)
+     * Regra 2: Desempate por Elevação de Autonomia (Escolhe maior E em empates)
+     * Regra 3: Fallback por Média Ponderada Térmica (Arredondamento para cima)
+     */
+    function calcularLiderancaProjeto(niveisTecnicos, competenciasRequeridas) {
+      if (!competenciasRequeridas || competenciasRequeridas.length === 0) {
+        return { nivelKey: "E1", nome: "Direcionar", pctMedia: 25, badgeClass: "bg-red-100 text-red-700 border-red-200", linkSheet: "https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690", motivo: "Nenhuma competência selecionada no projeto" };
+      }
+
+      const filtrados = niveisTecnicos.filter(t => competenciasRequeridas.includes(t.fluxo));
+
+      if (filtrados.length === 0) {
+        return { nivelKey: "E1", nome: "Direcionar", pctMedia: 25, badgeClass: "bg-red-100 text-red-700 border-red-200", linkSheet: "https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690", motivo: "Sem dados para competências selecionadas" };
+      }
+
+      // Mapeamento numérico: E1=1 (25%), E2=2 (50%), E3=3 (75%), E4=4 (100%)
+      const contagem = { E1: 0, E2: 0, E3: 0, E4: 0 };
+      let somaPontos = 0;
+      let somaPct = 0;
+
+      filtrados.forEach(item => {
+        const key = item.lideranca || "E1";
+        if (contagem[key] !== undefined) contagem[key]++;
+        
+        let p = 1;
+        if (key === "E2") p = 2;
+        else if (key === "E3") p = 3;
+        else if (key === "E4") p = 4;
+        
+        somaPontos += p;
+        somaPct += item.nivelPct;
+      });
+
+      const total = filtrados.length;
+      const pctMedia = Math.round(somaPct / total);
+
+      // Regra 1 & 2: Moda + Desempate por Elevação de Autonomia
+      let maxFreq = -1;
+      let nivelVencedor = "E1";
+
+      // Percorre de E1 até E4. Em caso de empate na frequência (freq === maxFreq), o loop atualiza para o nível superior.
+      ["E1", "E2", "E3", "E4"].forEach(n => {
+        if (contagem[n] >= maxFreq && contagem[n] > 0) {
+          maxFreq = contagem[n];
+          nivelVencedor = n;
+        }
+      });
+
+      // Regra 3: Fallback se a moda for fraca / dispersa
+      if (maxFreq === 1 && total >= 3) {
+        const mediaPontos = somaPontos / total;
+        const mediaArred = Math.ceil(mediaPontos);
+        if (mediaArred === 1) nivelVencedor = "E1";
+        else if (mediaArred === 2) nivelVencedor = "E2";
+        else if (mediaArred === 3) nivelVencedor = "E3";
+        else if (mediaArred >= 4) nivelVencedor = "E4";
+      }
+
+      const MAPA_LIDERANCA = {
+        E1: { nome: "Direcionar", badgeClass: "bg-red-100 text-red-700 border-red-200", linkSheet: "https://docs.google.com/spreadsheets/d/1XWP92cvhCNV8dWS8_IJ73cis8NzPQ2pKbBCsrdUsp4Y/edit?gid=386823690#gid=386823690" },
+        E2: { nome: "Orientar", badgeClass: "bg-amber-100 text-amber-800 border-amber-200", linkSheet: "https://docs.google.com/spreadsheets/d/1yQmVl64oh2-sO6A3MP8JrskM18XKShpQyhBxJdGIUzk/edit?gid=1900549214#gid=1900549214" },
+        E3: { nome: "Apoiar", badgeClass: "bg-sky-100 text-sky-800 border-sky-200", linkSheet: "https://docs.google.com/spreadsheets/d/1QWAUuQgwwbOlhmk0s_hsoxD-KGgl84LA/edit?gid=1542147505#gid=1542147505" },
+        E4: { nome: "Delegar", badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200", linkSheet: "https://docs.google.com/spreadsheets/d/16-q1M6LN42bnH_tRYfJcPlL6-5oHUwkMzrKrW8bqZ58/edit?gid=1132074376#gid=1132074376" }
+      };
+
+      const info = MAPA_LIDERANCA[nivelVencedor];
+
+      return {
+        nivelKey: nivelVencedor,
+        nome: info.nome,
+        pctMedia: pctMedia,
+        badgeClass: info.badgeClass,
+        linkSheet: info.linkSheet,
+        detalhesContagem: contagem,
+        totalCompetenciasProjetos: total
+      };
+    }
+
     function renderizarFichasTime() {
       const container = document.getElementById('listaFichasTime');
       if (!container || typeof DATA_GESTAO_TIME === 'undefined' || !DATA_GESTAO_TIME.fichasTime) return;
 
       container.innerHTML = "";
+      const nomeProjInput = document.getElementById('inputNomeProjeto');
+      const nomeProjetoAtual = nomeProjInput ? nomeProjInput.value : "Projeto Ativo";
 
       DATA_GESTAO_TIME.fichasTime.forEach(m => {
         const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.nome)}&background=00A3FF&color=fff&bold=true`;
 
+        // Cálculo da liderança requerida para o projeto ativo
+        const diagProjeto = calcularLiderancaProjeto(m.niveisTecnicos || [], projetoCompetenciasSelecionadas);
+
         const htmlBarrasTecnicas = m.niveisTecnicos ? m.niveisTecnicos.map(t => {
+          const isNoProjeto = projetoCompetenciasSelecionadas.includes(t.fluxo);
+
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
           else if (t.nivelPct === 50) corBarra = "bg-amber-400";
@@ -159,10 +396,15 @@
             badgeLideranca = `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md">E4: Delegar</span>`;
           }
 
+          const destaqueItem = isNoProjeto ? 'bg-indigo-50/70 border-indigo-200 ring-1 ring-indigo-200' : 'bg-gray-50/80 border-gray-100';
+
           return `
-            <div class="p-3 bg-gray-50/80 rounded-xl border border-gray-100 space-y-2">
+            <div class="p-3 rounded-xl border ${destaqueItem} space-y-2">
               <div class="flex items-center justify-between gap-2 flex-wrap">
-                <span class="font-extrabold text-[#1C275C] text-xs">${t.fluxo}</span>
+                <span class="font-extrabold text-[#1C275C] text-xs flex items-center gap-1.5">
+                  ${isNoProjeto ? `<i class="fa-solid fa-star text-indigo-600 text-[10px]" title="Exigida no projeto ativo"></i>` : ''}
+                  <span>${t.fluxo}</span>
+                </span>
                 <div class="flex items-center gap-2">
                   ${badgeLideranca}
                   <span class="font-black text-xs text-gray-700">${t.rotuloNivel}</span>
@@ -178,7 +420,7 @@
 
         container.innerHTML += `
           <div id="${m.id}" class="membro-card bringit-card overflow-hidden bg-white border border-gray-200 hover:border-[#00A3FF] transition shadow-2xs">
-            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
+            <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div class="flex items-center gap-4">
                 <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
                 <div>
@@ -187,15 +429,41 @@
                 </div>
               </div>
 
-              <div class="flex items-center gap-3">
-                <span class="text-xs text-gray-400 font-bold hidden sm:inline-block">Clique para expandir</span>
-                <div class="w-8 h-8 rounded-full bg-gray-200/80 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
+              <!-- RESUMO DO DIAGNÓSTICO DO PROJETO -->
+              <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-200 shadow-2xs">
+                <div class="text-right hidden sm:block">
+                  <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Liderança Recomendada (${nomeProjetoAtual})</span>
+                  <span class="text-xs font-extrabold text-[#1C275C]">Faixa de Autonomia: ${diagProjeto.pctMedia}%</span>
+                </div>
+                <a href="${diagProjeto.linkSheet}" target="_blank" onclick="event.stopPropagation()" title="Abrir Guia no Sheets" class="px-3 py-1.5 text-xs font-black rounded-lg border ${diagProjeto.badgeClass} flex items-center gap-1.5 shadow-2xs hover:opacity-90">
+                  <span>${diagProjeto.nivelKey}: ${diagProjeto.nome}</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                </a>
+                <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-sm transition-transform duration-300 icone-seta-membro">
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
               </div>
             </div>
 
             <div class="membro-detalhes px-6 space-y-6">
+              
+              <!-- CARD INFORMATIVO DO DIAGNÓSTICO DESTE PROJETO -->
+              <div class="p-4 bg-gradient-to-r from-indigo-50 via-white to-sky-50 rounded-2xl border border-indigo-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-1">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-indigo-600">Estilo Sugerido para o Projeto: ${nomeProjetoAtual}</span>
+                  <h5 class="text-sm font-extrabold text-[#1C275C] flex items-center gap-2">
+                    <span>Estilo ${diagProjeto.nivelKey} - ${diagProjeto.nome}</span>
+                    <span class="text-xs font-bold text-gray-500">(Média Técnica do Projeto: ${diagProjeto.pctMedia}%)</span>
+                  </h5>
+                  <p class="text-xs text-gray-600 font-medium">Considera as ${diagProjeto.totalCompetenciasProjetos} competências marcadas para o projeto.</p>
+                </div>
+
+                <a href="${diagProjeto.linkSheet}" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs rounded-xl transition flex items-center gap-2 flex-shrink-0 shadow-2xs">
+                  <i class="fa-solid fa-file-spreadsheet"></i>
+                  <span>Acessar Guia de Conduta (${diagProjeto.nivelKey})</span>
+                </a>
+              </div>
+
               <div class="p-4 bg-sky-50/60 rounded-xl border border-sky-100 text-xs text-gray-700 leading-relaxed space-y-1">
                 <span class="text-[10px] font-extrabold text-[#00A3FF] uppercase tracking-wider block">Resumo do Perfil do Colaborador:</span>
                 <p class="font-medium">${m.resumoPerfil}</p>
@@ -204,7 +472,7 @@
               <div class="space-y-3 pt-1">
                 <div class="flex items-center justify-between border-b border-gray-100 pb-2">
                   <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação Técnica & Estilo de Liderança Situacional
+                    <i class="fa-solid fa-chart-bar text-[#00A3FF]"></i> Avaliação por Competência (Estrelas mostram competências exigidas pelo projeto)
                   </span>
                   <span class="text-[10px] font-bold text-gray-400">Barras: 25% | 50% | 75% | 100%</span>
                 </div>
@@ -213,10 +481,31 @@
                   ${htmlBarrasTecnicas}
                 </div>
               </div>
+
             </div>
           </div>
         `;
       });
+    }
+
+    function salvarOuExportarProjeto() {
+      const inputNome = document.getElementById('inputNomeProjeto');
+      const nomeProjeto = inputNome ? inputNome.value : 'Projeto';
+
+      let relatorio = `DIAGNÓSTICO DE LIDERANÇA SITUACIONAL - BRINGIT\n`;
+      relatorio += `Projeto: ${nomeProjeto}\n`;
+      relatorio += `Competências Exigidas (${projetoCompetenciasSelecionadas.length}): ${projetoCompetenciasSelecionadas.join(', ')}\n\n`;
+
+      DATA_GESTAO_TIME.fichasTime.forEach(m => {
+        const diag = calcularLiderancaProjeto(m.niveisTecnicos || [], projetoCompetenciasSelecionadas);
+        relatorio += `• ${m.nome} (${m.cargo}): ${diag.nivelKey} - ${diag.nome} (Autonomia: ${diag.pctMedia}%)\n`;
+      });
+
+      const blob = new Blob([relatorio], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Diagnostico_Lideranca_${nomeProjeto.replace(/\s+/g, '_')}.txt`;
+      a.click();
     }
   </script>
 </body>

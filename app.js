@@ -1,78 +1,75 @@
-// app.js - Roteamento Seguro e Programação Defensiva
+// app.js - Roteamento Seguro do Sistema bringIT
 
-(function (global) {
-  'use strict';
+var abaAtual = 'time';
 
-  let abaAtual = 'time';
+document.addEventListener("DOMContentLoaded", function() {
+  if (document.getElementById('conteudoAba')) {
+    navegarAba('time');
+  }
+});
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // Somente roda inicialização por aba se o contêiner existir na página (ex: index.html)
-    if (document.getElementById('conteudoAba')) {
-      navegarAba('time');
-    }
-  });
+function navegarAba(aba) {
+  abaAtual = aba;
 
-  function navegarAba(aba) {
-    abaAtual = aba;
+  var botoes = document.querySelectorAll('.menu-link');
+  if (botoes.length > 0) {
+    botoes.forEach(function(btn) {
+      btn.classList.remove('bg-[#00A3FF]', 'text-white', 'shadow-md');
+      btn.classList.add('text-gray-700', 'hover:bg-sky-50');
+    });
 
-    // 1. Destaque dos botões de navegação lateral
-    const botoes = document.querySelectorAll('.menu-link');
-    if (botoes.length > 0) {
-      botoes.forEach(btn => {
-        btn.classList.remove('bg-[#00A3FF]', 'text-white', 'shadow-md');
-        btn.classList.add('text-gray-700', 'hover:bg-sky-50');
-      });
-
-      const btnAtivo = document.getElementById(`btn-${aba}`);
-      if (btnAtivo) {
-        btnAtivo.classList.remove('text-gray-700', 'hover:bg-sky-50');
-        btnAtivo.classList.add('bg-[#00A3FF]', 'text-white', 'shadow-md');
-      }
-    }
-
-    // 2. Atualização de Título do Header
-    const tituloAba = document.getElementById('tituloAba');
-    if (tituloAba) {
-      if (aba === 'time') tituloAba.textContent = 'Rotinas do Time';
-      else if (aba === 'marketplace') tituloAba.textContent = 'Rotinas de Marketplace';
-      else if (aba === 'site') tituloAba.textContent = 'Rotinas do Site';
-    }
-
-    // 3. Limpeza defensiva do contêiner antes de renderizar
-    const container = document.getElementById('conteudoAba');
-    if (!container) return; // Se a página não tiver essa div (ex: analise.html), encerra sem erro.
-
-    container.innerHTML = '';
-
-    // 4. Execução segura dos renderizadores por aba
-    try {
-      if (aba === 'time') {
-        if (typeof global.renderizarAbaTime === 'function') global.renderizarAbaTime();
-        else if (typeof global.renderizarTime === 'function') global.renderizarTime();
-      } else if (aba === 'marketplace') {
-        if (typeof global.renderizarAbaMarketplace === 'function') global.renderizarAbaMarketplace();
-        else if (typeof global.renderizarMarketplace === 'function') global.renderizarMarketplace();
-      } else if (aba === 'site') {
-        if (typeof global.renderizarAbaSite === 'function') global.renderizarAbaSite();
-        else if (typeof global.renderizarSite === 'function') global.renderizarSite();
-      }
-    } catch (erro) {
-      console.error(`[bringIT Router] Falha ao renderizar a aba "${aba}":`, erro);
+    var btnAtivo = document.getElementById('btn-' + aba);
+    if (btnAtivo) {
+      btnAtivo.classList.remove('text-gray-700', 'hover:bg-sky-50');
+      btnAtivo.classList.add('bg-[#00A3FF]', 'text-white', 'shadow-md');
     }
   }
 
-  // Atualizador seguro do badge de contagem de registros
-  function atualizarContadorHeader(total) {
-    const badge = document.getElementById('contadorResultados');
-    if (!badge) return;
-
-    const valorValido = (typeof total === 'number' && !isNaN(total)) ? total : 0;
-    badge.textContent = `${valorValido} registros encontrados`;
-    badge.classList.remove('hidden');
+  var tituloAba = document.getElementById('tituloAba');
+  if (tituloAba) {
+    if (aba === 'time') tituloAba.textContent = 'Rotinas do Time';
+    else if (aba === 'marketplace') tituloAba.textContent = 'Rotinas de Marketplace';
+    else if (aba === 'site') tituloAba.textContent = 'Rotinas do Site';
   }
 
-  // Exportação para escopo global
-  global.navegarAba = navegarAba;
-  global.atualizarContadorHeader = atualizarContadorHeader;
+  var container = document.getElementById('conteudoAba');
+  if (!container) return;
 
-})(typeof window !== 'undefined' ? window : this);
+  container.innerHTML = '';
+
+  try {
+    if (aba === 'time') {
+      if (typeof renderizarAbaTime === 'function') renderizarAbaTime();
+      else if (typeof renderizarTime === 'function') renderizarTime();
+    } else if (aba === 'marketplace') {
+      if (typeof renderizarAbaMarketplace === 'function') renderizarAbaMarketplace();
+      else if (typeof renderizarMarketplace === 'function') renderizarMarketplace();
+    } else if (aba === 'site') {
+      if (typeof renderizarAbaSite === 'function') renderizarAbaSite();
+      else if (typeof renderizarSite === 'function') renderizarSite();
+    }
+  } catch (erro) {
+    console.error('Erro ao navegar para a aba:', aba, erro);
+  }
+}
+
+function atualizarContadorHeader(total) {
+  var badge = document.getElementById('contadorResultados');
+  if (!badge) return;
+
+  var valorValido = (typeof total === 'number' && !isNaN(total)) ? total : 0;
+  badge.textContent = valorValido + ' registros encontrados';
+  badge.classList.remove('hidden');
+}
+
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebarMenu');
+  var icon = document.getElementById('iconSidebarToggle');
+  if (sidebar) {
+    sidebar.classList.toggle('w-64');
+    sidebar.classList.toggle('w-20');
+  }
+  if (icon) {
+    icon.classList.toggle('rotate-180');
+  }
+}

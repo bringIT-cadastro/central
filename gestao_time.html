@@ -182,7 +182,7 @@
         E1: "Compreensão inicial dos fluxos de e-commerce e regras comerciais de marketplaces.",
         E2: "Entende o funcionamento dos ecossistemas de canais e particularidades de cada loja.",
         E3: "Visão abrangente sobre margens, regras de frete e posicionamento de produtos.",
-        E4: "Visão estratégica total de e-commerce, recomendando otimizações de portfólio por canal."
+        E4: "Visão estratégica total de e-commerce, recomendando otimizaciones de portfólio por canal."
       },
       "Análise de Dados": {
         E1: "Leitura de relatórios prontos; necessita de auxílio para cruzar informações.",
@@ -351,8 +351,6 @@
       container.innerHTML = "";
 
       DATA_ANALISE.fichasTime.forEach(m => {
-        const avatarSvgFallback = (typeof gerarAvatarSvgSeguro === 'function') ? gerarAvatarSvgSeguro(m.nome) : `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" fill="%2300A3FF"/><text x="50%" y="50%" fill="%23FFF" font-size="48" text-anchor="middle" dominant-baseline="middle">${m.nome[0]}</text></svg>`;
-
         const htmlBarrasTecnicas = m.niveisTecnicos.map((t, idx) => {
           let corBarra = "bg-amber-400";
           if (t.nivelPct === 25) corBarra = "bg-red-400";
@@ -399,7 +397,9 @@
             
             <div onclick="toggleMembro('${m.id}')" class="p-5 cursor-pointer bg-slate-50/70 hover:bg-sky-50/50 transition flex items-center justify-between gap-4">
               <div class="flex items-center gap-4">
-                <img src="${m.fotoUrl}" onerror="this.onerror=null;this.src='${avatarSvgFallback}';" alt="${m.nome}" class="w-14 h-14 rounded-2xl object-cover border-2 border-[#00A3FF] shadow-xs bg-white flex-shrink-0">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                  <img src="${m.fotoUrl}" alt="${m.nome}" class="w-full h-full object-cover">
+                </div>
                 <div>
                   <h4 class="text-base font-extrabold text-[#1C275C]">${m.nome}</h4>
                   <span class="text-xs font-bold text-[#00A3FF] block">${m.cargo}</span>

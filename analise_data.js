@@ -4,7 +4,6 @@ if (typeof DATA_ANALISE === 'undefined') {
   var DATA_ANALISE = {};
 }
 
-// 1. Mapeamento de Redistribuição de Contas & Canais com Imagens Locais do Repositório
 DATA_ANALISE.divisaoContas = {
   atual: [
     { canal: "Mercado Livre", conta: "SC / SP / PR / MG", responsavel: "Maria Soares", fotoUrl: "maria.jpeg" },
@@ -25,7 +24,6 @@ DATA_ANALISE.divisaoContas = {
   ]
 };
 
-// 2. Fichas de Perfil do Time (10 Competências Mapeadas & Fotos Locais)
 DATA_ANALISE.fichasTime = [
   {
     id: "patrick-nunes",

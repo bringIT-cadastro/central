@@ -1,27 +1,27 @@
-// marketplace.js - Gestão e Operações de Marketplace bringIT
+// marketplace.js - Operações de Marketplace bringIT
 
 const DATA_MARKETPLACE = {
   rotinas: [
-    { id: "MKT-01", nome: "Novos Cadastros l Conexão de Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-02", nome: "Ponte de Comando l Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-03", nome: "Ponte de Comando l Atualização de Atributos", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-04", nome: "Ponte de Comando l Pausa de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-05", nome: "Ponte de Comando l Reativação de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-06", nome: "Conferência e correção de cadastros nos canais, produtos inativos/bloqueados", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-07", nome: "Mercado Livre l Manutenção e correção dos anúncios \"Em Revisão\"", tipo: "Puxada", periodicidade: "Quinzenal", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-08", nome: "Acompanhamento dos indicadores dos marketplaces e identificação de correções", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-09", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Baixa", responsavel: "Raqueline Souza" },
-    { id: "MKT-10", nome: "Service Desk l Fila - Conexão de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-11", nome: "Service Desk l Fila - Correção de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Raqueline Souza" },
-    { id: "MKT-12", nome: "Service Desk l Fila - RMA Erro de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-13", nome: "Service Desk l Pausar ou Ativar Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-14", nome: "Validação de SKUs que chegam em importações", tipo: "Puxada", periodicidade: "Pontual", prioridade: "Média", responsavel: "Maria Soares" },
-    { id: "MKT-15", nome: "Manutenção vínculo de identidade Platz x Canal", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-16", nome: "Criação e atualização de documentação dos canais", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Baixa", responsavel: "Maria Soares" },
-    { id: "MKT-17", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" },
-    { id: "MKT-18", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza" },
-    { id: "MKT-19", nome: "Preenchimento e acompanhamento de KPIs", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Equipe Cadastro" },
-    { id: "MKT-20", nome: "Acompanhamento e Análise de devoluções de cada canal", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares" }
+    { id: "MKT-01", nome: "Novos Cadastros l Conexão de Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Checklist de homologação e validação EAN/SKU no Platz." },
+    { id: "MKT-02", nome: "Ponte de Comando l Novos Anúncios", tipo: "Puxada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Planilha de monitoramento de fila de publicação." },
+    { id: "MKT-03", nome: "Ponte de Comando l Atualização de Atributos", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Guia de atributos obrigatórios por categoria no Meli." },
+    { id: "MKT-04", nome: "Ponte de Comando l Pausa de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Procedimento operacional padrão de pausa por indisponibilidade." },
+    { id: "MKT-05", nome: "Ponte de Comando l Reativação de Anúncios", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Instruções de reativação com atualização de preço e estoque." },
+    { id: "MKT-06", nome: "Conferência e correção de cadastros nos canais, produtos inativos/bloqueados", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Relatório semanal de auditoria de anúncios inativos." },
+    { id: "MKT-07", nome: "Mercado Livre l Manutenção e correção dos anúncios \"Em Revisão\"", tipo: "Puxada", periodicidade: "Quinzenal", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Painel de tratamento de infrações de marcas e patentes no Meli." },
+    { id: "MKT-08", nome: "Acompanhamento dos indicadores dos marketplaces e identificação de correções", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Dashboard de KPIs de saúde de conta." },
+    { id: "MKT-09", nome: "Manutenção de anúncios para inativação de produtos - Inativar e acompanhar pausa", tipo: "Empurrada", periodicidade: "Sob Demanda", prioridade: "Baixa", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Fluxo de descontinuação de catálogo." },
+    { id: "MKT-10", nome: "Service Desk l Fila - Conexão de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Fila de chamados do Jira / Service Desk para conexão." },
+    { id: "MKT-11", nome: "Service Desk l Fila - Correção de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Manual de resolução de chamados de divergência de títulos e fotos." },
+    { id: "MKT-12", nome: "Service Desk l Fila - RMA Erro de Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Procedimento de alinhamento com garantia e SAC." },
+    { id: "MKT-13", nome: "Service Desk l Pausar ou Ativar Anúncios", tipo: "Empurrada", periodicidade: "Diária", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Regras de bloqueio rápido por divergência tributária." },
+    { id: "MKT-14", nome: "Validação de SKUs que chegam em importações", tipo: "Puxada", periodicidade: "Pontual", prioridade: "Média", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Checklist de pré-cadastro de remessas internacionais." },
+    { id: "MKT-15", nome: "Manutenção vínculo de identidade Platz x Canal", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Mapeamento de IDs de anúncio x SKUs Pai no ERP." },
+    { id: "MKT-16", nome: "Criação e atualização de documentação dos canais", tipo: "Puxada", periodicidade: "Mensal", prioridade: "Baixa", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Repositório do Notion de regras comerciais por marketplace." },
+    { id: "MKT-17", nome: "Realizar conexão de SKUs ainda sem conexões nos canais", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Relatório de lacunas de publicação no portfólio ativo." },
+    { id: "MKT-18", nome: "Acompanhamento de performance dos anúncios - Visitas, Impressões, Cliques", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Raqueline Souza", tutorialUrl: "#", materialApoio: "Painel de conversão e campanhas de Ads." },
+    { id: "MKT-19", nome: "Preenchimento e acompanhamento de KPIs", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Média", responsavel: "Equipe Cadastro", tutorialUrl: "#", materialApoio: "Planilha Mestra de KPIs operacionais da equipe." },
+    { id: "MKT-20", nome: "Acompanhamento e Análise de devoluções de cada canal", tipo: "Puxada", periodicidade: "Semanal", prioridade: "Alta", responsavel: "Maria Soares", tutorialUrl: "#", materialApoio: "Relatório de devoluções por motivo de erro de anúncio." }
   ]
 };
 
@@ -36,17 +36,17 @@ function renderizarAbaMarketplace() {
   container.innerHTML = `
     <div class="space-y-6">
       
-      <!-- 1º LUGAR: ESTUDO DE REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
+      <!-- 1ª SEÇÃO: REDISTRIBUIÇÃO DE CONTAS & CANAIS -->
       <div id="containerRedistribuicaoContasMarketplace">
         ${renderizarEstruturaRedistribuicaoHtml()}
       </div>
 
-      <!-- 2º LUGAR: FILTROS CRÍTICOS ML E SHOPEE (UTILIZANDO DATA_FILTROS) -->
+      <!-- 2ª SEÇÃO: FILTROS CRÍTICOS COM AÇÃO DE COPIAR -->
       <div class="space-y-4">
         ${renderizarFiltrosCriticosMarketplace()}
       </div>
 
-      <!-- 3º LUGAR: TABELA DE ROTINAS E ATIVIDADES -->
+      <!-- 3ª SEÇÃO: ROTINAS E ATIVIDADES COM EXPANSAO (MATERIAIS E TUTORIAIS) -->
       <div class="bringit-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-2xs space-y-4 p-6">
         <div class="flex items-center justify-between border-b border-gray-100 pb-4">
           <div class="flex items-center gap-2">
@@ -62,6 +62,7 @@ function renderizarAbaMarketplace() {
           <table class="w-full text-left text-xs">
             <thead class="bg-gray-50 text-gray-400 font-bold uppercase border-b border-gray-200">
               <tr>
+                <th class="p-3 w-8"></th>
                 <th class="p-3 text-center">ID</th>
                 <th class="p-3">Atividade / Rotina</th>
                 <th class="p-3">Responsável</th>
@@ -85,7 +86,7 @@ function renderizarAbaMarketplace() {
   }
 }
 
-// Renderizador dos Filtros Críticos usando a base completa do filtros.js
+// Renderiza os Filtros Críticos mantendo a mecânica original de COPIAR URL
 function renderizarFiltrosCriticosMarketplace() {
   const listaFiltros = (typeof DATA_FILTROS !== 'undefined') ? DATA_FILTROS : [];
   
@@ -93,7 +94,7 @@ function renderizarFiltrosCriticosMarketplace() {
   const filtrosShopee = listaFiltros.filter(f => f.categoriaPrincipal === "Shopee" || f.canal === "Shopee");
 
   return `
-    <!-- Filtros Mercado Livre -->
+    <!-- Mercado Livre -->
     <div class="bringit-card bg-amber-50 border-amber-200 text-amber-900 rounded-2xl p-5 border shadow-2xs space-y-3">
       <div class="flex items-center justify-between cursor-pointer" onclick="toggleFiltroCritico('fc-mkt-ml')">
         <div class="flex items-center gap-3">
@@ -102,29 +103,35 @@ function renderizarFiltrosCriticosMarketplace() {
           </div>
           <div>
             <h4 class="font-extrabold text-[#1C275C] text-sm">Filtros Críticos Mercado Livre (${filtrosML.length} Atalhos)</h4>
-            <p class="text-xs text-gray-500">Links diretos para moderações, revisões e experiências de compra</p>
+            <p class="text-xs text-gray-500">Clique para copiar o link oficial do filtro diretamente</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para visualizar</span>
+          <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para expandir</span>
           <i id="seta-fc-mkt-ml" class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform"></i>
         </div>
       </div>
 
       <div id="fc-mkt-ml" class="hidden pt-3 border-t border-gray-200/60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-        ${filtrosML.map(f => `
-          <a href="${f.url}" target="_blank" class="p-3 bg-white hover:bg-amber-100/50 rounded-xl border border-amber-200 transition flex flex-col justify-between space-y-1">
-            <span class="font-extrabold text-[#1C275C] text-xs flex items-center justify-between">
-              ${f.nome}
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-amber-600"></i>
-            </span>
-            <span class="text-[10px] text-gray-400 uppercase font-black">Mercado Livre</span>
-          </a>
+        ${filtrosML.map((f, idx) => `
+          <div class="p-3 bg-white rounded-xl border border-amber-200 flex flex-col justify-between space-y-2">
+            <div>
+              <span class="font-extrabold text-[#1C275C] text-xs block">${f.nome}</span>
+              <span class="text-[10px] text-gray-400 uppercase font-black">Mercado Livre</span>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-gray-100">
+              <button onclick="copiarUrlFiltro('${f.url}', 'feedback-ml-${idx}')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold text-[11px] rounded-lg transition flex items-center gap-1.5 w-full justify-center">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar Link</span>
+              </button>
+            </div>
+            <span id="feedback-ml-${idx}" class="text-[10px] font-bold text-emerald-600 text-center hidden">Link copiado!</span>
+          </div>
         `).join('')}
       </div>
     </div>
 
-    <!-- Filtros Shopee -->
+    <!-- Shopee -->
     <div class="bringit-card bg-orange-50 border-orange-200 text-orange-900 rounded-2xl p-5 border shadow-2xs space-y-3">
       <div class="flex items-center justify-between cursor-pointer" onclick="toggleFiltroCritico('fc-mkt-shopee')">
         <div class="flex items-center gap-3">
@@ -133,31 +140,37 @@ function renderizarFiltrosCriticosMarketplace() {
           </div>
           <div>
             <h4 class="font-extrabold text-[#1C275C] text-sm">Filtros Críticos Shopee (${filtrosShopee.length} Atalhos)</h4>
-            <p class="text-xs text-gray-500">Links diretos para banimentos, deboost e produtos sob análise</p>
+            <p class="text-xs text-gray-500">Clique para copiar o link oficial do filtro diretamente</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para visualizar</span>
+          <span class="text-xs font-bold text-gray-500 px-3 py-1 bg-white/80 rounded-lg border border-gray-200">Clique para expandir</span>
           <i id="seta-fc-mkt-shopee" class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform"></i>
         </div>
       </div>
 
       <div id="fc-mkt-shopee" class="hidden pt-3 border-t border-gray-200/60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-        ${filtrosShopee.map(f => `
-          <a href="${f.url}" target="_blank" class="p-3 bg-white hover:bg-orange-100/50 rounded-xl border border-orange-200 transition flex flex-col justify-between space-y-1">
-            <span class="font-extrabold text-[#1C275C] text-xs flex items-center justify-between">
-              ${f.nome}
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-orange-600"></i>
-            </span>
-            <span class="text-[10px] text-gray-400 uppercase font-black">Shopee</span>
-          </a>
+        ${filtrosShopee.map((f, idx) => `
+          <div class="p-3 bg-white rounded-xl border border-orange-200 flex flex-col justify-between space-y-2">
+            <div>
+              <span class="font-extrabold text-[#1C275C] text-xs block">${f.nome}</span>
+              <span class="text-[10px] text-gray-400 uppercase font-black">Shopee</span>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-gray-100">
+              <button onclick="copiarUrlFiltro('${f.url}', 'feedback-shopee-${idx}')" class="px-2.5 py-1 bg-orange-100 hover:bg-orange-200 text-orange-800 font-bold text-[11px] rounded-lg transition flex items-center gap-1.5 w-full justify-center">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar Link</span>
+              </button>
+            </div>
+            <span id="feedback-shopee-${idx}" class="text-[10px] font-bold text-emerald-600 text-center hidden">Link copiado!</span>
+          </div>
         `).join('')}
       </div>
     </div>
   `;
 }
 
-// Renderiza a tabela comparativa usando as imagens locais oficiais do projeto
+// Renderiza a Estrutura Comparativa com Avatares Perfeitamente Redondos
 function renderizarEstruturaRedistribuicaoHtml() {
   const obterHtmlLogo = (nomeCanal) => {
     const urlLogo = typeof LOGOS_CANOES !== 'undefined' ? LOGOS_CANOES[nomeCanal] : null;
@@ -194,7 +207,9 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0 flex items-center justify-center">
+            <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-full h-full object-cover">
+          </div>
           <span class="font-bold text-[#1C275C] text-xs">${c.responsavel}</span>
         </div>
       </td>
@@ -207,7 +222,9 @@ function renderizarEstruturaRedistribuicaoHtml() {
       <td class="p-3 text-gray-500 font-medium text-xs">${c.conta}</td>
       <td class="p-3">
         <div class="flex items-center gap-2.5">
-          <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-8 h-8 rounded-full object-cover border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0">
+          <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-[#00A3FF] shadow-xs bg-gray-100 flex-shrink-0 flex items-center justify-center">
+            <img src="${c.fotoUrl}" alt="${c.responsavel}" class="w-full h-full object-cover">
+          </div>
           <span class="font-extrabold text-[#00A3FF] text-xs">${c.responsavel}</span>
         </div>
       </td>
@@ -285,13 +302,17 @@ function renderizarEstruturaRedistribuicaoHtml() {
   `;
 }
 
+// Renderiza as Linhas de Rotinas com Funcionalidade de Expansão (Materiais de Apoio / Tutoriais)
 function renderizarLinhasRotinasMarketplace(lista) {
   if (!lista || lista.length === 0) {
-    return `<tr><td colspan="6" class="p-8 text-center text-gray-400 font-medium">Nenhuma rotina encontrada.</td></tr>`;
+    return `<tr><td colspan="7" class="p-8 text-center text-gray-400 font-medium">Nenhuma rotina encontrada.</td></tr>`;
   }
 
-  return lista.map(r => `
-    <tr class="hover:bg-gray-50/80 transition-colors">
+  return lista.map((r, idx) => `
+    <tr class="hover:bg-gray-50/80 transition-colors cursor-pointer" onclick="toggleDetalheRotina('detalhe-rotina-${idx}')">
+      <td class="p-3 text-center text-gray-400">
+        <i id="seta-rotina-${idx}" class="fa-solid fa-chevron-right text-xs transition-transform"></i>
+      </td>
       <td class="p-3 font-bold text-gray-400 text-center">${r.id}</td>
       <td class="p-3 font-bold text-[#1C275C]">${r.nome}</td>
       <td class="p-3 font-semibold text-gray-600">${r.responsavel}</td>
@@ -307,6 +328,23 @@ function renderizarLinhasRotinasMarketplace(lista) {
         </span>
       </td>
     </tr>
+    <tr id="detalhe-rotina-${idx}" class="hidden bg-sky-50/40 border-b border-gray-100">
+      <td colspan="7" class="p-4 pl-12 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <span class="text-[10px] font-black uppercase text-[#00A3FF] tracking-wider block">Material de Apoio / Diretriz</span>
+            <p class="text-xs text-gray-700 font-medium">${r.materialApoio || 'Documentação em atualização.'}</p>
+          </div>
+          ${r.tutorialUrl ? `
+            <a href="${r.tutorialUrl}" target="_blank" onclick="event.stopPropagation()" class="px-3 py-1.5 bg-white hover:bg-sky-50 text-[#00A3FF] border border-sky-200 font-bold text-xs rounded-xl transition flex items-center gap-2 self-start sm:self-auto shadow-2xs">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span>Abrir Tutorial</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          ` : ''}
+        </div>
+      </td>
+    </tr>
   `).join('');
 }
 
@@ -316,5 +354,15 @@ function toggleFiltroCritico(id) {
   if (el) {
     el.classList.toggle('hidden');
     if (seta) seta.classList.toggle('rotate-180');
+  }
+}
+
+function toggleDetalheRotina(id) {
+  const el = document.getElementById(id);
+  const idx = id.replace('detalhe-rotina-', '');
+  const seta = document.getElementById(`seta-rotina-${idx}`);
+  if (el) {
+    el.classList.toggle('hidden');
+    if (seta) seta.classList.toggle('rotate-90');
   }
 }

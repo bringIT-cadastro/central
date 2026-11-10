@@ -2,9 +2,19 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prateleira de Capacidades Técnicas | bringIT</title>
+  
+  <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjTdDDM6XUowBlBmsyNjafgPuMMJ7Ci1XLB8alGALxgw&s">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .modal-backdrop {
+      background-color: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+    }
+  </style>
 </head>
 <body class="bg-[#F5F7FA] text-[#1C275C] font-sans antialiased min-h-screen">
 
@@ -31,7 +41,7 @@
     <div class="space-y-4">
       <div class="flex items-center justify-between">
         <h2 class="text-base font-extrabold text-[#1C275C]">Livros do Conhecimento (Pilares de Formação)</h2>
-        <span class="text-xs text-gray-500 font-bold">Desenvolvimento Gradual do Time</span>
+        <span class="text-xs text-gray-500 font-bold">Clique em cada livro para ver os 5 temas de desenvolvimento</span>
       </div>
 
       <!-- ESTANTE / PRATELEIRA DE CONHECIMENTO -->
@@ -40,50 +50,50 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           
           <!-- Livro 1 -->
-          <div class="bg-gradient-to-b from-sky-600 to-sky-900 p-5 rounded-2xl border-t-4 border-sky-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 transition-transform cursor-pointer">
+          <div onclick="abrirModalVolume(1)" class="bg-gradient-to-b from-sky-600 to-sky-900 p-5 rounded-2xl border-t-4 border-sky-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-sky-500/20 transition-all cursor-pointer group">
             <span class="text-[10px] font-black uppercase tracking-wider bg-sky-950/80 px-2 py-0.5 rounded text-sky-200 w-max">Volume I</span>
             <div class="space-y-2">
-              <i class="fa-solid fa-sitemap text-2xl text-sky-300"></i>
+              <i class="fa-solid fa-sitemap text-2xl text-sky-300 group-hover:scale-110 transition-transform"></i>
               <h3 class="font-extrabold text-sm leading-tight">Taxonomia de Categorias</h3>
             </div>
             <p class="text-[11px] text-sky-100/80 font-medium">Arquitetura de informação, menus e navegabilidade intuitiva.</p>
           </div>
 
           <!-- Livro 2 -->
-          <div class="bg-gradient-to-b from-purple-600 to-purple-900 p-5 rounded-2xl border-t-4 border-purple-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 transition-transform cursor-pointer">
+          <div onclick="abrirModalVolume(2)" class="bg-gradient-to-b from-purple-600 to-purple-900 p-5 rounded-2xl border-t-4 border-purple-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-purple-500/20 transition-all cursor-pointer group">
             <span class="text-[10px] font-black uppercase tracking-wider bg-purple-950/80 px-2 py-0.5 rounded text-purple-200 w-max">Volume II</span>
             <div class="space-y-2">
-              <i class="fa-solid fa-brain text-2xl text-purple-300"></i>
+              <i class="fa-solid fa-brain text-2xl text-purple-300 group-hover:scale-110 transition-transform"></i>
               <h3 class="font-extrabold text-sm leading-tight">Neurociência do Consumo</h3>
             </div>
             <p class="text-[11px] text-purple-100/80 font-medium">Gatilhos mentais, copy persuasivo e decisão de compra.</p>
           </div>
 
           <!-- Livro 3 -->
-          <div class="bg-gradient-to-b from-emerald-600 to-emerald-900 p-5 rounded-2xl border-t-4 border-emerald-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 transition-transform cursor-pointer">
+          <div onclick="abrirModalVolume(3)" class="bg-gradient-to-b from-emerald-600 to-emerald-900 p-5 rounded-2xl border-t-4 border-emerald-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-emerald-500/20 transition-all cursor-pointer group">
             <span class="text-[10px] font-black uppercase tracking-wider bg-emerald-950/80 px-2 py-0.5 rounded text-emerald-200 w-max">Volume III</span>
             <div class="space-y-2">
-              <i class="fa-solid fa-[#00A3FF] fa-eye text-2xl text-emerald-300"></i>
+              <i class="fa-solid fa-eye text-2xl text-emerald-300 group-hover:scale-110 transition-transform"></i>
               <h3 class="font-extrabold text-sm leading-tight">CRO Visual</h3>
             </div>
             <p class="text-[11px] text-emerald-100/80 font-medium">Imagens de alta conversão, infográficos e padrão visual de capa.</p>
           </div>
 
           <!-- Livro 4 -->
-          <div class="bg-gradient-to-b from-amber-600 to-amber-900 p-5 rounded-2xl border-t-4 border-amber-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 transition-transform cursor-pointer">
+          <div onclick="abrirModalVolume(4)" class="bg-gradient-to-b from-amber-600 to-amber-900 p-5 rounded-2xl border-t-4 border-amber-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-amber-500/20 transition-all cursor-pointer group">
             <span class="text-[10px] font-black uppercase tracking-wider bg-amber-950/80 px-2 py-0.5 rounded text-amber-200 w-max">Volume IV</span>
             <div class="space-y-2">
-              <i class="fa-solid fa-magnifying-glass text-2xl text-amber-300"></i>
+              <i class="fa-solid fa-magnifying-glass text-2xl text-amber-300 group-hover:scale-110 transition-transform"></i>
               <h3 class="font-extrabold text-sm leading-tight">SEO On-Page</h3>
             </div>
             <p class="text-[11px] text-amber-100/80 font-medium">Palavras-chave técnicas, títulos otimizados e indexação rápida.</p>
           </div>
 
           <!-- Livro 5 -->
-          <div class="bg-gradient-to-b from-indigo-600 to-indigo-900 p-5 rounded-2xl border-t-4 border-indigo-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 transition-transform cursor-pointer">
+          <div onclick="abrirModalVolume(5)" class="bg-gradient-to-b from-indigo-600 to-indigo-900 p-5 rounded-2xl border-t-4 border-indigo-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-indigo-500/20 transition-all cursor-pointer group">
             <span class="text-[10px] font-black uppercase tracking-wider bg-indigo-950/80 px-2 py-0.5 rounded text-indigo-200 w-max">Volume V</span>
             <div class="space-y-2">
-              <i class="fa-solid fa-robot text-2xl text-indigo-300"></i>
+              <i class="fa-solid fa-robot text-2xl text-indigo-300 group-hover:scale-110 transition-transform"></i>
               <h3 class="font-extrabold text-sm leading-tight">Engenharia de IA</h3>
             </div>
             <p class="text-[11px] text-indigo-100/80 font-medium">Prompts avançados, automação de descrições e ganho de escala.</p>
@@ -96,5 +106,156 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL / POP-UP DE TEMAS-CHAVE -->
+  <div id="modalVolume" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-gray-100 overflow-hidden transform transition-all">
+      
+      <!-- Cabeçalho do Modal -->
+      <div id="modalHeader" class="p-6 text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div id="modalIcone" class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl backdrop-blur-xs">
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <div>
+            <span id="modalVolumeBadge" class="text-[10px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">Volume I</span>
+            <h3 id="modalTitulo" class="text-xl font-black leading-tight mt-0.5">Título do Volume</h3>
+          </div>
+        </div>
+
+        <button onclick="fecharModalVolume()" class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Corpo com os 5 Temas -->
+      <div class="p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+          <span class="text-xs font-extrabold text-[#1C275C] uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-[#00A3FF]"></i> 5 Temas-Chave para Formação e Excelência do Time
+          </span>
+          <span class="text-[10px] font-bold text-gray-400">Trilha de Capacitação</span>
+        </div>
+
+        <div id="modalListaTemas" class="space-y-3">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+
+      <!-- Rodapé -->
+      <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+        <p class="text-xs text-gray-500 font-medium">Capacitação e Desenvolvimento Contínuo | bringIT</p>
+        <button onclick="fecharModalVolume()" class="px-5 py-2 text-xs font-bold bg-[#1C275C] hover:bg-[#00A3FF] text-white rounded-xl transition">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DADOS_VOLUMES = {
+      1: {
+        volume: "Volume I",
+        titulo: "Taxonomia de Categorias",
+        icone: "fa-sitemap",
+        corHeader: "bg-gradient-to-r from-sky-600 to-sky-800",
+        temas: [
+          { titulo: "Hierarquia & Mapeamento de Árvores de Produtos", desc: "Estruturação lógica de categorias primárias, secundárias e atributos de nicho." },
+          { titulo: "Padronização de Atributos & Especificações", desc: "Definição de fichas técnicas estruturadas para facilitar filtros e busca do usuário." },
+          { titulo: "Navegabilidade & UX de Menus", desc: "Organização visual intuitiva que reduz o número de cliques até a tomada de decisão." },
+          { titulo: "De-para & Correspondência Multicanal", desc: "Compatibilidade exata entre a taxonomia do site e as categorias dos marketplaces." },
+          { titulo: "Limpeza & Tratamento de Termos Ambiguidade", desc: "Eliminação de redundâncias e termos duplicados que confundem o motor de busca." }
+        ]
+      },
+      2: {
+        volume: "Volume II",
+        titulo: "Neurociência do Consumo",
+        icone: "fa-brain",
+        corHeader: "bg-gradient-to-r from-purple-600 to-purple-800",
+        temas: [
+          { titulo: "Gatilhos Mentais de Escassez & Urgência", desc: "Aplicação ética de elementos visuais que aceleram o impulso de compra." },
+          { titulo: "Copywriting Persuasivo On-Page", desc: "Construção de títulos e descrições focados na dor do cliente e nos benefícios diretos." },
+          { titulo: "Arquitetura de Decisão de Compra", desc: "Eliminação de ruídos na página que causam fadiga de decisão no consumidor." },
+          { titulo: "Prova Social & Análise de Avaliações", desc: "Estratégias para destacar dados técnicos e avaliações que geram confiança imediata." },
+          { titulo: "Ancoragem de Valor x Preço Percebido", desc: "Destaque de diferenciais técnicos que justificam a qualidade e valor do produto." }
+        ]
+      },
+      3: {
+        volume: "Volume III",
+        titulo: "CRO Visual",
+        icone: "fa-eye",
+        corHeader: "bg-gradient-to-r from-emerald-600 to-emerald-800",
+        temas: [
+          { titulo: "Padrão Visual de Capa de Alta Conversão", desc: "Diretrizes de iluminação, enquadramento e fundo limpo para imagens principais." },
+          { titulo: "Infográficos Explicativos de Atributos", desc: "Criação de imagens secundárias que resumem compatibilidades e especificações." },
+          { titulo: "Diagramação & Escaneabilidade do Anúncio", desc: "Uso de bullet points e espaçamento visual para leitura dinâmica em telas móbiles." },
+          { titulo: "Vídeos Demonstrativos & Unboxing", desc: "Engajamento visual com vídeos curtos demonstrando a aplicação do produto." },
+          { titulo: "Auditoria Visual da Curva A de Vendas", desc: "Garantia de padrão estético impecável nos anúncios de maior relevância." }
+        ]
+      },
+      4: {
+        volume: "Volume IV",
+        titulo: "SEO On-Page",
+        icone: "fa-magnifying-glass",
+        corHeader: "bg-gradient-to-r from-amber-600 to-amber-800",
+        temas: [
+          { titulo: "Pesquisa & Mapeamento de Palavras-Chave", desc: "Identificação de termos de alta busca (cauda longa e termos técnicos) do setor." },
+          { titulo: "Otimização de Title Tags & Meta Descriptions", desc: "Estruturação de títulos chamativos que aumentam a taxa de clique (CTR) no Google." },
+          { titulo: "Semântica de Cabeçalhos (H1, H2, H3)", desc: "Organização estrutural dos textos da página para indexação eficiente dos buscadores." },
+          { titulo: "Alt Text & Indexação de Imagens", desc: "Preenchimento correto de atributos de imagem para tráfego orgânico no Google Imagens." },
+          { titulo: "Correção de Redirecionamentos & Erros 404", desc: "Gestão técnica para não perder autoridade de páginas inativadas no site." }
+        ]
+      },
+      5: {
+        volume: "Volume V",
+        titulo: "Engenharia de IA",
+        icone: "fa-robot",
+        corHeader: "bg-gradient-to-r from-indigo-600 to-indigo-800",
+        temas: [
+          { titulo: "Engenharia de Prompts para Cadastros", desc: "Criação de instruções estruturadas para gerar descrições ricas em segundos." },
+          { titulo: "Automação de Tratamento de Dados Massivos", desc: "Uso de IA para categorização e preenchimento de planilhas de carga em lote." },
+          { titulo: "Geração Automatizada de Títulos Otimizados", desc: "Geração padronizada de títulos com base nas melhores regras de SEO e conversão." },
+          { titulo: "Revisão & Controle de Qualidade de Conteúdo", desc: "Verificação rápida de redundâncias e erros ortográficos com apoio de IA." },
+          { titulo: "Análise Preditiva de Tendências de Catálogo", desc: "Identificação de lacunas de produtos no mercado utilizando inteligência artificial." }
+        ]
+      }
+    };
+
+    function abrirModalVolume(idVolume) {
+      const dados = DADOS_VOLUMES[idVolume];
+      if (!dados) return;
+
+      const modal = document.getElementById('modalVolume');
+      const header = document.getElementById('modalHeader');
+      const badge = document.getElementById('modalVolumeBadge');
+      const titulo = document.getElementById('modalTitulo');
+      const icone = document.getElementById('modalIcone');
+      const containerTemas = document.getElementById('modalListaTemas');
+
+      header.className = `p-6 text-white flex items-center justify-between ${dados.corHeader}`;
+      badge.textContent = dados.volume;
+      titulo.textContent = dados.titulo;
+      icone.innerHTML = `<i class="fa-solid ${dados.icone}"></i>`;
+
+      containerTemas.innerHTML = dados.temas.map((tema, idx) => `
+        <div class="p-3 bg-slate-50 hover:bg-sky-50/50 rounded-2xl border border-gray-200/80 transition flex items-start gap-3">
+          <span class="w-6 h-6 rounded-lg bg-[#00A3FF] text-white flex items-center justify-center font-black text-xs flex-shrink-0 mt-0.5">
+            0${idx + 1}
+          </span>
+          <div>
+            <h4 class="font-extrabold text-[#1C275C] text-xs">${tema.titulo}</h4>
+            <p class="text-[11px] text-gray-600 font-medium leading-relaxed mt-0.5">${tema.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      modal.classList.remove('hidden');
+    }
+
+    function fecharModalVolume() {
+      const modal = document.getElementById('modalVolume');
+      if (modal) modal.classList.add('hidden');
+    }
+  </script>
 </body>
 </html>

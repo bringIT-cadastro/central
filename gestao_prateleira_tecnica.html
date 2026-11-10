@@ -24,7 +24,7 @@
     <span>PROJETO EM CONSTRUÇÃO: Esta página está em fase de modelagem de conteúdo e definição de fluxos operacionais.</span>
   </div>
 
-  <div class="max-w-6xl mx-auto p-8 space-y-8">
+  <div class="max-w-7xl mx-auto p-8 space-y-8">
     <div class="flex items-center justify-between bg-white p-6 rounded-2xl border border-gray-200 shadow-2xs">
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
@@ -47,7 +47,7 @@
       <!-- ESTANTE / PRATELEIRA DE CONHECIMENTO -->
       <div class="bg-slate-900 p-8 rounded-3xl border-4 border-amber-900/60 shadow-xl space-y-6">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           
           <!-- Livro 1 -->
           <div onclick="abrirModalVolume(1)" class="bg-gradient-to-b from-sky-600 to-sky-900 p-5 rounded-2xl border-t-4 border-sky-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-sky-500/20 transition-all cursor-pointer group">
@@ -97,6 +97,16 @@
               <h3 class="font-extrabold text-sm leading-tight">Engenharia de IA</h3>
             </div>
             <p class="text-[11px] text-indigo-100/80 font-medium">Prompts avançados, automação de descrições e ganho de escala.</p>
+          </div>
+
+          <!-- Livro 6 (Novo Volume VI) -->
+          <div onclick="abrirModalVolume(6)" class="bg-gradient-to-b from-rose-600 to-rose-900 p-5 rounded-2xl border-t-4 border-rose-300 text-white flex flex-col justify-between h-72 shadow-lg transform hover:-translate-y-2 hover:shadow-rose-500/20 transition-all cursor-pointer group">
+            <span class="text-[10px] font-black uppercase tracking-wider bg-rose-950/80 px-2 py-0.5 rounded text-rose-200 w-max">Volume VI</span>
+            <div class="space-y-2">
+              <i class="fa-solid fa-network-wired text-2xl text-rose-300 group-hover:scale-110 transition-transform"></i>
+              <h3 class="font-extrabold text-sm leading-tight">Conexão Marketplace</h3>
+            </div>
+            <p class="text-[11px] text-rose-100/80 font-medium">Integração de canais, de-para de atributos, erros e políticas de catálogo.</p>
           </div>
 
         </div>
@@ -217,6 +227,19 @@
           { titulo: "Geração Automatizada de Títulos Otimizados", desc: "Geração padronizada de títulos com base nas melhores regras de SEO e conversão." },
           { titulo: "Revisão & Controle de Qualidade de Conteúdo", desc: "Verificação rápida de redundâncias e erros ortográficos com apoio de IA." },
           { titulo: "Análise Preditiva de Tendências de Catálogo", desc: "Identificação de lacunas de produtos no mercado utilizando inteligência artificial." }
+        ]
+      },
+      6: {
+        volume: "Volume VI",
+        titulo: "Conexão Marketplace",
+        icone: "fa-network-wired",
+        corHeader: "bg-gradient-to-r from-rose-600 to-rose-800",
+        temas: [
+          { titulo: "Categorização & De-Para de Atributos Mandatórios", desc: "Mapeamento rigoroso das árvores de categorias e atributos obrigatórios em cada hub/plataforma." },
+          { titulo: "Compliance de Políticas & Regras de Catálogo", desc: "Domínio das regras de anúncios de cada canal (Mercado Livre, Shopee, Amazon, Kabum) para evitar inativações." },
+          { titulo: "Tratamento de Rejeições & Erros de Integração", desc: "Diagnóstico rápido e resolução de falhas de sincronização entre ERP/Hub e os marketplaces." },
+          { titulo: "Padronização de Anúncios com Variações e Kits", desc: "Estruturação técnica correta de SKUs filhos, grades de variação e kits multi-item." },
+          { titulo: "Sincronização de Estoque, Preço & Ponte de Comando", desc: "Manutenção da saúde operacional de ofertas com atualização ágil de preços e disponibilidade." }
         ]
       }
     };
